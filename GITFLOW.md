@@ -59,4 +59,8 @@ Nach Approval des Reviewers wird der `feature`-Branch in den `development`-Branc
 
 So oft wie möglich, jedoch spätestens, wenn eine Teilaufgabe gelöst wurde. 
 Das verhindert Codeverluste, macht kleine Änderungen besser rückkehrbar.
-Commit Messages sollten ebenfalls Englisch und aussagekräftig sein!
+Commit Messages sollten ebenfalls Englisch und aussagekräftig sein und folgendes Muster einhalten:
+
+`<branchname>: <message>` Bsp.:
+
+`feature/1234: added login button to frontend`
