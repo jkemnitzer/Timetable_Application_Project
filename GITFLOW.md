@@ -26,10 +26,10 @@ wieder in den `release` gemerged und als neuer Release-Kandidat getaggt.
 ![Gitflow Ansatz](https://zepel.io/blog/content/images/2020/05/GitFlow-git-workflow-2.png "Gitflow workflow with hotfix and release branches (zepel.io)")
 
 Ist ein Release Kandidat gefunden, der als fertig anerkannt wird, wird der Commit mit dem höchsten Release-Kandidat-Tag 
-in den `master` und zuurück in den `development` gemerged und als neue Version getaggt. 
+in den `main` und zurück in den `development` gemerged und als neue Version getaggt. 
 
-Im `master` gefundene Fehler werden in vom `master` gebranchten `hotfix`-Branches gefixt, 
-getestet und wieder in den `master` und `development` gemerged, falls der Fix kritisch ist. 
+Im `main` gefundene Fehler werden in vom `main` gebranchten `hotfix`-Branches gefixt, 
+getestet und wieder in den `main` und `development` gemerged, falls der Fix kritisch ist. 
 Ansonsten wird er als Issue ins Backlog übernommen und dann mit den Features als `ìssue`-Branch auf dem `development`-
 Branch gefixt.
 
