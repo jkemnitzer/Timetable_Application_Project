@@ -1,4 +1,4 @@
-package de.hofuniversity.minf.stundenplaner.persistence.data;
+package de.hofuniversity.minf.stundenplaner.persistence.room;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

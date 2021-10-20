@@ -1,6 +1,6 @@
 package de.hofuniversity.minf.stundenplaner.service;
 
-import de.hofuniversity.minf.stundenplaner.persistence.data.RoomDO;
+import de.hofuniversity.minf.stundenplaner.persistence.room.RoomDO;
 
 import java.util.List;
 

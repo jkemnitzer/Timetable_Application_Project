@@ -1,6 +1,6 @@
 package de.hofuniversity.minf.stundenplaner.rest;
 
-import de.hofuniversity.minf.stundenplaner.persistence.data.RoomDO;
+import de.hofuniversity.minf.stundenplaner.persistence.room.RoomDO;
 import de.hofuniversity.minf.stundenplaner.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +19,7 @@ import java.util.List;
 @RequestMapping("/rooms")
 public class RoomController {
 
-    private RoomService roomService;
+    private final RoomService roomService;
 
     @Autowired
     public RoomController(RoomService roomService) {
