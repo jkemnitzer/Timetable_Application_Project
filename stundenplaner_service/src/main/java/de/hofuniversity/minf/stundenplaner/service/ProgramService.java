@@ -8,6 +8,7 @@ public interface ProgramService {
 
     List<ProgramTO> findAll();
     ProgramTO findById(Long id);
-    ProgramTO findByName(String name);
-
+    ProgramTO createProgram(ProgramTO programTo);
+    ProgramTO updateProgram(Long id, ProgramTO programTo);
+    ProgramTO removeProgram(Long id);
 }

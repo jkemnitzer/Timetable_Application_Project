@@ -1,5 +1,6 @@
 package de.hofuniversity.minf.stundenplaner.persistence.program.data;
 
+import de.hofuniversity.minf.stundenplaner.service.to.ProgramTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,4 +30,8 @@ public class ProgramDO {
 
     @OneToMany
     private List<SemesterDO> semesterDOs;
+
+    public static ProgramDO fromTO(ProgramTO programTo) {
+        return new ProgramDO();
+    }
 }
