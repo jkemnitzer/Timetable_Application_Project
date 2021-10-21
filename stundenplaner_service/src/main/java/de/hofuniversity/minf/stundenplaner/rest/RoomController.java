@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  * @author nlehmann
- *
+ * <p>
  * Rest class representing the api endpoints for the room info
  */
 @RestController
@@ -27,12 +27,12 @@ public class RoomController {
     }
 
     @GetMapping
-    public List<RoomDO> getAllRooms(){
+    public List<RoomDO> getAllRooms() {
         return roomService.getAllRooms();
     }
 
     @GetMapping("/{id}")
-    public RoomDO findRoomById(@PathVariable Long id){
+    public RoomDO findRoomById(@PathVariable Long id) {
         return roomService.findById(id);
     }
 

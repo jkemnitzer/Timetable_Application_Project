@@ -3,7 +3,7 @@ package de.hofuniversity.minf.stundenplaner.common;
 import lombok.Getter;
 
 @Getter
-public class NotFoundException extends RuntimeException{
+public class NotFoundException extends RuntimeException {
 
     private final String type;
     private final Long id;

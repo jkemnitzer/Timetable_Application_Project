@@ -4,6 +4,7 @@ import de.hofuniversity.minf.stundenplaner.common.NotFoundException;
 import de.hofuniversity.minf.stundenplaner.persistence.program.ProgramRepository;
 import de.hofuniversity.minf.stundenplaner.persistence.program.data.ProgramDO;
 import de.hofuniversity.minf.stundenplaner.service.to.ProgramTO;
+import de.hofuniversity.minf.stundenplaner.service.to.SemesterTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,26 +14,28 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Service
-public class ProgramServiceImpl implements ProgramService{
+public class ProgramServiceImpl implements ProgramService {
 
     private final ProgramRepository programRepository;
+    private final SemesterService semesterService;
 
     @Autowired
-    public ProgramServiceImpl(ProgramRepository programRepository) {
+    public ProgramServiceImpl(ProgramRepository programRepository, SemesterService semesterService) {
         this.programRepository = programRepository;
+        this.semesterService = semesterService;
     }
 
     @Override
     public List<ProgramTO> findAll() {
         return StreamSupport.stream(programRepository.findAll().spliterator(), false)
-                .map(programDO -> new ProgramTO())
+                .map(ProgramTO::fromDO)
                 .collect(Collectors.toList());
     }
 
     @Override
     public ProgramTO findById(Long id) {
         Optional<ProgramDO> optional = programRepository.findById(id);
-        if (optional.isPresent()){
+        if (optional.isPresent()) {
             return ProgramTO.fromDO(optional.get());
         } else {
             throw new NotFoundException(ProgramDO.class, id);
@@ -47,11 +50,16 @@ public class ProgramServiceImpl implements ProgramService{
     }
 
     @Override
-    public ProgramTO updateProgram(Long id, ProgramTO programTo) {
+    public ProgramTO updateProgram(Long id, ProgramTO programTO) {
         Optional<ProgramDO> optional = programRepository.findById(id);
-        if (optional.isPresent()){
+        if (optional.isPresent()) {
             ProgramDO programDO = optional.get();
-            // TODO: 21.10.21 do update
+            programDO.updateFromTO(programTO);
+            programDO.setSemesterDOs(semesterService.findAllByIDs(
+                    programTO.getSemesters().stream()
+                            .map(SemesterTO::getId)
+                            .collect(Collectors.toList())
+            ));
             return ProgramTO.fromDO(programDO);
         } else {
             throw new NotFoundException(ProgramDO.class, id);
@@ -61,7 +69,7 @@ public class ProgramServiceImpl implements ProgramService{
     @Override
     public ProgramTO removeProgram(Long id) {
         Optional<ProgramDO> optional = programRepository.findById(id);
-        if (optional.isPresent()){
+        if (optional.isPresent()) {
             ProgramDO programDO = optional.get();
             programRepository.delete(programDO);
             return ProgramTO.fromDO(programDO);

@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -14,9 +17,16 @@ public class ProgramTO {
 
     private Long id;
     private String name;
+    private List<SemesterTO> semesters;
 
     public static ProgramTO fromDO(ProgramDO programDO) {
-        return new ProgramTO(programDO.getId(), programDO.getName());
+        return new ProgramTO(
+                programDO.getId(),
+                programDO.getName(),
+                programDO.getSemesterDOs().stream()
+                        .map(SemesterTO::fromDO)
+                        .collect(Collectors.toList())
+        );
     }
 
 }

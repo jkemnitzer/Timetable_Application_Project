@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 /**
  * @author nlehmann
- *
+ * <p>
  * Basic POJO class for table representation of rooms
  */
 @Getter

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 /**
  * @author nlehmann
- *
+ * <p>
  * Fallback Handler for all unhandled Exceptions to prevent info leaks
  */
 @ControllerAdvice
@@ -18,7 +18,7 @@ public class FallbackExceptionHandler {
     }
 
     @ExceptionHandler(value = NotFoundException.class)
-    public ResponseEntity<Object> exception(){
+    public ResponseEntity<Object> exception() {
         return ResponseEntity.notFound().build();
     }
 

@@ -11,6 +11,7 @@ import java.util.List;
 public interface RoomService {
 
     List<RoomDO> getAllRooms();
+
     RoomDO findById(Long id);
 
 }
