@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.Collections;
 import java.util.List;
 
 @Getter
@@ -32,6 +33,6 @@ public class ProgramDO {
     private List<SemesterDO> semesterDOs;
 
     public static ProgramDO fromTO(ProgramTO programTo) {
-        return new ProgramDO();
+        return new ProgramDO(programTo.getId(), programTo.getName(), Collections.emptyList());
     }
 }
