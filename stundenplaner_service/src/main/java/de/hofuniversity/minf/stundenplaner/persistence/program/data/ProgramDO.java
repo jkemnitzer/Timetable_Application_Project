@@ -39,7 +39,7 @@ public class ProgramDO {
     private List<SemesterDO> semesterDOs;
 
     public void updateFromTO(ProgramTO programTO) {
-        this.name = programTO.getName();
+        this.setName(programTO.getName());
     }
 
     public static ProgramDO fromTO(ProgramTO programTo) {

@@ -39,6 +39,12 @@ public class SemesterDO {
     @JoinColumn(name = "program_id", nullable = false)
     private ProgramDO program;
 
+    public void updateFromTO(SemesterTO semesterTO) {
+        this.setNumber(semesterTO.getNumber());
+        this.setExpectedParticipants(semesterTO.getExpectedParticipants());
+        this.setActualParticipants(semesterTO.getActualParticipants());
+    }
+
     public static SemesterDO fromTO(SemesterTO semesterTO) {
         return new SemesterDO(
                 semesterTO.getId(),
@@ -48,5 +54,4 @@ public class SemesterDO {
                 null
         );
     }
-
 }

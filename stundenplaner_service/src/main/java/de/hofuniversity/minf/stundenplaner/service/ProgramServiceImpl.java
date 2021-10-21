@@ -2,9 +2,10 @@ package de.hofuniversity.minf.stundenplaner.service;
 
 import de.hofuniversity.minf.stundenplaner.common.NotFoundException;
 import de.hofuniversity.minf.stundenplaner.persistence.program.ProgramRepository;
+import de.hofuniversity.minf.stundenplaner.persistence.program.SemesterRepository;
 import de.hofuniversity.minf.stundenplaner.persistence.program.data.ProgramDO;
+import de.hofuniversity.minf.stundenplaner.persistence.program.data.SemesterDO;
 import de.hofuniversity.minf.stundenplaner.service.boundary.ProgramService;
-import de.hofuniversity.minf.stundenplaner.service.boundary.SemesterService;
 import de.hofuniversity.minf.stundenplaner.service.to.ProgramTO;
 import de.hofuniversity.minf.stundenplaner.service.to.SemesterTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +20,12 @@ import java.util.stream.StreamSupport;
 public class ProgramServiceImpl implements ProgramService {
 
     private final ProgramRepository programRepository;
-    private final SemesterService semesterService;
+    private final SemesterRepository semesterRepository;
 
     @Autowired
-    public ProgramServiceImpl(ProgramRepository programRepository, SemesterService semesterService) {
+    public ProgramServiceImpl(ProgramRepository programRepository, SemesterRepository semesterRepository) {
         this.programRepository = programRepository;
-        this.semesterService = semesterService;
+        this.semesterRepository = semesterRepository;
     }
 
     @Override
@@ -57,7 +58,7 @@ public class ProgramServiceImpl implements ProgramService {
         if (optional.isPresent()) {
             ProgramDO programDO = optional.get();
             programDO.updateFromTO(programTO);
-            programDO.setSemesterDOs(semesterService.findAllByIDs(
+            programDO.setSemesterDOs(findSemesterDOsByIds(
                     programTO.getSemesters().stream()
                             .map(SemesterTO::getId)
                             .collect(Collectors.toList())
@@ -78,5 +79,9 @@ public class ProgramServiceImpl implements ProgramService {
         } else {
             throw new NotFoundException(ProgramDO.class, id);
         }
+    }
+
+    private List<SemesterDO> findSemesterDOsByIds(List<Long> semesterIds){
+        return semesterRepository.findAllByIdIn(semesterIds);
     }
 }

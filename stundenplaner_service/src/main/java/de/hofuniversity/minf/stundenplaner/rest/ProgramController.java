@@ -49,10 +49,6 @@ public class ProgramController {
     @DeleteMapping("/{id}")
     public ResponseEntity<ProgramTO> deleteProgram(@PathVariable("id") Long id) {
         ProgramTO deleted = programService.removeProgram(id);
-        if (deleted != null && id.equals(deleted.getId())) {
-            return ResponseEntity.ok(deleted);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return ResponseEntity.ok(deleted);
     }
 }

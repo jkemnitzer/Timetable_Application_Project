@@ -1,13 +1,18 @@
 package de.hofuniversity.minf.stundenplaner.service.boundary;
 
-import de.hofuniversity.minf.stundenplaner.persistence.program.data.SemesterDO;
+import de.hofuniversity.minf.stundenplaner.service.to.SemesterTO;
 
 import java.util.List;
 
 public interface SemesterService {
 
-    List<SemesterDO> findAll();
+    List<SemesterTO> findAllByProgramId(Long programId);
 
-    List<SemesterDO> findAllByIDs(List<Long> id);
+    SemesterTO createSemester(Long programId, SemesterTO semesterTO);
 
+    SemesterTO findById(Long programId, Long semesterId);
+
+    SemesterTO updateSemester(Long programId, Long semesterId, SemesterTO semesterTO);
+
+    SemesterTO removeSemester(Long programId, Long semesterId);
 }
