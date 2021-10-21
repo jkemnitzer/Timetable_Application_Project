@@ -1,4 +1,4 @@
-package de.hofuniversity.minf.stundenplaner.service;
+package de.hofuniversity.minf.stundenplaner.service.boundary;
 
 import de.hofuniversity.minf.stundenplaner.persistence.program.data.SemesterDO;
 

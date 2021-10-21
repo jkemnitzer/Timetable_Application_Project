@@ -2,6 +2,7 @@ package de.hofuniversity.minf.stundenplaner.service;
 
 import de.hofuniversity.minf.stundenplaner.persistence.room.RoomDO;
 import de.hofuniversity.minf.stundenplaner.persistence.room.RoomRepository;
+import de.hofuniversity.minf.stundenplaner.service.boundary.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

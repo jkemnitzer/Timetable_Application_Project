@@ -3,6 +3,8 @@ package de.hofuniversity.minf.stundenplaner.service;
 import de.hofuniversity.minf.stundenplaner.common.NotFoundException;
 import de.hofuniversity.minf.stundenplaner.persistence.program.ProgramRepository;
 import de.hofuniversity.minf.stundenplaner.persistence.program.data.ProgramDO;
+import de.hofuniversity.minf.stundenplaner.service.boundary.ProgramService;
+import de.hofuniversity.minf.stundenplaner.service.boundary.SemesterService;
 import de.hofuniversity.minf.stundenplaner.service.to.ProgramTO;
 import de.hofuniversity.minf.stundenplaner.service.to.SemesterTO;
 import org.springframework.beans.factory.annotation.Autowired;

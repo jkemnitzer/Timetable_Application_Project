@@ -2,6 +2,7 @@ package de.hofuniversity.minf.stundenplaner.service;
 
 import de.hofuniversity.minf.stundenplaner.persistence.program.SemesterRepository;
 import de.hofuniversity.minf.stundenplaner.persistence.program.data.SemesterDO;
+import de.hofuniversity.minf.stundenplaner.service.boundary.SemesterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

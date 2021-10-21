@@ -1,7 +1,7 @@
 package de.hofuniversity.minf.stundenplaner.rest;
 
 import de.hofuniversity.minf.stundenplaner.persistence.room.RoomDO;
-import de.hofuniversity.minf.stundenplaner.service.RoomService;
+import de.hofuniversity.minf.stundenplaner.service.boundary.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

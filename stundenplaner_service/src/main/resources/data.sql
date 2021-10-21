@@ -37,4 +37,23 @@ CREATE TABLE t_semester
 );
 
 INSERT INTO t_program (name) VALUES ('Master Informatik');
-INSERT INTO t_semester (program_id, number, exp_participants, act_participants) VALUES (1, '1', 10, 11);
+INSERT INTO t_semester (program_id, number, exp_participants, act_participants) VALUES (1, '1u2', 10, 11);
+INSERT INTO t_semester (program_id, number, exp_participants, act_participants) VALUES (1, '3', 5, 5);
+
+INSERT INTO t_program (name) VALUES ('Informatik');
+INSERT INTO t_semester (program_id, number, exp_participants, act_participants) VALUES (2, '1', 40, 38);
+INSERT INTO t_semester (program_id, number, exp_participants, act_participants) VALUES (2, '2', 40, 38);
+INSERT INTO t_semester (program_id, number, exp_participants, act_participants) VALUES (2, '3', 35, 35);
+INSERT INTO t_semester (program_id, number, exp_participants, act_participants) VALUES (2, '4', 35, 31);
+INSERT INTO t_semester (program_id, number, exp_participants, act_participants) VALUES (2, '5', 35, 26);
+INSERT INTO t_semester (program_id, number, exp_participants, act_participants) VALUES (2, '6', 30, 26);
+INSERT INTO t_semester (program_id, number, exp_participants, act_participants) VALUES (2, '7', 30, 22);
+
+INSERT INTO t_program (name) VALUES ('Medien Informatik');
+INSERT INTO t_semester (program_id, number, exp_participants, act_participants) VALUES (3, '1', 40, 38);
+INSERT INTO t_semester (program_id, number, exp_participants, act_participants) VALUES (3, '2', 40, 38);
+INSERT INTO t_semester (program_id, number, exp_participants, act_participants) VALUES (3, '3', 35, 35);
+INSERT INTO t_semester (program_id, number, exp_participants, act_participants) VALUES (3, '4', 35, 31);
+INSERT INTO t_semester (program_id, number, exp_participants, act_participants) VALUES (3, '5', 35, 26);
+INSERT INTO t_semester (program_id, number, exp_participants, act_participants) VALUES (3, '6', 30, 26);
+INSERT INTO t_semester (program_id, number, exp_participants, act_participants) VALUES (3, '7', 30, 22);
