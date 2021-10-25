@@ -15,6 +15,7 @@ public class FallbackExceptionHandler {
 
     @ExceptionHandler(value = Throwable.class)
     public ResponseEntity<Object> exception(Throwable exception) {
+        log.error("Unexpected Exception occurred", exception);
         return ResponseEntity.badRequest().build();
     }
 
