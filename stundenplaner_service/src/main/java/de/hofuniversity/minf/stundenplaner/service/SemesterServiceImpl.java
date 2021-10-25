@@ -72,6 +72,13 @@ public class SemesterServiceImpl implements SemesterService {
         return SemesterTO.fromDO(semesterDO);
     }
 
+    /**
+     * finds a semester DO by its id and program
+     * @param programId program to look for
+     * @param semesterId semester to find
+     * @return semesterDO
+     * @throws NotFoundException id either id is not found
+     */
     private SemesterDO findSemesterDOById(Long programId, Long semesterId) {
         ProgramDO programDO = findProgramDOById(programId);
         Optional<SemesterDO> optional = programDO.getSemesterDOs().stream()
@@ -84,6 +91,12 @@ public class SemesterServiceImpl implements SemesterService {
         }
     }
 
+    /**
+     * finds a program DO by its id
+     * @param programId program to find
+     * @return program DO
+     * @throws NotFoundException if program id not found
+     */
     private ProgramDO findProgramDOById(Long programId) {
         Optional<ProgramDO> optional = programRepository.findById(programId);
         if (optional.isPresent()) {

@@ -85,10 +85,21 @@ public class ProgramServiceImpl implements ProgramService {
         }
     }
 
+    /**
+     * finds all semesters by id and program
+     * @param program program to find semesters in
+     * @param semesterIds ids to look for
+     * @return list of semesters in program
+     */
     private List<SemesterDO> findSemesterDOsByIds(ProgramDO program, List<Long> semesterIds) {
         return semesterRepository.findAllByProgramAndIdIn(program, semesterIds);
     }
 
+    /**
+     * compare and merge two semester lists
+     * @param programDO to get old semesters from
+     * @param newSemesters list of new semesters
+     */
     private void mergeSemesters(ProgramDO programDO, List<SemesterTO> newSemesters) {
         List<Long> identical = new ArrayList<>();
         List<Long> toBeRemoved = new ArrayList<>();
@@ -112,6 +123,11 @@ public class ProgramServiceImpl implements ProgramService {
                 });
     }
 
+    /**
+     * removes a semester list from a program and persistence context
+     * @param programDO program to remove semesters from
+     * @param semesters semesters to be removed
+     */
     private void removeSemesterFromProgram(ProgramDO programDO, List<Long> semesters) {
         List<SemesterDO> toBeRemoved = findSemesterDOsByIds(programDO, semesters);
         programDO.getSemesterDOs().removeAll(toBeRemoved);
