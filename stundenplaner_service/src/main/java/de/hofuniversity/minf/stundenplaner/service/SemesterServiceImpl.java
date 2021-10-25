@@ -49,7 +49,7 @@ public class SemesterServiceImpl implements SemesterService {
         Optional<SemesterDO> optional = findProgramDOById(programId).getSemesterDOs().stream()
                 .filter(semesterDO -> semesterId.equals(semesterDO.getId()))
                 .findFirst();
-        if (optional.isPresent()){
+        if (optional.isPresent()) {
             return SemesterTO.fromDO(optional.get());
         } else {
             throw new NotFoundException(SemesterDO.class, semesterId);
@@ -58,33 +58,35 @@ public class SemesterServiceImpl implements SemesterService {
 
     @Override
     public SemesterTO updateSemester(Long programId, Long semesterId, SemesterTO semesterTO) {
-        SemesterDO semesterDO = findSemesterDOByIds(programId, semesterId);
+        SemesterDO semesterDO = findSemesterDOById(programId, semesterId);
         semesterDO.updateFromTO(semesterTO);
         return SemesterTO.fromDO(semesterDO);
     }
 
     @Override
     public SemesterTO removeSemester(Long programId, Long semesterId) {
-        SemesterDO semesterDO = findSemesterDOByIds(programId, semesterId);
+        SemesterDO semesterDO = findSemesterDOById(programId, semesterId);
+        ProgramDO programDO = findProgramDOById(programId);
+        programDO.getSemesterDOs().remove(semesterDO);
         semesterRepository.delete(semesterDO);
         return SemesterTO.fromDO(semesterDO);
     }
 
-    private SemesterDO findSemesterDOByIds(Long programId, Long semesterId){
+    private SemesterDO findSemesterDOById(Long programId, Long semesterId) {
         ProgramDO programDO = findProgramDOById(programId);
         Optional<SemesterDO> optional = programDO.getSemesterDOs().stream()
                 .filter(semesterDO -> semesterId.equals(semesterDO.getId()))
                 .findFirst();
-        if (optional.isPresent()){
+        if (optional.isPresent()) {
             return optional.get();
         } else {
             throw new NotFoundException(SemesterDO.class, semesterId);
         }
     }
 
-    private ProgramDO findProgramDOById(Long programId){
+    private ProgramDO findProgramDOById(Long programId) {
         Optional<ProgramDO> optional = programRepository.findById(programId);
-        if (optional.isPresent()){
+        if (optional.isPresent()) {
             return optional.get();
         } else {
             throw new NotFoundException(ProgramDO.class, programId);

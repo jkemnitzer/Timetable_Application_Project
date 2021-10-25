@@ -41,7 +41,7 @@ public class SemesterController {
     @GetMapping("/{semesterId}")
     public ResponseEntity<SemesterTO> findById(
             @PathVariable("programId") Long programId,
-            @PathVariable("semesterId") Long semesterId){
+            @PathVariable("semesterId") Long semesterId) {
         return ResponseEntity.ok(semesterService.findById(programId, semesterId));
     }
 
@@ -49,14 +49,14 @@ public class SemesterController {
     public ResponseEntity<SemesterTO> updateSemester(
             @PathVariable("programId") Long programId,
             @PathVariable("semesterId") Long semesterId,
-            @RequestBody SemesterTO semesterTO){
+            @RequestBody SemesterTO semesterTO) {
         return ResponseEntity.ok(semesterService.updateSemester(programId, semesterId, semesterTO));
     }
 
     @DeleteMapping("/{semesterId}")
     public ResponseEntity<SemesterTO> deleteSemester(
             @PathVariable("programId") Long programId,
-            @PathVariable("semesterId") Long semesterId){
+            @PathVariable("semesterId") Long semesterId) {
         return ResponseEntity.ok(semesterService.removeSemester(programId, semesterId));
     }
 
