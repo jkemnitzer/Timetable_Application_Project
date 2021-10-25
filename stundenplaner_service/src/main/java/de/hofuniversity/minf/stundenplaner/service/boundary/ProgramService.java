@@ -12,7 +12,7 @@ public interface ProgramService {
 
     ProgramTO createProgram(ProgramTO programTo);
 
-    ProgramTO updateProgram(Long id, ProgramTO programTo);
+    ProgramTO updateProgram(Long id, ProgramTO programTO, boolean checkSemesters);
 
     ProgramTO removeProgram(Long id);
 

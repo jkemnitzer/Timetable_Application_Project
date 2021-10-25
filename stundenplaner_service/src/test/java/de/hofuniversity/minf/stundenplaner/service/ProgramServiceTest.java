@@ -76,13 +76,13 @@ public class ProgramServiceTest {
         when(semesterRepository.findAllByIdIn(anyList())).thenReturn(Collections.emptyList());
         ProgramTO test = ProgramTO.fromDO(PROGRAM_DO_2);
 
-        ProgramTO actual = programService.updateProgram(1L, test);
+        ProgramTO actual = programService.updateProgram(1L, test, false);
         Assertions.assertNotEquals(PROGRAM_DO_1.getName(), actual.getName());
         Assertions.assertEquals(PROGRAM_DO_2.getName(), actual.getName());
 
         Assertions.assertThrows(
                 NotFoundException.class,
-                ()-> programService.updateProgram(3L, ProgramTO.fromDO(PROGRAM_DO_1))
+                ()-> programService.updateProgram(3L, ProgramTO.fromDO(PROGRAM_DO_1), false)
         );
     }
 

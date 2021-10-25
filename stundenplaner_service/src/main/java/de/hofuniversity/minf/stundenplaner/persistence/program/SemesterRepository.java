@@ -10,6 +10,8 @@ public interface SemesterRepository extends CrudRepository<SemesterDO, Long> {
 
     List<SemesterDO> findAllByIdIn(List<Long> ids);
 
-    List<SemesterDO> findAllByProgram(ProgramDO program);
+    List<SemesterDO> findAllByProgramAndIdIn(ProgramDO program, List<Long> ids);
+
+    List<SemesterDO> findAllByProgram(ProgramDO programDO);
 
 }

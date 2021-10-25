@@ -11,6 +11,7 @@ import de.hofuniversity.minf.stundenplaner.service.to.SemesterTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -47,22 +48,25 @@ public class ProgramServiceImpl implements ProgramService {
 
     @Override
     public ProgramTO createProgram(ProgramTO programTo) {
-        return ProgramTO.fromDO(
-                programRepository.save(ProgramDO.fromTO(programTo))
-        );
+        ProgramDO programDO = ProgramDO.fromTO(programTo);
+        programDO.setId(null);
+        programDO.getSemesterDOs().forEach(semesterDO -> {
+            semesterDO.setProgram(programDO);
+            // semester must be new, otherwise it was attached to a program already
+            semesterDO.setId(null);
+        });
+        return ProgramTO.fromDO(programRepository.save(programDO));
     }
 
     @Override
-    public ProgramTO updateProgram(Long id, ProgramTO programTO) {
+    public ProgramTO updateProgram(Long id, ProgramTO programTO, boolean checkSemesters) {
         Optional<ProgramDO> optional = programRepository.findById(id);
         if (optional.isPresent()) {
             ProgramDO programDO = optional.get();
             programDO.updateFromTO(programTO);
-            programDO.setSemesterDOs(findSemesterDOsByIds(
-                    programTO.getSemesters().stream()
-                            .map(SemesterTO::getId)
-                            .collect(Collectors.toList())
-            ));
+            if (checkSemesters) {
+                mergeSemesters(programDO, programTO.getSemesters());
+            }
             return ProgramTO.fromDO(programDO);
         } else {
             throw new NotFoundException(ProgramDO.class, id);
@@ -81,7 +85,36 @@ public class ProgramServiceImpl implements ProgramService {
         }
     }
 
-    private List<SemesterDO> findSemesterDOsByIds(List<Long> semesterIds){
-        return semesterRepository.findAllByIdIn(semesterIds);
+    private List<SemesterDO> findSemesterDOsByIds(ProgramDO program, List<Long> semesterIds) {
+        return semesterRepository.findAllByProgramAndIdIn(program, semesterIds);
+    }
+
+    private void mergeSemesters(ProgramDO programDO, List<SemesterTO> newSemesters) {
+        List<Long> identical = new ArrayList<>();
+        List<Long> toBeRemoved = new ArrayList<>();
+        List<Long> newIds = newSemesters.stream().map(SemesterTO::getId).collect(Collectors.toList());
+        programDO.getSemesterDOs().stream()
+                .map(SemesterDO::getId)
+                .forEach(id -> {
+                    if (newIds.contains(id)) {
+                        identical.add(id);
+                    } else {
+                        toBeRemoved.add(id);
+                    }
+                });
+        removeSemesterFromProgram(programDO, toBeRemoved);
+        newSemesters.stream()
+                .filter(to -> !identical.contains(to.getId()))
+                .map(SemesterDO::fromTO)
+                .forEach(semesterDO -> {
+                    semesterDO.setProgram(programDO);
+                    programDO.getSemesterDOs().add(semesterRepository.save(semesterDO));
+                });
+    }
+
+    private void removeSemesterFromProgram(ProgramDO programDO, List<Long> semesters) {
+        List<SemesterDO> toBeRemoved = findSemesterDOsByIds(programDO, semesters);
+        programDO.getSemesterDOs().removeAll(toBeRemoved);
+        semesterRepository.deleteAll(toBeRemoved);
     }
 }

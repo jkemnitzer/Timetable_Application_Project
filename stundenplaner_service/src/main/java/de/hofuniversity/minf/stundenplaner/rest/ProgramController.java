@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -42,8 +43,8 @@ public class ProgramController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProgramTO> updateProgram(@PathVariable("id") Long id, @RequestBody ProgramTO programTo) {
-        return ResponseEntity.ok(programService.updateProgram(id, programTo));
+    public ResponseEntity<ProgramTO> updateProgram(@PathVariable("id") Long id, @RequestBody ProgramTO programTo, @RequestParam(value = "checkSemesters", defaultValue = "true") Boolean checkSemesters) {
+        return ResponseEntity.ok(programService.updateProgram(id, programTo, checkSemesters));
     }
 
     @DeleteMapping("/{id}")
