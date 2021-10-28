@@ -1,6 +1,6 @@
-package de.hofuniversity.minf.stundenplaner.service;
+package de.hofuniversity.minf.stundenplaner.service.boundary;
 
-import de.hofuniversity.minf.stundenplaner.persistence.data.RoomDO;
+import de.hofuniversity.minf.stundenplaner.persistence.room.RoomDO;
 
 import java.util.List;
 
@@ -11,6 +11,7 @@ import java.util.List;
 public interface RoomService {
 
     List<RoomDO> getAllRooms();
+
     RoomDO findById(Long id);
 
 }

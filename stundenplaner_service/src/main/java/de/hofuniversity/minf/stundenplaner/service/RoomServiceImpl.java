@@ -1,7 +1,8 @@
 package de.hofuniversity.minf.stundenplaner.service;
 
-import de.hofuniversity.minf.stundenplaner.persistence.RoomRepository;
-import de.hofuniversity.minf.stundenplaner.persistence.data.RoomDO;
+import de.hofuniversity.minf.stundenplaner.persistence.room.RoomDO;
+import de.hofuniversity.minf.stundenplaner.persistence.room.RoomRepository;
+import de.hofuniversity.minf.stundenplaner.service.boundary.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,10 +17,10 @@ import java.util.stream.StreamSupport;
 @Service
 public class RoomServiceImpl implements RoomService {
 
-    private RoomRepository roomRepository;
+    private final RoomRepository roomRepository;
 
     @Autowired
-    public RoomServiceImpl(RoomRepository roomRepository){
+    public RoomServiceImpl(RoomRepository roomRepository) {
         this.roomRepository = roomRepository;
     }
 
