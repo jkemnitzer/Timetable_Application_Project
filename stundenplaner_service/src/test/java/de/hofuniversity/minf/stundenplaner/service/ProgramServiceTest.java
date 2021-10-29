@@ -2,7 +2,6 @@ package de.hofuniversity.minf.stundenplaner.service;
 
 import de.hofuniversity.minf.stundenplaner.common.NotFoundException;
 import de.hofuniversity.minf.stundenplaner.persistence.program.ProgramRepository;
-import de.hofuniversity.minf.stundenplaner.persistence.program.SemesterRepository;
 import de.hofuniversity.minf.stundenplaner.persistence.program.data.ProgramDO;
 import de.hofuniversity.minf.stundenplaner.service.to.ProgramTO;
 import org.junit.jupiter.api.Assertions;
@@ -17,7 +16,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 
@@ -26,8 +24,6 @@ public class ProgramServiceTest {
 
     @Mock
     private ProgramRepository programRepository;
-    @Mock
-    private SemesterRepository semesterRepository;
     @InjectMocks
     private ProgramServiceImpl programService;
 
@@ -73,7 +69,6 @@ public class ProgramServiceTest {
                 new ProgramDO(PROGRAM_DO_1.getId(), PROGRAM_DO_1.getName(), Collections.emptyList())
         ));
         when(programRepository.findById(eq(3L))).thenReturn(Optional.empty());
-        when(semesterRepository.findAllByIdIn(anyList())).thenReturn(Collections.emptyList());
         ProgramTO test = ProgramTO.fromDO(PROGRAM_DO_2);
 
         ProgramTO actual = programService.updateProgram(1L, test, false);
