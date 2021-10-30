@@ -1,0 +1,65 @@
+<div class="outer" fxLayout="column">
+  <mat-form-field appearance="standard" class="program-filter">
+    <mat-label>Filter</mat-label>
+    <input
+      #input
+      (keyup)="applyFilter($event)"
+      matInput
+      placeholder="Id oder Name"/>
+  </mat-form-field>
+
+  <table mat-table matSort [dataSource]="dataSource">
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>
+        <button
+          (click)="toggleEditing()"
+          class="action"
+          color="primary"
+          mat-icon-button
+          matTooltip="Änderungen aktivieren/ deaktivieren">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          (click)="addRow()"
+          class="action"
+          color="primary"
+          mat-icon-button
+          matTooltip="Studiengang hinzufügen">
+          <mat-icon>add</mat-icon>
+        </button>
+      </th>
+      <td mat-cell *matCellDef="let program">
+        <button
+          (click)="editRow(program)"
+          [disabled]="editEnabled?null:true"
+          class="action"
+          mat-icon-button>
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          (click)="removeRow(program)"
+          [disabled]="editEnabled?null:true"
+          class="action"
+          mat-icon-button>
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="id">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header>Id</th>
+      <td *matCellDef="let program" mat-cell>{{ program.id }}</td>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header>Name</th>
+      <td *matCellDef="let program" mat-cell>{{ program.name }}</td>
+    </ng-container>
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns" mat-row></tr>
+
+    <tr *matNoDataRow class="mat-row">
+      <td class="mat-cell" colspan="4">
+        <span class="no-filter-message">Keine Daten die dem Filter "{{ input.value }}" entsprechen.</span>
+      </td>
+    </tr>
+  </table>
+</div>
