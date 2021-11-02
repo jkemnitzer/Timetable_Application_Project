@@ -19,7 +19,15 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      Stundenplan App
+      <mat-toolbar-row>
+        <span fxFlex>Stundenplan-App</span>
+        <span *ngIf="userService.loggedIn" fxFlex fxLayoutAlign="flex-end right">
+          Hallo {{userService.username}}!
+        </span>
+        <app-login
+          fxLayoutAlign="flex-end center">
+        </app-login>
+      </mat-toolbar-row>
     </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>

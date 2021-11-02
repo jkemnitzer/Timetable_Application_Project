@@ -1,0 +1,13 @@
+
+.login-container {
+  width: 100%;
+  padding: 24px;
+}
+
+.login-menu {
+  width: fit-content;
+}
+
+input[type="text"] {
+  font-family: inherit;
+}
