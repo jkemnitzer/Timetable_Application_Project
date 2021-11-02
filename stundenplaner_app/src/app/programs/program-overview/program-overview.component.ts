@@ -2,9 +2,9 @@ import {Component, OnInit, ViewChild,} from '@angular/core';
 import {Program} from './data/program';
 import {MatTable, MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
-import {MatDialog,} from '@angular/material/dialog';
-import {DialogType, EditProgramDialogComponent,} from 'src/app/edit-program-dialog/edit-program-dialog.component';
-import {HttpService} from 'src/app/http/http.service';
+import {MatDialog} from '@angular/material/dialog';
+import {DialogType, EditProgramDialogComponent} from '../edit-program-dialog/edit-program-dialog.component';
+import {HttpService} from '../../http/http.service';
 import {Util} from "../../common/util";
 
 @Component({
