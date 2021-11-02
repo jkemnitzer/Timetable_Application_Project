@@ -1,4 +1,4 @@
-import { Util } from './util';
+import {Util} from './util';
 
 describe('Util', () => {
   it('should create an instance', () => {
