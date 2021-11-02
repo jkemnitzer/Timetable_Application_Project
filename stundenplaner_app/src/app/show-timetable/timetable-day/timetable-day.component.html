@@ -1,0 +1,59 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      {{weekday}}
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+
+  <table mat-table [dataSource]="data" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="start">
+      <th mat-header-cell *matHeaderCellDef> Beginn </th>
+      <td mat-cell *matCellDef="let element"> {{element.startMinutes* 1000 * 60+(element.startHour-1)*60*60000| date:'hh:mm'}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="end">
+      <th mat-header-cell *matHeaderCellDef> Ende </th>
+      <td mat-cell *matCellDef="let element"> {{(element.startMinutes+element.length)* 1000 * 60+(element.startHour-1)*60*60000 | date:'hh:mm'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="lecturer">
+      <th mat-header-cell *matHeaderCellDef> Dozent </th>
+      <td mat-cell *matCellDef="let element"> {{element.lecturer}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="room">
+      <th mat-header-cell *matHeaderCellDef> Raum </th>
+      <td mat-cell *matCellDef="let element"> {{element.room}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef>  </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon matTooltip="Editieren" aria-hidden="false" aria-label="Editieren">edit</mat-icon></td>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef>  </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon matTooltip="Löschen" aria-hidden="false" aria-label="Löschen">undo</mat-icon>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="view">
+      <th mat-header-cell *matHeaderCellDef>  </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon matTooltip="Details" aria-hidden="false" aria-label="Details">launch</mat-icon> </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+
+</mat-expansion-panel>

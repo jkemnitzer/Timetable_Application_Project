@@ -1,0 +1,60 @@
+table {
+  width: 100%;
+
+}
+.mat-column-edit {
+  width: 30px;
+  padding-right: 10px;
+
+}
+
+.mat-column-delete{
+  width: 30px;
+  padding-right: 10px;
+
+
+}
+.mat-column-view{
+  width: 30px;
+  padding-right: 10px;
+
+
+}
+.mat-column-start{
+  width: 50px;
+  padding-right: 10px;
+
+
+
+}
+.mat-column-end{
+  width: 50px;
+
+  padding-right: 10px;
+
+}
+.mat-column-start{
+  width: 50px;
+
+
+}
+.mat-column-lecturer{
+  width: 7%;
+
+
+
+}
+.mat-column-room{
+  width: 7%;
+
+
+  text-align: center;
+}
+.mat-column-name{
+  width: 80%;
+
+
+
+}
+
+

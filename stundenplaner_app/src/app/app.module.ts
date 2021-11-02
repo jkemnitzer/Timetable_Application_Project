@@ -27,6 +27,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { EditProgramDialogComponent } from './edit-program-dialog/edit-program-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ShowTimetableComponent } from './show-timetable/show-timetable.component';
+import { TimetableDayComponent } from './show-timetable/timetable-day/timetable-day.component';
+import {MatTreeModule} from "@angular/material/tree";
+import {MatExpansionModule} from "@angular/material/expansion";
 
 @NgModule({
   declarations: [
@@ -36,34 +40,38 @@ import { MatDialogModule } from '@angular/material/dialog';
     ProgramOverviewComponent,
     NavigationComponent,
     EditProgramDialogComponent,
+    ShowTimetableComponent,
+    TimetableDayComponent,
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatSliderModule,
-    LayoutModule,
-    FlexLayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-    MatTableModule,
-    MatTooltipModule,
-    MatFormFieldModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatSortModule,
-    MatListModule,
-    MatGridListModule,
-    MatCardModule,
-    MatMenuModule,
-    HttpClientModule,
-    MatDialogModule,
-    FormsModule,
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatSliderModule,
+        LayoutModule,
+        FlexLayoutModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatSidenavModule,
+        MatIconModule,
+        MatListModule,
+        MatTableModule,
+        MatTooltipModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatSortModule,
+        MatListModule,
+        MatGridListModule,
+        MatCardModule,
+        MatMenuModule,
+        HttpClientModule,
+        MatDialogModule,
+        FormsModule,
+        MatTreeModule,
+        MatExpansionModule,
+    ],
   providers: [],
   bootstrap: [AppComponent],
 })
