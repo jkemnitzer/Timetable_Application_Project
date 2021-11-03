@@ -1,6 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {FlatTreeControl} from "@angular/cdk/tree";
 import {MOCK_SHEDULE} from '../mocks/shedule';
+import {MatSort} from "@angular/material/sort";
 
 interface ExampleFlatNode {
   expandable: boolean;
@@ -11,8 +12,7 @@ interface ExampleFlatNode {
 interface Lesson {
   name: string;
   weekday: number;
-  startHour: number;
-  startMinutes: number;
+  start: number;
   length: number;
   lecturer: string;
   room: string;
@@ -32,9 +32,6 @@ export class ShowTimetableComponent implements OnInit {
   fridayData: Lesson[] = [];
   saturdayData: Lesson[] = [];
 
-
-  treeControl = new FlatTreeControl<ExampleFlatNode>(
-    node => node.level, node => node.expandable);
 
   constructor() { }
 
