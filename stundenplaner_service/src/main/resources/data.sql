@@ -1,16 +1,18 @@
-DROP TABLE IF EXISTS rooms;
+DROP TABLE IF EXISTS t_room;
 
-CREATE TABLE rooms
+CREATE SEQUENCE IF NOT EXISTS t_room_seq;
+
+CREATE TABLE t_room
 (
-    id       INT PRIMARY KEY,
+    id   BIGINT DEFAULT t_room_seq.nextval PRIMARY KEY,
     number   VARCHAR(200),
     building VARCHAR(200)
 );
 
-INSERT INTO rooms (id, number, building)
-VALUES (1, 'B109', 'B');
-INSERT INTO rooms (id, number, building)
-VALUES (2, 'G028/29', 'G');
+INSERT INTO t_room (number, building)
+VALUES ('B109', 'B');
+INSERT INTO t_room (number, building)
+VALUES ('G028/29', 'G');
 
 -- feature Study Programs
 
