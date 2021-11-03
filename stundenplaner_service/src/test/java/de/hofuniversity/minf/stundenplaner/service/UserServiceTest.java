@@ -1,6 +1,7 @@
 package de.hofuniversity.minf.stundenplaner.service;
 
 import de.hofuniversity.minf.stundenplaner.common.NotFoundException;
+import de.hofuniversity.minf.stundenplaner.persistence.role.RoleRepository;
 import de.hofuniversity.minf.stundenplaner.persistence.user.UserRepository;
 import de.hofuniversity.minf.stundenplaner.persistence.user.data.StatusEnum;
 import de.hofuniversity.minf.stundenplaner.persistence.user.data.UserDO;
@@ -18,11 +19,14 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
 
+    @Mock
+    private RoleRepository roleRepository;
     @Mock
     private UserRepository userRepository;
     @InjectMocks
@@ -58,6 +62,7 @@ class UserServiceTest {
     @Test
     void testCreate() {
         when(userRepository.save(any(UserDO.class))).thenReturn(USER_DO_1);
+        when(roleRepository.findAllByIdInOrNameIn(anyList(), anyList())).thenReturn(Collections.emptySet());
         UserTO testTO = UserTO.fromDO(USER_DO_1);
         testTO.setId(null);
 
