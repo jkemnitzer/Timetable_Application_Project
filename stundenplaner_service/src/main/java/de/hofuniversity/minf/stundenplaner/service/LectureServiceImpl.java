@@ -31,9 +31,7 @@ public class LectureServiceImpl implements LectureService {
 
     @Override
     public List<LectureTO> getAllLectures() {
-        StreamSupport
-                .stream(lectureRepository.findAll().spliterator(), false)
-                .forEach(lectureDO -> System.out.println(LectureTO.fromDO(lectureDO)));
+
         return StreamSupport
                 .stream(lectureRepository.findAll().spliterator(), false)
                 .map(LectureTO::fromDO)
@@ -73,23 +71,11 @@ public class LectureServiceImpl implements LectureService {
                     orElseThrow(() -> new NotFoundException(LessonDO.class, idLesson));
             lectureDO.getLessons().add(savedLessonDO);
             savedLessonDO.setLecture(lectureDO);
-            System.out.println(LectureTO.fromDO(lectureDO));
+
             lectureRepository.save(lectureDO);
             return LectureTO.fromDO(lectureDO);
         } else {
             throw new NotFoundException(LectureDO.class, idLecture);
-        }
-    }
-
-    @Override
-    public LessonTO removeLesson(Long idLecture,Long idLesson) {
-        Optional<LessonDO> optional = lessonRepository.findById(idLesson);
-        if (optional.isPresent()) {
-            LessonDO lessonDO = optional.get();
-            lessonRepository.delete(lessonDO);
-            return LessonTO.fromDO(lessonDO);
-        } else {
-            throw new NotFoundException(LessonDO.class, idLecture);
         }
     }
 
@@ -99,7 +85,7 @@ public class LectureServiceImpl implements LectureService {
         if (optional.isPresent()) {
             LectureDO lectureDO=optional.get();
             lectureDO.update(lectureTo);
-            lectureDO.getLessons().forEach(lessonRepository::save);
+            lessonRepository.saveAll(lectureDO.getLessons());
             lectureRepository.save(lectureDO);
             return LectureTO.fromDO(lectureDO);
         } else {
@@ -112,7 +98,7 @@ public class LectureServiceImpl implements LectureService {
         Optional<LectureDO> optional = lectureRepository.findById(id);
         if (optional.isPresent()) {
             LectureDO lectureDO = optional.get();
-            lectureDO.getLessons().forEach(lessonRepository::delete);
+            lessonRepository.deleteAll(lectureDO.getLessons());
             lectureRepository.delete(lectureDO);
             return LectureTO.fromDO(lectureDO);
         } else {

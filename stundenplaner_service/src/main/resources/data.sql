@@ -12,6 +12,37 @@ VALUES (1, 'B109', 'B');
 INSERT INTO rooms (id, number, building)
 VALUES (2, 'G028/29', 'G');
 
+-- feature lectures and lessons
+DROP TABLE IF EXISTS lectures;
+DROP TABLE IF EXISTS lessons;
+
+CREATE SEQUENCE IF NOT EXISTS lecture_seq;
+CREATE SEQUENCE IF NOT EXISTS lesson_seq;
+
+CREATE TABLE lectures
+(
+    id   BIGINT DEFAULT lectures_seq.nextval PRIMARY KEY,
+    lectureName VARCHAR(200)
+);
+
+CREATE TABLE lessons
+(
+    id               BIGINT DEFAULT lesson_seq.nextval PRIMARY KEY,
+    lecture_id       BIGINT,
+    lessonName       VARCHAR(50),
+    prof             VARCHAR(50)
+    roomRequirement  VARCHAR(50)
+
+    FOREIGN KEY (lecture_id) REFERENCES lecture (id)
+);
+INSERT INTO lectures (id, lectureName)
+VALUES ('OOP1');
+INSERT INTO lessons (lecture_id, lessonName, prof,  roomRequirement)
+VALUES (1, 'Vorlesung', 'Prof. Atzenbeck', 'Beamer');
+INSERT INTO lessons (lecture_id, lessonName, prof,  roomRequirement)
+VALUES (1, 'Übung', 'Prof. Peinel', 'PC Raum');
+
+
 -- feature Study Programs
 
 DROP TABLE IF EXISTS t_semester;

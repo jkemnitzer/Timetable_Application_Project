@@ -1,6 +1,7 @@
 package de.hofuniversity.minf.stundenplaner.rest;
 
 import de.hofuniversity.minf.stundenplaner.service.boundary.LectureService;
+import de.hofuniversity.minf.stundenplaner.service.boundary.LessonService;
 import de.hofuniversity.minf.stundenplaner.service.to.LectureTO;
 import de.hofuniversity.minf.stundenplaner.service.to.LessonTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +15,12 @@ import java.util.List;
 public class LectureController {
 
     private final LectureService lectureService;
+    private final LessonService lessonService;
 
     @Autowired
-    public LectureController(LectureService lectureService) {
+    public LectureController(LectureService lectureService, LessonService lessonService) {
         this.lectureService = lectureService;
+        this.lessonService = lessonService;
     }
 
     @GetMapping
@@ -59,10 +62,9 @@ public class LectureController {
 
     @DeleteMapping("/{lectureId}/{lessonId}")
     public ResponseEntity<LessonTO> deleteLesson(
-            @PathVariable("lectureId") Long lectureId,
             @PathVariable("lessonId") Long lessonId)
     {
-        return ResponseEntity.ok(lectureService.removeLesson(lectureId,lessonId));
+        return ResponseEntity.ok(lessonService.removeLesson(lessonId));
     }
 
 }

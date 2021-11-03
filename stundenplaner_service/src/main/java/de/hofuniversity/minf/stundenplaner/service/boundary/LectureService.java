@@ -13,7 +13,6 @@ public interface LectureService {
     LectureTO findById(Long id);
     LectureTO createLecture(LectureTO lectureTo);
     LectureTO addLesson(Long idLecture,Long idLesson);
-    LessonTO removeLesson(Long idLecture, Long idLesson);
     LectureTO updateLecture(Long id, LectureTO lectureTo);
     LectureTO removeLecture(Long id);
 
