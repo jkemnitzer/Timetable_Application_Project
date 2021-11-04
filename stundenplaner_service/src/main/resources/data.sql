@@ -23,21 +23,20 @@ CREATE SEQUENCE IF NOT EXISTS lesson_seq;
 
 CREATE TABLE lectures
 (
-    id   BIGINT DEFAULT lectures_seq.nextval PRIMARY KEY,
+    id   BIGINT DEFAULT lecture_seq.nextval PRIMARY KEY,
     lectureName VARCHAR(200)
 );
 
 CREATE TABLE lessons
 (
     id               BIGINT DEFAULT lesson_seq.nextval PRIMARY KEY,
-    lecture_id       BIGINT,
     lessonName       VARCHAR(50),
-    prof             VARCHAR(50)
-    roomRequirement  VARCHAR(50)
-
-    FOREIGN KEY (lecture_id) REFERENCES lecture (id)
+    prof             VARCHAR(50),
+    roomRequirement  VARCHAR(50),
+    lecture_id       BIGINT,
+    FOREIGN KEY (lecture_id) REFERENCES lectures (id)
 );
-INSERT INTO lectures (id, lectureName)
+INSERT INTO lectures (lectureName)
 VALUES ('OOP1');
 INSERT INTO lessons (lecture_id, lessonName, prof,  roomRequirement)
 VALUES (1, 'Vorlesung', 'Prof. Atzenbeck', 'Beamer');
