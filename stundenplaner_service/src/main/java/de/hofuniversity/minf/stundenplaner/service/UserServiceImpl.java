@@ -76,7 +76,7 @@ public class UserServiceImpl implements UserService {
             if (checkRoles) {
                 mergeRoles(userDO, userTO.getRoles());
             }
-            return UserTO.fromDO(userDO);
+            return UserTO.fromDO(userRepository.save(userDO));
         } else {
             throw new NotFoundException(UserDO.class, id);
         }
