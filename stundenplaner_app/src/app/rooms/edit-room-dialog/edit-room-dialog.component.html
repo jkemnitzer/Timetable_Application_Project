@@ -1,0 +1,36 @@
+<h1 mat-dialog-title>Edit</h1>
+<div mat-dialog-content></div>
+<div fxLayout="column">
+  <mat-form-field appearance="fill">
+    <mat-label>Raum Name</mat-label>
+    <input
+      [(ngModel)]="data.room.number"
+      matInput
+      minlength="3"
+      required
+      type="text"
+    />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Raum Gebäude</mat-label>
+    <input
+      [(ngModel)]="data.room.building"
+      matInput
+      minlength="1"
+      required
+      type="text"
+    />
+  </mat-form-field>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="cancelDialog()">Abbrechen</button>
+  <button
+    [mat-dialog-close]="data"
+    color="primary"
+    mat-raised-button
+    type="submit"
+  >
+    Speichern
+  </button>
+</div>

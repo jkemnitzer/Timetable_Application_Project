@@ -1,8 +1,4 @@
-export interface Room {
-  id: number;
-  number: string;
-  building: string;
-}
+import { Room } from '../rooms/data/room';
 
 export const MOCK_ROOMS: Room[] = [
   { id: 1, number: 'B109', building: 'B' },
