@@ -25,6 +25,13 @@
         <span>Räume</span>
       </a>
       <a mat-list-item href="#"><mat-icon>event</mat-icon>Stundenplan</a>
+      <a
+        mat-list-item
+        [routerLink]="['/lectures']"
+        routerLinkActive="router-link-active">
+        <mat-icon>assignment</mat-icon>
+        <span>Vorlesungen</span>
+      </a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
