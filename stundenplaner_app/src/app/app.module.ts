@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {RoomsComponent} from './rooms/rooms.component';
+import {ProfileComponent} from './profile/profile.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatSliderModule} from '@angular/material/slider';
 import {NavigationComponent} from './navigation/navigation.component';
@@ -36,6 +37,7 @@ import {MatPaginatorModule} from "@angular/material/paginator";
   declarations: [
     AppComponent,
     RoomsComponent,
+    ProfileComponent,
     NavigationComponent,
     NavigationComponent,
     EditProgramDialogComponent,
