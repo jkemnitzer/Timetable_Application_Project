@@ -1,34 +1,31 @@
 package de.hofuniversity.minf.stundenplaner.persistence.lecture;
 
-import de.hofuniversity.minf.stundenplaner.common.NotFoundException;
-import de.hofuniversity.minf.stundenplaner.persistence.program.data.ProgramDO;
 import de.hofuniversity.minf.stundenplaner.service.to.LectureTO;
-import de.hofuniversity.minf.stundenplaner.service.to.LessonTO;
-import de.hofuniversity.minf.stundenplaner.service.to.ProgramTO;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "lectures")
+@Table(name = "t_lectures")
 public class LectureDO {
 
     @Id
-    @GeneratedValue(generator = "lecture_seq")
-    @SequenceGenerator(name = "lecture_seq", sequenceName = "lecture_seq", allocationSize = 1)
+    @GeneratedValue(generator = "t_lecture_seq")
+    @SequenceGenerator(name = "t_lecture_seq", sequenceName = "t_lecture_seq", allocationSize = 1)
     private Long id;
-    @Column(name = "name")
+    @Column(name = "lecture_name")
     private String lectureName;
     @Column
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "lecture")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "lecture",cascade = CascadeType.ALL)
     private List<LessonDO> lessons;
     public static LectureDO fromTO(LectureTO lectureTo) {
         return new LectureDO(
@@ -41,16 +38,9 @@ public class LectureDO {
     }
     public void update(LectureTO lectureTO) {
         setLectureName(lectureTO.getLectureName());
-        setLessons(lectureTO.getLessons().stream()
-                .map(lessonTO -> LessonDO.fromTO(lessonTO, this))
-                .collect(Collectors.toList()));
+
     }
 
-    public void removeLesson(long idLesson) {
-        List<LessonDO> lessons = getLessons().stream().filter(lessonDO -> lessonDO.getId() == idLesson).collect(Collectors.toList());
-        if (lessons.size()<1)
-            throw new NotFoundException(LessonDO.class, idLesson);
-        getLessons().remove(lessons.get(0));
-    }
+
 }
 

@@ -15,32 +15,32 @@ INSERT INTO t_room (number, building)
 VALUES ('G028/29', 'G');
 
 -- feature lectures and lessons
-DROP TABLE IF EXISTS lectures;
-DROP TABLE IF EXISTS lessons;
+DROP TABLE IF EXISTS t_lectures;
+DROP TABLE IF EXISTS t_lessons;
 
-CREATE SEQUENCE IF NOT EXISTS lecture_seq;
-CREATE SEQUENCE IF NOT EXISTS lesson_seq;
+CREATE SEQUENCE IF NOT EXISTS t_lecture_seq;
+CREATE SEQUENCE IF NOT EXISTS t_lesson_seq;
 
-CREATE TABLE lectures
+CREATE TABLE t_lectures
 (
-    id   BIGINT DEFAULT lecture_seq.nextval PRIMARY KEY,
-    lectureName VARCHAR(200)
+    id   BIGINT DEFAULT t_lecture_seq.nextval PRIMARY KEY,
+    lecture_name VARCHAR(200)
 );
 
-CREATE TABLE lessons
+CREATE TABLE t_lessons
 (
-    id               BIGINT DEFAULT lesson_seq.nextval PRIMARY KEY,
-    lessonName       VARCHAR(50),
+    id               BIGINT DEFAULT t_lesson_seq.nextval PRIMARY KEY,
+    lesson_name       VARCHAR(200),
     prof             VARCHAR(50),
-    roomRequirement  VARCHAR(50),
+    room_requirement  VARCHAR(50),
     lecture_id       BIGINT,
-    FOREIGN KEY (lecture_id) REFERENCES lectures (id)
+    FOREIGN KEY (lecture_id) REFERENCES t_lectures (id)
 );
-INSERT INTO lectures (lectureName)
+INSERT INTO t_lectures (lecture_name)
 VALUES ('OOP1');
-INSERT INTO lessons (lecture_id, lessonName, prof,  roomRequirement)
+INSERT INTO t_lessons (lecture_id, lesson_name, prof,  room_requirement)
 VALUES (1, 'Vorlesung', 'Prof. Atzenbeck', 'Beamer');
-INSERT INTO lessons (lecture_id, lessonName, prof,  roomRequirement)
+INSERT INTO t_lessons (lecture_id, lesson_name, prof,  room_requirement)
 VALUES (1, 'Übung', 'Prof. Peinel', 'PC Raum');
 
 

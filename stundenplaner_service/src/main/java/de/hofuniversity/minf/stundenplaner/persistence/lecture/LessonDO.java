@@ -3,29 +3,31 @@ package de.hofuniversity.minf.stundenplaner.persistence.lecture;
 
 import de.hofuniversity.minf.stundenplaner.service.to.LessonTO;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "lessons")
+@Table(name = "t_lessons")
 public class LessonDO {
 
     @Id
-    @GeneratedValue(generator = "lesson_seq")
-    @SequenceGenerator(name = "lesson_seq", sequenceName = "lesson_seq", allocationSize = 1)
+    @GeneratedValue(generator = "t_lesson_seq")
+    @SequenceGenerator(name = "t_lesson_seq", sequenceName = "t_lesson_seq", allocationSize = 1)
     private Long id;
-    @Column(name = "name")
+    @Column(name = "lesson_name")
     private String lessonName;
-    @Column
+    @Column(name = "prof")
     private String prof;
-    @Column
+    @Column(name = "room_requirement")
     private String roomRequirement;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "lecture_id")
     private LectureDO lecture;
 

@@ -3,7 +3,6 @@ package de.hofuniversity.minf.stundenplaner.service;
 import de.hofuniversity.minf.stundenplaner.common.NotFoundException;
 import de.hofuniversity.minf.stundenplaner.persistence.lecture.LectureDO;
 import de.hofuniversity.minf.stundenplaner.persistence.lecture.LectureRepository;
-
 import de.hofuniversity.minf.stundenplaner.persistence.lecture.LessonDO;
 import de.hofuniversity.minf.stundenplaner.persistence.lecture.LessonRepository;
 import de.hofuniversity.minf.stundenplaner.service.to.LectureTO;
@@ -82,13 +81,13 @@ public class LectureServiceTest {
         when(lectureRepository.findById(eq(3L))).thenReturn(Optional.empty());
         LectureTO test = LectureTO.fromDO(LECTURE_DO_2);
 
-        LectureTO actual = lectureService.updateLecture(LECTURE_ID, test);
+        LectureTO actual = lectureService.updateLecture(LECTURE_ID, test, true);
         Assertions.assertNotEquals(LECTURE_DO_1.getLectureName(), actual.getLectureName());
         Assertions.assertEquals(LECTURE_DO_2.getLectureName(), actual.getLectureName());
 
         Assertions.assertThrows(
                 NotFoundException.class,
-                ()-> lectureService.updateLecture(3L, LectureTO.fromDO(LECTURE_DO_1))
+                ()-> lectureService.updateLecture(3L, LectureTO.fromDO(LECTURE_DO_1), true)
         );
     }
 

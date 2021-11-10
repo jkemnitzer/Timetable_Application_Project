@@ -44,8 +44,9 @@ public class LectureController {
     @PutMapping("/{lectureId}")
     public ResponseEntity<LectureTO> updateLecture(
             @PathVariable("lectureId") Long lectureId,
-            @RequestBody LectureTO lectureTO) {
-        return ResponseEntity.ok(lectureService.updateLecture(lectureId,lectureTO));
+            @RequestBody LectureTO lectureTO,
+            @RequestParam(value = "checkLessons", defaultValue = "true" ) Boolean checkLessons){
+        return ResponseEntity.ok(lectureService.updateLecture(lectureId,lectureTO, checkLessons));
     }
 
     @DeleteMapping("/{lectureId}")

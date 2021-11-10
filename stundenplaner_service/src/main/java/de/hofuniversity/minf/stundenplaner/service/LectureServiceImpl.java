@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -52,12 +53,15 @@ public class LectureServiceImpl implements LectureService {
     public LectureTO createLecture(LectureTO lectureTo) {
         LectureDO lectureDO = LectureDO.fromTO(lectureTo);
         lectureDO.setId(null);
+        List<LessonDO> lessons = lectureDO.getLessons();
+        lectureDO.setLessons(new ArrayList<>());
         LectureDO newLectureDO = lectureRepository.save(lectureDO);
-        lectureDO.getLessons().forEach(lessonDO -> {
+        lessons.forEach(lessonDO -> {
             lessonDO.setLecture(newLectureDO);
             lessonDO.setId(null);
             lessonRepository.save(lessonDO);
         } );
+        lectureDO.setLessons(lessons);
         return LectureTO.fromDO(newLectureDO);
     }
 
@@ -80,12 +84,14 @@ public class LectureServiceImpl implements LectureService {
     }
 
     @Override
-    public LectureTO updateLecture(Long idLecture, LectureTO lectureTo) {
+    public LectureTO updateLecture(Long idLecture, LectureTO lectureTo, Boolean checkLessons) {
         Optional<LectureDO> optional = lectureRepository.findById(idLecture);
         if (optional.isPresent()) {
             LectureDO lectureDO=optional.get();
             lectureDO.update(lectureTo);
-            lessonRepository.saveAll(lectureDO.getLessons());
+            if (checkLessons) {
+                mergeLessons(lectureDO, lectureTo.getLessons());
+            }
             lectureRepository.save(lectureDO);
             return LectureTO.fromDO(lectureDO);
         } else {
@@ -104,5 +110,35 @@ public class LectureServiceImpl implements LectureService {
         } else {
             throw new NotFoundException(LectureDO.class, id);
         }
+    }
+    private void mergeLessons(LectureDO lectureDO, List<LessonTO> newLessons) {
+        List<Long> identical = new ArrayList<>();
+        List<Long> toBeRemoved = new ArrayList<>();
+        List<Long> newIds = newLessons.stream().map(LessonTO::getId).collect(Collectors.toList());
+        lectureDO.getLessons().stream()
+                .map(LessonDO::getId)
+                .forEach(id -> {
+                    if (newIds.contains(id)) {
+                        identical.add(id);
+                    } else {
+                        toBeRemoved.add(id);
+                    }
+                });
+        removeLessonFromLecture(lectureDO, toBeRemoved);
+        newLessons.stream()
+                .filter(to -> !identical.contains(to.getId()))
+                .map(LessonDO::fromTO)
+                .forEach(lessonDO -> {
+                    lessonDO.setLecture(lectureDO);
+                    lectureDO.getLessons().add(lessonRepository.save(lessonDO));
+                });
+    }
+    private void removeLessonFromLecture(LectureDO lectureDO, List<Long> lessons) {
+        List<LessonDO> toBeRemoved = findLessonsByIds(lectureDO, lessons);
+        lectureDO.getLessons().removeAll(toBeRemoved);
+        lessonRepository.deleteAll(toBeRemoved);
+    }
+    private List<LessonDO> findLessonsByIds(LectureDO lecture, List<Long> lessonsIds) {
+        return lessonRepository.findAllByLectureAndIdIn(lecture, lessonsIds);
     }
 }
