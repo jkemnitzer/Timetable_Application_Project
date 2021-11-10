@@ -1,0 +1,65 @@
+<!-- Dialog Headers -->
+<h1 mat-dialog-title [style.display]="isDialogType(data, DialogType.EDIT)?'visible':'none'">
+  Bearbeiten
+</h1>
+<h1 mat-dialog-title [style.display]="isDialogType(data, DialogType.CREATE)?'visible':'none'">
+  Neu Erstellen
+</h1>
+
+<!-- Dialog Text -->
+<div mat-dialog-content>
+  <p class="mat-body" [style.display]="isDialogType(data, DialogType.CREATE)?'visible':'none'">
+    Füllen Sie nachfolgende Textfelder aus um eine neue Vorlesung zu erstellen.
+  </p>
+  <p class="mat-body" [style.display]="isDialogType(data, DialogType.EDIT)?'visible':'none'">
+    Bearbeiten Sie die nachfolgende Vorlesungen.
+  </p>
+</div>
+
+<!-- Input-Fields -->
+<div class="dialog-input-fields">
+
+  <!-- ID -->
+  <mat-form-field appearance="fill">
+    <mat-label>Identifizierungsnummer der Vorlesung:</mat-label>
+    <input matInput [(ngModel)]="data.lecture.id"
+           required type="number"/>
+  </mat-form-field>
+
+  <!-- Name -->
+  <mat-form-field appearance="fill">
+    <mat-label>Name der Vorlesung:</mat-label>
+    <input matInput [(ngModel)]="data.lecture.lectureName"
+           minlength="3"
+           required type="text"/>
+  </mat-form-field>
+
+  <!-- Lesson -->
+  <mat-form-field appearance="fill">
+    <mat-label>Zugeordnete Sublektionen:</mat-label>
+    <input matInput
+           value="{{hasLessons(data.lecture)?strLessons(data.lecture):'Keine Sublektionen verknüpft.'}}"
+           minlength="0"
+           disabled="true"
+           required type="text"/>
+  </mat-form-field>
+
+</div>
+
+<!-- Actions -->
+<div mat-dialog-actions>
+  <!-- Cancel -->
+  <button mat-button (click)="cancelDialog()">Abbrechen</button>
+
+  <!-- Submit -->
+  <button mat-raised-button [mat-dialog-close]="data"
+          [style.display]="isDialogType(data, DialogType.CREATE)?'visible':'none'"
+          color="primary"
+          type="submit"> Erstellen </button>
+  <button mat-raised-button [mat-dialog-close]="data"
+          [style.display]="isDialogType(data, DialogType.EDIT)?'visible':'none'"
+          color="primary"
+          type="submit"> Speichern </button>
+</div>
+
+

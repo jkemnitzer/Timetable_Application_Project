@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ProgramOverviewComponent } from './program-overview.component';
+import {ProgramOverviewComponent} from './program-overview.component';
 
 describe('ProgramOverviewComponent', () => {
   let component: ProgramOverviewComponent;

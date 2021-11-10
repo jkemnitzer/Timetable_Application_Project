@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Service
@@ -33,7 +32,7 @@ public class ProgramServiceImpl implements ProgramService {
     public List<ProgramTO> findAll() {
         return StreamSupport.stream(programRepository.findAll().spliterator(), false)
                 .map(ProgramTO::fromDO)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
@@ -67,7 +66,7 @@ public class ProgramServiceImpl implements ProgramService {
             if (checkSemesters) {
                 mergeSemesters(programDO, programTO.getSemesters());
             }
-            return ProgramTO.fromDO(programDO);
+            return ProgramTO.fromDO(programRepository.save(programDO));
         } else {
             throw new NotFoundException(ProgramDO.class, id);
         }
@@ -103,7 +102,7 @@ public class ProgramServiceImpl implements ProgramService {
     private void mergeSemesters(ProgramDO programDO, List<SemesterTO> newSemesters) {
         List<Long> identical = new ArrayList<>();
         List<Long> toBeRemoved = new ArrayList<>();
-        List<Long> newIds = newSemesters.stream().map(SemesterTO::getId).collect(Collectors.toList());
+        List<Long> newIds = newSemesters.stream().map(SemesterTO::getId).toList();
         programDO.getSemesterDOs().stream()
                 .map(SemesterDO::getId)
                 .forEach(id -> {
