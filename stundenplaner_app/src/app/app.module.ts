@@ -1,10 +1,10 @@
-import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
-
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {RoomsComponent} from './rooms/rooms.component';
+import {ProfileComponent} from './profile/profile.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatSliderModule} from '@angular/material/slider';
 import {NavigationComponent} from './navigation/navigation.component';
@@ -28,17 +28,25 @@ import {MatMenuModule} from '@angular/material/menu';
 import {EditProgramDialogComponent} from './programs/edit-program-dialog/edit-program-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {LoginComponent} from './login/login.component';
+import {LecturesOverviewComponent} from './lectures/lectures-overview/lectures-overview.component';
+import {EditLectureDialogComponent} from "./lectures/edit-lecture-dialog/edit-lecture-dialog.component";
+import {EditRoomDialogComponent} from './rooms/edit-room-dialog/edit-room-dialog.component';
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 @NgModule({
   declarations: [
     AppComponent,
     RoomsComponent,
+    ProfileComponent,
     NavigationComponent,
     NavigationComponent,
     EditProgramDialogComponent,
+    EditRoomDialogComponent,
     NavigationComponent,
     LoginComponent,
     ProgramOverviewComponent,
+    LecturesOverviewComponent,
+    EditLectureDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,6 +74,7 @@ import {LoginComponent} from './login/login.component';
     HttpClientModule,
     MatDialogModule,
     FormsModule,
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

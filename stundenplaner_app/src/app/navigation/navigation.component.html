@@ -4,29 +4,54 @@
     fixedInViewport
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
-    [opened]="(isHandset$ | async) === false">
+    [opened]="(isHandset$ | async) === false"
+  >
     <mat-toolbar>Menü</mat-toolbar>
     <mat-nav-list>
       <a
         mat-list-item
         [routerLink]="['/programs']"
-        routerLinkActive="router-link-active">
+        routerLinkActive="router-link-active"
+      >
         <mat-icon>dashboard</mat-icon>
         <span>Studiengänge</span>
       </a>
+      <a
+        mat-list-item
+        [routerLink]="['/rooms']"
+        routerLinkActive="router-link-active"
+      >
+        <mat-icon>4k</mat-icon>
+        <span>Räume</span>
+      </a>
       <a mat-list-item href="#"><mat-icon>event</mat-icon>Stundenplan</a>
+      <a
+        mat-list-item
+        [routerLink]="['/lectures']"
+        routerLinkActive="router-link-active">
+        <mat-icon>assignment</mat-icon>
+        <span>Vorlesungen</span>
+      </a>
+      <a mat-list-item
+         [routerLink]="['/profile']"
+         routerLinkActive="router-link-active">
+        <mat-icon>person</mat-icon>
+        <span>Profil</span>
+      </a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
       <mat-toolbar-row>
         <span fxFlex>Stundenplan-App</span>
-        <span *ngIf="userService.loggedIn" fxFlex fxLayoutAlign="flex-end right">
-          Hallo {{userService.username}}!
+        <span
+          *ngIf="userService.loggedIn"
+          fxFlex
+          fxLayoutAlign="flex-end right"
+        >
+          Hallo {{ userService.username }}!
         </span>
-        <app-login
-          fxLayoutAlign="flex-end center">
-        </app-login>
+        <app-login fxLayoutAlign="flex-end center"> </app-login>
       </mat-toolbar-row>
     </mat-toolbar>
     <router-outlet></router-outlet>

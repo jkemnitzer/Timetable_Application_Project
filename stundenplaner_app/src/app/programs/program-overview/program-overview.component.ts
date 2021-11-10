@@ -1,11 +1,14 @@
-import {Component, OnInit, ViewChild,} from '@angular/core';
-import {Program} from './data/program';
-import {MatTable, MatTableDataSource} from '@angular/material/table';
-import {MatSort} from '@angular/material/sort';
-import {MatDialog} from '@angular/material/dialog';
-import {DialogType, EditProgramDialogComponent} from '../edit-program-dialog/edit-program-dialog.component';
-import {HttpService} from '../../http/http.service';
-import {Util} from "../../common/util";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Program } from './data/program';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { MatDialog } from '@angular/material/dialog';
+import {
+  DialogType,
+  EditProgramDialogComponent,
+} from '../edit-program-dialog/edit-program-dialog.component';
+import { HttpService } from '../../http/http.service';
+import { Util } from '../../common/util';
 
 @Component({
   selector: 'app-program-overview',
@@ -19,11 +22,7 @@ export class ProgramOverviewComponent implements OnInit {
   @ViewChild(MatTable) table!: MatTable<Program>;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(
-    public dialog: MatDialog,
-    private requestMaker: HttpService
-  ) {
-  }
+  constructor(public dialog: MatDialog, private requestMaker: HttpService) {}
 
   ngOnInit() {
     this.fetchAllPrograms();
@@ -31,7 +30,7 @@ export class ProgramOverviewComponent implements OnInit {
 
   openDialog(dialogType: DialogType, program: Program): void {
     const dialogRef = this.dialog.open(EditProgramDialogComponent, {
-      data: {program: Util.copyObject(program), dialogType: dialogType},
+      data: { program: Util.copyObject(program), dialogType: dialogType },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
@@ -85,7 +84,7 @@ export class ProgramOverviewComponent implements OnInit {
   }
 
   private fetchAllPrograms() {
-    this.requestMaker.getRequest("/programs").subscribe(
+    this.requestMaker.getRequest('/programs').subscribe(
       (response) => {
         this.dataSource = new MatTableDataSource(response);
         this.dataSource.sort = this.sort;

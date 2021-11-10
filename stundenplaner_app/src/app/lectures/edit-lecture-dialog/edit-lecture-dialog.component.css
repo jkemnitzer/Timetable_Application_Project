@@ -1,0 +1,23 @@
+/* dialog styling*/
+
+input {
+  font-family: inherit;
+}
+
+.dialog-input-fields {
+  display: grid;
+}
+
+.mat-dialog-actions {
+  justify-content: flex-end;
+}
+
+/* hide up-down-arrow in number-input-fields */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
