@@ -1,0 +1,31 @@
+services:
+  api:
+    build:
+      context: ./stundenplaner_service
+      dockerfile: ./docker/Dockerfile
+    expose:
+      - "8080"
+    ports:
+      - "8080:8080"
+  web:
+    build:
+      context: ./stundenplaner_app
+      dockerfile: ./docker/Dockerfile
+    expose:
+      - "80"
+  reverseproxy:
+    image: nginx
+    expose:
+      - "80"
+      - "443"
+      - "8080"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./proxy/nginx:/etc/nginx
+      - ./proxy/ssl/private:/etc/ssl/private
+      - ./proxy/nginx/log:/etc/log
+    depends_on:
+      - "web"
+      - "api"

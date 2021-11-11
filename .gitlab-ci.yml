@@ -1,0 +1,20 @@
+build-job:
+  stage: build
+  script:
+    - apt-get --yes --force-yes update
+    - apt-get --yes --force-yes install iputils-ping
+    - ping $SERVER_LOCATION
+
+#test-job:
+#  stage: test
+#  script:
+#    - apt-get update
+#    - apt-get install iputils-ping
+#    - ping $SERVER_LOCATION
+#
+#deploy-prod:
+#  stage: deploy
+#  script:
+#    - apt-get update
+#    - apt-get install iputils-ping
+#    - ping $SERVER_LOCATION
