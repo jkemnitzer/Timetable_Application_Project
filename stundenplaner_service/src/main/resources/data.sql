@@ -4,7 +4,7 @@ CREATE SEQUENCE IF NOT EXISTS t_room_seq;
 
 CREATE TABLE t_room
 (
-    id   BIGINT DEFAULT t_room_seq.nextval PRIMARY KEY,
+    id       BIGINT DEFAULT t_room_seq.nextval PRIMARY KEY,
     number   VARCHAR(200),
     building VARCHAR(200)
 );
@@ -13,6 +13,16 @@ INSERT INTO t_room (number, building)
 VALUES ('B109', 'B');
 INSERT INTO t_room (number, building)
 VALUES ('G028/29', 'G');
+INSERT INTO t_room (number, building)
+VALUES ('G011', 'G');
+INSERT INTO t_room (number, building)
+VALUES ('Ex_Extern', 'Einstein1');
+INSERT INTO t_room (number, building)
+VALUES ('B006', 'B');
+INSERT INTO t_room (number, building)
+VALUES ('A109', 'A');
+
+-- programs
 
 -- feature Study Programs
 
@@ -90,13 +100,16 @@ CREATE SEQUENCE IF NOT EXISTS t_role_seq;
 
 CREATE TABLE t_user
 (
-    id            BIGINT DEFAULT t_user_seq.nextval PRIMARY KEY,
+    id            BIGINT    DEFAULT t_user_seq.nextval PRIMARY KEY,
     username      VARCHAR(100),
+    title         VARCHAR(200),
+    first_name    VARCHAR(200),
+    last_name     VARCHAR(200),
     password      VARCHAR(100),
     password_salt VARCHAR(100),
     email         VARCHAR(100),
-    created       TIMESTAMP,
-    last_updated  TIMESTAMP,
+    created       TIMESTAMP DEFAULT NOW(),
+    last_updated  TIMESTAMP DEFAULT NOW(),
     status        VARCHAR(100)
 );
 
@@ -118,22 +131,39 @@ INSERT INTO t_role (name)
 VALUES ('ADMIN');
 INSERT INTO t_role (name)
 VALUES ('STUDENT');
+INSERT INTO t_role (name)
+VALUES ('PROFESSOR');
+INSERT INTO t_role (name)
+VALUES ('LECTURER');
 
+INSERT INTO t_user (username, title, first_name, last_name, email, status)
+VALUES ('gkoehler', 'Prof. Dr.', 'Günther', 'Köhler', 'guenther.koehler@hof-university.de', 'GENERATED');
+INSERT INTO t_user (username, title, first_name, last_name, email, status)
+VALUES ('wlehmann', 'Pfarrer', 'Wolfram', 'Lehmann', 'wolfram.lehmann@hof-university.de', 'GENERATED');
+INSERT INTO t_user (username, title, first_name, last_name, email, status)
+VALUES ('bweber', 'Prof. Dr.', 'Beatrix', 'Weber', 'beatrix.weber@hof-university.de', 'GENERATED');
+INSERT INTO t_user (username, title, first_name, last_name, email, status)
+VALUES ('mseidel', 'Prof. Dr.', 'Michael', 'Seidel', 'michael.seidel@hof-university.de', 'GENERATED');
+INSERT INTO t_user (username, title, first_name, last_name, email, status)
+VALUES ('jscheidt', 'Prof. Dr.', 'Jörg', 'Scheidt', 'joerg.scheidt@hof-university.de', 'GENERATED');
+INSERT INTO t_user (username, title, first_name, last_name, email, status)
+VALUES ('cgroth', 'Prof. Dr.', 'Christian', 'Groth', 'christian.groth@hof-university.de', 'GENERATED');
 INSERT INTO t_user (username, password, password_salt, email, created, last_updated, status)
-VALUES ('BMars', '', '', 'better.mars@hof-university.de', now(), now(), 'ACTIVE');
+VALUES ('BMars', '', '', 'better.mars@hof-university.de', NOW(), NOW(), 'ACTIVE');
 INSERT INTO t_user (username, password, password_salt, email, created, last_updated, status)
-VALUES ('CJupiter', '', '', 'caeser.jupiter@hof-university.de', now(), now(), 'ACTIVE');
+VALUES ('CJupiter', '', '', 'caeser.jupiter@hof-university.de', NOW(), NOW(), 'ACTIVE');
 INSERT INTO t_user (username, password, password_salt, email, created, last_updated, status)
-VALUES ('SPluto', '', '', 'sad.pluto@hof-university.de', now(), now(), 'INACTIVE');
+VALUES ('SPluto', '', '', 'sad.pluto@hof-university.de', NOW(), NOW(), 'INACTIVE');
+
 
 INSERT INTO t_user_role_map (user_id, role_id)
-values (1, 1);
+VALUES (1, 1);
 INSERT INTO t_user_role_map (user_id, role_id)
-values (2, 2);
+VALUES (2, 2);
 INSERT INTO t_user_role_map (user_id, role_id)
-values (3, 1);
+VALUES (3, 1);
 INSERT INTO t_user_role_map (user_id, role_id)
-values (3, 2);
+VALUES (3, 2);
 
 --- faculty
 DROP TABLE IF EXISTS t_faculty;

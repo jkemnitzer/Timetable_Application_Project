@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class SemesterServiceImpl implements SemesterService {
@@ -31,7 +30,7 @@ public class SemesterServiceImpl implements SemesterService {
         ProgramDO programDO = findProgramDOById(programId);
         return semesterRepository.findAllByProgram(programDO).stream()
                 .map(SemesterTO::fromDO)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override

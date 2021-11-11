@@ -32,9 +32,9 @@ class UserServiceTest {
     @InjectMocks
     private UserServiceImpl userService;
 
-    private final UserDO USER_DO_1 = new UserDO(1L, "BJupiter", "", "",
+    private final UserDO USER_DO_1 = new UserDO(1L, "BJupiter", "title", "first", "last", "", "",
             "jb@hof-university.de", LocalDateTime.now(), LocalDateTime.now(), StatusEnum.ACTIVE, Collections.emptySet());
-    private final UserDO USER_DO_2 = new UserDO(2L, "CMars", "", "",
+    private final UserDO USER_DO_2 = new UserDO(2L, "CMars", "title", "first", "last","", "",
             "cm@hof-university.de", LocalDateTime.now(), LocalDateTime.now(), StatusEnum.ACTIVE, Collections.emptySet());
 
     @Test
@@ -73,11 +73,10 @@ class UserServiceTest {
 
     @Test
     void testUpdate() {
-        when(userRepository.findById(1L)).thenReturn(Optional.of(
-                new UserDO(USER_DO_1.getId(), USER_DO_1.getUsername(), "", "", USER_DO_1.getEmail(),
-                        USER_DO_1.getCreated(), USER_DO_1.getLastUpdated(), StatusEnum.ACTIVE, Collections.emptySet())
-        ));
-        when(userRepository.findById(3L)).thenReturn(Optional.empty());
+        UserDO testReturn = new UserDO(USER_DO_1.getId(), USER_DO_1.getUsername(), "title", "first", "last","", "", USER_DO_1.getEmail(),
+                USER_DO_1.getCreated(), USER_DO_1.getLastUpdated(), StatusEnum.ACTIVE, Collections.emptySet());
+        when(userRepository.findById(1L)).thenReturn(Optional.of(testReturn), Optional.empty());
+        when(userRepository.save(any(UserDO.class))).thenReturn(testReturn);
         UserTO test = UserTO.fromDO(USER_DO_2);
 
         UserTO actual = userService.updateUser(1L, test, false);
@@ -86,7 +85,7 @@ class UserServiceTest {
 
         Assertions.assertThrows(
                 NotFoundException.class,
-                () -> userService.updateUser(3L, UserTO.fromDO(USER_DO_1), false)
+                () -> userService.updateUser(3L, test, false)
         );
     }
 
