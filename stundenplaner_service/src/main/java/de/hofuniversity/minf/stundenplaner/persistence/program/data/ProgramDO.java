@@ -16,7 +16,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -48,7 +47,7 @@ public class ProgramDO {
                 programTo.getName(),
                 programTo.getSemesters().stream()
                         .map(SemesterDO::fromTO)
-                        .collect(Collectors.toList())
+                        .toList()
         );
     }
 }
