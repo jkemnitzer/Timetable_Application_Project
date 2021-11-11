@@ -1,7 +1,7 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {MatSort, Sort} from "@angular/material/sort";
+import {MatSort} from "@angular/material/sort";
 import {MatTableDataSource} from "@angular/material/table";
-import {LiveAnnouncer} from "@angular/cdk/a11y";
+import {Lesson} from "../show-timetable.component";
 
 
 @Component({
@@ -12,8 +12,8 @@ import {LiveAnnouncer} from "@angular/cdk/a11y";
 export class TimetableDayComponent implements OnInit {
 
   @Input() weekday = '';
-  @Input() data: any = null;
-  dataSource:MatTableDataSource<any> = new MatTableDataSource<any>();
+  @Input() data: MatTableDataSource<Lesson> = new MatTableDataSource<Lesson>();
+  dataSource:MatTableDataSource<Lesson> = new MatTableDataSource<any>();
 
   displayedColumns: string[] = [ 'start', 'end',
     'lecturer', 'room', 'name', 'edit', 'delete', 'view'];
@@ -24,7 +24,7 @@ export class TimetableDayComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort = new MatSort();
 
   ngAfterViewInit() {
-    this.dataSource = new MatTableDataSource(this.data);
+    this.dataSource = this.data;
     this.dataSource.sort = this.sort;
   }
 

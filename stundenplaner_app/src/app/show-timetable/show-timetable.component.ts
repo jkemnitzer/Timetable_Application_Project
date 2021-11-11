@@ -1,7 +1,6 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {FlatTreeControl} from "@angular/cdk/tree";
+import {Component, OnInit} from '@angular/core';
 import {MOCK_SHEDULE} from '../mocks/shedule';
-import {MatSort} from "@angular/material/sort";
+import {MatTableDataSource} from "@angular/material/table";
 
 interface ExampleFlatNode {
   expandable: boolean;
@@ -9,7 +8,7 @@ interface ExampleFlatNode {
   level: number;
 }
 
-interface Lesson {
+export interface Lesson {
   name: string;
   weekday: number;
   start: number;
@@ -25,27 +24,31 @@ interface Lesson {
 })
 export class ShowTimetableComponent implements OnInit {
 
-  mondayData: Lesson[] = [];
-  tuesdayData: Lesson[] = [];
-  wednesdayData: Lesson[] = [];
-  thursdayData: Lesson[] = [];
-  fridayData: Lesson[] = [];
-  saturdayData: Lesson[] = [];
+  mondayData: MatTableDataSource<Lesson> = new MatTableDataSource<Lesson>();
+  tuesdayData: MatTableDataSource<Lesson> = new MatTableDataSource<Lesson>();
+  wednesdayData: MatTableDataSource<Lesson> = new MatTableDataSource<Lesson>();
+  thursdayData: MatTableDataSource<Lesson> = new MatTableDataSource<Lesson>();
+  fridayData: MatTableDataSource<Lesson> = new MatTableDataSource<Lesson>();
+  saturdayData: MatTableDataSource<Lesson> = new MatTableDataSource<Lesson>();
 
 
   constructor() { }
 
   ngOnInit(): void {
     MOCK_SHEDULE.forEach(lesson  => {
-      if(lesson.weekday == 0) this.mondayData.push(lesson);
-      else if (lesson.weekday == 1) this.tuesdayData.push(lesson);
-      else if (lesson.weekday == 2) this.wednesdayData.push(lesson);
-      else if (lesson.weekday == 3) this.thursdayData.push(lesson);
-      else if (lesson.weekday == 4) this.fridayData.push(lesson);
-      else if (lesson.weekday == 5) this.saturdayData.push(lesson);
+      if(lesson.weekday == 0) this.mondayData.data.push(lesson);
+      else if (lesson.weekday == 1) this.tuesdayData.data.push(lesson);
+      else if (lesson.weekday == 2) this.wednesdayData.data.push(lesson);
+      else if (lesson.weekday == 3) this.thursdayData.data.push(lesson);
+      else if (lesson.weekday == 4) this.fridayData.data.push(lesson);
+      else if (lesson.weekday == 5) this.saturdayData.data.push(lesson);
 
 
     })
   }
 
+  applyFilter(event: KeyboardEvent) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.mondayData.filter = filterValue.trim().toLowerCase();
+  }
 }

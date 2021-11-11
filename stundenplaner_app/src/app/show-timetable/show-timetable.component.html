@@ -1,3 +1,11 @@
+<mat-form-field appearance="standard" class="program-filter">
+  <mat-label>Filter</mat-label>
+  <input
+    #input
+    (keyup)="applyFilter($event)"
+    matInput
+    placeholder="Id oder Name"/>
+</mat-form-field>
 <app-timetable-day weekday="Montag" [data]="mondayData"></app-timetable-day>
 <app-timetable-day weekday="Dienstag" [data]="tuesdayData"></app-timetable-day>
 <app-timetable-day weekday="Mittwoch" [data]="wednesdayData"></app-timetable-day>
