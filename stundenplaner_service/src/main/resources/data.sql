@@ -135,3 +135,21 @@ values (3, 1);
 INSERT INTO t_user_role_map (user_id, role_id)
 values (3, 2);
 
+--- faculty
+DROP TABLE IF EXISTS t_faculty;
+
+CREATE SEQUENCE IF NOT EXISTS t_faculty_seq;
+
+CREATE TABLE t_faculty
+(
+    id     BIGINT DEFAULT t_room_seq.nextval PRIMARY KEY,
+    name   VARCHAR(200)
+);
+
+INSERT INTO t_faculty (name)
+VALUES ('Informatik');
+INSERT INTO t_faculty (name)
+VALUES ('Wirtschaft');
+INSERT INTO t_faculty (name)
+VALUES ('Ingenieur');
+
