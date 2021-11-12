@@ -1,4 +1,27 @@
 services:
+  db: 
+    image: postgres:alpine3.14
+    restart: always
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin123
+      - POSTGRES_DB=productDb
+    ports:
+      - "5432:5432"
+    expose:
+      - "5432"
+    volumes:
+      - ./stundenplaner_service/src/main/resources/postgres:/var/lib/postgresql/data/
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=pgadmin4@pgadmin.org
+      - PGADMIN_DEFAULT_PASSWORD=admin123
+    ports:
+      - "5050:80"
+    restart: always
+    volumes:
+      - ./stundenplaner_service/src/main/resources/pgadmin:/root/.pgadmin
   api:
     build:
       context: ./stundenplaner_service
