@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {RoomsComponent} from './rooms/rooms.component';
@@ -32,9 +32,10 @@ import {LecturesOverviewComponent} from './lectures/lectures-overview/lectures-o
 import {EditLectureDialogComponent} from "./lectures/edit-lecture-dialog/edit-lecture-dialog.component";
 import {EditRoomDialogComponent} from './rooms/edit-room-dialog/edit-room-dialog.component';
 import {MatPaginatorModule} from "@angular/material/paginator";
-import { ShowTimetableComponent } from './show-timetable/show-timetable.component';
-import { TimetableDayComponent } from './show-timetable/timetable-day/timetable-day.component';
+import {ShowTimetableComponent} from './show-timetable/show-timetable.component';
+import {TimetableDayComponent} from './show-timetable/timetable-day/timetable-day.component';
 import {MatExpansionModule} from "@angular/material/expansion";
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import {MatExpansionModule} from "@angular/material/expansion";
         FormsModule,
         MatExpansionModule,
         MatPaginatorModule,
+        MatSelectModule,
     ],
   providers: [],
   bootstrap: [AppComponent],

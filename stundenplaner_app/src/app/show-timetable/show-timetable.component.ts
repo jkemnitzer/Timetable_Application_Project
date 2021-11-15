@@ -2,11 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {MOCK_SHEDULE} from '../mocks/shedule';
 import {MatTableDataSource} from "@angular/material/table";
 
-interface ExampleFlatNode {
-  expandable: boolean;
-  name: string;
-  level: number;
-}
 
 export interface Lesson {
   name: string;
@@ -17,12 +12,15 @@ export interface Lesson {
   room: string;
 }
 
+
 @Component({
   selector: 'app-show-timetable',
   templateUrl: './show-timetable.component.html',
   styleUrls: ['./show-timetable.component.css']
 })
+
 export class ShowTimetableComponent implements OnInit {
+
 
   mondayData: MatTableDataSource<Lesson> = new MatTableDataSource<Lesson>();
   tuesdayData: MatTableDataSource<Lesson> = new MatTableDataSource<Lesson>();
@@ -31,8 +29,31 @@ export class ShowTimetableComponent implements OnInit {
   fridayData: MatTableDataSource<Lesson> = new MatTableDataSource<Lesson>();
   saturdayData: MatTableDataSource<Lesson> = new MatTableDataSource<Lesson>();
 
+  faculties = [
+    {name: 'Informatik'},
+    {name: 'Ingenieurwissenschaften'},
+    {name: 'Interdisziplinäre und innovative Wissenschaften'},
+    {name: 'Wirtschaftswissenschaften'},
+  ];
+  selectedFaculty = this.faculties[1];
 
-  constructor() { }
+  majors = [
+    {name: 'Allgemeine Informatik'},
+    {name: 'Medien Informatik'},
+    {name: 'Maschinenbau'},
+  ];
+  selectedMajor = this.majors[1];
+
+  semesters = [
+    {semester: '1'},
+    {semester: '2'},
+    {semester: '3'},
+  ];
+  selectedSemester = this.semesters[1];
+
+  constructor() {
+
+  }
 
   ngOnInit(): void {
     MOCK_SHEDULE.forEach(lesson  => {

@@ -1,11 +1,43 @@
-<mat-form-field appearance="standard" class="program-filter">
-  <mat-label>Filter</mat-label>
-  <input
-    #input
-    (keyup)="applyFilter($event)"
-    matInput
-    placeholder="Id oder Name"/>
-</mat-form-field>
+<form class="container1">
+
+  <mat-form-field appearance="outline">
+    <mat-label>Fakultät</mat-label>
+    <mat-select [(value)]="selectedFaculty">
+      <mat-option *ngFor="let faculty of faculties" [value]="faculty">
+        {{ faculty.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Studiengang</mat-label>
+    <mat-select [(value)]="selectedMajor">
+      <mat-option *ngFor="let major of majors" [value]="major">
+        {{ major.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Semester</mat-label>
+    <mat-select [(value)]="selectedSemester">
+      <mat-option *ngFor="let semester of semesters" [value]="semester">
+        {{ semester.semester }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-flat-button color="primary" class="filter_utton">Filter</button>
+  <mat-form-field appearance="outline" class="program-filter">
+    <mat-label>Suche</mat-label>
+    <input
+      #input
+      (keyup)="applyFilter($event)"
+      matInput
+      placeholder="Dozent, Fach und Raumsuche"/>
+  </mat-form-field>
+
+</form>
+
 <app-timetable-day weekday="Montag" [data]="mondayData"></app-timetable-day>
 <app-timetable-day weekday="Dienstag" [data]="tuesdayData"></app-timetable-day>
 <app-timetable-day weekday="Mittwoch" [data]="wednesdayData"></app-timetable-day>
