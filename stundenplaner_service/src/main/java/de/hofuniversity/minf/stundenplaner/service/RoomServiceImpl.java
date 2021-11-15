@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 /**
@@ -32,7 +31,7 @@ public class RoomServiceImpl implements RoomService {
     public List<RoomTO> getAllRooms() {
         return StreamSupport.stream(roomRepository.findAll().spliterator(), false)
                 .map(RoomTO::fromDO)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override

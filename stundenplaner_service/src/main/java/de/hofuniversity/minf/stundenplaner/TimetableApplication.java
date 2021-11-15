@@ -16,7 +16,8 @@ public class TimetableApplication implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**").allowedMethods("GET", "POST", "PUT", "DELETE");
+        registry.addMapping("/**")
+                .allowedMethods("GET", "POST", "PUT", "DELETE");
         // TODO: 26.10.21 reconfigure for safer env
     }
 

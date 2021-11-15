@@ -46,6 +46,15 @@ public class UserDO {
     @Column(name = "username")
     private String username;
 
+    @Column(name = "title")
+    private String title;
+
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
     @Column(name = "password")
     private String password;
 
@@ -80,6 +89,9 @@ public class UserDO {
         return new UserDO(
                 userTO.getId(),
                 userTO.getUsername(),
+                userTO.getTitle(),
+                userTO.getFirstName(),
+                userTO.getLastName(),
                 null,
                 null,
                 userTO.getEmail(),

@@ -26,3 +26,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### nginx reverse proxy ###
+/proxy/nginx/log/

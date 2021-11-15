@@ -1,0 +1,23 @@
+variables:
+  GIT_CLEAN_FLAGS: none
+
+prepare-env:
+  stage: .pre
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
+  script:
+    - docker-compose down --remove-orphans --rmi local # remove untagged images
+
+build-env:
+  stage: build
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
+  script:
+    - docker-compose build --force-rm
+
+deply-env:
+  stage: deploy
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
+  script:
+    - docker-compose up --no-build --detach --remove-orphans

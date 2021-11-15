@@ -17,6 +17,9 @@ public class UserTO {
 
     private Long id;
     private String username;
+    private String title;
+    private String firstName;
+    private String lastName;
     private String email;
     private String status;
     private Set<RoleTO> roles;
@@ -25,6 +28,9 @@ public class UserTO {
         return new UserTO(
                 userDO.getId(),
                 userDO.getUsername(),
+                userDO.getTitle(),
+                userDO.getFirstName(),
+                userDO.getLastName(),
                 userDO.getEmail(),
                 userDO.getStatus().toString(),
                 userDO.getRoleDOs().stream()
