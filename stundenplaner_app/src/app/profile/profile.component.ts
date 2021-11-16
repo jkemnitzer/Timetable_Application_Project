@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from "../http/http.service";
 import { Profile } from "./data/profile";
 import { Roles } from "./data/roles";
+import { UserService } from "../user/user.service";
 
 @Component({
   selector: 'app-profile',
@@ -12,27 +13,33 @@ export class ProfileComponent implements OnInit {
 
   users!: Profile[];
   title = 'Profil';
+  user: Profile = {id: -1, username: "", email: "", status: "", roles: []};
 
-  constructor(private requestMaker: HttpService) { }
+  constructor(private requestMaker: HttpService, private userService: UserService) { }
 
   ngOnInit(): void {
     this.getUsers();
   }
 
-  getUser(user: Profile){
+  /*getUser(user: Profile){
     this.requestMaker.getRequest(`/users/${user.id}`).subscribe(
       (response) => {
-        //TODO: wait for login management
+        this.user = response;
       },
       (error) => {
         console.error(error);
       }
     );
-  }
+  }*/
   private getUsers(){
     this.requestMaker.getRequest('/users').subscribe(
       (response) => {
         this.users = response;
+        for(let user of this.users){
+          if(user.username == this.userService.username){
+            this.user = user;
+          }
+        }
       },
       (error) => {
         console.error(error);

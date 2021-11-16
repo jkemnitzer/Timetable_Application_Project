@@ -32,7 +32,8 @@
         <mat-icon>assignment</mat-icon>
         <span>Vorlesungen</span>
       </a>
-      <a mat-list-item
+      <a *ngIf="userService.loggedIn"
+         mat-list-item
          [routerLink]="['/profile']"
          routerLinkActive="router-link-active">
         <mat-icon>person</mat-icon>
