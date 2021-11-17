@@ -1,7 +1,7 @@
 <div *ngIf="!userService.loggedIn">
   <button
     mat-button [matMenuTriggerFor]="menu"
-    matTooltip="Login"
+    matTooltip="{{'LOGIN.TOOLTIP.Anmelden' | translate}}"
     #trigger="matMenuTrigger">
     <mat-icon>login</mat-icon>
   </button>
@@ -12,9 +12,9 @@
       fxLayout="column"
       class="login-container">
       <form class="menu-form">
-        <h3>Login</h3>
+        <h3>{{'LOGIN.Title' | translate}}</h3>
         <mat-form-field fxLayoutAlign="center">
-          <mat-label>Username</mat-label>
+          <mat-label>{{'LOGIN.Username' | translate}}</mat-label>
           <input matInput
                  #usernameInput
                  type="text"
@@ -22,7 +22,7 @@
                  required/>
         </mat-form-field>
         <mat-form-field fxLayoutAlign="center">
-          <mat-label>Password</mat-label>
+          <mat-label>{{'LOGIN.Passwort' | translate}}</mat-label>
           <input matInput
                  type="password"
                  (submit)="loginUser()"/>
@@ -32,7 +32,7 @@
             <mat-icon>login</mat-icon>
           </button>
           <button mat-button type="button" (click)="trigger.closeMenu()">
-            Registrieren
+            {{'LOGIN.Registrieren' | translate}}
           </button>
         </div>
       </form>
@@ -43,7 +43,7 @@
   <button
     mat-button
     (click)="logoutUser()"
-    matTooltip="Logout">
+    matTooltip="{{'LOGIN.TOOLTIP.Abmelden' | translate}}">
     <mat-icon>logout</mat-icon>
   </button>
 </div>
