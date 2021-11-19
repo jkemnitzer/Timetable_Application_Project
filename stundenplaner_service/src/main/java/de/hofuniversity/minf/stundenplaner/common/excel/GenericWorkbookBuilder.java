@@ -75,7 +75,7 @@ public class GenericWorkbookBuilder<T> {
                 .toList();
     }
 
-    private Sheet getSheet(String key){
+    protected Sheet getSheet(String key) {
         Sheet sheet = workbook.getSheet(key);
         return sheet == null ? workbook.createSheet(key) : sheet;
     }
