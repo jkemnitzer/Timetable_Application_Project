@@ -4,12 +4,17 @@ import { ProgramOverviewComponent } from './programs/program-overview/program-ov
 import { LecturesOverviewComponent } from './lectures/lectures-overview/lectures-overview.component';
 import { RoomsComponent } from './rooms/rooms.component';
 import { ProfileComponent } from "./profile/profile.component";
+import { LandingComponent } from './landing/landing.component';
+import { NavigationComponent } from './navigation/navigation.component';
 
 const routes: Routes = [
+  {path:'',component:LandingComponent},
+  {path:'landing',component:LandingComponent},
   { path: 'programs', component: ProgramOverviewComponent },
   { path: 'lectures', component: LecturesOverviewComponent },
   { path: 'rooms', component: RoomsComponent },
-  { path: 'profile', component: ProfileComponent }
+  { path: 'profile', component: ProfileComponent },
+  { path: 'navigation', component: NavigationComponent }
 ];
 
 @NgModule({
