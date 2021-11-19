@@ -35,6 +35,7 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { LandingComponent } from './landing/landing.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     ProgramOverviewComponent,
     LecturesOverviewComponent,
     EditLectureDialogComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule,
