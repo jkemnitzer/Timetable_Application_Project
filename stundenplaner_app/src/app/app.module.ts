@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {RoomsComponent} from './rooms/rooms.component';
@@ -32,6 +32,9 @@ import {LecturesOverviewComponent} from './lectures/lectures-overview/lectures-o
 import {EditLectureDialogComponent} from "./lectures/edit-lecture-dialog/edit-lecture-dialog.component";
 import {EditRoomDialogComponent} from './rooms/edit-room-dialog/edit-room-dialog.component';
 import {MatPaginatorModule} from "@angular/material/paginator";
+
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 @NgModule({
   declarations: [
@@ -75,8 +78,19 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     MatDialogModule,
     FormsModule,
     MatPaginatorModule,
+    TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: httpTranslateLoader,
+            deps: [HttpClient]
+          }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+
+export function httpTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}

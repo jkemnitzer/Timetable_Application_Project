@@ -1,18 +1,18 @@
 <!-- Dialog Headers -->
 <h1 mat-dialog-title [style.display]="isDialogType(data, DialogType.EDIT)?'visible':'none'">
-  Bearbeiten
+  {{'LECTURES.EDIT.Bearbeiten' | translate}}
 </h1>
 <h1 mat-dialog-title [style.display]="isDialogType(data, DialogType.CREATE)?'visible':'none'">
-  Neu Erstellen
+  {{'LECTURES.EDIT.Neu' | translate}}
 </h1>
 
 <!-- Dialog Text -->
 <div mat-dialog-content>
   <p class="mat-body" [style.display]="isDialogType(data, DialogType.CREATE)?'visible':'none'">
-    Füllen Sie nachfolgende Textfelder aus um eine neue Vorlesung zu erstellen.
+    {{'LECTURES.EDIT.infoNeu' | translate}}
   </p>
   <p class="mat-body" [style.display]="isDialogType(data, DialogType.EDIT)?'visible':'none'">
-    Bearbeiten Sie die nachfolgende Vorlesungen.
+    {{'LECTURES.EDIT.infoBearbeiten' | translate}}
   </p>
 </div>
 
@@ -21,14 +21,14 @@
 
   <!-- ID -->
   <mat-form-field appearance="fill">
-    <mat-label>Identifizierungsnummer der Vorlesung:</mat-label>
+    <mat-label>{{'LECTURES.EDIT.idLabel' | translate}}</mat-label>
     <input matInput [(ngModel)]="data.lecture.id"
            required type="number"/>
   </mat-form-field>
 
   <!-- Name -->
   <mat-form-field appearance="fill">
-    <mat-label>Name der Vorlesung:</mat-label>
+    <mat-label>{{'LECTURES.EDIT.lectureLabel' | translate}}</mat-label>
     <input matInput [(ngModel)]="data.lecture.lectureName"
            minlength="3"
            required type="text"/>
@@ -36,9 +36,9 @@
 
   <!-- Lesson -->
   <mat-form-field appearance="fill">
-    <mat-label>Zugeordnete Sublektionen:</mat-label>
+    <mat-label>{{'LECTURES.EDIT.sublectureLabel' | translate}}</mat-label>
     <input matInput
-           value="{{hasLessons(data.lecture)?strLessons(data.lecture):'Keine Sublektionen verknüpft.'}}"
+           value="{{hasLessons(data.lecture)?strLessons(data.lecture):'LECTURES.EDIT.warning' | translate}}"
            minlength="0"
            disabled="true"
            required type="text"/>
@@ -49,17 +49,17 @@
 <!-- Actions -->
 <div mat-dialog-actions>
   <!-- Cancel -->
-  <button mat-button (click)="cancelDialog()">Abbrechen</button>
+  <button mat-button (click)="cancelDialog()">{{'LECTURES.EDIT.Abbrechen' | translate}}</button>
 
   <!-- Submit -->
   <button mat-raised-button [mat-dialog-close]="data"
           [style.display]="isDialogType(data, DialogType.CREATE)?'visible':'none'"
           color="primary"
-          type="submit"> Erstellen </button>
+          type="submit"> {{'LECTURES.EDIT.Erstellen' | translate}} </button>
   <button mat-raised-button [mat-dialog-close]="data"
           [style.display]="isDialogType(data, DialogType.EDIT)?'visible':'none'"
           color="primary"
-          type="submit"> Speichern </button>
+          type="submit"> {{'LECTURES.EDIT.Speichern' | translate}} </button>
 </div>
 
 
