@@ -87,13 +87,15 @@ public class TimeTableController {
 
     private void executeExcelExport(HttpServletResponse response, Long versionId) throws IOException {
         Workbook workbook;
+        String headerValue;
+        String headerKey = "Content-Disposition";
         if (versionId == null) {
             workbook = service.exportAll();
+            headerValue = "attachment; fileName=timetable_all.xlsx";
         } else {
             workbook = service.exportVersion(versionId);
+            headerValue = "attachment; fileName=timetable_version_" + versionId + ".xlsx";
         }
-        String headerKey = "Content-Disposition";
-        String headerValue = "attachment; filename=timetable_version_" + versionId + ".xlsx";
         response.setHeader(headerKey, headerValue);
         ServletOutputStream outputStream = response.getOutputStream();
         workbook.write(outputStream);
