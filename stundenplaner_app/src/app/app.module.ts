@@ -32,7 +32,6 @@ import {LecturesOverviewComponent} from './lectures/lectures-overview/lectures-o
 import {EditLectureDialogComponent} from "./lectures/edit-lecture-dialog/edit-lecture-dialog.component";
 import {EditRoomDialogComponent} from './rooms/edit-room-dialog/edit-room-dialog.component';
 import {MatPaginatorModule} from "@angular/material/paginator";
-
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LandingComponent } from './landing/landing.component';
