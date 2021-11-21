@@ -62,7 +62,7 @@ class UserServiceTest {
     @Test
     void testCreate() {
         when(userRepository.save(any(UserDO.class))).thenReturn(USER_DO_1);
-        when(roleRepository.findAllByIdInOrNameIn(anyList(), anyList())).thenReturn(Collections.emptySet());
+        when(roleRepository.findAllByIdInOrTypeIn(anyList(), anyList())).thenReturn(Collections.emptySet());
         UserTO testTO = UserTO.fromDO(USER_DO_1);
         testTO.setId(null);
 

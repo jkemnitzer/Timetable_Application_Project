@@ -10,8 +10,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * @author mbaecker
@@ -72,6 +72,9 @@ public class UserDO {
 
     public void updateFromTO(UserTO userTO) {
         this.setUsername(userTO.getUsername());
+        this.setTitle(userTO.getTitle());
+        this.setFirstName(userTO.getFirstName());
+        this.setLastName(userTO.getLastName());
         this.setEmail(userTO.getEmail());
         this.setStatus(StatusEnum.valueOf(userTO.getStatus()));
         this.setLastUpdated(LocalDateTime.now());
@@ -90,11 +93,8 @@ public class UserDO {
                 null,
                 null,
                 StatusEnum.valueOf(userTO.getStatus()),
-                userTO.getRoles().stream()
-                        .map(RoleDO::fromTO)
-                        .collect(Collectors.toSet()),
+                Collections.emptySet(),
                 null
-
         );
     }
 }
