@@ -17,7 +17,7 @@ import java.util.List;
  * Rest class representing the api endpoints for the room info
  */
 @RestController
-@RequestMapping("/lecturers/{lecturerId}/timeSlotPreferences")
+@RequestMapping("/users/{lecturerId}/profile/timeSlotPreferences")
 public class TimeSlotPreferenceController {
 
     private TimeSlotPreferenceService timeSlotPreferenceService;

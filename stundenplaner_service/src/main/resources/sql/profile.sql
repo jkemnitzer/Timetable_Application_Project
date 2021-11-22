@@ -1,13 +1,3 @@
-CREATE SEQUENCE t_timeslot_seq;
-CREATE TABLE t_timeslot
-(
-    id BIGINT DEFAULT t_timeslot_seq.nextval PRIMARY KEY NOT NULL,
-    weekday INTEGER,
-    start TIME,
-    end TIME,
-    is_custom_timeslot BOOLEAN
-);
-
 CREATE SEQUENCE t_profile_seq;
 CREATE TABLE t_profile
 (
@@ -55,50 +45,6 @@ CREATE TABLE t_timeslot_preference
     FOREIGN KEY (fk_timeslot_id) REFERENCES t_timeslot (id),
     FOREIGN KEY (fk_profile_id) REFERENCES t_profile (id)
 );
-
-
---INSERT INTO t_user (id, name) VALUES (1, 'Prof. Dr. Günther Köhler');
---INSERT INTO t_user (id, name) VALUES (2, 'Prof. Dr. Jörg Scheidt');
---INSERT INTO t_user (id, name) VALUES (3, 'Prof. Dr. Michael Seidel');
---INSERT INTO t_user (id, name) VALUES (4, 'Pfarrer Wolfram Lehmann');
---INSERT INTO t_user (id, name) VALUES (5, 'Prof. Dr. Beatrix Weber');
---INSERT INTO t_user (id, name) VALUES (6, 'Prof. Dr. Christian Groth');
---INSERT INTO t_user (id, name) VALUES (7, 'Steffen Unger');
-
-INSERT INTO t_timeslot (id, weekday, start, end, is_custom_timeslot) VALUES (1, 1, '08:00', '09:30', false);
-INSERT INTO t_timeslot (id, weekday, start, end, is_custom_timeslot) VALUES (2, 1, '09:45', '11:15', false);
-INSERT INTO t_timeslot (id, weekday, start, end, is_custom_timeslot) VALUES (3, 1, '11:30', '13:00', false);
-INSERT INTO t_timeslot (id, weekday, start, end, is_custom_timeslot) VALUES (4, 1, '14:00', '15:30', false);
-INSERT INTO t_timeslot (id, weekday, start, end, is_custom_timeslot) VALUES (5, 1, '15:45', '17:15', false);
-INSERT INTO t_timeslot (id, weekday, start, end, is_custom_timeslot) VALUES (6, 1, '17:30', '19:00', false);
-
-INSERT INTO t_timeslot (id, weekday, start, end, is_custom_timeslot) VALUES (7, 2, '08:00', '09:30', false);
-INSERT INTO t_timeslot (id, weekday, start, end, is_custom_timeslot) VALUES (8, 2, '09:45', '11:15', false);
-INSERT INTO t_timeslot (id, weekday, start, end, is_custom_timeslot) VALUES (9, 2, '11:30', '13:00', false);
-INSERT INTO t_timeslot (id, weekday, start, end, is_custom_timeslot) VALUES (10, 2, '14:00', '15:30', false);
-INSERT INTO t_timeslot (id, weekday, start, end, is_custom_timeslot) VALUES (11, 2, '15:45', '17:15', false);
-INSERT INTO t_timeslot (id, weekday, start, end, is_custom_timeslot) VALUES (12, 2, '17:30', '19:00', false);
-
-INSERT INTO t_timeslot (id, weekday, start, end, is_custom_timeslot) VALUES (13, 3, '08:00', '09:30', false);
-INSERT INTO t_timeslot (id, weekday, start, end, is_custom_timeslot) VALUES (14, 3, '09:45', '11:15', false);
-INSERT INTO t_timeslot (id, weekday, start, end, is_custom_timeslot) VALUES (15, 3, '11:30', '13:00', false);
-INSERT INTO t_timeslot (id, weekday, start, end, is_custom_timeslot) VALUES (16, 3, '14:00', '15:30', false);
-INSERT INTO t_timeslot (id, weekday, start, end, is_custom_timeslot) VALUES (17, 3, '15:45', '17:15', false);
-INSERT INTO t_timeslot (id, weekday, start, end, is_custom_timeslot) VALUES (18, 3, '17:30', '19:00', false);
-
-INSERT INTO t_timeslot (id, weekday, start, end, is_custom_timeslot) VALUES (19, 4, '08:00', '09:30', false);
-INSERT INTO t_timeslot (id, weekday, start, end, is_custom_timeslot) VALUES (20, 4, '09:45', '11:15', false);
-INSERT INTO t_timeslot (id, weekday, start, end, is_custom_timeslot) VALUES (21, 4, '11:30', '13:00', false);
-INSERT INTO t_timeslot (id, weekday, start, end, is_custom_timeslot) VALUES (22, 4, '14:00', '15:30', false);
-INSERT INTO t_timeslot (id, weekday, start, end, is_custom_timeslot) VALUES (23, 4, '15:45', '17:15', false);
-INSERT INTO t_timeslot (id, weekday, start, end, is_custom_timeslot) VALUES (24, 4, '17:30', '19:00', false);
-
-INSERT INTO t_timeslot (id, weekday, start, end, is_custom_timeslot) VALUES (25, 5, '08:00', '09:30', false);
-INSERT INTO t_timeslot (id, weekday, start, end, is_custom_timeslot) VALUES (26, 5, '09:45', '11:15', false);
-INSERT INTO t_timeslot (id, weekday, start, end, is_custom_timeslot) VALUES (27, 5, '11:30', '13:00', false);
-INSERT INTO t_timeslot (id, weekday, start, end, is_custom_timeslot) VALUES (28, 5, '14:00', '15:30', false);
-INSERT INTO t_timeslot (id, weekday, start, end, is_custom_timeslot) VALUES (29, 5, '15:45', '17:15', false);
-INSERT INTO t_timeslot (id, weekday, start, end, is_custom_timeslot) VALUES (30, 5, '17:30', '19:00', false);
 
 INSERT INTO t_delegated_lecturer (id, sws, fk_user_id) VALUES (1, 2, 7);
 INSERT INTO t_delegated_lecturer (id, sws, fk_user_id) VALUES (2, 4, 7);

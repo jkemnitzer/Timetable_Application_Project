@@ -15,14 +15,14 @@ public class TimeSlotPreferenceTO {
     private Long id;
     private Integer priority;
     private TimeslotTO timeSlot;
-    private LecturerProfileTO lecturerProfile;
+    private Long lecturerProfile;
 
     public static TimeSlotPreferenceTO fromDO(TimeSlotPreferenceDO timeSlotPreferenceDO) {
         return new TimeSlotPreferenceTO(
                 timeSlotPreferenceDO.getId(),
                 timeSlotPreferenceDO.getPriority(),
                 TimeslotTO.fromDO(timeSlotPreferenceDO.getTimeSlot()),
-                LecturerProfileTO.fromDO(timeSlotPreferenceDO.getLecturerProfile())
+                timeSlotPreferenceDO.getLecturerProfile().getId()
         );
     }
 
