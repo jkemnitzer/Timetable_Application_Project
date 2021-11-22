@@ -1,8 +1,10 @@
 <div *ngIf="!userService.loggedIn">
   <button
-    mat-button [matMenuTriggerFor]="menu"
+    mat-button
+    [matMenuTriggerFor]="menu"
     matTooltip="Login"
-    #trigger="matMenuTrigger">
+    #trigger="matMenuTrigger"
+  >
     <mat-icon>login</mat-icon>
   </button>
   <mat-menu #menu="matMenu" class="login-menu">
@@ -10,28 +12,29 @@
       (click)="$event.stopPropagation()"
       (keydown)="$event.stopPropagation()"
       fxLayout="column"
-      class="login-container">
+      class="login-container"
+    >
       <form class="menu-form">
         <h3>Login</h3>
         <mat-form-field fxLayoutAlign="center">
           <mat-label>Username</mat-label>
-          <input matInput
-                 #usernameInput
-                 type="text"
-                 (keyup.enter)="loginUser()"
-                 required/>
+          <input
+            matInput
+            #usernameInput
+            type="text"
+            (keyup.enter)="loginUser()"
+            required
+          />
         </mat-form-field>
         <mat-form-field fxLayoutAlign="center">
           <mat-label>Password</mat-label>
-          <input matInput
-                 type="password"
-                 (submit)="loginUser()"/>
+          <input matInput type="password" (submit)="loginUser()" />
         </mat-form-field>
         <div fxLayout="row">
           <button mat-raised-button type="button" (click)="loginUser()">
             <mat-icon>login</mat-icon>
           </button>
-          <button mat-button type="button" (click)="trigger.closeMenu()">
+          <button mat-button type="button" (click)="openRegistrationDialog()">
             Registrieren
           </button>
         </div>
@@ -40,10 +43,7 @@
   </mat-menu>
 </div>
 <div *ngIf="userService.loggedIn">
-  <button
-    mat-button
-    (click)="logoutUser()"
-    matTooltip="Logout">
+  <button mat-button (click)="logoutUser()" matTooltip="Logout">
     <mat-icon>logout</mat-icon>
   </button>
 </div>
