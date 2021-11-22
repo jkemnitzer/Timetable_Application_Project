@@ -41,7 +41,7 @@ public class ModulePreferenceDO {
         return new ModulePreferenceDO(
                 modulePreferenceTO.getId(),
                 modulePreferenceTO.getPriority(),
-                ProfileDO.fromTO(modulePreferenceTO.getLecturerProfile())//TODO: Add reference to the module
+                null//TODO: Add reference to the module
         );
     }
 }

@@ -44,7 +44,7 @@ public class TimeSlotPreferenceDO {
                 timeSlotPreferenceTO.getId(),
                 timeSlotPreferenceTO.getPriority(),
                 TimeslotDO.fromTO(timeSlotPreferenceTO.getTimeSlot()),
-                ProfileDO.fromTO(timeSlotPreferenceTO.getLecturerProfile())
+                null
         );
     }
 }

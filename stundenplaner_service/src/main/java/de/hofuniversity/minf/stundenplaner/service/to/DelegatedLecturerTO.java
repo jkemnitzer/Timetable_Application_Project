@@ -19,7 +19,7 @@ public class DelegatedLecturerTO {
     private Long id;
     private Integer sws;
     private List<Long> lecturerProfiles;
-    private UserTO delegatedLecturer;
+    private Long delegatedLecturer;
 
     public static DelegatedLecturerTO fromDO(DelegatedLecturerDO delegatedLecturerDO) {
         return new DelegatedLecturerTO(
@@ -28,7 +28,7 @@ public class DelegatedLecturerTO {
                 delegatedLecturerDO.getLecturerProfiles().stream()
                         .map(ProfileDO::getId)
                         .collect(Collectors.toList()),
-                UserTO.fromDO(delegatedLecturerDO.getDelegatedLecturer())
+                delegatedLecturerDO.getDelegatedLecturer().getId()
         );
     }
 

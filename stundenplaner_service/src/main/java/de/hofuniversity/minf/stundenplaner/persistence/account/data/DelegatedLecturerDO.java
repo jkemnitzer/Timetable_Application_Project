@@ -46,7 +46,7 @@ public class DelegatedLecturerDO {
                 delegatedLecturerTO.getId(),
                 delegatedLecturerTO.getSws(),
                 Collections.emptyList(),
-                UserDO.fromTO(delegatedLecturerTO.getDelegatedLecturer())
+                null
         );
     }
 }

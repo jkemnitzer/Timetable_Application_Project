@@ -17,7 +17,7 @@ import java.util.List;
  * Rest class representing the api endpoints for the room info
  */
 @RestController
-@RequestMapping("/lecturers/{lecturerId}/delegatedLecturers")
+@RequestMapping("/users/{lecturerId}/profile/delegatedLecturers")
 public class DelegatedLecturerController {
 
     private DelegatedLecturerService delegatedLecturerService;
