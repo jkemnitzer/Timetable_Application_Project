@@ -91,10 +91,10 @@ public class TimeTableController {
         String headerKey = "Content-Disposition";
         if (versionId == null) {
             workbook = service.exportAll();
-            headerValue = "attachment; fileName=timetable_all.xlsx";
+            headerValue = "attachment; fileName=timetable_all.xls";
         } else {
             workbook = service.exportVersion(versionId);
-            headerValue = "attachment; fileName=timetable_version_" + versionId + ".xlsx";
+            headerValue = "attachment; fileName=timetable_version_" + versionId + ".xls";
         }
         response.setHeader(headerKey, headerValue);
         ServletOutputStream outputStream = response.getOutputStream();
