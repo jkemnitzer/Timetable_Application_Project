@@ -1,9 +1,9 @@
-body {
+/* body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
-}
+} */
 
 nav {
   position: fixed;
@@ -11,179 +11,150 @@ nav {
   left: 0;
   z-index: 9999;
   width: 100%;
-  height: 10vh;
+  height: 80px;
   background-color: transparent;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: end;
   margin-top:1rem;
-}
-
-nav .logo {
-  font-size: 1.5rem;
-  width:30%;
 }
 
 .nav-links {
   list-style-type: none;
   display: flex;
+  margin-right: 200px;
 }
 
 .nav-links li{
   margin-left:1rem;
 }
 
-.hero {
-  min-height: 100vh;
-  background-image: linear-gradient(
-    90deg,
-    #b4f5ec 0%,
-    #ffffff 55%,
-    #ffffff 55%,
-    #ffffff 100%
-  );
+.landing-main {
+  min-height: calc(100vh - 98px);
+  background-image: linear-gradient(90deg, #b4f5ec 0%, #ffffff 55%, #ffffff 55%, #ffffff 100%);
+  display: flex;
+  align-items: center;
 }
 
-
-.row {
-    display: flex;
-    flex-wrap: wrap;
-    width:80%;
-   padding-top:6rem;
-  margin: 0 auto;
-      
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  width:80%;
+  padding-top:6rem;
+  margin: 0 auto 16vh auto;
 }
 
 .content-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    max-width: 50%;
-}
-
-
-
-
-.btn {
-  width: 150px;
-  height: 50px;
-  border: 1px solid #333;
-  font-family: 'Cinzel', serif;
-  font-size: 20px;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  z-index: 0;
-  transition: 1s;
-  }
-  
-  .btn::before, .btn::after {
-  position: absolute;
-  background: #fff;
-  z-index: -1;
-  transition: 1s;
-  content: '';
-  }
-  
-  .btn::before {
-  height: 50px;
-  width: 130px;
-  }
-  
-  .btn::after {
-  width: 150px;
-  height: 30px;
-  }
-  
-  .noselect {
-  -webkit-touch-callout: none;
-    -webkit-user-select: none;
-     -khtml-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-        user-select: none;
-  }
-  
-  .btn:hover::before {
-  width: 0px;
-  background: #fff;
-  }
-  
-  .btn:hover::after {
-  height: 0px;
-  background: #fff;
-  }
-  
-  .btn:hover {
-  background: #fff;
-  }
-
-
-
-
-a {
-    color: #007bff;
-    text-decoration: none;
-    background-color: transparent;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
- img{
-  
-  width:80%;
+img{
   margin:0 auto;
-  
-   width: 416px;
-   height: 360px;
-  
+  width: auto;
+  height: 360px;
+}
+
+#description {
+  position: relative;
+  float: left;
+  font-size: 18px;
+  background-color: white;
+  margin-bottom: 40px;
+}
+
+#description > span {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 110%;
+  background-color: white;
+  border-left: 1px solid transparent;
+  animation: text-motion 5s steps(40, start) infinite, border-style 0.5s step-end infinite;
+  -webkit-animation: text-motion 5s steps(40, start) infinite, border-style 0.5s step-end infinite;
+}
+
+@keyframes text-motion {
+  0% {
+    width: 100%;
   }
+  100% {
+    width: 0;
+  }
+}
+
+@keyframes border-style {
+  0% {
+    border-left-color: transparent;
+  }
+  50% {
+    border-left-color: black;
+  }
+  100% {
+    border-left-color: transparent;
+  }
+}
+
+@-webkit-keyframes text-motion {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
+  }
+}
+
+@-webkit-keyframes border-style {
+  0% {
+    border-left-color: transparent;
+  }
+  50% {
+    border-left-color: black;
+  }
+  100% {
+    border-left-color: transparent;
+  }
+}
 
 @media screen and (max-width:768px){
   nav{
-     flex-direction:column;
+    flex-direction:column;
     margin-top:1rem;
   }
-  
-  nav .logo {
-    text-align: center;
-    width:100%;
-}
+
   nav ul {
-        padding-inline-start: 0;
+    padding-inline-start: 0;
     margin:0.2rem;
   }
-  
-  .hero {
-  background-image: linear-gradient(
-    180deg,
-    #ffffff 0%,
-    #ffffff 55%,
-    #ffffff 55%,
-    #ffffff 100%
-  );
-}
-  h1{
-    margin-bottom:0;
-    
+
+  .landing-main {
+    background-image: linear-gradient(180deg, #ffffff 0%, #ffffff 55%, #ffffff 55%, #ffffff 100%);
   }
-  
+
   .content-wrapper{
     max-width: 100% !important;
     margin-top: auto;
-   
   }
+
   img{
-    width:60%;
-    margin:0 auto;
-    padding: 2rem 0 2rem 0;
+    height: 173px;
+    width: auto;
+  }
+
+  #description{
+    font-size: 3vw;
   }
 }
 
 @media screen and (min-width:100px){
-  .hero{
-  padding-top:6rem
+  .landing-main{
+    padding-top:6rem
   }
 }
 
+mat-toolbar{
+  box-shadow: 0 3px 5px -1px #c5ebf433, 0 6px 10px #36434524, 0 1px 18px #84a5a81f;
+}

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router,
+    private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
   }
 
+  navigate():void{
+    this.router.navigate(['/programs'],{
+      relativeTo:this.activatedRoute
+    })
+  }
 }

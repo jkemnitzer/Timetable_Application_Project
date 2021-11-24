@@ -1,25 +1,27 @@
 <nav>
-    <div class="logo"> Stundenplanung </div>
     <ul class="nav-links">
-        <li>About
-        </li>
-        <li>Services
-        </li>
-        <li>Contact
-        </li>
+      <li>
+        <button color="lightblue" mat-stroked-button>About</button>
+      </li>
+      <li>
+        <button color="lightblue" mat-stroked-button>Services</button>
+      </li>
+      <li>
+        <button color="lightblue" mat-stroked-button>Contact</button>
+      </li>
     </ul>
-
-</nav>
-<main class="hero">
-    <div class="row">
-        <div class="content-wrapper ">
-            <h1>Beginnen Sie mit der Registrierung Ihre Stundenplanung</h1>
-            <p> </p>
-            <a [routerLink]="['/programs']" class="btn"> Jetz Planen</a>
-        </div>
-        <img src="..\assets\Untitled-1.jpg" />
-
+  </nav>
+  
+  <main class="landing-main">
+  
+    <div class="content">
+      <div>
+        <img src="/assets/125.png"/>
+      </div>
+      <div class="content-wrapper">
+        <div id="description">Beginnen Sie mit der Registrierung Ihre Stundenplanung<span></span></div>
+        <button mat-raised-button color="lightblue" (click)="navigate()">Jetzt Planen</button>
+      </div>
     </div>
-
-
-</main>
+  
+  </main>
