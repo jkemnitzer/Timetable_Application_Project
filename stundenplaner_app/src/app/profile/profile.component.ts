@@ -12,7 +12,6 @@ import { UserService } from "../user/user.service";
 export class ProfileComponent implements OnInit {
 
   users!: Profile[];
-  title = 'Profil';
   user: Profile = {id: -1, username: "", email: "", status: "", roles: []};
 
   constructor(private requestMaker: HttpService, private userService: UserService) { }

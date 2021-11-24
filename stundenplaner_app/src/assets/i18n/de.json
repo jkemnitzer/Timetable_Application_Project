@@ -1,0 +1,101 @@
+{
+  "NAVIGATION": {
+    "Studiengänge": "Studiengänge",
+    "Menü": "Menü",
+    "Räume": "Räume",
+    "Vorlesungen": "Vorlesungen",
+    "Profil": "Profil",
+    "Greet": "Hallo",
+    "Stundenplan": "Stundenplan",
+    "Title": "Stundenplan-App"
+  },
+  "PROGRAM": {
+    "Filter": "Filter",
+    "TOOLTIP": {
+      "bearbeiten": "Bearbeitung aktivieren/deaktivieren",
+      "addProgram": "Studiengang hinzufügen"
+    },
+    "PLACEHOLDER": {
+      "id": "Id oder Name"
+    },
+    "EDIT": {
+      "Title": "Bearbeiten",
+      "Name": "Studiengang Name",
+      "Abbrechen": "Abbrechen",
+      "Speichern": "Speichern"
+    },
+    "ERROR": {
+      "Filter": "Keine Daten die dem Filter \"{{value}}\" entsprechen."
+    }
+  },
+  "PROFIL": {
+    "Title": "Profil",
+    "Username": "Benutzername",
+    "Email": "E-Mail Adresse",
+    "Status": "Status"
+  },
+  "LOGIN": {
+    "Title": "Anmeldung",
+    "Username": "Benutzername",
+    "Passwort": "Passwort",
+    "Registrieren": "Registrieren",
+    "TOOLTIP": {
+      "Anmelden": "Anmelden",
+      "Abmelden": "Abmelden"
+    }
+  },
+  "LECTURES": {
+    "Filter": "Filter",
+    "Vorlesung": "Vorlesung",
+    "Sublektionen": "Sublektionen",
+    "TOOLTIP": {
+      "bearbeiten": "Bearbeitung aktivieren/deaktivieren",
+      "createLecture": "Vorlesung erstellen"
+    },
+    "DESCRIPTION": {
+      "sortId": "Nach Id sortieren"
+    },
+    "ERROR": {
+      "filter": "Keine Vorlesungen vorhanden"
+    },
+    "LABEL": {
+      "pages": "Wählen Sie die anzuzeigende Anzahl an Elementen"
+    },
+    "PLACEHOLDER": {
+      "filter": "Suchen sie nach {{value}} ..."
+    },
+    "EDIT": {
+      "Bearbeiten": "Bearbeiten",
+      "Neu": "Neu Erstellen",
+      "infoNeu": "Füllen Sie nachfolgende Textfelder aus um eine neue Vorlesung zu erstellen.",
+      "infoBearbeiten": "Bearbeiten Sie die nachfolgende Vorlesungen.",
+      "idLabel": "Identifizierungsnummer der Vorlesung:",
+      "lectureLabel": "Name der Vorlesung:",
+      "sublectureLabel": "Zugeordnete Sublektionen:",
+      "Abbrechen": "Abbrechen",
+      "Erstellen": "Erstellen",
+      "Speichern": "Speichern",
+      "warning": "Keine Sublektionen verknüpft"
+    }
+  },
+  "ROOMS": {
+    "Filter": "Filter",
+    "PLACEHOLDER": {
+      "Id": "Id oder Name"
+    },
+    "TOOLTIP": {
+      "bearbeiten": "Bearbeitung aktivieren/deaktivieren",
+      "addRoom": "Raum hinzufügen"
+    },
+    "ERROR": {
+      "Filter": "Keine Daten die dem Filter \"{{value}}\" entsprechen."
+    },
+    "EDIT": {
+      "Bearbeiten": "Bearbeiten",
+      "Name": "Raum Name",
+      "Gebäude": "Raum Gebäude",
+      "Abbrechen": "Abbrechen",
+      "Speichern": "Speichern"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+.outer {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+table {
+  width: 100%;
+}
+
+.action {
+  width: 32px;
+}
+
+.mat-column-actions {
+  width: 64px;
+  border-right: 1px solid currentColor;
+  padding-right: 10px;
+  text-align: center;
+}
+
+.mat-column-id {
+  width: 64px;
+  padding: 0 10px 0 24px;
+  text-align: left;
+  font-weight: bold;
+}
+
+.no-filter-message {
+  color: red
+}
+

@@ -89,14 +89,16 @@ VALUES (3, '6', 30, 26);
 INSERT INTO t_semester (program_id, number, exp_participants, act_participants)
 VALUES (3, '7', 30, 22);
 
--- feature user
+-- feature user, role, permission
 
 DROP TABLE IF EXISTS t_user;
 DROP TABLE IF EXISTS t_role;
 DROP TABLE IF EXISTS t_user_role_map;
+DROP TABLE IF EXISTS t_permission;
 
 CREATE SEQUENCE IF NOT EXISTS t_user_seq;
 CREATE SEQUENCE IF NOT EXISTS t_role_seq;
+CREATE SEQUENCE IF NOT EXISTS t_permission_seq;
 
 CREATE TABLE t_user
 (
@@ -116,7 +118,7 @@ CREATE TABLE t_user
 CREATE TABLE t_role
 (
     id   BIGINT DEFAULT t_role_seq.nextval PRIMARY KEY,
-    name VARCHAR(100)
+    type VARCHAR(100)
 );
 
 CREATE TABLE t_user_role_map
@@ -127,15 +129,54 @@ CREATE TABLE t_user_role_map
     FOREIGN KEY (role_id) REFERENCES t_role (id)
 );
 
-INSERT INTO t_role (name)
-VALUES ('ADMIN');
-INSERT INTO t_role (name)
-VALUES ('STUDENT');
-INSERT INTO t_role (name)
-VALUES ('PROFESSOR');
-INSERT INTO t_role (name)
-VALUES ('LECTURER');
+CREATE TABLE t_permission
+(
+    id   BIGINT DEFAULT t_permission_seq.nextval PRIMARY KEY,
+    type VARCHAR(100)
+);
 
+CREATE TABLE t_role_permission_map
+(
+    role_id       BIGINT NOT NULL,
+    permission_id BIGINT NOT NULL,
+    FOREIGN KEY (role_id) REFERENCES t_role (id),
+    FOREIGN KEY (permission_id) REFERENCES t_permission (id)
+);
+
+INSERT INTO t_role (type)
+VALUES ('ADMIN');
+INSERT INTO t_role (type)
+VALUES ('PROFESSOR');
+INSERT INTO t_role (type)
+VALUES ('LECTURER');
+INSERT INTO t_role (type)
+VALUES ('STUDENT');
+INSERT INTO t_role (type)
+VALUES ('GUEST');
+
+INSERT INTO t_permission (type)
+VALUES ('CAN_CREATE_USERS');
+INSERT INTO t_permission (type)
+VALUES ('CAN_READ_USERS');
+INSERT INTO t_permission (type)
+VALUES ('CAN_UPDATE_USERS');
+INSERT INTO t_permission (type)
+VALUES ('CAN_DELETE_USERS');
+INSERT INTO t_permission (type)
+VALUES ('CAN_CREATE_ROOMS');
+INSERT INTO t_permission (type)
+VALUES ('CAN_READ_ROOMS');
+INSERT INTO t_permission (type)
+VALUES ('CAN_UPDATE_ROOMS');
+INSERT INTO t_permission (type)
+VALUES ('CAN_DELETE_ROOMS');
+
+INSERT INTO t_user (username, password, password_salt, email, created, last_updated, status)
+VALUES ('BMars', '', '', 'better.mars@hof-university.de', NOW(), NOW(), 'ACTIVE');
+INSERT INTO t_user (username, password, password_salt, email, created, last_updated, status)
+VALUES ('CJupiter', '', '', 'caeser.jupiter@hof-university.de', NOW(), NOW(), 'ACTIVE');
+INSERT INTO t_user (username, password, password_salt, email, created, last_updated, status)
+VALUES ('SPluto', '', '', 'sad.pluto@hof-university.de', NOW(), NOW(), 'INACTIVE');
 INSERT INTO t_user (username, title, first_name, last_name, email, status)
 VALUES ('gkoehler', 'Prof. Dr.', 'Günther', 'Köhler', 'guenther.koehler@hof-university.de', 'GENERATED');
 INSERT INTO t_user (username, title, first_name, last_name, email, status)
@@ -148,12 +189,6 @@ INSERT INTO t_user (username, title, first_name, last_name, email, status)
 VALUES ('jscheidt', 'Prof. Dr.', 'Jörg', 'Scheidt', 'joerg.scheidt@hof-university.de', 'GENERATED');
 INSERT INTO t_user (username, title, first_name, last_name, email, status)
 VALUES ('cgroth', 'Prof. Dr.', 'Christian', 'Groth', 'christian.groth@hof-university.de', 'GENERATED');
-INSERT INTO t_user (username, password, password_salt, email, created, last_updated, status)
-VALUES ('BMars', '', '', 'better.mars@hof-university.de', NOW(), NOW(), 'ACTIVE');
-INSERT INTO t_user (username, password, password_salt, email, created, last_updated, status)
-VALUES ('CJupiter', '', '', 'caeser.jupiter@hof-university.de', NOW(), NOW(), 'ACTIVE');
-INSERT INTO t_user (username, password, password_salt, email, created, last_updated, status)
-VALUES ('SPluto', '', '', 'sad.pluto@hof-university.de', NOW(), NOW(), 'INACTIVE');
 
 
 INSERT INTO t_user_role_map (user_id, role_id)
@@ -165,6 +200,23 @@ VALUES (3, 1);
 INSERT INTO t_user_role_map (user_id, role_id)
 VALUES (3, 2);
 
+INSERT INTO t_role_permission_map (role_id, permission_id)
+VALUES (1, 1);
+INSERT INTO t_role_permission_map (role_id, permission_id)
+VALUES (1, 2);
+INSERT INTO t_role_permission_map (role_id, permission_id)
+VALUES (1, 3);
+INSERT INTO t_role_permission_map (role_id, permission_id)
+VALUES (1, 4);
+INSERT INTO t_role_permission_map (role_id, permission_id)
+VALUES (1, 5);
+INSERT INTO t_role_permission_map (role_id, permission_id)
+VALUES (1, 6);
+INSERT INTO t_role_permission_map (role_id, permission_id)
+VALUES (1, 7);
+INSERT INTO t_role_permission_map (role_id, permission_id)
+VALUES (1, 8);
+
 --- faculty
 DROP TABLE IF EXISTS t_faculty;
 
@@ -172,8 +224,8 @@ CREATE SEQUENCE IF NOT EXISTS t_faculty_seq;
 
 CREATE TABLE t_faculty
 (
-    id     BIGINT DEFAULT t_room_seq.nextval PRIMARY KEY,
-    name   VARCHAR(200)
+    id   BIGINT DEFAULT t_room_seq.nextval PRIMARY KEY,
+    name VARCHAR(200)
 );
 
 INSERT INTO t_faculty (name)

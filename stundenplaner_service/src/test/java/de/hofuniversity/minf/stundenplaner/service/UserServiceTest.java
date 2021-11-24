@@ -33,9 +33,9 @@ class UserServiceTest {
     private UserServiceImpl userService;
 
     private final UserDO USER_DO_1 = new UserDO(1L, "BJupiter", "title", "first", "last", "", "",
-            "jb@hof-university.de", LocalDateTime.now(), LocalDateTime.now(), StatusEnum.ACTIVE, Collections.emptySet());
+            "jb@hof-university.de", LocalDateTime.now(), LocalDateTime.now(), StatusEnum.ACTIVE, Collections.emptySet(), null);
     private final UserDO USER_DO_2 = new UserDO(2L, "CMars", "title", "first", "last","", "",
-            "cm@hof-university.de", LocalDateTime.now(), LocalDateTime.now(), StatusEnum.ACTIVE, Collections.emptySet());
+            "cm@hof-university.de", LocalDateTime.now(), LocalDateTime.now(), StatusEnum.ACTIVE, Collections.emptySet(), null);
 
     @Test
     void testGetAll() {
@@ -62,7 +62,7 @@ class UserServiceTest {
     @Test
     void testCreate() {
         when(userRepository.save(any(UserDO.class))).thenReturn(USER_DO_1);
-        when(roleRepository.findAllByIdInOrNameIn(anyList(), anyList())).thenReturn(Collections.emptySet());
+        when(roleRepository.findAllByIdInOrTypeIn(anyList(), anyList())).thenReturn(Collections.emptySet());
         UserTO testTO = UserTO.fromDO(USER_DO_1);
         testTO.setId(null);
 
@@ -74,7 +74,7 @@ class UserServiceTest {
     @Test
     void testUpdate() {
         UserDO testReturn = new UserDO(USER_DO_1.getId(), USER_DO_1.getUsername(), "title", "first", "last","", "", USER_DO_1.getEmail(),
-                USER_DO_1.getCreated(), USER_DO_1.getLastUpdated(), StatusEnum.ACTIVE, Collections.emptySet());
+                USER_DO_1.getCreated(), USER_DO_1.getLastUpdated(), StatusEnum.ACTIVE, Collections.emptySet(), null);
         when(userRepository.findById(1L)).thenReturn(Optional.of(testReturn), Optional.empty());
         when(userRepository.save(any(UserDO.class))).thenReturn(testReturn);
         UserTO test = UserTO.fromDO(USER_DO_2);
