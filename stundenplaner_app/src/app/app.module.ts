@@ -37,7 +37,7 @@ import { EditUsersDialogComponent } from './users/edit-users-dialog/edit-users-d
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LandingComponent } from './landing/landing.component';
-
+import {MatSelectModule} from '@angular/material/select'; 
 @NgModule({
   declarations: [
     AppComponent,
@@ -83,6 +83,7 @@ import { LandingComponent } from './landing/landing.component';
     MatDialogModule,
     FormsModule,
     MatPaginatorModule,
+    MatSelectModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

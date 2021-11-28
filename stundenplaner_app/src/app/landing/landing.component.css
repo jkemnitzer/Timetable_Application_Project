@@ -1,47 +1,34 @@
-/* body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-} */
+.menu-spacer {
+  flex: 1 1 auto;
+}
 
-nav {
-  position: fixed;
+.landing-container {
+  position: absolute;
   top: 0;
+  bottom: 0;
+  right: 0;
   left: 0;
-  z-index: 9999;
-  width: 100%;
-  height: 80px;
-  background-color: transparent;
-  display: flex;
-  align-items: center;
-  justify-content: end;
-  margin-top:1rem;
+  overflow: hidden;
 }
 
-.nav-links {
-  list-style-type: none;
-  display: flex;
-  margin-right: 200px;
-}
-
-.nav-links li{
-  margin-left:1rem;
+.desktop-menu {
+  padding-right: 100px;
 }
 
 .landing-main {
-  min-height: calc(100vh - 98px);
-  background-image: linear-gradient(90deg, #b4f5ec 0%, #ffffff 55%, #ffffff 55%, #ffffff 100%);
+  height: 100%;
+  overflow: hidden;
+  background-image: linear-gradient(90deg, #673ab74d 0%, #ffffff 55%, #ffffff 55%, #ffffff 100%);
   display: flex;
+  justify-content: center;
   align-items: center;
 }
 
 .content {
   display: flex;
   flex-wrap: wrap;
-  width:80%;
-  padding-top:6rem;
-  margin: 0 auto 16vh auto;
+  width: 80%;
+  margin-bottom: 12vh;
 }
 
 .content-wrapper {
@@ -52,8 +39,8 @@ nav {
   flex-grow: 1;
 }
 
-img{
-  margin:0 auto;
+img {
+  margin: 0 auto;
   width: auto;
   height: 360px;
 }
@@ -61,26 +48,29 @@ img{
 #description {
   position: relative;
   float: left;
-  font-size: 18px;
+  font-size: 22px;
   background-color: white;
   margin-bottom: 40px;
+
+  color: #673ab7;
 }
 
-#description > span {
+#description>span {
   position: absolute;
   top: 0;
   right: 0;
   height: 110%;
   background-color: white;
   border-left: 1px solid transparent;
-  animation: text-motion 5s steps(40, start) infinite, border-style 0.5s step-end infinite;
-  -webkit-animation: text-motion 5s steps(40, start) infinite, border-style 0.5s step-end infinite;
+  animation: text-motion 4s steps(40, start) infinite, border-style 0.5s step-end infinite;
+  -webkit-animation: text-motion 4s steps(40, start) infinite, border-style 0.5s step-end infinite;
 }
 
 @keyframes text-motion {
   0% {
     width: 100%;
   }
+
   100% {
     width: 0;
   }
@@ -90,9 +80,11 @@ img{
   0% {
     border-left-color: transparent;
   }
+
   50% {
     border-left-color: black;
   }
+
   100% {
     border-left-color: transparent;
   }
@@ -102,6 +94,7 @@ img{
   0% {
     width: 100%;
   }
+
   100% {
     width: 0;
   }
@@ -111,50 +104,82 @@ img{
   0% {
     border-left-color: transparent;
   }
+
   50% {
     border-left-color: black;
   }
+
   100% {
     border-left-color: transparent;
   }
 }
 
-@media screen and (max-width:768px){
-  nav{
-    flex-direction:column;
-    margin-top:1rem;
-  }
+.mat-toolbar.mat-gradient-primary {
+  background: linear-gradient(90deg, #673ab752 0%, #ffffff 55%, #ffffff 55%, #ffffff 100%);
+  color: #000;
+}
 
-  nav ul {
-    padding-inline-start: 0;
-    margin:0.2rem;
-  }
+mat-toolbar {
+  box-shadow: 0 3px 5px -1px #c5ebf433, 0 6px 10px #36434524, 0 1px 18px #84a5a81f;
+}
 
-  .landing-main {
-    background-image: linear-gradient(180deg, #ffffff 0%, #ffffff 55%, #ffffff 55%, #ffffff 100%);
-  }
+.mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary {
+  font-size: 18px;
+}
 
-  .content-wrapper{
+.mat-raised-button.mat-primary {
+  width: 180px;
+  font-size: 16px;
+  height: 50px;
+}
+:host ::ng-deep.mat-form-field {
+  display: inline-block;
+  position: relative;
+  text-align: left;
+  width: 85px;
+}
+
+:host::ng-deep.mat-select,.mat-form-field-appearance-legacy, .mat-form-field-infix  {
+  font-size: 12px;
+}
+:host ::ng-deep.mat-form-field-underline{
+  display: none;
+}
+
+:host ::ng-deep.mat-drawer-inner-container {
+  width: 40vw !important;
+  max-width: 200px;
+  min-width: 110px;
+}
+
+:host ::ng-deep.mat-list-base {
+  width: 100%;
+  text-align: center;
+}
+
+:host ::ng-deep.mat-list-item-content {
+  justify-content: center;
+  color: #673ab7;
+}
+
+
+@media screen and (max-width: 768px) {
+  .hidden.lw.md{
+    display: block;
+  }
+  .content-wrapper {
     max-width: 100% !important;
     margin-top: auto;
   }
 
-  img{
+  img {
     height: 173px;
     width: auto;
   }
 
-  #description{
+
+  #description {
     font-size: 3vw;
+    background: linear-gradient(90deg, #dbd1ed 0%, #fff 55%, #fff 55%, #fff 100%) !important;
   }
-}
-
-@media screen and (min-width:100px){
-  .landing-main{
-    padding-top:6rem
-  }
-}
-
-mat-toolbar{
-  box-shadow: 0 3px 5px -1px #c5ebf433, 0 6px 10px #36434524, 0 1px 18px #84a5a81f;
 }
