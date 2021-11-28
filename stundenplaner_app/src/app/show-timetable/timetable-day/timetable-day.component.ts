@@ -16,7 +16,7 @@ export class TimetableDayComponent implements OnInit {
   dataSource:MatTableDataSource<Lesson> = new MatTableDataSource<any>();
 
   displayedColumns: string[] = [ 'start', 'end',
-    'lecturer', 'room', 'name', 'edit', 'delete', 'view'];
+    'lecturer', 'room', 'name', 'edit', 'delete', 'view', 'info'];
 
 
   constructor() {}
@@ -32,4 +32,13 @@ export class TimetableDayComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getErrorClass(row: Lesson) {
+    if(row.weekday == 0){
+      return 'error'
+    }
+    if(row.weekday == 1){
+      return 'warning';
+    }
+     return '';
+  }
 }

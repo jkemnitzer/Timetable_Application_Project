@@ -56,5 +56,10 @@ table {
 
 
 }
-
+.error{
+  background: indianred;
+}
+.warning{
+  background: yellow;
+}
 
