@@ -1,14 +1,8 @@
-export interface Lesson {
-  name: string;
-  weekday: number;
-  start: number;
-  length: number;
-  lecturer: string;
-  room: string;
-}
+import {Lesson} from "../show-timetable/show-timetable.component";
+
 
 export const MOCK_SHEDULE: Lesson[] = [
-  {name: 'Betriebsysteme', weekday: 0, start:25200000, length: 90, lecturer: 'Michael Stepping', room: 'A010'},
-  {name: 'Betriebsysteme', weekday: 0, start:19000000, length: 90, lecturer: 'Rene Peinel', room: 'A010'},
+  {name: 'Betriebsysteme', weekday: 0, start: new Date(25200000), end: new Date(25200000), lecturer: 'Michael Stepping', room: 'A010'},
+  {name: 'Betriebsysteme', weekday: 0, start: new Date(19000000), end: new Date(25200000), lecturer: 'Rene Peinel', room: 'A010'},
 
 ];

@@ -6,8 +6,8 @@ import {MatTableDataSource} from "@angular/material/table";
 export interface Lesson {
   name: string;
   weekday: number;
-  start: number;
-  length: number;
+  start: Date;
+  end: Date;
   lecturer: string;
   room: string;
 }
