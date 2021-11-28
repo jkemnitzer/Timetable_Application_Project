@@ -15,13 +15,14 @@ public class ModulePreferenceTO {
     private Long id;
     private Integer priority;
     private Long lecturerProfile;
-    //TODO: Add reference to the module
+    private Long lecture;
 
     public static ModulePreferenceTO fromDO(ModulePreferenceDO modulePreferenceDO) {
         return new ModulePreferenceTO(
                 modulePreferenceDO.getId(),
                 modulePreferenceDO.getPriority(),
-                modulePreferenceDO.getLecturerProfile().getId()//TODO: Add reference to the profile of the delegated lecturer
+                modulePreferenceDO.getLecturerProfile().getId(),
+                modulePreferenceDO.getLecture().getId()
         );
     }
 

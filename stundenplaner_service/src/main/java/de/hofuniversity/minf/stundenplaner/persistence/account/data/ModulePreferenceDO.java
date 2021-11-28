@@ -1,5 +1,6 @@
 package de.hofuniversity.minf.stundenplaner.persistence.account.data;
 
+import de.hofuniversity.minf.stundenplaner.persistence.lecture.data.LectureDO;
 import de.hofuniversity.minf.stundenplaner.service.to.ModulePreferenceTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,14 +35,17 @@ public class ModulePreferenceDO {
     @JoinColumn(name = "fk_profile_id", nullable = false)
     private ProfileDO lecturerProfile;
 
-    //TODO: Add reference to module
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "fk_lecture_id", nullable = false)
+    private LectureDO lecture;
 
 
     public static ModulePreferenceDO fromTO(ModulePreferenceTO modulePreferenceTO) {
         return new ModulePreferenceDO(
                 modulePreferenceTO.getId(),
                 modulePreferenceTO.getPriority(),
-                null//TODO: Add reference to the module
+                null,
+                null
         );
     }
 }
