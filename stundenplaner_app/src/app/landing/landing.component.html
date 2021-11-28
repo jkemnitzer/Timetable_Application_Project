@@ -9,7 +9,7 @@
         {{ "NAVIGATION.Greet" | translate }} {{ userService.username }}!
       </span>
       <app-login fxLayoutAlign="flex-end center"> </app-login>
-      <mat-form-field appearance="legacy" floatLabel="never">
+      <mat-form-field fxHide.lt-md appearance="legacy" floatLabel="never">
         <mat-label>Sprache</mat-label>
         <mat-select>
           <mat-option value="Englisch">
@@ -71,7 +71,7 @@
                   </g>
                 </g>
               </g>
-            </svg>>En
+            </svg>En
           </mat-option>
           <mat-option value="Deutsch"><svg width="20px" height="15px" viewBox="0 0 20 15" version="1.1"
               xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -102,9 +102,9 @@
   <mat-sidenav-container fxFlexFill>
     <mat-sidenav #sidenav>
       <mat-nav-list>
-        <mat-form-field appearance="legacy" >
+        <mat-form-field  appearance="legacy" >
           <mat-label>Sprache</mat-label>
-          <mat-select style=" visibility: hidden">
+          <mat-select>
             <mat-option value="Englisch">En</mat-option>
             <mat-option value="Deutsch">DE</mat-option>
           </mat-select>
