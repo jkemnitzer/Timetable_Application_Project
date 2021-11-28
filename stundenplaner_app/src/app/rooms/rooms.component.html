@@ -1,11 +1,11 @@
 <div class="outer" fxLayout="column">
   <mat-form-field appearance="standard" class="program-filter">
-    <mat-label>Filter</mat-label>
+    <mat-label>{{'ROOMS.Filter' | translate}}</mat-label>
     <input
       #input
       (keyup)="applyFilter($event)"
       matInput
-      placeholder="Id oder Name"
+      placeholder="{{'ROOMS.PLACEHOLDER.Id' | translate}}"
     />
   </mat-form-field>
 
@@ -17,7 +17,7 @@
           class="action"
           color="primary"
           mat-icon-button
-          matTooltip="Änderungen aktivieren/ deaktivieren"
+          matTooltip="{{'ROOMS.TOOLTIP.bearbeiten' | translate}}"
         >
           <mat-icon>edit</mat-icon>
         </button>
@@ -26,7 +26,7 @@
           class="action"
           color="primary"
           mat-icon-button
-          matTooltip="Raum hinzufügen"
+          matTooltip="{{'ROOMS.TOOLTIP.addRoom' | translate}"
         >
           <mat-icon>add</mat-icon>
         </button>
@@ -68,7 +68,7 @@
     <tr *matNoDataRow class="mat-row">
       <td class="mat-cell" colspan="4">
         <span class="no-filter-message"
-          >Keine Daten die dem Filter "{{ input.value }}" entsprechen.</span
+          >{{'ROOMS.ERROR.Filter' | translate: {value: input.value} }}</span
         >
       </td>
     </tr>

@@ -1,23 +1,27 @@
 variables:
   GIT_CLEAN_FLAGS: none
+  ENV: dev # dev, prod or local
 
 prepare-env:
   stage: .pre
   rules:
     - if: '$CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
+    - if: '$CI_PIPELINE_SOURCE == "web"'
   script:
-    - docker-compose down --remove-orphans --rmi local # remove untagged images
+    - docker-compose --env-file .config/.env.$ENV down --remove-orphans --rmi local # remove untagged images
 
 build-env:
   stage: build
   rules:
     - if: '$CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
+    - if: '$CI_PIPELINE_SOURCE == "web"'
   script:
-    - docker-compose build --force-rm
+    - docker-compose --env-file .config/.env.$ENV build --force-rm
 
 deply-env:
   stage: deploy
   rules:
     - if: '$CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
+    - if: '$CI_PIPELINE_SOURCE == "web"'
   script:
-    - docker-compose up --no-build --detach --remove-orphans
+    - docker-compose --env-file .config/.env.$ENV up --no-build --detach --remove-orphans

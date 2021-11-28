@@ -1,11 +1,11 @@
 <div class="outer" fxLayout="column">
   <mat-form-field appearance="standard" class="program-filter">
-    <mat-label>Filter</mat-label>
+    <mat-label>{{'PROGRAM.Filter' | translate}}</mat-label>
     <input
       #input
       (keyup)="applyFilter($event)"
       matInput
-      placeholder="Id oder Name"/>
+      placeholder="{{'PROGRAM.PLACEHOLDER.id' | translate}}"/>
   </mat-form-field>
 
   <table mat-table matSort [dataSource]="dataSource">
@@ -16,7 +16,7 @@
           class="action"
           color="primary"
           mat-icon-button
-          matTooltip="Änderungen aktivieren/ deaktivieren">
+          matTooltip="{{'PROGRAM.TOOLTIP.bearbeiten' | translate}}">
           <mat-icon>edit</mat-icon>
         </button>
         <button
@@ -24,7 +24,7 @@
           class="action"
           color="primary"
           mat-icon-button
-          matTooltip="Studiengang hinzufügen">
+          matTooltip="{{'PROGRAM.TOOLTIP.addProgram' | translate}}">
           <mat-icon>add</mat-icon>
         </button>
       </th>
@@ -58,7 +58,7 @@
 
     <tr *matNoDataRow class="mat-row">
       <td class="mat-cell" colspan="4">
-        <span class="no-filter-message">Keine Daten die dem Filter "{{ input.value }}" entsprechen.</span>
+        <span class="no-filter-message">{{'PROGRAM.ERROR.Filter' | translate: {value: input.value} }}</span>
       </td>
     </tr>
   </table>

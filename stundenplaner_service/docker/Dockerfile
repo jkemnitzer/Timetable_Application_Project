@@ -1,9 +1,11 @@
 FROM maven:3.8-amazoncorretto-16 as build
 
+ARG MVN_SETTINGS_OPTION
+
 WORKDIR /usr/local/app
 COPY . /usr/local/app/
 
-RUN mvn clean install -P prod -DskipTests
+RUN mvn ${MVN_SETTINGS_OPTION} clean install -P prod -DskipTests
 
 
 FROM amazoncorretto:16-alpine

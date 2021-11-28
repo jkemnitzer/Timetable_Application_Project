@@ -45,6 +45,6 @@ Test via:
 
 ## Deploy app
 
-``
+`docker-compose -env-file ENV=<prod,dev or local>`
 
 

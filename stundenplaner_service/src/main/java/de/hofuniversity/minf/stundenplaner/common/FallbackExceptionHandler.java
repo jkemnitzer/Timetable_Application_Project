@@ -25,4 +25,10 @@ public class FallbackExceptionHandler {
         return ResponseEntity.notFound().build();
     }
 
+    @ExceptionHandler(value = SimpleAuthException.class)
+    public ResponseEntity<Object> exception(SimpleAuthException exception){
+        log.warn(exception.getMessage());
+        return ResponseEntity.status(401).build();
+    }
+
 }

@@ -3,27 +3,28 @@ services:
     build:
       context: ./stundenplaner_service
       dockerfile: ./docker/Dockerfile
+      args:
+        MVN_SETTINGS_OPTION: ${MVN_SETTINGS_OPTION}
     expose:
       - "8080"
     ports:
-      - "8080:8080"
+      - $REST_PORT_MAPPING
   web:
     build:
       context: ./stundenplaner_app
       dockerfile: ./docker/Dockerfile
+      args:
+        ENV: ${ENV}
     expose:
       - "80"
   reverseproxy:
     image: nginx
     expose:
-      - "80"
       - "443"
-      - "8080"
     ports:
-      - "80:80"
-      - "443:443"
+      - $NGINX_PORT_MAPPING
     volumes:
-      - ./proxy/nginx:/etc/nginx
+      - ./proxy/nginx/nginx.${ENV}.conf:/etc/nginx/nginx.conf
       - ./proxy/ssl/private:/etc/ssl/private
       - ./proxy/nginx/log:/etc/log
     depends_on:

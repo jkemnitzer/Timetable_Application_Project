@@ -1,8 +1,8 @@
-<h1 mat-dialog-title>Edit</h1>
+<h1 mat-dialog-title>{{'ROOMS.EDIT.Bearbeiten' | translate}}</h1>
 <div mat-dialog-content></div>
 <div fxLayout="column">
   <mat-form-field appearance="fill">
-    <mat-label>Raum Name</mat-label>
+    <mat-label>{{'ROOMS.EDIT.Name' | translate}}</mat-label>
     <input
       [(ngModel)]="data.room.number"
       matInput
@@ -12,7 +12,7 @@
     />
   </mat-form-field>
   <mat-form-field appearance="fill">
-    <mat-label>Raum Gebäude</mat-label>
+    <mat-label>{{'ROOMS.EDIT.Gebäude' | translate}}</mat-label>
     <input
       [(ngModel)]="data.room.building"
       matInput
@@ -24,13 +24,13 @@
 </div>
 
 <div mat-dialog-actions>
-  <button mat-button (click)="cancelDialog()">Abbrechen</button>
+  <button mat-button (click)="cancelDialog()">{{'ROOMS.EDIT.Abbrechen' | translate}}</button>
   <button
     [mat-dialog-close]="data"
     color="primary"
     mat-raised-button
     type="submit"
   >
-    Speichern
+    {{'ROOMS.EDIT.Speichern' | translate}}
   </button>
 </div>
