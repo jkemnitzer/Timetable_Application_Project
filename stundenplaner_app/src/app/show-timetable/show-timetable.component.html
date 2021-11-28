@@ -1,7 +1,7 @@
 <form class="container1">
 
   <mat-form-field appearance="outline">
-    <mat-label>Fakultät</mat-label>
+    <mat-label>{{'SHOW_TIMETABLE.faculty' | translate}}</mat-label>
     <mat-select [(value)]="selectedFaculty">
       <mat-option *ngFor="let faculty of faculties" [value]="faculty">
         {{ faculty.name }}
@@ -37,9 +37,9 @@
 
 </form>
 
-<app-timetable-day weekday="Montag" [data]="mondayData"></app-timetable-day>
-<app-timetable-day weekday="Dienstag" [data]="tuesdayData"></app-timetable-day>
-<app-timetable-day weekday="Mittwoch" [data]="wednesdayData"></app-timetable-day>
-<app-timetable-day weekday="Donnerstag" [data]="thursdayData"></app-timetable-day>
-<app-timetable-day weekday="Freitag" [data]="fridayData"></app-timetable-day>
-<app-timetable-day weekday="Samstag" [data]="saturdayData"></app-timetable-day>
+<app-timetable-day weekday="Montag" [data]="mondayData" [filter]="filter"></app-timetable-day>
+<app-timetable-day weekday="Dienstag" [data]="tuesdayData" [filter]="filter"></app-timetable-day>
+<app-timetable-day weekday="Mittwoch" [data]="wednesdayData" [filter]="filter"></app-timetable-day>
+<app-timetable-day weekday="Donnerstag" [data]="thursdayData" [filter]="filter"></app-timetable-day>
+<app-timetable-day weekday="Freitag" [data]="fridayData" [filter]="filter"></app-timetable-day>
+<app-timetable-day weekday="Samstag" [data]="saturdayData" [filter]="filter"></app-timetable-day>

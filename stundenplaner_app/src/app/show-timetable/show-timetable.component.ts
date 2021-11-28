@@ -1,15 +1,22 @@
 import {Component, OnInit} from '@angular/core';
-import {MOCK_SHEDULE} from '../mocks/shedule';
-import {MatTableDataSource} from "@angular/material/table";
+import {HttpService} from "../http/http.service";
 
 
 export interface Lesson {
-  name: string;
-  weekday: number;
-  start: Date;
-  end: Date;
-  lecturer: string;
-  room: string;
+  endTime: Date,
+  startTime: Date,
+  id: Number,
+  lectureId: Number,
+  lectureTitle: String,
+  lecturer: String,
+  lecturerId: Number,
+  lessonType: String,
+  note: String,
+  room: String,
+  roomId: Number,
+  timeslotId: Number,
+  versionId: Number,
+  weekdayNr: Number,
 }
 
 
@@ -22,12 +29,15 @@ export interface Lesson {
 export class ShowTimetableComponent implements OnInit {
 
 
-  mondayData: MatTableDataSource<Lesson> = new MatTableDataSource<Lesson>();
-  tuesdayData: MatTableDataSource<Lesson> = new MatTableDataSource<Lesson>();
-  wednesdayData: MatTableDataSource<Lesson> = new MatTableDataSource<Lesson>();
-  thursdayData: MatTableDataSource<Lesson> = new MatTableDataSource<Lesson>();
-  fridayData: MatTableDataSource<Lesson> = new MatTableDataSource<Lesson>();
-  saturdayData: MatTableDataSource<Lesson> = new MatTableDataSource<Lesson>();
+  mondayData: Lesson[] = [];
+  tuesdayData: Lesson[] = [];
+  wednesdayData: Lesson[] = [];
+  thursdayData: Lesson[] = [];
+  fridayData: Lesson[] = [];
+  saturdayData: Lesson[] = [];
+
+  BASE_TIMETABLE_URL: string = '/timetable';
+  filter: string = '';
 
   faculties = [
     {name: 'Informatik'},
@@ -51,25 +61,47 @@ export class ShowTimetableComponent implements OnInit {
   ];
   selectedSemester = this.semesters[1];
 
-  constructor() {
 
+  constructor(private httpService: HttpService,) {
+    // fetch the table-datasource
+    this.httpService.getRequest(this.BASE_TIMETABLE_URL).subscribe(
+      (response) => {
+        const mondayTemp: Lesson[] = [];
+        const tuesdayTemp: Lesson[] = [];
+        const wednesdayTemp: Lesson[] = [];
+        const thursdayTemp: Lesson[] = [];
+        const fridayTemp: Lesson[] = [];
+        const saturdayTemp: Lesson[] = [];
+        response.forEach((lesson: Lesson) => {
+          lesson.startTime = new Date('December 17, 1995 ' + lesson.startTime.toString());
+          lesson.endTime = new Date('December 17, 1995 ' + lesson.endTime.toString());
+
+          console.log(lesson.startTime)
+          if (lesson.weekdayNr == 0) mondayTemp.push(lesson);
+          else if (lesson.weekdayNr == 1) tuesdayTemp.push(lesson);
+          else if (lesson.weekdayNr == 2) wednesdayTemp.push(lesson);
+          else if (lesson.weekdayNr == 3) thursdayTemp.push(lesson);
+          else if (lesson.weekdayNr == 4) fridayTemp.push(lesson);
+          else if (lesson.weekdayNr == 5) saturdayTemp.push(lesson);
+        })
+        this.mondayData = mondayTemp;
+        this.tuesdayData = tuesdayTemp;
+        this.wednesdayData = wednesdayTemp;
+        this.thursdayData = thursdayTemp;
+        this.fridayData = fridayTemp;
+        this.saturdayData = saturdayTemp;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 
-  ngOnInit(): void {
-    MOCK_SHEDULE.forEach(lesson  => {
-      if(lesson.weekday == 0) this.mondayData.data.push(lesson);
-      else if (lesson.weekday == 1) this.tuesdayData.data.push(lesson);
-      else if (lesson.weekday == 2) this.wednesdayData.data.push(lesson);
-      else if (lesson.weekday == 3) this.thursdayData.data.push(lesson);
-      else if (lesson.weekday == 4) this.fridayData.data.push(lesson);
-      else if (lesson.weekday == 5) this.saturdayData.data.push(lesson);
+  ngOnInit(): void {}
 
-
-    })
-  }
 
   applyFilter(event: KeyboardEvent) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.mondayData.filter = filterValue.trim().toLowerCase();
+    this.filter = filterValue.trim().toLowerCase();
   }
 }

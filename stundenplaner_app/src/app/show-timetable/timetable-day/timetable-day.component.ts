@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {MatSort} from "@angular/material/sort";
 import {MatTableDataSource} from "@angular/material/table";
 import {Lesson} from "../show-timetable.component";
@@ -9,34 +9,42 @@ import {Lesson} from "../show-timetable.component";
   templateUrl: './timetable-day.component.html',
   styleUrls: ['./timetable-day.component.css']
 })
-export class TimetableDayComponent implements OnInit {
+export class TimetableDayComponent implements OnInit, OnChanges{
 
   @Input() weekday = '';
-  @Input() data: MatTableDataSource<Lesson> = new MatTableDataSource<Lesson>();
-  dataSource:MatTableDataSource<Lesson> = new MatTableDataSource<any>();
+  @Input() filter = '';
+  @Input() data: Lesson[] = [];
+  dataSource:MatTableDataSource<Lesson> = new MatTableDataSource<Lesson>();
 
   displayedColumns: string[] = [ 'start', 'end',
     'lecturer', 'room', 'name', 'edit', 'delete', 'view', 'info'];
 
 
-  constructor() {}
-
   @ViewChild(MatSort) sort: MatSort = new MatSort();
 
-  ngAfterViewInit() {
-    this.dataSource = this.data;
+  ngOnChanges(changes: SimpleChanges) {
+    if(!!changes.data){
+      this.dataSource.data = changes.data.currentValue;
+    }
+    if(!!changes.filter){
+      this.dataSource.filter = changes.filter.currentValue;
+    }
     this.dataSource.sort = this.sort;
+
   }
 
 
   ngOnInit(): void {
+    this.dataSource.data = this.data;
+    this.dataSource.filter = this.filter;
+    this.dataSource.sort = this.sort;
   }
 
   getErrorClass(row: Lesson) {
-    if(row.weekday == 0){
+    if(row.note!!){
       return 'error'
     }
-    if(row.weekday == 1){
+    if(row.note == 'warning'){
       return 'warning';
     }
      return '';

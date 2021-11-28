@@ -97,5 +97,8 @@
       "Abbrechen": "Abbrechen",
       "Speichern": "Speichern"
     }
+  },
+  "SHOW_TIMETABLE": {
+    "faculty": "Fakultät"
   }
 }
