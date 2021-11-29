@@ -17,6 +17,7 @@ export interface Lesson {
   timeslotId: Number,
   versionId: Number,
   weekdayNr: Number,
+  error : String
 }
 
 
@@ -75,6 +76,8 @@ export class ShowTimetableComponent implements OnInit {
         response.forEach((lesson: Lesson) => {
           lesson.startTime = new Date('December 17, 1995 ' + lesson.startTime.toString());
           lesson.endTime = new Date('December 17, 1995 ' + lesson.endTime.toString());
+         // lesson.error = 'warning';
+          //lesson.error = 'fdklgmskg';
 
           console.log(lesson.startTime)
           if (lesson.weekdayNr == 0) mondayTemp.push(lesson);

@@ -41,12 +41,13 @@ export class TimetableDayComponent implements OnInit, OnChanges{
   }
 
   getErrorClass(row: Lesson) {
-    if(row.note!!){
-      return 'error'
-    }
-    if(row.note == 'warning'){
+    if(row.error == 'warning'){
       return 'warning';
     }
+    if(row.error!!){
+      return 'error'
+    }
+
      return '';
   }
 }
