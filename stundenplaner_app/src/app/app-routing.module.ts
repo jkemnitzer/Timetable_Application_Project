@@ -6,6 +6,7 @@ import { RoomsComponent } from './rooms/rooms.component';
 import { UsersComponent } from './users/users.component';
 import { ProfileComponent } from './profile/profile.component';
 import { LandingComponent } from './landing/landing.component';
+import {UserRoleOverviewComponent} from "./user-roles/user-role-overview/user-role-overview.component";
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'rooms', component: RoomsComponent },
   { path: 'users', component: UsersComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: 'user-role', component: UserRoleOverviewComponent }
 ];
 
 @NgModule({

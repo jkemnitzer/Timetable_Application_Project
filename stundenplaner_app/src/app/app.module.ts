@@ -37,7 +37,10 @@ import { EditUsersDialogComponent } from './users/edit-users-dialog/edit-users-d
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LandingComponent } from './landing/landing.component';
-import {MatSelectModule} from '@angular/material/select'; 
+import {UserRoleOverviewComponent} from "./user-roles/user-role-overview/user-role-overview.component";
+import {ShowPermissionsDialogComponent} from "./user-roles/show-permissions-dialog/show-permissions-dialog.component";
+
+import {MatSelectModule} from '@angular/material/select';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,6 +58,8 @@ import {MatSelectModule} from '@angular/material/select';
     UsersComponent,
     EditUsersDialogComponent,
     LandingComponent,
+    UserRoleOverviewComponent,
+    ShowPermissionsDialogComponent
   ],
   imports: [
     BrowserModule,

@@ -22,7 +22,9 @@ CREATE TABLE t_module_preference
     id BIGINT DEFAULT t_module_preference_seq.nextval PRIMARY KEY NOT NULL,
     priority INTEGER,
     fk_profile_id BIGINT NOT NULL,
-    FOREIGN KEY (fk_profile_id) REFERENCES t_profile (id)
+    fk_lecture_id BIGINT NOT NULL,
+    FOREIGN KEY (fk_profile_id) REFERENCES t_profile (id),
+    FOREIGN KEY (fk_lecture_id) REFERENCES t_lecture (id)
 );
 
 CREATE SEQUENCE t_profile_delegated_lecturer_map_seq;
@@ -59,12 +61,12 @@ INSERT INTO t_profile(id, sws, fk_user_id) VALUES (5, 18, 5);
 INSERT INTO t_profile(id, sws, fk_user_id) VALUES (6, 18, 6);
 INSERT INTO t_profile(id, sws, fk_user_id) VALUES (7, 18, 7);
 
-INSERT INTO t_module_preference (id, priority, fk_profile_id) VALUES (1, 100, 1);
-INSERT INTO t_module_preference (id, priority, fk_profile_id) VALUES (2, 80, 2);
-INSERT INTO t_module_preference (id, priority, fk_profile_id) VALUES (3, 95, 3);
-INSERT INTO t_module_preference (id, priority, fk_profile_id) VALUES (4, 42, 4);
-INSERT INTO t_module_preference (id, priority, fk_profile_id) VALUES (5, 50, 5);
-INSERT INTO t_module_preference (id, priority, fk_profile_id) VALUES (6, 60, 6);
+INSERT INTO t_module_preference (id, priority, fk_profile_id, fk_lecture_id) VALUES (1, 100, 1, 1);
+INSERT INTO t_module_preference (id, priority, fk_profile_id, fk_lecture_id) VALUES (2, 80, 2, 2);
+INSERT INTO t_module_preference (id, priority, fk_profile_id, fk_lecture_id) VALUES (3, 95, 3, 3);
+INSERT INTO t_module_preference (id, priority, fk_profile_id, fk_lecture_id) VALUES (4, 42, 4, 4);
+INSERT INTO t_module_preference (id, priority, fk_profile_id, fk_lecture_id) VALUES (5, 50, 5, 5);
+INSERT INTO t_module_preference (id, priority, fk_profile_id, fk_lecture_id) VALUES (6, 60, 6, 6);
 
 INSERT INTO t_profile_delegated_lecturer_map (id, fk_profile_id, fk_delegated_lecturer_id) VALUES (1, 1, 4);
 INSERT INTO t_profile_delegated_lecturer_map (id, fk_profile_id, fk_delegated_lecturer_id) VALUES (2, 2, 3);
