@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from "../http/http.service";
 import { Profile } from "./data/profile";
 import { Roles } from "./data/roles";
-import { UserService } from "../user/user.service";
+import { UserService } from "../users/user.service";
 
 @Component({
   selector: 'app-profile',
