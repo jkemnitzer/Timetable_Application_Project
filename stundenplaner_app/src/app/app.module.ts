@@ -41,6 +41,8 @@ import {ShowTimetableComponent} from './show-timetable/show-timetable.component'
 import {TimetableDayComponent} from './show-timetable/timetable-day/timetable-day.component';
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatSelectModule} from "@angular/material/select";
+import {UserRoleOverviewComponent} from "./user-roles/user-role-overview/user-role-overview.component";
+import {ShowPermissionsDialogComponent} from "./user-roles/show-permissions-dialog/show-permissions-dialog.component";
 
 @NgModule({
   declarations: [
@@ -61,6 +63,8 @@ import {MatSelectModule} from "@angular/material/select";
     UsersComponent,
     EditUsersDialogComponent,
     LandingComponent,
+    UserRoleOverviewComponent,
+    ShowPermissionsDialogComponent
   ],
   imports: [
     BrowserModule,

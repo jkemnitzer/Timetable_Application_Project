@@ -7,7 +7,8 @@
     "Profil": "Profile",
     "Greet": "Hello",
     "Stundenplan": "Timetable",
-    "Title": "Timetable-App"
+    "Title": "Timetable-App",
+    "Benutzerrollen": "User roles"
   },
   "PROGRAM": {
     "Filter": "Filter",
@@ -96,6 +97,32 @@
       "Gebäude": "Room building",
       "Abbrechen": "Cancel",
       "Speichern": "Save"
+    }
+  },
+  "USER_ROLES": {
+    "DIALOG": {
+      "COLUMNS": {
+        "id": "Id",
+        "typ": "Type"
+      },
+      "TEXT": {
+        "add_titel": "-Permission:",
+        "body_text": "Below you will find a breakdown of the authorizations and the identification number assigned to them:",
+        "schließen": "Close"
+      }
+    },
+    "OVERVIEW": {
+      "COLUMNS": {
+        "id": "Id",
+        "benutzerrolle": "User role",
+        "berechtigung": "Permissions"
+      },
+      "TEXT": {
+        "filter": "Filter",
+        "filter_oder": "or",
+        "empty_table": "No user roles exist.",
+        "search_txt": "Search for {{value}}..."
+      }
     }
   },
   "SHOW_TIMETABLE": {

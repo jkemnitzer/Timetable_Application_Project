@@ -55,6 +55,14 @@
         <mat-icon>person</mat-icon>
         <span>{{ "NAVIGATION.Profil" | translate }}</span>
       </a>
+      <a
+        *ngIf="userService.loggedIn"
+        mat-list-item
+        [routerLink]="['/user-role']"
+        routerLinkActive="router-link-active">
+        <mat-icon>supervised_user_circle</mat-icon>
+        <span>{{ "NAVIGATION.Benutzerrollen" | translate }}</span>
+      </a>
       <span class="form-inline">
         <select
           class="form-control"
