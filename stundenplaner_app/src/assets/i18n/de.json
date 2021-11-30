@@ -7,7 +7,8 @@
     "Profil": "Profil",
     "Greet": "Hallo",
     "Stundenplan": "Stundenplan",
-    "Title": "Stundenplan-App"
+    "Title": "Stundenplan-App",
+    "Benutzerrollen": "Benutzerrollen"
   },
   "PROGRAM": {
     "Filter": "Filter",
@@ -96,6 +97,32 @@
       "Gebäude": "Raum Gebäude",
       "Abbrechen": "Abbrechen",
       "Speichern": "Speichern"
+    }
+  },
+  "USER_ROLES": {
+    "DIALOG": {
+      "COLUMNS": {
+        "id": "Id",
+        "typ": "Typ"
+      },
+      "TEXT": {
+        "add_titel": "-Berechtigungen:",
+        "body_text": "Nachfolgend finden Sie eine Aufschlüsselung der Berechtigungen und der hierfür zugeordneten Identifikationsnummer:",
+        "schließen": "Schließen"
+      }
+    },
+    "OVERVIEW": {
+      "COLUMNS": {
+        "id": "Id",
+        "benutzerrolle": "Benutzerrolle",
+        "berechtigung": "Berechtigungen"
+      },
+      "TEXT": {
+        "filter": "Filter",
+        "filter_oder": "oder",
+        "empty_table": "Keine Benutzerrollen vorhanden.",
+        "search_txt": "Suchen sie nach {{value}}..."
+      }
     }
   }
 }
