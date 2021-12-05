@@ -1,2 +1,5 @@
+<div [ngClass]="((themeSubject | async) === 'DARK') ? 'dark-theme' : 'light-theme'"
+     class="mat-app-background" [style.height]="'100%'">
 <router-outlet *ngIf="router.url === '/'"></router-outlet>
 <app-navigation *ngIf="router.url != '/'"></app-navigation>
+</div>

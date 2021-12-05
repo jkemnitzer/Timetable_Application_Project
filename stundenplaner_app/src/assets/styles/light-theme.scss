@@ -1,0 +1,27 @@
+.light-theme {
+
+  .landing-main {
+    background-image: linear-gradient(90deg, #673ab74d 0%, #ffffff 55%, #ffffff 55%, #ffffff 100%);
+  }
+
+  .mat-toolbar.mat-gradient-primary {
+    background: linear-gradient(90deg, #673ab752 0%, #ffffff 55%, #ffffff 55%, #ffffff 100%);
+    color: #000;
+  }
+
+  #description {
+    background: white !important;
+
+    > span {
+      background-color: white;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .light-theme {
+    #description {
+      background: linear-gradient(90deg, #dbd1ed 0%, #fff 55%, #fff 55%, #fff 100%) !important;
+    }
+  }
+}

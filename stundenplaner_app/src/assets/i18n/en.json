@@ -124,5 +124,10 @@
         "search_txt": "Search for {{value}}..."
       }
     }
+  },
+  "LANDING": {
+    "Description": "Start your lesson planning by registering",
+    "Submit": "Now Plan",
+    "SwichLanguage":"Language"
   }
 }

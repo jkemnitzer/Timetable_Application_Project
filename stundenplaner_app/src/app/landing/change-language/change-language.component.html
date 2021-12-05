@@ -1,0 +1,7 @@
+<mat-form-field appearance="legacy" floatLabel="never">
+    <mat-label>{{"LANDING.SwichLanguage" |translate}}</mat-label>
+    <mat-select (selectionChange)="switchLang($event)">
+      <mat-option value="en">En</mat-option>
+      <mat-option value="de">DE</mat-option>
+    </mat-select>
+  </mat-form-field>

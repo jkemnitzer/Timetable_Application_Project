@@ -1,30 +1,51 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+
 import { TranslateService } from '@ngx-translate/core';
 import { UserService } from '../users/user.service';
+import { Component, Inject, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MatSlideToggleInterface } from '../interfaces/mat-slide-toggle.interface';
+import { THEME } from '../theme';
+import { BehaviorSubject } from 'rxjs';
+import { ThemeType } from '../types/theme-type';
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.css']
 })
 export class LandingComponent implements OnInit {
+  language !: string;
 
-  constructor(private router:Router,
-    private activatedRoute:ActivatedRoute,
+  constructor(private router: Router,
+    private activatedRoute: ActivatedRoute,
     public userService: UserService,
-    public translate: TranslateService) {
-      translate.addLangs(['de', 'en']);
-    translate.setDefaultLang('de');
-     }
+    public translate: TranslateService,
+    @Inject(THEME) public themeSubject: BehaviorSubject<ThemeType>) {
+  }
 
   ngOnInit(): void {
+    this.translate.addLangs(['de', 'en']);
+    this.translate.setDefaultLang('de');
+    this.language = this.translate.getDefaultLang();
   }
 
-  navigate():void{
-    this.router.navigate(['/programs'],{
-      relativeTo:this.activatedRoute
+
+  navigate(): void {
+    this.router.navigate(['/programs'], {
+      relativeTo: this.activatedRoute
     })
   }
+
+  toggleTheme(event: MatSlideToggleInterface) {
+    if (event.checked) {
+      this.themeSubject.next('DARK');
+      localStorage.setItem('theme', 'DARK');
+      return;
+    }
+    this.themeSubject.next('LIGHT');
+    localStorage.setItem('theme', 'LIGHT');
+
+  }
+
   switchLang(lang: string) {
     this.translate.use(lang);
   }
