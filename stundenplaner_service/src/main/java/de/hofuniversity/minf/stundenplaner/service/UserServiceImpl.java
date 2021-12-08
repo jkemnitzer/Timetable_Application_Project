@@ -3,6 +3,7 @@ package de.hofuniversity.minf.stundenplaner.service;
 import de.hofuniversity.minf.stundenplaner.common.exception.NotFoundException;
 import de.hofuniversity.minf.stundenplaner.persistence.role.RoleRepository;
 import de.hofuniversity.minf.stundenplaner.persistence.role.data.RoleDO;
+import de.hofuniversity.minf.stundenplaner.persistence.role.data.RoleTypeEnum;
 import de.hofuniversity.minf.stundenplaner.persistence.user.UserRepository;
 import de.hofuniversity.minf.stundenplaner.persistence.user.data.UserDO;
 import de.hofuniversity.minf.stundenplaner.service.boundary.UserService;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -57,9 +59,12 @@ public class UserServiceImpl implements UserService {
         userDO.setPassword("");
         userDO.setPasswordSalt("");
 
-        Set<RoleDO> roles = roleRepository.findAllByIdInOrNameIn(
+        List<RoleTypeEnum> roleTypeEnumList = new ArrayList<>();
+        userTO.getRoles().stream().map(RoleTO::getType).forEach(s -> roleTypeEnumList.add(RoleTypeEnum.valueOf(s)));
+
+        Set<RoleDO> roles = roleRepository.findAllByIdInOrTypeIn(
                 userTO.getRoles().stream().map(RoleTO::getId).toList(),
-                userTO.getRoles().stream().map(RoleTO::getName).toList());
+                roleTypeEnumList);
 
         userDO.setRoleDOs(roles);
 
@@ -115,9 +120,16 @@ public class UserServiceImpl implements UserService {
                 });
         removeRolesFromUser(userDO, toBeRemoved);
         newRoles.stream()
-                .filter(to -> !identical.contains(to.getId()))
-                .map(RoleDO::fromTO)
-                .forEach(roleDO -> userDO.getRoleDOs().add(roleRepository.save(roleDO)));
+                .map(RoleTO::getId)
+                .filter(id -> !identical.contains(id))
+                .forEach(id -> {
+                    Optional<RoleDO> optionalRoleDO = roleRepository.findById(id);
+                    if (optionalRoleDO.isPresent()) {
+                        userDO.getRoleDOs().add(optionalRoleDO.get());
+                    } else {
+                        throw new NotFoundException(RoleDO.class, id);
+                    }
+                });
     }
 
     /**

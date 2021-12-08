@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -13,12 +16,16 @@ import lombok.Setter;
 public class RoleTO {
 
     private Long id;
-    private String name;
+    private String type;
+    private Set<PermissionTO> permissions;
 
     public static RoleTO fromDO(RoleDO roleDO) {
         return new RoleTO(
                 roleDO.getId(),
-                roleDO.getName()
+                roleDO.getType().toString(),
+                roleDO.getPermissionDOs().stream()
+                        .map(PermissionTO::fromDO)
+                        .collect(Collectors.toSet())
         );
     }
 

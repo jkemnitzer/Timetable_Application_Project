@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from "../http/http.service";
 import { Profile } from "./data/profile";
 import { Roles } from "./data/roles";
-import { UserService } from "../user/user.service";
+import { UserService } from "../users/user.service";
 
 @Component({
   selector: 'app-profile',
@@ -12,7 +12,6 @@ import { UserService } from "../user/user.service";
 export class ProfileComponent implements OnInit {
 
   users!: Profile[];
-  title = 'Profil';
   user: Profile = {id: -1, username: "", email: "", status: "", roles: []};
 
   constructor(private requestMaker: HttpService, private userService: UserService) { }

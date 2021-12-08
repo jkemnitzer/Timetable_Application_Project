@@ -1,0 +1,128 @@
+{
+  "NAVIGATION": {
+    "Studiengänge": "Programs",
+    "Menü": "Menu",
+    "Räume": "Rooms",
+    "Vorlesungen": "Lectures",
+    "Profil": "Profile",
+    "Greet": "Hello",
+    "Stundenplan": "Timetable",
+    "Title": "Timetable-App",
+    "Benutzerrollen": "User roles"
+  },
+  "PROGRAM": {
+    "Filter": "Filter",
+    "TOOLTIP": {
+      "bearbeiten": "Enable/Disable editing",
+      "addProgram": "Add Program"
+    },
+    "PLACEHOLDER": {
+      "id": "Id or Name"
+    },
+    "EDIT": {
+      "Title": "Edit",
+      "Name": "Name of Program",
+      "Abbrechen": "Cancel",
+      "Speichern": "Save"
+    },
+    "ERROR": {
+      "Filter": "No data with filter \"{{value }}\" found."
+    }
+  },
+  "PROFIL": {
+    "Title": "Profile",
+    "Username": "Username",
+    "Email": "E-mail addresse",
+    "Status": "Status"
+  },
+  "LOGIN": {
+    "Title": "Login",
+    "Username": "Username",
+    "Passwort": "Password",
+    "Registrieren": "Register",
+    "TOOLTIP": {
+      "Anmelden": "Login",
+      "Abmelden": "Logout"
+    }
+  },
+  "LECTURES": {
+    "Filter": "Filter",
+    "Vorlesung": "Lecture",
+    "Sublektionen": "Sublectures",
+    "TOOLTIP": {
+      "bearbeiten": "Enable/Disable editing",
+      "createLecture": "Create lecture"
+    },
+    "DESCRIPTION": {
+      "sortId": "Sort by Id"
+    },
+    "ERROR": {
+      "filter": "No Lectures found"
+    },
+    "LABEL": {
+      "pages": "Choose the number of elements to show"
+    },
+    "PLACEHOLDER": {
+      "filter": "Search for {{value}} ..."
+    },
+    "EDIT": {
+      "Bearbeiten": "Edit",
+      "Neu": "Create New",
+      "infoNeu": "Fill in the following textfields to create a new lecture.",
+      "infoBearbeiten": "Edit the following lecture.",
+      "idLabel": "Identificationnumber of the lecture:",
+      "lectureLabel": "Name of the lecture:",
+      "sublectureLabel": "linked sublectures:",
+      "Abbrechen": "Cancel",
+      "Erstellen": "Create",
+      "Speichern": "Save",
+      "warning": "No linked sublectures"
+    }
+  },
+  "ROOMS": {
+    "Filter": "Filter",
+    "PLACEHOLDER": {
+      "Id": "Id or Name"
+    },
+    "TOOLTIP": {
+      "bearbeiten": "Enable/Disable editing",
+      "addRoom": "Add room"
+    },
+    "ERROR": {
+      "Filter": "No Data with filter \"{{value}}\" found."
+    },
+    "EDIT": {
+      "Bearbeiten": "Edit",
+      "Name": "Room name",
+      "Gebäude": "Room building",
+      "Abbrechen": "Cancel",
+      "Speichern": "Save"
+    }
+  },
+  "USER_ROLES": {
+    "DIALOG": {
+      "COLUMNS": {
+        "id": "Id",
+        "typ": "Type"
+      },
+      "TEXT": {
+        "add_titel": "-Permission:",
+        "body_text": "Below you will find a breakdown of the authorizations and the identification number assigned to them:",
+        "schließen": "Close"
+      }
+    },
+    "OVERVIEW": {
+      "COLUMNS": {
+        "id": "Id",
+        "benutzerrolle": "User role",
+        "berechtigung": "Permissions"
+      },
+      "TEXT": {
+        "filter": "Filter",
+        "filter_oder": "or",
+        "empty_table": "No user roles exist.",
+        "search_txt": "Search for {{value}}..."
+      }
+    }
+  }
+}

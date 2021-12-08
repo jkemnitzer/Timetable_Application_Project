@@ -10,8 +10,8 @@
 
     <!-- from-field -->
     <mat-form-field appearance="standard" class="program-filter width-0 pad-4">
-      <mat-label>Filter</mat-label>
-      <input #input (keyup)="filter($event)" matInput placeholder="Suchen sie nach {{strElementsToFilter()}}..."/>
+      <mat-label>{{'LECTURES.Filter' | translate}}</mat-label>
+      <input #input (keyup)="filter($event)" matInput placeholder="{{'LECTURES.PLACEHOLDER.filter' | translate: {value: strElementsToFilter() } }}"/>
     </mat-form-field>
 
     <!-- spacer -->
@@ -22,7 +22,7 @@
       <button mat-icon-button class="action v-centered mar-4"
               (click)="toggleEditing()"
               color="primary"
-              matTooltip="Bearbeitung aktivieren / deaktivieren">
+              matTooltip="{{'LECTURES.TOOLTIP.bearbeiten' | translate}}">
         <mat-icon>edit</mat-icon>
       </button>
     </div>
@@ -30,7 +30,7 @@
       <button mat-icon-button class="action v-centered mar-4"
               (click)="createLecture()"
               color="primary"
-              matTooltip="Vorlesung erstellen">
+              matTooltip="{{'LECTURES.TOOLTIP.createLecture' | translate}}">
         <mat-icon>add</mat-icon>
       </button>
     </div>
@@ -52,15 +52,15 @@
 
       <!-- definition of the column templates -->
       <ng-container matColumnDef="id" >
-        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Nach Id sortieren"> Id </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="{{'LECTURES.DESCRIPTION.sortId' | translate}}"> Id </th>
         <td mat-cell *matCellDef="let lecture"> {{ lecture.id }} </td>
       </ng-container>
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Vorlesung </th>
+        <th mat-header-cell *matHeaderCellDef> {{'LECTURES.Vorlesung' | translate}} </th>
         <td mat-cell *matCellDef="let lecture"> {{ lecture.lectureName }} </td>
       </ng-container>
       <ng-container matColumnDef="lessons">
-        <th mat-header-cell *matHeaderCellDef> Sublektionen </th>
+        <th mat-header-cell *matHeaderCellDef> {{'LECTURES.Sublektionen' | translate}} </th>
         <td mat-cell *matCellDef="let lecture"> {{ strLessons(lecture.lessons) }} </td>
       </ng-container>
 
@@ -88,7 +88,7 @@
       <!-- empty view -->
       <tr *matNoDataRow class="mat-row">
         <td class="mat-cell" colspan="3">
-          <span class="no-filter-message">Keine Vorlesungen vorhanden.</span>
+          <span class="no-filter-message">{{'LECTURES.ERROR.filter' | translate}}</span>
         </td>
       </tr>
 
@@ -97,7 +97,7 @@
     <!-- pagination -->
     <mat-paginator [pageSizeOptions]="[10, 25, 50, 100, 250]"
                    showFirstLastButtons
-                   aria-label="Wählen Sie die anzuzeigende Anzahl an Elementen">
+                   attr.aria-label="{{'LECTURES.LABEL.pages' | translate}}">
     </mat-paginator>
   </div>
 

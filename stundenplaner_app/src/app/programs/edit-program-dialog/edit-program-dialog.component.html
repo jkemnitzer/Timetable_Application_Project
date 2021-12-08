@@ -1,18 +1,18 @@
-<h1 mat-dialog-title>Edit</h1>
+<h1 mat-dialog-title>{{'PROGRAM.EDIT.Title' | translate}}</h1>
 <div mat-dialog-content></div>
 <mat-form-field appearance="fill">
-  <mat-label>Studiengang Name</mat-label>
+  <mat-label>{{'PROGRAM.EDIT.Name' | translate}}</mat-label>
   <input [(ngModel)]="data.program.name"
          matInput
          minlength="3"
          required type="text"/>
 </mat-form-field>
 <div mat-dialog-actions>
-  <button mat-button (click)="cancelDialog()">Abbrechen</button>
+  <button mat-button (click)="cancelDialog()">{{'PROGRAM.EDIT.Abbrechen' | translate}}</button>
   <button [mat-dialog-close]="data"
           color="primary"
           mat-raised-button
-          type="submit">Speichern
+          type="submit">{{'PROGRAM.EDIT.Speichern' | translate}}
   </button>
 </div>
 
