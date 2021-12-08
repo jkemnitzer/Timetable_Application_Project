@@ -8,7 +8,7 @@ COPY . /usr/local/app/
 RUN mvn ${MVN_SETTINGS_OPTION} clean install -P prod -DskipTests
 
 
-FROM amazoncorretto:17
+FROM amazoncorretto:16
 #todo: JVM Optimization needed?
 
 COPY --from=build /usr/local/app/target/timetable-*.jar app.jar
