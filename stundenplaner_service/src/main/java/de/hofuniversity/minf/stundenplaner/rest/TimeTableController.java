@@ -5,6 +5,7 @@ import de.hofuniversity.minf.stundenplaner.service.to.LessonTO;
 import de.hofuniversity.minf.stundenplaner.service.to.TimeTableTO;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -91,12 +92,13 @@ public class TimeTableController {
         String headerKey = "Content-Disposition";
         if (versionId == null) {
             workbook = service.exportAll();
-            headerValue = "attachment; fileName=timetable_all.xlsx";
+            headerValue = "attachment; fileName=timetable_all.xls";
         } else {
             workbook = service.exportVersion(versionId);
-            headerValue = "attachment; fileName=timetable_version_" + versionId + ".xlsx";
+            headerValue = "attachment; fileName=timetable_version_" + versionId + ".xls";
         }
         response.setHeader(headerKey, headerValue);
+        response.setHeader(HttpHeaders.ACCESS_CONTROL_EXPOSE_HEADERS, HttpHeaders.CONTENT_DISPOSITION);
         ServletOutputStream outputStream = response.getOutputStream();
         workbook.write(outputStream);
         workbook.close();
