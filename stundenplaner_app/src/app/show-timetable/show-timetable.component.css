@@ -11,5 +11,19 @@
   position: absolute;
   height: 45px;
 }
+.add_lecture_card{
+  margin: 10px;
+  background: aliceblue;
+}
+.attribute_grid{
+  display: grid;
+}
+.attribute{
+  width: fit-content;
+  margin-right: 5px;
+}
+.delete_button{
+
+}
 
 
