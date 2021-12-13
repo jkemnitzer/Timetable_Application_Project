@@ -33,7 +33,7 @@ export class RegistrationComponent {
 
   private registerUser(user: User) {
     this.requestMaker
-      .postRequest('/createUser', this.registrationForm.value)
+      .postRequest('/register', this.registrationForm.value)
       .subscribe((res) => {
         alert('Registration Successfull');
       });

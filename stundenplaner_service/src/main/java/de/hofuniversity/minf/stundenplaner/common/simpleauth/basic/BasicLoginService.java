@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.xml.bind.annotation.adapters.HexBinaryAdapter;
+
 import java.nio.ByteBuffer;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -55,7 +56,7 @@ public class BasicLoginService implements SimpleAuthService {
         if (optional.isPresent()) {
             throw new SimpleAuthException(SimpleAuthException.AuthErrorType.USER_ALREADY_EXIST);
         } else {
-            userService.createUser(new UserTO());
+            userService.createUser(new UserTO(null, username, "NotSet", "NotSet", "NotSet", email, "NotSet", null));
         }
 
     }
