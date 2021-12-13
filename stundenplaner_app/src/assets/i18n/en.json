@@ -124,5 +124,10 @@
         "search_txt": "Search for {{value}}..."
       }
     }
+  },
+  "LANDING": {
+    "Description": "Lesson planning for university Students",
+    "Submit": "Now Plan",
+    "SwichLanguage":"Language"
   }
 }

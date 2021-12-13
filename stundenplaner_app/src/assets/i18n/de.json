@@ -124,5 +124,10 @@
         "search_txt": "Suchen sie nach {{value}}..."
       }
     }
+  },
+  "LANDING": {
+    "Description": "Beginnen Sie mit der Registrierung Ihre Stundenplanung",
+    "Submit": "Jetzt Planen",
+    "SwichLanguage":"Sprache"
   }
 }

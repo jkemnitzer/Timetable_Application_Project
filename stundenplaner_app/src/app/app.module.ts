@@ -39,8 +39,12 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LandingComponent } from './landing/landing.component';
 import {UserRoleOverviewComponent} from "./user-roles/user-role-overview/user-role-overview.component";
 import {ShowPermissionsDialogComponent} from "./user-roles/show-permissions-dialog/show-permissions-dialog.component";
-
+import { THEME } from './theme';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { ThemeType } from './types/theme-type';
 import {MatSelectModule} from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ChangeLanguageComponent } from './landing/change-language/change-language.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,7 +63,8 @@ import {MatSelectModule} from '@angular/material/select';
     EditUsersDialogComponent,
     LandingComponent,
     UserRoleOverviewComponent,
-    ShowPermissionsDialogComponent
+    ShowPermissionsDialogComponent,
+    ChangeLanguageComponent
   ],
   imports: [
     BrowserModule,
@@ -89,6 +94,8 @@ import {MatSelectModule} from '@angular/material/select';
     FormsModule,
     MatPaginatorModule,
     MatSelectModule,
+    BrowserAnimationsModule,
+    MatSlideToggleModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -97,7 +104,14 @@ import {MatSelectModule} from '@angular/material/select';
       },
     }),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: THEME,
+      useFactory: () => {
+        return new BehaviorSubject<ThemeType>('LIGHT');
+      }
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

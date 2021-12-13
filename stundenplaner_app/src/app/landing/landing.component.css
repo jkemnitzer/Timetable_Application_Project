@@ -18,7 +18,6 @@
 .landing-main {
   height: 100%;
   overflow: hidden;
-  background-image: linear-gradient(90deg, #673ab74d 0%, #ffffff 55%, #ffffff 55%, #ffffff 100%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -49,76 +48,14 @@ img {
   position: relative;
   float: left;
   font-size: 22px;
-  background-color: white;
   margin-bottom: 40px;
-
   color: #673ab7;
 }
 
-#description>span {
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 110%;
-  background-color: white;
-  border-left: 1px solid transparent;
-  animation: text-motion 4s steps(40, start) infinite, border-style 0.5s step-end infinite;
-  -webkit-animation: text-motion 4s steps(40, start) infinite, border-style 0.5s step-end infinite;
+.toggle{
+  margin-left: 20px;
+  display:flex;
 }
-
-@keyframes text-motion {
-  0% {
-    width: 100%;
-  }
-
-  100% {
-    width: 0;
-  }
-}
-
-@keyframes border-style {
-  0% {
-    border-left-color: transparent;
-  }
-
-  50% {
-    border-left-color: black;
-  }
-
-  100% {
-    border-left-color: transparent;
-  }
-}
-
-@-webkit-keyframes text-motion {
-  0% {
-    width: 100%;
-  }
-
-  100% {
-    width: 0;
-  }
-}
-
-@-webkit-keyframes border-style {
-  0% {
-    border-left-color: transparent;
-  }
-
-  50% {
-    border-left-color: black;
-  }
-
-  100% {
-    border-left-color: transparent;
-  }
-}
-
-.mat-toolbar.mat-gradient-primary {
-  background: linear-gradient(90deg, #673ab752 0%, #ffffff 55%, #ffffff 55%, #ffffff 100%);
-  color: #000;
-}
-
 mat-toolbar {
   box-shadow: 0 3px 5px -1px #c5ebf433, 0 6px 10px #36434524, 0 1px 18px #84a5a81f;
 }
@@ -139,12 +76,7 @@ mat-toolbar {
   width: 85px;
 }
 
-:host::ng-deep.mat-select,.mat-form-field-appearance-legacy, .mat-form-field-infix  {
-  font-size: 12px;
-}
-:host ::ng-deep.mat-form-field-underline{
-  display: none;
-}
+
 
 :host ::ng-deep.mat-drawer-inner-container {
   width: 40vw !important;
@@ -177,9 +109,7 @@ mat-toolbar {
     width: auto;
   }
 
-
   #description {
     font-size: 3vw;
-    background: linear-gradient(90deg, #dbd1ed 0%, #fff 55%, #fff 55%, #fff 100%) !important;
   }
 }
