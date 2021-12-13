@@ -4,6 +4,10 @@ import de.hofuniversity.minf.stundenplaner.common.SimpleAuthException;
 import de.hofuniversity.minf.stundenplaner.common.simpleauth.SimpleAuthService;
 import de.hofuniversity.minf.stundenplaner.persistence.user.UserRepository;
 import de.hofuniversity.minf.stundenplaner.persistence.user.data.UserDO;
+
+import de.hofuniversity.minf.stundenplaner.service.boundary.UserService;
+import de.hofuniversity.minf.stundenplaner.service.to.UserTO;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,11 +24,14 @@ public class BasicLoginService implements SimpleAuthService {
 
     private final UserRepository userRepository;
     private final BasicLoginRepository tokenRepository;
+    private final UserService userService;
 
     @Autowired
-    public BasicLoginService(UserRepository userRepository, BasicLoginRepository tokenRepository) {
+    public BasicLoginService(UserRepository userRepository, BasicLoginRepository tokenRepository,
+            UserService userService) {
         this.userRepository = userRepository;
         this.tokenRepository = tokenRepository;
+        this.userService = userService;
     }
 
     @Override
@@ -34,13 +41,23 @@ public class BasicLoginService implements SimpleAuthService {
             UserDO userDO = optional.get();
             tokenRepository.deleteByUserDO(userDO);
             TokenDO tokenDO = new TokenDO(
-                    null, generateToken(userDO.getUsername()), LocalDateTime.now().plusMinutes(5), userDO
-            );
+                    null, generateToken(userDO.getUsername()), LocalDateTime.now().plusMinutes(5), userDO);
             tokenRepository.save(tokenDO);
             return tokenDO.getToken();
         } else {
             throw new SimpleAuthException(SimpleAuthException.AuthErrorType.LOGIN_FAIL);
         }
+    }
+
+    @Override
+    public void register(String username, String email, String password) throws SimpleAuthException {
+        Optional<UserDO> optional = userRepository.findByUsernameOrEmail(username, username);
+        if (optional.isPresent()) {
+            throw new SimpleAuthException(SimpleAuthException.AuthErrorType.USER_ALREADY_EXIST);
+        } else {
+            userService.createUser(new UserTO());
+        }
+
     }
 
     @Override

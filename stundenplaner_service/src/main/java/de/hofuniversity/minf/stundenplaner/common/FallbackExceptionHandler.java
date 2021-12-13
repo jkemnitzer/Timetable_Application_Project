@@ -1,13 +1,15 @@
 package de.hofuniversity.minf.stundenplaner.common;
 
 import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 /**
  * @author nlehmann
- * Fallback Handler for all unhandled Exceptions to prevent info leaks
+ *         Fallback Handler for all unhandled Exceptions to prevent info leaks
  */
 @Slf4j
 @ControllerAdvice
@@ -26,8 +28,11 @@ public class FallbackExceptionHandler {
     }
 
     @ExceptionHandler(value = SimpleAuthException.class)
-    public ResponseEntity<Object> exception(SimpleAuthException exception){
+    public ResponseEntity<Object> exception(SimpleAuthException exception) {
         log.warn(exception.getMessage());
+        if (SimpleAuthException.AuthErrorType.USER_ALREADY_EXIST.equals(exception.getType())) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        }
         return ResponseEntity.status(401).build();
     }
 

@@ -1,6 +1,6 @@
 <h1 mat-dialog-title>Registrieren</h1>
 <div mat-dialog-content></div>
-<form class="registration-form">
+<form class="registration-form" [formGroup]="registrationForm">
   <mat-form-field
     fxLayoutAlign="center"
     class="example-full-width"
@@ -12,6 +12,7 @@
       matInput
       [formControl]="emailFormControl"
       placeholder="Ex. pat@example.com"
+      formControlName="email"
     />
     <mat-error
       *ngIf="
@@ -31,7 +32,12 @@
     appearance="fill"
   >
     <mat-label>Username</mat-label>
-    <input type="text" matInput placeholder="pmustermann" />
+    <input
+      type="text"
+      matInput
+      placeholder="pmustermann"
+      formControlName="username"
+    />
   </mat-form-field>
   <mat-form-field
     fxLayoutAlign="center"
@@ -39,10 +45,17 @@
     appearance="fill"
   >
     <mat-label>Passwort</mat-label>
-    <input type="password" matInput placeholder="1234" />
+    <input
+      type="password"
+      matInput
+      placeholder="1234"
+      formControlName="password"
+    />
   </mat-form-field>
 </form>
 <div mat-dialog-actions>
   <button mat-button mat-dialog-close>Close</button>
-  <button mat-button mat-dialog-close>Registrieren</button>
+  <button mat-button mat-dialog-close (ngSubmit)="registerUser()">
+    Registrieren
+  </button>
 </div>
