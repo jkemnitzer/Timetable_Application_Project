@@ -99,21 +99,28 @@
 
       <div>
 
-
         <mat-form-field class="attribute" appearance="fill">
-          <mat-label>Dozent</mat-label>
-          <input type="text" [formControl]="lecturerFormControl" matInput [matAutocomplete]="auto">
-          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-            <mat-option *ngFor="let lecturer of filteredLecturers | async" [value]="lecturer.displayName">
-              {{lecturer.displayName}}
+          <mat-label>Raum</mat-label>
+          <input type="text" [formControl]="roomFormControl" matInput [matAutocomplete]="roomAutocomplete">
+          <mat-autocomplete autoActiveFirstOption #roomAutocomplete="matAutocomplete">
+            <mat-option *ngFor="let room of filteredRooms | async" [value]="room.number">
+              awd {{room.number}}
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
 
         <mat-form-field class="attribute" appearance="fill">
-          <mat-label>Raum</mat-label>
-          <input matInput [formControl]="roomFormControl">
+          <mat-label>Dozent</mat-label>
+          <input type="text" [formControl]="lecturerFormControl" matInput [matAutocomplete]="lecturerAutocomplete">
+          <mat-autocomplete autoActiveFirstOption #lecturerAutocomplete="matAutocomplete">
+            <mat-option *ngFor="let lecturer of filteredLecturers | async" [value]="lecturer.displayName">
+              test {{lecturer.displayName}}
+            </mat-option>
+          </mat-autocomplete>
         </mat-form-field>
+
+
+
         <mat-form-field appearance="fill" class="attribute">
           <mat-label>Stundentyp</mat-label>
           <mat-select [formControl]="typeFormControl">

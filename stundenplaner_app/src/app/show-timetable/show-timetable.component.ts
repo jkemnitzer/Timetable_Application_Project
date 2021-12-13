@@ -19,6 +19,11 @@ export class Lecturer {
   username: String = '';
   displayName: String = '';
 }
+export class Room {
+  id: Number = 0;
+  number: String = '';
+  building: String = '';
+}
 
 export class Lesson {
   endTime: Date | String = new Date();
@@ -57,6 +62,7 @@ export class ShowTimetableComponent implements OnInit {
   BASE_TIMETABLE_URL: string = '/timetable';
   BASE_ADD_LESSON_URL: string = '/timetable/lesson';
   BASE_LECTURERS_URL: string = '/users';
+  BASE_ROOMS_URL: string = '/rooms';
   filter: string = '';
 
   faculties = [
@@ -100,7 +106,9 @@ export class ShowTimetableComponent implements OnInit {
   endTimeFormControl = new FormControl('', [Validators.required]);
 
   lecturers: Lecturer[] = [];
+  rooms: Room[] = [];
   filteredLecturers: Observable<Lecturer[]> = new Observable<Lecturer[]>();
+  filteredRooms: Observable<Room[]> = new Observable<Room[]>();
   lecturerFormControl = new FormControl('', [Validators.required]);
   roomFormControl =  new FormControl('', [Validators.required]);
 
@@ -116,9 +124,13 @@ export class ShowTimetableComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.filteredRooms = this.roomFormControl.valueChanges.pipe(
+      startWith(''),
+      map((input: string) => (input ? this.filterRooms(input) : this.rooms.slice())));
     this.filteredLecturers = this.lecturerFormControl.valueChanges.pipe(
       startWith(''),
-      map(name => (name ? this.filterLecturer(name) : this.lecturers.slice())))
+      map(name => (name ? this.filterLecturer(name) : this.lecturers.slice())));
+
   }
   private filterLecturer(value: string): Lecturer[] {
     if(!value)return this.lecturers;
@@ -138,8 +150,18 @@ export class ShowTimetableComponent implements OnInit {
       if (!lecturer.displayName) {
         return;
       }
-      console.log(lecturer.displayName)
       return lecturer.displayName.toLowerCase().includes(filterValue);
+    });
+  }
+  private filterRooms(value: string): Room[] {
+    if(!value)return this.rooms;
+    const filterValue = value.toLowerCase();
+
+    return this.rooms.filter( room=> {
+      if (!room.number) {
+        return;
+      }
+      return room.number.toLowerCase().includes(filterValue);
     });
   }
 
@@ -226,6 +248,7 @@ export class ShowTimetableComponent implements OnInit {
 
   openCreateLesson() {
     this.loadLecturers();
+    this.loadRooms();
     this.isCreateLessonVisible = true;
   }
 
@@ -233,14 +256,21 @@ export class ShowTimetableComponent implements OnInit {
     this.httpService.getRequest(this.BASE_LECTURERS_URL).subscribe(
       (response) => {
         this.lecturers = response;
-        console.log(this.lecturers);
-        console.log(this.filteredLecturers);
       },
       (error) => {
         console.error(error);
       }
     );
-    console.log(this.filteredLecturers);
+  }
+  loadRooms() {
+    this.httpService.getRequest(this.BASE_ROOMS_URL).subscribe(
+      (response) => {
+        this.rooms = response;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 
   closeCreateLesson() {
