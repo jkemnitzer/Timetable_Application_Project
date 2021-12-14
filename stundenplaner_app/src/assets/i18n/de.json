@@ -126,8 +126,9 @@
     }
   },
   "LANDING": {
-    "Description": "Beginnen Sie mit der Registrierung Ihre Stundenplanung",
+    "Description": "Stundenplanungs Tool für die Universität",
     "Submit": "Jetzt Planen",
-    "SwichLanguage":"Sprache"
+    "SwitchLanguage":"Sprache"
+
   }
 }

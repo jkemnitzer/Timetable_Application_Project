@@ -1,7 +1,6 @@
 <div class="landing-container">
   <mat-toolbar color="gradient-primary">
     <mat-toolbar-row>
-
       <button mat-icon-button fxShow="true" fxHide.gt-sm (click)="sidenav.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
@@ -10,13 +9,13 @@
       <span *ngIf="userService.loggedIn" fxFlex fxLayoutAlign="flex-end right">
         {{ "NAVIGATION.Greet" | translate }} {{ userService.username }}!
       </span>
-      <app-change-language fxHide.lt-md></app-change-language> 
+      <app-change-language fxHide.lt-md></app-change-language>
     </mat-toolbar-row>
   </mat-toolbar>
   <mat-sidenav-container fxFlexFill>
     <mat-sidenav #sidenav>
       <mat-nav-list>
-     <app-change-language></app-change-language>  
+        <app-change-language></app-change-language>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content fxFlexFill>
