@@ -1,5 +1,7 @@
 package de.hofuniversity.minf.stundenplaner.service.criteria;
 
+import de.hofuniversity.minf.stundenplaner.common.NotFoundException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,12 +23,11 @@ public class CriterionRegistry {
         }
     }
 
-    public Criterion getCriterion(String type) {
+    public Criterion getCriterion(String type) throws NotFoundException {
         if(criteriaList.containsKey(type)) {
             return criteriaList.get(type);
-        } else {
-            return null;
         }
+        throw new NotFoundException(CriterionRegistry.class, 0L);
     }
 
     public List<Criterion> getAllCriteria() {
