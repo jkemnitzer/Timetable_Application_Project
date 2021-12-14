@@ -18,8 +18,6 @@ export class AppComponent{
     this.updateTheme();
   }
 
-  
- 
     updateTheme() {
       const savedTheme: ThemeType = (localStorage.getItem('theme') as ThemeType);
       if (savedTheme) {

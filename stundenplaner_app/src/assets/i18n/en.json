@@ -126,8 +126,8 @@
     }
   },
   "LANDING": {
-    "Description": "Lesson Planning for university Students",
-    "Submit": "Now Plan",
-    "SwichLanguage":"Language"
+    "Description": "Timetable Planning Tool for the University",
+    "Submit": "Start Planning",
+    "SwitchLanguage":"Language"
   }
 }

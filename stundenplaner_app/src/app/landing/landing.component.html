@@ -5,11 +5,9 @@
       <button mat-icon-button fxShow="true" fxHide.gt-sm (click)="sidenav.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
-
       <app-login fxLayoutAlign="flex-end center"> </app-login>
-
       <span class="menu-spacer"></span>
-      <span *ngIf="userService.loggedIn" fxFlex fxLayoutAlign="flex-end right">
+      <span *ngIf="userService.loggedIn" fxFlex fxLayoutAlign="flex-end right" style="margin: 1em">
         {{ "NAVIGATION.Greet" | translate }} {{ userService.username }}!
       </span>
 

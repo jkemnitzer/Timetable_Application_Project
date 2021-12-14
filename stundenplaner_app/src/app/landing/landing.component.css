@@ -69,14 +69,13 @@ mat-toolbar {
   font-size: 16px;
   height: 50px;
 }
+
 :host ::ng-deep.mat-form-field {
   display: inline-block;
   position: relative;
   text-align: left;
   width: 85px;
 }
-
-
 
 :host ::ng-deep.mat-drawer-inner-container {
   width: 40vw !important;
@@ -94,11 +93,11 @@ mat-toolbar {
   color: #673ab7;
 }
 
-
 @media screen and (max-width: 768px) {
-  .hidden.lw.md{
+  .hidden.lw.md {
     display: block;
   }
+
   .content-wrapper {
     max-width: 100% !important;
     margin-top: auto;
