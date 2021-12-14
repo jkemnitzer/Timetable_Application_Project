@@ -32,8 +32,9 @@
         <mat-icon>face</mat-icon>
         <span>Benutzer</span>
       </a>
-      <a mat-list-item href="#"
-        ><mat-icon>event</mat-icon>
+      <a mat-list-item [routerLink]="['/show-timetable']"
+         routerLinkActive="router-link-active">
+        <mat-icon>event</mat-icon>
         {{ "NAVIGATION.Stundenplan" | translate }}</a
       >
 
