@@ -6,7 +6,7 @@
       </button>
       <app-login fxLayoutAlign="flex-end center"> </app-login>
       <span class="menu-spacer"></span>
-      <span *ngIf="userService.loggedIn" fxFlex fxLayoutAlign="flex-end right">
+      <span *ngIf="userService.loggedIn" fxFlex fxLayoutAlign="flex-end right" style="margin: 1em">
         {{ "NAVIGATION.Greet" | translate }} {{ userService.username }}!
       </span>
       <app-change-language fxHide.lt-md></app-change-language>
