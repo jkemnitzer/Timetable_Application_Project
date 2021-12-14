@@ -37,6 +37,10 @@ import { EditUsersDialogComponent } from './users/edit-users-dialog/edit-users-d
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LandingComponent } from './landing/landing.component';
+import {ShowTimetableComponent} from './show-timetable/show-timetable.component';
+import {TimetableDayComponent} from './show-timetable/timetable-day/timetable-day.component';
+import {MatExpansionModule} from "@angular/material/expansion";
+import {MatSelectModule} from "@angular/material/select";
 import {UserRoleOverviewComponent} from "./user-roles/user-role-overview/user-role-overview.component";
 import {ShowPermissionsDialogComponent} from "./user-roles/show-permissions-dialog/show-permissions-dialog.component";
 
@@ -48,6 +52,8 @@ import {ShowPermissionsDialogComponent} from "./user-roles/show-permissions-dial
     NavigationComponent,
     NavigationComponent,
     EditProgramDialogComponent,
+    ShowTimetableComponent,
+    TimetableDayComponent,
     EditRoomDialogComponent,
     NavigationComponent,
     LoginComponent,
@@ -86,7 +92,10 @@ import {ShowPermissionsDialogComponent} from "./user-roles/show-permissions-dial
     HttpClientModule,
     MatDialogModule,
     FormsModule,
+    FormsModule,
+    MatExpansionModule,
     MatPaginatorModule,
+    MatSelectModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -94,6 +103,7 @@ import {ShowPermissionsDialogComponent} from "./user-roles/show-permissions-dial
         deps: [HttpClient],
       },
     }),
+
   ],
   providers: [],
   bootstrap: [AppComponent],

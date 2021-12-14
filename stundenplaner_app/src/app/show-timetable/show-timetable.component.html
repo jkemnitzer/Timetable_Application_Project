@@ -1,0 +1,45 @@
+<form class="container1">
+
+  <mat-form-field appearance="outline">
+    <mat-label>{{'SHOW_TIMETABLE.faculty' | translate}}</mat-label>
+    <mat-select [(value)]="selectedFaculty">
+      <mat-option *ngFor="let faculty of faculties" [value]="faculty">
+        {{ faculty.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>{{'SHOW_TIMETABLE.major' | translate}}</mat-label>
+    <mat-select [(value)]="selectedMajor">
+      <mat-option *ngFor="let major of majors" [value]="major">
+        {{ major.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>{{'SHOW_TIMETABLE.semester' | translate}}</mat-label>
+    <mat-select [(value)]="selectedSemester">
+      <mat-option *ngFor="let semester of semesters" [value]="semester">
+        {{ semester.semester }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="program-filter">
+    <mat-label>{{'SHOW_TIMETABLE.search' | translate}}</mat-label>
+    <input
+      #input
+      (keyup)="applyFilter($event)"
+      matInput
+      placeholder="{{'SHOW_TIMETABLE.searchTerms' | translate}}"/>
+  </mat-form-field>
+
+</form>
+
+<app-timetable-day weekday= "{{'SHOW_TIMETABLE.monday' | translate}}" [data]="mondayData" [filter]="filter"></app-timetable-day>
+<app-timetable-day weekday="{{'SHOW_TIMETABLE.tuesday' | translate}}" [data]="tuesdayData" [filter]="filter"></app-timetable-day>
+<app-timetable-day weekday="{{'SHOW_TIMETABLE.wednesday' | translate}}" [data]="wednesdayData" [filter]="filter"></app-timetable-day>
+<app-timetable-day weekday="{{'SHOW_TIMETABLE.thursday' | translate}}" [data]="thursdayData" [filter]="filter"></app-timetable-day>
+<app-timetable-day weekday="{{'SHOW_TIMETABLE.friday' | translate}}" [data]="fridayData" [filter]="filter"></app-timetable-day>
+<app-timetable-day weekday="{{'SHOW_TIMETABLE.saturday' | translate}}" [data]="saturdayData" [filter]="filter"></app-timetable-day>
