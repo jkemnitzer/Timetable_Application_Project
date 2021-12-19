@@ -3,6 +3,8 @@ import {MatSort} from "@angular/material/sort";
 import {MatTableDataSource} from "@angular/material/table";
 import {Lesson} from "../show-timetable.component";
 import {HttpService} from "../../http/http.service";
+import {MatDialog} from "@angular/material/dialog";
+import {EditLessonFormComponent} from "../edit-lesson-form/edit-lesson-form.component";
 
 
 @Component({
@@ -25,7 +27,7 @@ export class TimetableDayComponent implements OnInit, OnChanges{
 
   @ViewChild(MatSort) sort: MatSort = new MatSort();
 
-  constructor(private httpService: HttpService,) {
+  constructor(private httpService: HttpService, public dialog: MatDialog) {
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -75,5 +77,20 @@ export class TimetableDayComponent implements OnInit, OnChanges{
         console.error(error);
       }
     );
+  }
+
+  editLesson(lesson: Lesson) {
+    const dialogRef = this.dialog.open(EditLessonFormComponent, {
+      data: {lesson: lesson},
+    });
+
+
+    dialogRef.afterClosed().subscribe(updatedLesson => {
+      console.log(`Dialog result: ${updatedLesson}`);
+      const tempArray = this.dataSource.data.filter(value => value.id != lesson.id);
+      tempArray.push(updatedLesson);
+      console.log(tempArray);
+      this.dataSource.data = tempArray;
+    });
   }
 }

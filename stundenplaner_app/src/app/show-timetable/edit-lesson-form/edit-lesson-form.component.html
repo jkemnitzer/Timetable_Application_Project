@@ -1,0 +1,88 @@
+<mat-card class="add_lecture_card">
+  <mat-card-title >Neue Stunde anlegen<mat-card-actions align="end"><button mat-raised-button color="warn" mat-dialog-close class="open_add_menu_button">X</button></mat-card-actions></mat-card-title>
+  <mat-card-content>
+    <form>
+      <div class="attribute_grid">
+        <div>
+
+          <mat-form-field appearance="fill" class="attribute">
+            <mat-label>Vorlesung</mat-label>
+            <input type="text" [formControl]="lecturesFormControl" matInput [matAutocomplete]="lectureAutocomplete">
+            <mat-autocomplete autoActiveFirstOption #lectureAutocomplete="matAutocomplete" [displayWith]="getLectureName">
+              <mat-option *ngFor="let lecture of filteredLectures | async" [value]="lecture">
+                {{lecture.lectureName}}
+              </mat-option>
+            </mat-autocomplete>
+
+
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="attribute">
+            <mat-label>Wochentag</mat-label>
+            <mat-select [formControl]="daysFormControl" required (selectionChange)="filterTimeSlots()">
+              <mat-option *ngFor="let day of days" [value]="day">
+                {{day.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="attribute">
+            <mat-label>Zeitslot</mat-label>
+            <mat-select [formControl]="timeSlotsFormControl" required>
+              <mat-option *ngFor="let timeSlot of filteredTimeSlots" [value]="timeSlot">
+                {{timeSlot.start}} - {{timeSlot.end}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div>
+
+          <mat-form-field class="attribute" appearance="fill">
+            <mat-label>Raum</mat-label>
+            <input type="text" [formControl]="roomFormControl" matInput [matAutocomplete]="roomAutocomplete" required>
+            <mat-autocomplete autoActiveFirstOption #roomAutocomplete="matAutocomplete" [displayWith]="getRoomName">
+              <mat-option *ngFor="let room of filteredRooms | async" [value]="room">
+                {{room.number}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+
+          <mat-form-field class="attribute" appearance="fill">
+            <mat-label>Dozent</mat-label>
+            <input type="text" [formControl]="lecturerFormControl" matInput [matAutocomplete]="lecturerAutocomplete" required>
+            <mat-autocomplete autoActiveFirstOption #lecturerAutocomplete="matAutocomplete" [displayWith]="getLecturerName">
+              <mat-option *ngFor="let lecturer of filteredLecturers | async" [value]="lecturer">
+                {{lecturer.displayName}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+
+
+
+          <mat-form-field appearance="fill" class="attribute">
+            <mat-label>Stundentyp</mat-label>
+            <mat-select [formControl]="typeFormControl" required>
+              <mat-option *ngFor="let type of lessonTypes" [value]="type">
+                {{type.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="attributeName" appearance="fill" >
+            <mat-label>Notiz</mat-label>
+            <input type="text" [formControl]="lessonNameFormControl" matInput>
+          </mat-form-field>
+
+
+        </div>
+
+
+      </div>
+    </form>
+  </mat-card-content>
+
+  <button mat-raised-button color="basic" class="delete_button" (click)="deleteNewLessonInputs()">Eingaben löschen</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="returnedLesson" (click)="editLesson()">Ändern</button>
+
+</mat-card>
+

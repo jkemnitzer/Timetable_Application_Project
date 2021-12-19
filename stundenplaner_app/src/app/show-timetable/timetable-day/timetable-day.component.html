@@ -41,7 +41,7 @@
     <ng-container matColumnDef="edit">
       <th mat-header-cell *matHeaderCellDef>  </th>
       <td mat-cell *matCellDef="let element">
-        <mat-icon matTooltip="{{'SHOW_TIMETABLE.edit' | translate}}" aria-hidden="false" aria-label="Editieren">edit</mat-icon></td>
+        <mat-icon matTooltip="{{'SHOW_TIMETABLE.edit' | translate}}" aria-hidden="false" aria-label="Editieren" (click)="editLesson(element)">edit</mat-icon></td>
     </ng-container>
 
     <ng-container matColumnDef="delete">

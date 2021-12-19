@@ -44,6 +44,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {UserRoleOverviewComponent} from "./user-roles/user-role-overview/user-role-overview.component";
 import {ShowPermissionsDialogComponent} from "./user-roles/show-permissions-dialog/show-permissions-dialog.component";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {EditLessonFormComponent} from './show-timetable/edit-lesson-form/edit-lesson-form.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
     EditUsersDialogComponent,
     LandingComponent,
     UserRoleOverviewComponent,
-    ShowPermissionsDialogComponent
+    ShowPermissionsDialogComponent,
+    EditLessonFormComponent
   ],
     imports: [
         BrowserModule,
