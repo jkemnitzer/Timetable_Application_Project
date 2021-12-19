@@ -2,6 +2,7 @@ import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@an
 import {MatSort} from "@angular/material/sort";
 import {MatTableDataSource} from "@angular/material/table";
 import {Lesson} from "../show-timetable.component";
+import {HttpService} from "../../http/http.service";
 
 
 @Component({
@@ -10,6 +11,8 @@ import {Lesson} from "../show-timetable.component";
   styleUrls: ['./timetable-day.component.css']
 })
 export class TimetableDayComponent implements OnInit, OnChanges{
+
+  BASE_DELETE_LESSON_URL = '/timetable/lesson/';
 
   @Input() weekday = '';
   @Input() filter = '';
@@ -21,6 +24,9 @@ export class TimetableDayComponent implements OnInit, OnChanges{
 
 
   @ViewChild(MatSort) sort: MatSort = new MatSort();
+
+  constructor(private httpService: HttpService,) {
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if(!!changes.data){
@@ -49,5 +55,25 @@ export class TimetableDayComponent implements OnInit, OnChanges{
     }
 
      return '';
+  }
+
+  deleteLesson(lesson: Lesson) {
+    let returnedLesson = null;
+    console.log(lesson.id);
+    this.httpService.deleteRequest(this.BASE_DELETE_LESSON_URL + lesson.id, lesson).subscribe(
+      (response) => {
+        if(response == null){
+          return;
+        }
+
+        returnedLesson = response;
+        const tempArray = this.dataSource.data.filter(value => value.id != lesson.id);
+        console.log(tempArray);
+        this.dataSource.data = tempArray;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 }
