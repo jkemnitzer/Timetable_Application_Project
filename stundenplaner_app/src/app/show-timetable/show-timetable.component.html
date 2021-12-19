@@ -82,10 +82,7 @@
 
         </mat-form-field>
               --->
-        <mat-form-field class="attributeName" appearance="fill" >
-          <mat-label>Notiz</mat-label>
-          <input type="text" [formControl]="lessonNameFormControl" matInput required>
-        </mat-form-field>
+
         <mat-form-field appearance="fill" class="attribute">
           <mat-label>Vorlesung</mat-label>
           <input type="text" [formControl]="lecturesFormControl" matInput [matAutocomplete]="lectureAutocomplete">
@@ -97,9 +94,6 @@
 
 
         </mat-form-field>
-      </div>
-
-      <div>
         <mat-form-field appearance="fill" class="attribute">
           <mat-label>Wochentag</mat-label>
           <mat-select [formControl]="daysFormControl" required (selectionChange)="filterTimeSlots()">
@@ -151,6 +145,15 @@
           </mat-select>
         </mat-form-field>
       </div>
+    <div>
+      <mat-form-field class="attributeName" appearance="fill" >
+        <mat-label>Notiz</mat-label>
+        <input type="text" [formControl]="lessonNameFormControl" matInput>
+      </mat-form-field>
+
+
+    </div>
+
 
     </div>
     </form>
