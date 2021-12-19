@@ -24,8 +24,12 @@ export class Room {
   number: String = '';
   building: String = '';
 }
-
+export class Lecture {
+  id: Number = 0;
+  lectureName: String = '';
+}
 export class Lesson {
+  name: String = '';
   endTime: Date | String = new Date();
   startTime: Date | String = new Date();
   id: Number = 0;
@@ -41,6 +45,16 @@ export class Lesson {
   versionId: Number = 0;
   weekdayNr: Number = 0;
   error : String = '';
+}
+export class TimeSlot {
+  id: Number = 0;
+  start: String = '';
+  end: String = '';
+  weekdayNr: Number = 0;
+}
+export class Day {
+  id: Number = 0;
+  name: String = '';
 }
 
 
@@ -63,6 +77,8 @@ export class ShowTimetableComponent implements OnInit {
   BASE_ADD_LESSON_URL: string = '/timetable/lesson';
   BASE_LECTURERS_URL: string = '/users';
   BASE_ROOMS_URL: string = '/rooms';
+  BASE_LECTURES_URL: string = '/lectures';
+  BASE_TIMESLOTS_URL: string = '/timeSlots';
   filter: string = '';
 
   faculties = [
@@ -73,7 +89,7 @@ export class ShowTimetableComponent implements OnInit {
   ];
   selectedFaculty = this.faculties[1];
   facultyFormController = new FormControl('', [Validators.required]);
-
+  lessonNameFormControl = new FormControl();
   majors = [
     {name: 'Allgemeine Informatik'},
     {name: 'Medien Informatik'},
@@ -90,34 +106,35 @@ export class ShowTimetableComponent implements OnInit {
   selectedSemester = this.semesters[1];
   semesterFormControl = new FormControl('', [Validators.required]);
 
-  lectures = [];
+
   lecturesFormControl = new FormControl('', [Validators.required]);
-  days = [
-    {name: 'Montag', id: 0},
-    {name: 'Dienstag', id: 1},
-    {name: 'Mittwoch', id: 2},
-    {name: 'Donnerstag', id: 3},
-    {name: 'Freitag', id: 4},
-    {name: 'Samstag', id: 5},
+  days: Day[] = [
+    {name: 'Montag', id: 1},
+    {name: 'Dienstag', id: 2},
+    {name: 'Mittwoch', id: 3},
+    {name: 'Donnerstag', id: 4},
+    {name: 'Freitag', id: 5},
+    {name: 'Samstag', id: 6},
   ];
   isCreateLessonVisible: boolean = false;
   daysFormControl = new FormControl('', [Validators.required]);
-  startTimeFormControl = new FormControl('', [Validators.required]);
-  endTimeFormControl = new FormControl('', [Validators.required]);
+  timeSlotsFormControl = new FormControl('', [Validators.required]);
 
   lecturers: Lecturer[] = [];
   rooms: Room[] = [];
+  lectures: Lecture[] = [];
   filteredLecturers: Observable<Lecturer[]> = new Observable<Lecturer[]>();
   filteredRooms: Observable<Room[]> = new Observable<Room[]>();
+  filteredLectures: Observable<Lecture[]> = new Observable<Lecture[]>();
   lecturerFormControl = new FormControl('', [Validators.required]);
   roomFormControl =  new FormControl('', [Validators.required]);
-
   lessonTypes = [
     {enum: 'LECTURE', name: 'Vorlesung'},
     {enum: 'EXERCISE', name: 'Übung'},
   ];
   typeFormControl =  new FormControl('', [Validators.required]);
-
+  timeSlots: TimeSlot[] = [];
+  filteredTimeSlots: TimeSlot[] = [];
 
   constructor(private httpService: HttpService,) {
     this.getTimetable();
@@ -130,10 +147,13 @@ export class ShowTimetableComponent implements OnInit {
     this.filteredLecturers = this.lecturerFormControl.valueChanges.pipe(
       startWith(''),
       map(name => (name ? this.filterLecturer(name) : this.lecturers.slice())));
-
+    this.filteredLectures = this.lecturesFormControl.valueChanges.pipe(
+      startWith(''),
+      map((input: string) => (input ? this.filterLectures(input) : this.lectures.slice())));
   }
-  private filterLecturer(value: string): Lecturer[] {
+  private filterLecturer(value: any): Lecturer[] {
     if(!value)return this.lecturers;
+    if(!(typeof value == 'string'))return this.lecturers;
     const filterValue = value.toLowerCase();
 
     return this.lecturers.filter(lecturer => {
@@ -153,8 +173,9 @@ export class ShowTimetableComponent implements OnInit {
       return lecturer.displayName.toLowerCase().includes(filterValue);
     });
   }
-  private filterRooms(value: string): Room[] {
+  private filterRooms(value: any): Room[] {
     if(!value)return this.rooms;
+    if(!(typeof value == 'string'))return this.rooms;
     const filterValue = value.toLowerCase();
 
     return this.rooms.filter( room=> {
@@ -163,6 +184,27 @@ export class ShowTimetableComponent implements OnInit {
       }
       return room.number.toLowerCase().includes(filterValue);
     });
+  }
+  private filterLectures(value: any): Lecture[] {
+    if(!value)return this.lectures;
+    if(!(typeof value == 'string'))return this.lectures;
+    const filterValue = value.toLowerCase();
+
+    return this.lectures.filter( lecture=> {
+      if (!lecture.lectureName) {
+        return;
+      }
+      return lecture.lectureName.toLowerCase().includes(filterValue);
+    });
+  }
+  filterTimeSlots(){
+    const day:Day = this.daysFormControl.value;
+    if(!day)return;
+
+    this.filteredTimeSlots = this.timeSlots.filter( timeslot=>{
+      if(!timeslot) return;
+      return timeslot.weekdayNr == day.id;
+    })
   }
 
 
@@ -177,25 +219,21 @@ export class ShowTimetableComponent implements OnInit {
       return;
     }
     const lesson = new Lesson();
-    lesson.lectureId = this.lecturesFormControl.value
+    lesson.lectureTitle = this.lecturesFormControl.value.lectureName;
+    lesson.lectureId = this.lecturesFormControl.value.id;
+    lesson.note = this.lessonNameFormControl.value;
     lesson.weekdayNr = this.daysFormControl.value.id;
-    lesson.startTime = this.startTimeFormControl.value;
-    lesson.endTime = this.startTimeFormControl.value;
-    lesson.lecturer = this.lecturerFormControl.value;
-    lesson.roomId = this.roomFormControl.value;
-    lesson.lessonType = this.typeFormControl.value;
-    console.log(lesson);
-    const updatedLesson = this.createNewLesson(lesson);
-    if(updatedLesson == null){
-      console.log('Lesson could not be created');
-      return;
-    }
-    if (updatedLesson.weekdayNr == 0) this.mondayData.push(updatedLesson);
-    else if (updatedLesson.weekdayNr == 1) this.tuesdayData.push(updatedLesson);
-    else if (updatedLesson.weekdayNr == 2) this.wednesdayData.push(updatedLesson);
-    else if (updatedLesson.weekdayNr == 3) this.thursdayData.push(updatedLesson);
-    else if (updatedLesson.weekdayNr == 4) this.fridayData.push(updatedLesson);
-    else if (updatedLesson.weekdayNr == 5) this.saturdayData.push(updatedLesson);
+    lesson.timeslotId = this.timeSlotsFormControl.value.id;
+    lesson.startTime = this.timeSlotsFormControl.value.start;
+    lesson.endTime = this.timeSlotsFormControl.value.end;
+    lesson.lecturer = this.lecturerFormControl.value.displayName;
+    lesson.lecturerId = this.lecturerFormControl.value.id;
+    lesson.room = this.roomFormControl.value.number;
+    lesson.roomId = this.roomFormControl.value.id;
+    lesson.lessonType = this.typeFormControl.value.enum;
+    lesson.versionId = 1;
+
+    this.createNewLesson(lesson);
   }
 
   getTimetable() {
@@ -213,12 +251,12 @@ export class ShowTimetableComponent implements OnInit {
           //lesson.error = 'warning';
           //lesson.error = 'Oh Nooooooooooooooooooooooooooooooooo';
 
-          if (lesson.weekdayNr == 0) mondayTemp.push(lesson);
-          else if (lesson.weekdayNr == 1) tuesdayTemp.push(lesson);
-          else if (lesson.weekdayNr == 2) wednesdayTemp.push(lesson);
-          else if (lesson.weekdayNr == 3) thursdayTemp.push(lesson);
-          else if (lesson.weekdayNr == 4) fridayTemp.push(lesson);
-          else if (lesson.weekdayNr == 5) saturdayTemp.push(lesson);
+          if (lesson.weekdayNr == 1) mondayTemp.push(lesson);
+          else if (lesson.weekdayNr == 2) tuesdayTemp.push(lesson);
+          else if (lesson.weekdayNr == 3) wednesdayTemp.push(lesson);
+          else if (lesson.weekdayNr == 4) thursdayTemp.push(lesson);
+          else if (lesson.weekdayNr == 5) fridayTemp.push(lesson);
+          else if (lesson.weekdayNr == 6) saturdayTemp.push(lesson);
         })
         this.mondayData = mondayTemp;
         this.tuesdayData = tuesdayTemp;
@@ -237,22 +275,44 @@ export class ShowTimetableComponent implements OnInit {
     let returnedLesson = null;
     this.httpService.postRequest(this.BASE_ADD_LESSON_URL, lesson).subscribe(
       (response) => {
+        if(response == null){
+          return;
+        }
+
         returnedLesson = response;
+        returnedLesson.startTime = new Date('December 17, 1995 ' + returnedLesson.startTime.toString());
+        returnedLesson.endTime = new Date('December 17, 1995 ' + returnedLesson.endTime.toString());
+
+        if (returnedLesson.weekdayNr == 1) this.mondayData = this.addToObservedArray(this.mondayData, returnedLesson);
+        else if (returnedLesson.weekdayNr == 2) this.tuesdayData = this.addToObservedArray(this.tuesdayData, returnedLesson);
+        else if (returnedLesson.weekdayNr == 3) this.wednesdayData = this.addToObservedArray(this.wednesdayData, returnedLesson);
+        else if (returnedLesson.weekdayNr == 4) this.thursdayData = this.addToObservedArray(this.thursdayData, returnedLesson);
+        else if (returnedLesson.weekdayNr == 5) this.fridayData = this.addToObservedArray(this.fridayData, returnedLesson);
+        else if (returnedLesson.weekdayNr == 6) this.saturdayData = this.addToObservedArray(this.saturdayData, returnedLesson);
       },
       (error) => {
         console.error(error);
       }
     );
+
+
     return returnedLesson;
   }
 
+  addToObservedArray(array: Lesson[], lesson: Lesson): Lesson[]{
+    const newArray: Lesson[] = array.slice();
+    newArray.push(lesson);
+    return newArray;
+  }
   openCreateLesson() {
     this.loadLecturers();
     this.loadRooms();
+    this.loadLectures();
+    this.loadTimeslots();
     this.isCreateLessonVisible = true;
   }
 
-  loadLecturers() {
+  private loadLecturers() {
     this.httpService.getRequest(this.BASE_LECTURERS_URL).subscribe(
       (response) => {
         this.lecturers = response;
@@ -262,10 +322,30 @@ export class ShowTimetableComponent implements OnInit {
       }
     );
   }
-  loadRooms() {
+  private loadRooms() {
     this.httpService.getRequest(this.BASE_ROOMS_URL).subscribe(
       (response) => {
         this.rooms = response;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+  private loadLectures() {
+    this.httpService.getRequest(this.BASE_LECTURES_URL).subscribe(
+      (response) => {
+        this.lectures = response;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+  private loadTimeslots() {
+    this.httpService.getRequest(this.BASE_TIMESLOTS_URL).subscribe(
+      (response) => {
+        this.timeSlots = response;
       },
       (error) => {
         console.error(error);
@@ -280,20 +360,16 @@ export class ShowTimetableComponent implements OnInit {
   deleteNewLessonInputs() {
     this.lecturesFormControl.reset();
     this.daysFormControl.reset();
-    this.startTimeFormControl.reset();
-    this.endTimeFormControl.reset();
+    this.timeSlotsFormControl.reset();
     this.lecturerFormControl.reset();
     this.roomFormControl.reset();
     this.typeFormControl.reset();
+    this.lessonNameFormControl.reset();
   }
 
   private containsErrors() {
-    return !!this.facultyFormController.errors ||
-      !!this.majorsFormControl.errors ||
-      !!this.lecturesFormControl.errors ||
+    return !!this.lecturesFormControl.errors ||
       !!this.daysFormControl.errors ||
-      !!this.startTimeFormControl.errors ||
-      !!this.endTimeFormControl.errors ||
       !!this.roomFormControl.errors ||
       !!this.lecturerFormControl.errors ||
       !!this.typeFormControl.errors;
@@ -305,10 +381,21 @@ export class ShowTimetableComponent implements OnInit {
     this.semesterFormControl.markAsTouched();
     this.lecturesFormControl.markAsTouched();
     this.daysFormControl.markAsTouched();
-    this.startTimeFormControl.markAsTouched();
-    this.endTimeFormControl.markAsTouched();
     this.lecturerFormControl.markAsTouched();
     this.roomFormControl.markAsTouched();
     this.typeFormControl.markAsTouched();
+    this.lessonNameFormControl.markAsTouched();
+  }
+  getLecturerName(lecturer: Lecturer) {
+    if(!lecturer) return '';
+    return lecturer.displayName.toString();
+  }
+  getLectureName(lecturer: Lecture) {
+    if(!lecturer) return '';
+    return lecturer.lectureName.toString();
+  }
+  getRoomName(lecturer: Room) {
+    if(!lecturer) return '';
+    return lecturer.number.toString();
   }
 }
