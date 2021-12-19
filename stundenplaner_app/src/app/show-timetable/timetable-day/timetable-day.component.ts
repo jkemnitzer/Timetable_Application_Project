@@ -1,5 +1,5 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
-import {MatSort} from "@angular/material/sort";
+import {MatSort, Sort} from "@angular/material/sort";
 import {MatTableDataSource} from "@angular/material/table";
 import {Lesson} from "../show-timetable.component";
 import {HttpService} from "../../http/http.service";
@@ -38,7 +38,7 @@ export class TimetableDayComponent implements OnInit, OnChanges{
       this.dataSource.filter = changes.filter.currentValue;
     }
     this.dataSource.sort = this.sort;
-
+    this.sortData(this.dataSource.sort);
   }
 
 
@@ -46,6 +46,23 @@ export class TimetableDayComponent implements OnInit, OnChanges{
     this.dataSource.data = this.data;
     this.dataSource.filter = this.filter;
     this.dataSource.sort = this.sort;
+  }
+  sortData(sort: Sort) {
+    const data = this.dataSource.data.slice();
+    if (!sort.active || sort.direction === '') {
+      this.dataSource.data = data;
+      return;
+    }
+
+    this.dataSource.data = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'start':
+          return compare(a.startTime.getTime(), b.startTime.getTime(), isAsc);
+        default:
+          return 0;
+      }
+    });
   }
 
   getErrorClass(row: Lesson) {
@@ -93,4 +110,7 @@ export class TimetableDayComponent implements OnInit, OnChanges{
       this.dataSource.data = tempArray;
     });
   }
+}
+function compare(a: number | string, b: number | string, isAsc: boolean) {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
