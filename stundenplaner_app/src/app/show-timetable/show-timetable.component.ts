@@ -30,8 +30,8 @@ export class Lecture {
 }
 export class Lesson {
   name: String = '';
-  endTime: Date | String = new Date();
-  startTime: Date | String = new Date();
+  endTime: Date = new Date();
+  startTime: Date = new Date();
   id: Number = 0;
   lectureId: Number = 0;
   lectureTitle: String = '';
