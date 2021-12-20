@@ -146,5 +146,10 @@
     "delete": "Delete",
     "details": "Details"
 
+  },
+  "LANDING": {
+    "Description": "Timetable Planning Tool for the University",
+    "Submit": "Start Planning",
+    "SwitchLanguage":"Language"
   }
 }
