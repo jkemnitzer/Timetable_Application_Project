@@ -138,7 +138,6 @@
         "id": "Id",
         "typ": "Typ"
       },
-
       "TEXT": {
         "add_titel": "-Berechtigungen:",
         "body_text": "Nachfolgend finden Sie eine Aufschlüsselung der Berechtigungen und der hierfür zugeordneten Identifikationsnummer:",
@@ -158,5 +157,11 @@
         "search_txt": "Suchen sie nach {{value}}..."
       }
     }
+  },
+  "LANDING": {
+    "Description": "Stundenplanungs Tool für die Universität",
+    "Submit": "Jetzt Planen",
+    "SwitchLanguage":"Sprache"
+
   }
 }

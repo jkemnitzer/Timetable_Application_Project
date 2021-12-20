@@ -398,4 +398,8 @@ export class ShowTimetableComponent implements OnInit {
     if(!lecturer) return '';
     return lecturer.number.toString();
   }
+  applyFilter(event: KeyboardEvent) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.filter = filterValue.trim().toLowerCase();
+  }
 }
