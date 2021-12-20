@@ -126,9 +126,9 @@
 
 </mat-card>
 
-<app-timetable-day weekday= "{{'SHOW_TIMETABLE.monday' | translate}}" [data]="mondayData" [filter]="filter"></app-timetable-day>
-<app-timetable-day weekday="{{'SHOW_TIMETABLE.tuesday' | translate}}" [data]="tuesdayData" [filter]="filter"></app-timetable-day>
-<app-timetable-day weekday="{{'SHOW_TIMETABLE.wednesday' | translate}}" [data]="wednesdayData" [filter]="filter"></app-timetable-day>
-<app-timetable-day weekday="{{'SHOW_TIMETABLE.thursday' | translate}}" [data]="thursdayData" [filter]="filter"></app-timetable-day>
-<app-timetable-day weekday="{{'SHOW_TIMETABLE.friday' | translate}}" [data]="fridayData" [filter]="filter"></app-timetable-day>
-<app-timetable-day weekday="{{'SHOW_TIMETABLE.saturday' | translate}}" [data]="saturdayData" [filter]="filter"></app-timetable-day>
+<app-timetable-day [weekday]="days[0]" [data]="mondayData" [filter]="filter" #monday [siblings]="[monday, tuesday, wednesday, thursday, friday,saturday]"></app-timetable-day>
+<app-timetable-day [weekday]="days[1]" [data]="tuesdayData" [filter]="filter" #tuesday [siblings]="[monday, tuesday, wednesday, thursday, friday,saturday]"></app-timetable-day>
+<app-timetable-day [weekday]="days[2]" [data]="wednesdayData" [filter]="filter" #wednesday [siblings]="[monday, tuesday, wednesday, thursday, friday,saturday]"></app-timetable-day>
+<app-timetable-day [weekday]="days[3]" [data]="thursdayData" [filter]="filter" #thursday [siblings]="[monday, tuesday, wednesday, thursday, friday,saturday]"></app-timetable-day>
+<app-timetable-day [weekday]="days[4]" [data]="fridayData" [filter]="filter" #friday [siblings]="[monday, tuesday, wednesday, thursday, friday,saturday]"></app-timetable-day>
+<app-timetable-day [weekday]="days[5]" [data]="saturdayData" [filter]="filter" #saturday [siblings]="[monday, tuesday, wednesday, thursday, friday,saturday]"></app-timetable-day>

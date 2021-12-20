@@ -4,7 +4,7 @@ import {Day, Lecture, Lecturer, Lesson, Room, TimeSlot} from "../show-timetable.
 import {Observable} from "rxjs";
 import {HttpService} from "../../http/http.service";
 import {map, startWith} from "rxjs/operators";
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 
 export interface DialogData {
   lesson: Lesson;
@@ -54,7 +54,7 @@ export class EditLessonFormComponent implements OnInit {
   lessonNameFormControl = new FormControl();
   returnedLesson: Lesson|null = null;
 
-  constructor(private httpService: HttpService, @Inject(MAT_DIALOG_DATA) public data: DialogData,) {
+  constructor(private httpService: HttpService, @Inject(MAT_DIALOG_DATA) public data: DialogData, public dialogRef: MatDialogRef<EditLessonFormComponent>) {
   }
 
   private loadLecturers() {
@@ -104,8 +104,6 @@ export class EditLessonFormComponent implements OnInit {
       (response) => {
         this.timeSlots = response;
         const timeSlot = new TimeSlot();
-        timeSlot.start = <String>this.data.lesson.startTime;
-        timeSlot.end = <String>this.data.lesson.endTime;
         timeSlot.id = this.data.lesson.timeslotId;
         timeSlot.weekdayNr = this.data.lesson.weekdayNr;
 
@@ -193,6 +191,7 @@ export class EditLessonFormComponent implements OnInit {
         returnedLesson.startTime = new Date('December 17, 1995 ' + returnedLesson.startTime.toString());
         returnedLesson.endTime = new Date('December 17, 1995 ' + returnedLesson.endTime.toString());
         this.returnedLesson = returnedLesson;
+        this.dialogRef.close(returnedLesson);
 
       },
       (error) => {

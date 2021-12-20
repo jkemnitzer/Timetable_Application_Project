@@ -1,7 +1,7 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {MatSort, Sort} from "@angular/material/sort";
 import {MatTableDataSource} from "@angular/material/table";
-import {Lesson} from "../show-timetable.component";
+import {Day, Lesson} from "../show-timetable.component";
 import {HttpService} from "../../http/http.service";
 import {MatDialog} from "@angular/material/dialog";
 import {EditLessonFormComponent} from "../edit-lesson-form/edit-lesson-form.component";
@@ -16,9 +16,10 @@ export class TimetableDayComponent implements OnInit, OnChanges{
 
   BASE_DELETE_LESSON_URL = '/timetable/lesson/';
 
-  @Input() weekday = '';
+  @Input() weekday: Day = new Day();
   @Input() filter = '';
   @Input() data: Lesson[] = [];
+  @Input() siblings: TimetableDayComponent[] = [];
   dataSource:MatTableDataSource<Lesson> = new MatTableDataSource<Lesson>();
 
   displayedColumns: string[] = [ 'start', 'end',
@@ -103,12 +104,22 @@ export class TimetableDayComponent implements OnInit, OnChanges{
 
 
     dialogRef.afterClosed().subscribe(updatedLesson => {
-      console.log(`Dialog result: ${updatedLesson}`);
+      if(typeof updatedLesson == 'string')return;
       const tempArray = this.dataSource.data.filter(value => value.id != lesson.id);
-      tempArray.push(updatedLesson);
-      console.log(tempArray);
+      if(this.weekday == updatedLesson.weekdayNr) tempArray.push(updatedLesson);
+      else this.siblings.forEach(value => value.addLesson(updatedLesson));
       this.dataSource.data = tempArray;
     });
+  }
+
+  addLesson(lesson: Lesson){
+    if(this.weekday.id == lesson.weekdayNr){
+      const tempArray = this.dataSource.data.slice();
+      tempArray.push(lesson);
+      this.dataSource.data = tempArray;
+    }
+    if(this.dataSource.sort != null)
+      this.sortData(this.dataSource.sort);
   }
 }
 function compare(a: number | string, b: number | string, isAsc: boolean) {
