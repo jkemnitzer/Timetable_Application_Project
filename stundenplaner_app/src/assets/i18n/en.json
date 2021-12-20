@@ -157,6 +157,8 @@
     "type": "Type",
     "note": "Note",
     "add": "Add",
-    "delete": "Delete all fields"
+    "delete": "Delete all fields",
+    "edit_label": "Edit lesson",
+    "edit": "Edit"
   }
 }

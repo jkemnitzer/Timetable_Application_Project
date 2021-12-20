@@ -130,7 +130,9 @@
     "type": "Stundentyp",
     "note": "Notiz",
     "add": "Hinzufügen",
-    "delete": "Eingaben Löschen"
+    "delete": "Eingaben Löschen",
+    "edit_label": "Stunde bearbeiten",
+    "edit": "Ändern"
   },
   "USER_ROLES": {
     "DIALOG": {

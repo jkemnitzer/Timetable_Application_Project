@@ -1,0 +1,12 @@
+.delete_button{
+  margin-right: 400px;
+}
+.attributeName{
+  width:500px;
+  margin-right: 5px;
+}
+.add_lecture_card{
+  margin: 10px;
+  background: aliceblue;
+  width: fit-content;
+}
