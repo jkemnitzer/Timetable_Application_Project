@@ -1,7 +1,7 @@
 
 import { TranslateService } from '@ngx-translate/core';
 import { UserService } from '../users/user.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSlideToggleInterface } from '../interfaces/mat-slide-toggle.interface';
 import { THEME } from '../theme';
