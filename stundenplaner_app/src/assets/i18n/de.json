@@ -145,5 +145,11 @@
         "search_txt": "Suchen sie nach {{value}}..."
       }
     }
+  },
+  "LANDING": {
+    "Description": "Stundenplanungs Tool für die Universität",
+    "Submit": "Jetzt Planen",
+    "SwitchLanguage":"Sprache"
+
   }
 }

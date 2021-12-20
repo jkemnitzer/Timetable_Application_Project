@@ -11,7 +11,6 @@ import {UserRoleOverviewComponent} from "./user-roles/user-role-overview/user-ro
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
-  { path: 'landing', component: LandingComponent },
   { path: 'programs', component: ProgramOverviewComponent },
   { path: 'lectures', component: LecturesOverviewComponent },
   { path: 'rooms', component: RoomsComponent },
