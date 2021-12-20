@@ -8,7 +8,8 @@
     "Greet": "Hello",
     "Stundenplan": "Timetable",
     "Title": "Timetable-App",
-    "Benutzerrollen": "User roles"
+    "Benutzerrollen": "User roles",
+    "Benutzer": "Users"
   },
   "PROGRAM": {
     "Filter": "Filter",
@@ -95,6 +96,33 @@
       "Bearbeiten": "Edit",
       "Name": "Room name",
       "Gebäude": "Room building",
+      "Abbrechen": "Cancel",
+      "Speichern": "Save"
+    }
+  },
+  "USERS": {
+    "Filter": "Filter",
+    "add": "add user",
+    "ID": "ID",
+    "NutzerName": "Username",
+    "Titel": "Title",
+    "Vname": "First name",
+    "Nname": "Last name",
+    "Mail": "E-Mail",
+    "Status": "Status",
+    "PLACEHOLDER": {
+      "Id": "ID or Name"
+    },
+    "TOOLTIP": {
+      "ändern" : "activate/deactivate changes"
+    },
+    "ERROR": {
+      "Filter": "No data with filter \"{{value }}\" found."
+    },
+    "EDIT": {
+      "Titel": "Edit",
+      "Name": "Username",
+      "Email": "E-Mail",
       "Abbrechen": "Cancel",
       "Speichern": "Save"
     }

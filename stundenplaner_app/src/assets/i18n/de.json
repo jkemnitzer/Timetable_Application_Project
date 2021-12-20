@@ -8,7 +8,8 @@
     "Greet": "Hallo",
     "Stundenplan": "Stundenplan",
     "Title": "Stundenplan-App",
-    "Benutzerrollen": "Benutzerrollen"
+    "Benutzerrollen": "Benutzerrollen",
+    "Benutzer": "Benutzer"
   },
   "PROGRAM": {
     "Filter": "Filter",
@@ -119,6 +120,33 @@
     "edit": "Editieren",
     "delete": "Löschen",
     "details": "Details"
+  },
+  "USERS": {
+    "Filter": "Filter",
+    "add": "Nutzer hinzufügen",
+    "ID": "ID",
+    "NutzerName": "Nutzername",
+    "Titel": "Titel",
+    "Vname": "Vorname",
+    "Nname": "Nachname",
+    "Mail": "E-Mail",
+    "Status": "Status",
+    "PLACEHOLDER": {
+      "Id": "ID oder Name"
+    },
+    "TOOLTIP": {
+      "ändern" : "Änderungen aktivieren/deaktivieren"
+    },
+    "ERROR": {
+      "Filter": "Keine Daten die dem Filter \"{{value}}\" entsprechen."
+    },
+    "EDIT": {
+      "Titel": "Bearbeiten",
+      "Name": "Nutzername",
+      "Email": "E-Mail",
+      "Abbrechen": "Abbrechen",
+      "Speichern": "Speichern"
+    }
   },
   "USER_ROLES": {
     "DIALOG": {

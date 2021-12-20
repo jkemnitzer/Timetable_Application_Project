@@ -30,7 +30,7 @@
         routerLinkActive="router-link-active"
       >
         <mat-icon>face</mat-icon>
-        <span>Benutzer</span>
+        <span>{{'NAVIGATION.Benutzer' | translate}}</span>
       </a>
       <a mat-list-item [routerLink]="['/show-timetable']"
          routerLinkActive="router-link-active">
@@ -63,21 +63,7 @@
         <mat-icon>supervised_user_circle</mat-icon>
         <span>{{ "NAVIGATION.Benutzerrollen" | translate }}</span>
       </a>
-      <span class="form-inline">
-        <select
-          class="form-control"
-          #selectedLang
-          (change)="switchLang(selectedLang.value)"
-        >
-          <option
-            *ngFor="let language of translate.getLangs()"
-            [value]="language"
-            [selected]="language === translate.currentLang"
-          >
-            {{ language }}
-          </option>
-        </select>
-      </span>
+      <app-change-language style="margin: .5em"></app-change-language>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

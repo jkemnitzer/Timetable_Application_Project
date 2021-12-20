@@ -1,11 +1,11 @@
 <div class="outer" fxLayout="column">
   <mat-form-field appearance="standard" class="program-filter">
-    <mat-label>Filter</mat-label>
+    <mat-label>{{'USERS.Filter' | translate}}</mat-label>
     <input
       #input
       (keyup)="applyFilter($event)"
       matInput
-      placeholder="Id oder Name"
+      placeholder="{{'USERS.PLACEHOLDER.Id' | translate}}"
     />
   </mat-form-field>
 
@@ -17,7 +17,7 @@
           class="action"
           color="primary"
           mat-icon-button
-          matTooltip="Änderungen aktivieren/ deaktivieren"
+          matTooltip="{{'USERS.TOOLTIP.ändern' | translate}}"
         >
           <mat-icon>edit</mat-icon>
         </button>
@@ -26,7 +26,7 @@
           class="action"
           color="primary"
           mat-icon-button
-          matTooltip="User hinzufügen"
+          matTooltip="{{'USERS.add' | translate}}"
         >
           <mat-icon>add</mat-icon>
         </button>
@@ -51,31 +51,31 @@
       </td>
     </ng-container>
     <ng-container matColumnDef="id">
-      <th *matHeaderCellDef mat-header-cell mat-sort-header>Id</th>
+      <th *matHeaderCellDef mat-header-cell mat-sort-header>{{'USERS.ID' | translate}}</th>
       <td *matCellDef="let user" mat-cell>{{ user.id }}</td>
     </ng-container>
     <ng-container matColumnDef="username">
-      <th *matHeaderCellDef mat-header-cell mat-sort-header>Username</th>
+      <th *matHeaderCellDef mat-header-cell mat-sort-header>{{'USERS.NutzerName' | translate}}</th>
       <td *matCellDef="let user" mat-cell>{{ user.username }}</td>
     </ng-container>
     <ng-container matColumnDef="title">
-      <th *matHeaderCellDef mat-header-cell mat-sort-header>Title</th>
+      <th *matHeaderCellDef mat-header-cell mat-sort-header>{{'USERS.Titel' | translate}}</th>
       <td *matCellDef="let user" mat-cell>{{ user.title }}</td>
     </ng-container>
     <ng-container matColumnDef="firstName">
-      <th *matHeaderCellDef mat-header-cell mat-sort-header>First Name</th>
+      <th *matHeaderCellDef mat-header-cell mat-sort-header>{{'USERS.Vname' | translate}}</th>
       <td *matCellDef="let user" mat-cell>{{ user.firstName }}</td>
     </ng-container>
     <ng-container matColumnDef="lastName">
-      <th *matHeaderCellDef mat-header-cell mat-sort-header>Last Name</th>
+      <th *matHeaderCellDef mat-header-cell mat-sort-header>{{'USERS.Nname' | translate}}</th>
       <td *matCellDef="let user" mat-cell>{{ user.lastName }}</td>
     </ng-container>
     <ng-container matColumnDef="email">
-      <th *matHeaderCellDef mat-header-cell mat-sort-header>E-Mail</th>
+      <th *matHeaderCellDef mat-header-cell mat-sort-header>{{'USERS.Mail' | translate}}</th>
       <td *matCellDef="let user" mat-cell>{{ user.email }}</td>
     </ng-container>
     <ng-container matColumnDef="status">
-      <th *matHeaderCellDef mat-header-cell mat-sort-header>Status</th>
+      <th *matHeaderCellDef mat-header-cell mat-sort-header>{{'USERS.Status' | translate}}</th>
       <td *matCellDef="let user" mat-cell>{{ user.status }}</td>
     </ng-container>
 
@@ -86,7 +86,7 @@
     <tr *matNoDataRow class="mat-row">
       <td class="mat-cell" colspan="4">
         <span class="no-filter-message"
-        >Keine Daten die dem Filter "{{ input.value }}" entsprechen.</span
+        >{{'USERS.ERROR.Filter' | translate: {value: input.value} }}</span
         >
       </td>
     </tr>

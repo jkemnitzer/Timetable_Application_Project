@@ -1,8 +1,8 @@
-<h1 mat-dialog-title>Edit</h1>
+<h1 mat-dialog-title>{{'USERS.EDIT.Titel' | translate}}</h1>
 <div mat-dialog-content></div>
 <div fxLayout="column">
   <mat-form-field appearance="fill">
-    <mat-label>Benutzer Name</mat-label>
+    <mat-label>{{'USERS.EDIT.Name' | translate}}</mat-label>
     <input
       [(ngModel)]="data.user.firstName"
       matInput
@@ -12,7 +12,7 @@
     />
   </mat-form-field>
   <mat-form-field appearance="fill">
-    <mat-label>Benutzer Email</mat-label>
+    <mat-label>{{'USERS.EDIT.Email' | translate}}</mat-label>
     <input
       [(ngModel)]="data.user.email"
       matInput
@@ -24,13 +24,13 @@
 </div>
 
 <div mat-dialog-actions>
-  <button mat-button (click)="cancelDialog()">Abbrechen</button>
+  <button mat-button (click)="cancelDialog()">{{'USERS.EDIT.Abbrechen' | translate}}</button>
   <button
     [mat-dialog-close]="data"
     color="primary"
     mat-raised-button
     type="submit"
   >
-    Speichern
+    {{'USERS.EDIT.Speichern' | translate}}
   </button>
 </div>
