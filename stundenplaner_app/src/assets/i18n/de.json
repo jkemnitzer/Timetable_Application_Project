@@ -120,12 +120,25 @@
     "delete": "Löschen",
     "details": "Details"
   },
+  "TIMETABLE_CRUD": {
+    "add_label": "Neue Stunde anlegen",
+    "lecture": "Vorlesung",
+    "day": "Wochentag",
+    "time_slot": "Zeitslot",
+    "room": "Raum",
+    "lecturer": "Dozent",
+    "type": "Stundentyp",
+    "note": "Notiz",
+    "add": "Hinzufügen",
+    "delete": "Eingaben Löschen"
+  },
   "USER_ROLES": {
     "DIALOG": {
       "COLUMNS": {
         "id": "Id",
         "typ": "Typ"
       },
+
       "TEXT": {
         "add_titel": "-Berechtigungen:",
         "body_text": "Nachfolgend finden Sie eine Aufschlüsselung der Berechtigungen und der hierfür zugeordneten Identifikationsnummer:",
