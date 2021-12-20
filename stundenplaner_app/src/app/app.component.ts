@@ -1,4 +1,3 @@
-
 import {Router} from '@angular/router';
 import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { THEME } from './theme';
@@ -24,5 +23,5 @@ export class AppComponent{
         this.themeSubject.next(savedTheme);
       }
     }
-  
+
 }

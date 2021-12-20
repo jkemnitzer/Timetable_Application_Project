@@ -1,7 +1,7 @@
 
 import { TranslateService } from '@ngx-translate/core';
 import { UserService } from '../users/user.service';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSlideToggleInterface } from '../interfaces/mat-slide-toggle.interface';
 import { THEME } from '../theme';
@@ -35,16 +35,16 @@ export class LandingComponent implements OnInit {
     })
   }
 
-  toggleTheme(event: MatSlideToggleInterface) {
-    if (event.checked) {
-      this.themeSubject.next('DARK');
-      localStorage.setItem('theme', 'DARK');
-      return;
-    }
-    this.themeSubject.next('LIGHT');
-    localStorage.setItem('theme', 'LIGHT');
+    toggleTheme(event: MatSlideToggleInterface) {
+      if (event.checked) {
+        this.themeSubject.next('DARK');
+        localStorage.setItem('theme', 'DARK');
+        return;
+      }
+      this.themeSubject.next('LIGHT');
+      localStorage.setItem('theme', 'LIGHT');
 
-  }
+    }
 
   switchLang(lang: string) {
     this.translate.use(lang);
