@@ -146,5 +146,17 @@
     "delete": "Delete",
     "details": "Details"
 
+  },
+  "TIMETABLE_CRUD": {
+    "add_label": "Add new Lesson",
+    "lecture": "Lecture",
+    "day": "Weekday",
+    "time_slot": "Time slot",
+    "room": "Room",
+    "lecturer": "Lecturer",
+    "type": "Type",
+    "note": "Note",
+    "add": "Add",
+    "delete": "Delete all fields"
   }
 }
