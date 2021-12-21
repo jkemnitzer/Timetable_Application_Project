@@ -60,7 +60,7 @@
           <mat-label>{{'TIMETABLE_CRUD.day' | translate}}</mat-label>
           <mat-select [formControl]="daysFormControl" required (selectionChange)="filterTimeSlots()">
             <mat-option *ngFor="let day of days" [value]="day">
-              {{day.name}}
+              {{'SHOW_TIMETABLE.weekday_'+day.id | translate}}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -102,7 +102,7 @@
           <mat-label>{{'TIMETABLE_CRUD.type' | translate}}</mat-label>
           <mat-select [formControl]="typeFormControl" required>
             <mat-option *ngFor="let type of lessonTypes" [value]="type">
-              {{type.name}}
+              {{'TIMETABLE_CRUD.type_'+ type.enum | translate}}
             </mat-option>
           </mat-select>
         </mat-form-field>

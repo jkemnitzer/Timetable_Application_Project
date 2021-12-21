@@ -7,9 +7,6 @@ import {ErrorSnackbarComponent} from "./error-snackbar/error-snackbar.component"
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {SuccessSnackbarComponent} from "./success-snackbar/success-snackbar.component";
 
-export enum LessonType {
-  LECTURE, EXERCISE
-}
 
 export class Lecturer {
   email: String = '';
@@ -91,7 +88,6 @@ export class ShowTimetableComponent implements OnInit {
     {name: 'Wirtschaftswissenschaften'},
   ];
   selectedFaculty = this.faculties[1];
-  facultyFormController = new FormControl('', [Validators.required]);
   lessonNameFormControl = new FormControl();
   majors = [
     {name: 'Allgemeine Informatik'},

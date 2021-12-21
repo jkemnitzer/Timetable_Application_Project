@@ -161,7 +161,9 @@
     "edit_label": "Edit lesson",
     "edit": "Edit",
     "added": "Lesson was successfully added",
-    "edited": "Lesson was successfully edited"
+    "edited": "Lesson was successfully edited",
+    "type_LECTURE": "Lecture",
+    "type_EXERCISE": "Exercise"
   },
   "LANDING": {
     "Description": "Timetable Planning Tool for the University",

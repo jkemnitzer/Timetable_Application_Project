@@ -134,7 +134,9 @@
     "edited": "Vorlesung wurde erfolgreich geändert",
     "delete": "Eingaben Löschen",
     "edit_label": "Stunde bearbeiten",
-    "edit": "Ändern"
+    "edit": "Ändern",
+    "type_LECTURE": "Vorlesung",
+    "type_EXERCISE": "Übung"
   },
   "USER_ROLES": {
     "DIALOG": {

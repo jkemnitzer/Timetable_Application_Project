@@ -5,6 +5,9 @@ import {Observable} from "rxjs";
 import {HttpService} from "../../http/http.service";
 import {map, startWith} from "rxjs/operators";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {ErrorSnackbarComponent} from "../error-snackbar/error-snackbar.component";
+import {SuccessSnackbarComponent} from "../success-snackbar/success-snackbar.component";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 export interface DialogData {
   lesson: Lesson;
@@ -54,7 +57,7 @@ export class EditLessonFormComponent implements OnInit {
   lessonNameFormControl = new FormControl();
   returnedLesson: Lesson|null = null;
 
-  constructor(private httpService: HttpService, @Inject(MAT_DIALOG_DATA) public data: DialogData, public dialogRef: MatDialogRef<EditLessonFormComponent>) {
+  constructor(private httpService: HttpService, @Inject(MAT_DIALOG_DATA) public data: DialogData, public dialogRef: MatDialogRef<EditLessonFormComponent>,private _snackBar: MatSnackBar) {
   }
 
   private loadLecturers() {
@@ -103,14 +106,17 @@ export class EditLessonFormComponent implements OnInit {
     this.httpService.getRequest(this.BASE_TIMESLOTS_URL).subscribe(
       (response) => {
         this.timeSlots = response;
-        const timeSlot = new TimeSlot();
-        timeSlot.id = this.data.lesson.timeslotId;
-        timeSlot.weekdayNr = this.data.lesson.weekdayNr;
 
-        const day = new Day();
-        day.id = this.data.lesson.weekdayNr;
-        this.daysFormControl.setValue(day);
-        this.timeSlotsFormControl.setValue(timeSlot);
+        this.days.forEach(value => {
+          if(value.id == this.data.lesson.weekdayNr) this.daysFormControl.setValue(value);
+        });
+
+        this.filterTimeSlots();
+        this.timeSlots.forEach(value => {
+          if(value.id == this.data.lesson.timeslotId) this.timeSlotsFormControl.setValue(value);
+        });
+
+
       },
       (error) => {
         console.error(error);
@@ -133,9 +139,20 @@ export class EditLessonFormComponent implements OnInit {
       !!this.daysFormControl.errors ||
       !!this.roomFormControl.errors ||
       !!this.lecturerFormControl.errors ||
-      !!this.typeFormControl.errors;
+      !!this.typeFormControl.errors||
+    !!this.timeSlotsFormControl.errors;
   }
-
+  showError() {
+    this._snackBar.openFromComponent(ErrorSnackbarComponent, {
+      duration:5000,
+    });
+  }
+  private showSuccess(message: string) {
+    this._snackBar.openFromComponent(SuccessSnackbarComponent, {
+      duration:5000,
+      data: message
+    },);
+  }
   private touchAllInputs() {
     this.lecturesFormControl.markAsTouched();
     this.daysFormControl.markAsTouched();
@@ -143,6 +160,7 @@ export class EditLessonFormComponent implements OnInit {
     this.roomFormControl.markAsTouched();
     this.typeFormControl.markAsTouched();
     this.lessonNameFormControl.markAsTouched();
+    this.timeSlotsFormControl.markAsTouched();
   }
   getLecturerName(lecturer: Lecturer) {
     if(!lecturer) return '';
@@ -183,19 +201,15 @@ export class EditLessonFormComponent implements OnInit {
     let returnedLesson = null;
     this.httpService.updateRequest(this.BASE_EDIT_LESSON_URL + lesson.id, lesson).subscribe(
       (response) => {
-        if(response == null){
-          return;
-        }
-
         returnedLesson = response;
         returnedLesson.startTime = new Date('December 17, 1995 ' + returnedLesson.startTime.toString());
         returnedLesson.endTime = new Date('December 17, 1995 ' + returnedLesson.endTime.toString());
         this.returnedLesson = returnedLesson;
         this.dialogRef.close(returnedLesson);
-
+        this.showSuccess('edited');
       },
-      (error) => {
-        console.error(error);
+      () => {
+        this.showError()
       }
     );
 
@@ -208,6 +222,11 @@ export class EditLessonFormComponent implements OnInit {
     this.loadRooms();
     this.loadLectures();
     this.loadTimeslots();
+    this.lessonTypes.forEach(value => {
+      if(value.enum == this.data.lesson.lessonType)this.typeFormControl.setValue(value);
+    });
+
+
     this.filteredRooms = this.roomFormControl.valueChanges.pipe(
       startWith(''),
       map((input: string) => (input ? this.filterRooms(input) : this.rooms.slice())));
@@ -218,7 +237,6 @@ export class EditLessonFormComponent implements OnInit {
       startWith(''),
       map((input: string) => (input ? this.filterLectures(input) : this.lectures.slice())));
 
-    this.typeFormControl.setValue(this.data.lesson.lessonType);
   }
   private filterLecturer(value: any): Lecturer[] {
     if(!value)return this.lecturers;

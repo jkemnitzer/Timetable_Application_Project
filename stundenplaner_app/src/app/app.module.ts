@@ -72,7 +72,7 @@ import {SuccessSnackbarComponent} from './show-timetable/success-snackbar/succes
     LandingComponent,
     UserRoleOverviewComponent,
     ShowPermissionsDialogComponent,
-    EditLessonFormComponent
+    EditLessonFormComponent,
     ShowPermissionsDialogComponent,
     ChangeLanguageComponent,
     ErrorSnackbarComponent,
@@ -103,7 +103,6 @@ import {SuccessSnackbarComponent} from './show-timetable/success-snackbar/succes
     MatMenuModule,
     HttpClientModule,
     MatDialogModule,
-        MatDialogModule,
     FormsModule,
     MatExpansionModule,
     MatPaginatorModule,
