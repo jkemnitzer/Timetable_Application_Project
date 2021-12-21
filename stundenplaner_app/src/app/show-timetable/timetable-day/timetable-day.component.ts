@@ -23,7 +23,7 @@ export class TimetableDayComponent implements OnInit, OnChanges{
   dataSource:MatTableDataSource<Lesson> = new MatTableDataSource<Lesson>();
 
   displayedColumns: string[] = [ 'start', 'end',
-    'lecturer', 'room', 'name', 'edit', 'delete', 'view', 'info'];
+    'lecturer', 'room', 'name', 'edit', 'delete', 'info'];
 
 
   @ViewChild(MatSort) sort: MatSort = new MatSort();
