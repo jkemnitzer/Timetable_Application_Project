@@ -22,7 +22,7 @@ export interface DialogPermissionData {
 @Component({
   selector: 'app-show-permissions-dialog',
   templateUrl: './show-permissions-dialog.component.html',
-  styleUrls: ['./show-permissions-dialog.component.css'],
+  styleUrls: ['../../global.css', './show-permissions-dialog.component.css'],
 })
 export class ShowPermissionsDialogComponent implements OnInit {
 

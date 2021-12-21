@@ -14,7 +14,7 @@ export interface DialogRoomData {
 @Component({
   selector: 'app-edit-room-dialog',
   templateUrl: './edit-room-dialog.component.html',
-  styleUrls: ['./edit-room-dialog.component.css'],
+  styleUrls: ['../../global.css', './edit-room-dialog.component.css'],
 })
 export class EditRoomDialogComponent implements OnInit {
   constructor(

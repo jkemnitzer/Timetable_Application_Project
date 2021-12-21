@@ -14,7 +14,7 @@ export interface DialogUserData {
 @Component({
   selector: 'app-edit-users-dialog',
   templateUrl: './edit-users-dialog.component.html',
-  styleUrls: ['./edit-users-dialog.component.css'],
+  styleUrls: ['../../global.css', './edit-users-dialog.component.css'],
 })
 export class EditUsersDialogComponent implements OnInit {
   constructor(
