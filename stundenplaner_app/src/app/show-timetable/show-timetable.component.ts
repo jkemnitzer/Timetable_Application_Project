@@ -3,6 +3,9 @@ import {HttpService} from "../http/http.service";
 import {FormControl, Validators} from "@angular/forms";
 import {Observable} from "rxjs";
 import {map, startWith} from "rxjs/operators";
+import {ErrorSnackbarComponent} from "./error-snackbar/error-snackbar.component";
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {SuccessSnackbarComponent} from "./success-snackbar/success-snackbar.component";
 
 export enum LessonType {
   LECTURE, EXERCISE
@@ -136,7 +139,7 @@ export class ShowTimetableComponent implements OnInit {
   timeSlots: TimeSlot[] = [];
   filteredTimeSlots: TimeSlot[] = [];
 
-  constructor(private httpService: HttpService,) {
+  constructor(private httpService: HttpService,private _snackBar: MatSnackBar) {
     this.getTimetable();
   }
 
@@ -234,6 +237,7 @@ export class ShowTimetableComponent implements OnInit {
     lesson.versionId = 1;
 
     this.createNewLesson(lesson);
+    this.timeSlotsFormControl.reset();
   }
 
   getTimetable() {
@@ -275,9 +279,6 @@ export class ShowTimetableComponent implements OnInit {
     let returnedLesson = null;
     this.httpService.postRequest(this.BASE_ADD_LESSON_URL, lesson).subscribe(
       (response) => {
-        if(response == null){
-          return;
-        }
 
         returnedLesson = response;
         returnedLesson.startTime = new Date('December 17, 1995 ' + returnedLesson.startTime.toString());
@@ -289,9 +290,10 @@ export class ShowTimetableComponent implements OnInit {
         else if (returnedLesson.weekdayNr == 4) this.thursdayData = this.addToObservedArray(this.thursdayData, returnedLesson);
         else if (returnedLesson.weekdayNr == 5) this.fridayData = this.addToObservedArray(this.fridayData, returnedLesson);
         else if (returnedLesson.weekdayNr == 6) this.saturdayData = this.addToObservedArray(this.saturdayData, returnedLesson);
+        this.showSuccess('added');
       },
-      (error) => {
-        console.error(error);
+      () => {
+        this.showError()
       }
     );
 
@@ -322,6 +324,7 @@ export class ShowTimetableComponent implements OnInit {
       }
     );
   }
+
   private loadRooms() {
     this.httpService.getRequest(this.BASE_ROOMS_URL).subscribe(
       (response) => {
@@ -370,15 +373,14 @@ export class ShowTimetableComponent implements OnInit {
   private containsErrors() {
     return !!this.lecturesFormControl.errors ||
       !!this.daysFormControl.errors ||
+      !!this.timeSlotsFormControl.errors ||
       !!this.roomFormControl.errors ||
       !!this.lecturerFormControl.errors ||
       !!this.typeFormControl.errors;
   }
 
   private touchAllInputs() {
-    this.facultyFormController.markAsTouched();
-    this.majorsFormControl.markAsTouched();
-    this.semesterFormControl.markAsTouched();
+    this.timeSlotsFormControl.markAsTouched()
     this.lecturesFormControl.markAsTouched();
     this.daysFormControl.markAsTouched();
     this.lecturerFormControl.markAsTouched();
@@ -398,8 +400,17 @@ export class ShowTimetableComponent implements OnInit {
     if(!lecturer) return '';
     return lecturer.number.toString();
   }
-  applyFilter(event: KeyboardEvent) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.filter = filterValue.trim().toLowerCase();
+
+  showError() {
+    this._snackBar.openFromComponent(ErrorSnackbarComponent, {
+      duration:5000,
+    });
+  }
+
+  private showSuccess(message: string) {
+    this._snackBar.openFromComponent(SuccessSnackbarComponent, {
+      duration:5000,
+      data: message
+    },);
   }
 }

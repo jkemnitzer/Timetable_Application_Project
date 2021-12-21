@@ -157,7 +157,9 @@
     "type": "Type",
     "note": "Note",
     "add": "Add",
-    "delete": "Delete all fields"
+    "delete": "Delete all fields",
+    "added": "Lesson was successfully added",
+    "edited": "Lesson was successfully edited"
   },
   "LANDING": {
     "Description": "Timetable Planning Tool for the University",
