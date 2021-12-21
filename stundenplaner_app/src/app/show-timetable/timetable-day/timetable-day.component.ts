@@ -10,7 +10,7 @@ import {EditLessonFormComponent} from "../edit-lesson-form/edit-lesson-form.comp
 @Component({
   selector: 'app-timetable-day',
   templateUrl: './timetable-day.component.html',
-  styleUrls: ['./timetable-day.component.css']
+  styleUrls: ['../../global.css', './timetable-day.component.css']
 })
 export class TimetableDayComponent implements OnInit, OnChanges{
 

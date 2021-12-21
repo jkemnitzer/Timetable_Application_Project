@@ -14,7 +14,7 @@ export interface DialogProgramData {
 @Component({
   selector: 'app-edit-program-dialog',
   templateUrl: './edit-program-dialog.component.html',
-  styleUrls: ['./edit-program-dialog.component.css'],
+  styleUrls: ['../../global.css', './edit-program-dialog.component.css'],
 })
 export class EditProgramDialogComponent implements OnInit {
   constructor(

@@ -61,7 +61,7 @@ export class Day {
 @Component({
   selector: 'app-show-timetable',
   templateUrl: './show-timetable.component.html',
-  styleUrls: ['./show-timetable.component.css']
+  styleUrls: ['../global.css', './show-timetable.component.css']
 })
 
 export class ShowTimetableComponent implements OnInit {

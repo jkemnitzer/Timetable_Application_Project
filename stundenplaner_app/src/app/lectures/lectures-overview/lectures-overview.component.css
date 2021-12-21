@@ -1,106 +1,11 @@
-.lecture-root {
-  text-align: center;
-  padding-left: 10px;
-  padding-right: 10px;
-  align-items: center;
-}
-
-.center {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.v-centered {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
-
-.width-0 {
-  width: 100%;
-}
-
-.width-1 {
-  width: 95%;
-}
-
-.height-0 {
-  height: 100%;
-}
-
-.pad-4 {
-  padding: 4px;
-}
-
-.mar-4 {
-  margin: 4px;
-}
-
-.flex-lr {
-  display: flex;
-  flex-direction: row;
-}
-
-.spacer-12 {
-  height: 12px;
-  width: 12px;
-}
-
-.spacer-24 {
-  height: 24px;
-  width: 24px;
-}
-
-.spacer-36 {
-  height: 36px;
-  width: 36px;
-}
-
-.spacer-48 {
-  height: 48px;
-  width: 48px;
-}
-
-.l-bordered {
-  margin-top: 12px;
-  margin-bottom: 12px;
-  border-left: 2px solid currentColor;
-}
-
-/* table styling */
-
-.mat-table {
-  width: 100%;
-}
-
-.mat-header-cell {
-  border-bottom: 2px solid currentColor !important;
-  font-size: 1.25rem !important;
-  font-weight: bold !important;
+.action {
+  width: 32px;
 }
 
 .mat-column-id {
-  border-right: 1px solid currentColor;
-  padding-right: 24px;
-  text-align: center;
+  width: 64px;
 }
 
 .mat-column-name {
-  border-right: 1px solid currentColor;
-  width: 60%;
-  padding-left: 16px;
-  text-align: left;
-}
-
-.mat-column-lessons {
-  border-right: 1px solid currentColor;
-  width: 30%;
-  padding-left: 16px;
-  text-align: left;
-}
-
-.mat-column-actions {
-  width: 8%;
-  text-align: center;
+  width: 50%;
 }

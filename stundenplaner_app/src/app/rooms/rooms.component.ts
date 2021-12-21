@@ -14,7 +14,7 @@ import { Util } from '../common/util';
 @Component({
   selector: 'app-rooms',
   templateUrl: './rooms.component.html',
-  styleUrls: ['./rooms.component.css'],
+  styleUrls: ['../global.css', './rooms.component.css'],
 })
 export class RoomsComponent implements OnInit {
   displayedColumns: string[] = ['actions', 'id', 'roomNumber', 'building'];
