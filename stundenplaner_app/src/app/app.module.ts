@@ -45,6 +45,11 @@ import {UserRoleOverviewComponent} from "./user-roles/user-role-overview/user-ro
 import {ShowPermissionsDialogComponent} from "./user-roles/show-permissions-dialog/show-permissions-dialog.component";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {EditLessonFormComponent} from './show-timetable/edit-lesson-form/edit-lesson-form.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {ChangeLanguageComponent} from './landing/change-language/change-language.component';
+import {ErrorSnackbarComponent} from './show-timetable/error-snackbar/error-snackbar.component';
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {SuccessSnackbarComponent} from './show-timetable/success-snackbar/success-snackbar.component';
 
 @NgModule({
   declarations: [
@@ -68,47 +73,54 @@ import {EditLessonFormComponent} from './show-timetable/edit-lesson-form/edit-le
     UserRoleOverviewComponent,
     ShowPermissionsDialogComponent,
     EditLessonFormComponent
+    ShowPermissionsDialogComponent,
+    ChangeLanguageComponent,
+    ErrorSnackbarComponent,
+    SuccessSnackbarComponent,
   ],
-    imports: [
-        BrowserModule,
-        HttpClientModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatSliderModule,
-        LayoutModule,
-        FlexLayoutModule,
-        MatToolbarModule,
-        MatButtonModule,
-        MatSidenavModule,
-        MatIconModule,
-        MatListModule,
-        MatTableModule,
-        MatTooltipModule,
-        MatFormFieldModule,
-        ReactiveFormsModule,
-        MatInputModule,
-        MatSortModule,
-        MatListModule,
-        MatGridListModule,
-        MatCardModule,
-        MatMenuModule,
-        HttpClientModule,
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatSliderModule,
+    LayoutModule,
+    FlexLayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MatTableModule,
+    MatTooltipModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatSortModule,
+    MatListModule,
+    MatGridListModule,
+    MatCardModule,
+    MatMenuModule,
+    HttpClientModule,
+    MatDialogModule,
         MatDialogModule,
-        FormsModule,
-        FormsModule,
-        MatExpansionModule,
-        MatPaginatorModule,
-        MatSelectModule,
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: httpTranslateLoader,
-                deps: [HttpClient],
-            },
-        }),
+    FormsModule,
+    MatExpansionModule,
+    MatPaginatorModule,
+    MatSelectModule,
+    BrowserAnimationsModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient],
+      },
+    }),
         MatAutocompleteModule,
 
-    ],
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

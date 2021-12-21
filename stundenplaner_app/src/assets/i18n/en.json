@@ -159,6 +159,13 @@
     "add": "Add",
     "delete": "Delete all fields",
     "edit_label": "Edit lesson",
-    "edit": "Edit"
+    "edit": "Edit",
+    "added": "Lesson was successfully added",
+    "edited": "Lesson was successfully edited"
+  },
+  "LANDING": {
+    "Description": "Timetable Planning Tool for the University",
+    "Submit": "Start Planning",
+    "SwitchLanguage":"Language"
   }
 }

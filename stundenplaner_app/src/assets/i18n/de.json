@@ -130,6 +130,8 @@
     "type": "Stundentyp",
     "note": "Notiz",
     "add": "Hinzufügen",
+    "added": "Vorlesung wurde erfolgreich hinzugefügt",
+    "edited": "Vorlesung wurde erfolgreich geändert",
     "delete": "Eingaben Löschen",
     "edit_label": "Stunde bearbeiten",
     "edit": "Ändern"
@@ -140,7 +142,6 @@
         "id": "Id",
         "typ": "Typ"
       },
-
       "TEXT": {
         "add_titel": "-Berechtigungen:",
         "body_text": "Nachfolgend finden Sie eine Aufschlüsselung der Berechtigungen und der hierfür zugeordneten Identifikationsnummer:",
@@ -160,5 +161,11 @@
         "search_txt": "Suchen sie nach {{value}}..."
       }
     }
+  },
+  "LANDING": {
+    "Description": "Stundenplanungs Tool für die Universität",
+    "Submit": "Jetzt Planen",
+    "SwitchLanguage":"Sprache"
+
   }
 }
