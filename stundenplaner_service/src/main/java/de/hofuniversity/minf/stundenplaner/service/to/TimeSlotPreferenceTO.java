@@ -14,6 +14,7 @@ public class TimeSlotPreferenceTO {
 
     private Long id;
     private Integer priority;
+    private Boolean forced;
     private TimeslotTO timeSlot;
     private Long lecturerProfile;
 
@@ -21,6 +22,7 @@ public class TimeSlotPreferenceTO {
         return new TimeSlotPreferenceTO(
                 timeSlotPreferenceDO.getId(),
                 timeSlotPreferenceDO.getPriority(),
+                timeSlotPreferenceDO.getForced(),
                 TimeslotTO.fromDO(timeSlotPreferenceDO.getTimeSlot()),
                 timeSlotPreferenceDO.getLecturerProfile().getId()
         );
