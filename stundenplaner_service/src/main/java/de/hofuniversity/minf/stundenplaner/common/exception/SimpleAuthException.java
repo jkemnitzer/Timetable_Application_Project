@@ -1,4 +1,4 @@
-package de.hofuniversity.minf.stundenplaner.common;
+package de.hofuniversity.minf.stundenplaner.common.exception;
 
 import lombok.Getter;
 
@@ -14,6 +14,6 @@ public class SimpleAuthException extends RuntimeException{
         this.type = type;
     }
 
-    private AuthErrorType type;
+    private final AuthErrorType type;
 
 }

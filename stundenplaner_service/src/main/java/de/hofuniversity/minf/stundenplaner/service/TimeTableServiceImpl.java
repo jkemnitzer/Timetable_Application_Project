@@ -1,6 +1,7 @@
 package de.hofuniversity.minf.stundenplaner.service;
 
-import de.hofuniversity.minf.stundenplaner.common.NotFoundException;
+import de.hofuniversity.minf.stundenplaner.common.excel.TimeTableWorkBookBuilder;
+import de.hofuniversity.minf.stundenplaner.common.exception.NotFoundException;
 import de.hofuniversity.minf.stundenplaner.persistence.lecture.LectureRepository;
 import de.hofuniversity.minf.stundenplaner.persistence.lecture.data.LectureDO;
 import de.hofuniversity.minf.stundenplaner.persistence.room.RoomRepository;
@@ -17,6 +18,7 @@ import de.hofuniversity.minf.stundenplaner.service.boundary.TimeTableService;
 import de.hofuniversity.minf.stundenplaner.service.to.LessonTO;
 import de.hofuniversity.minf.stundenplaner.service.to.TimeTableTO;
 import de.hofuniversity.minf.stundenplaner.service.to.TimeTableVersionTO;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -159,15 +161,31 @@ public class TimeTableServiceImpl implements TimeTableService {
         }
     }
 
-    private void setDependencies(LessonDO lessonDO, LessonTO lessonTO){
+    @Override
+    public Workbook exportAll() {
+        return new TimeTableWorkBookBuilder()
+                .addItemsToSheet(this.findAllLessons())
+                .build();
+    }
+
+    @Override
+    public Workbook exportVersion(Long versionId) {
+        TimeTableTO timeTableTO = this.findAllLessonsByVersion(versionId);
+        return new TimeTableWorkBookBuilder()
+                .addItemsToSheet(timeTableTO.getLessons())
+                .addVersionInfo(timeTableTO.getVersion())
+                .build();
+    }
+
+    private void setDependencies(LessonDO lessonDO, LessonTO lessonTO) {
         LectureDO lectureDO = lectureRepository.findById(lessonTO.getLectureId())
-                .orElseThrow(()->new NotFoundException(LectureDO.class, lessonTO.getLectureId()));
+                .orElseThrow(() -> new NotFoundException(LectureDO.class, lessonTO.getLectureId()));
         UserDO userDO = userRepository.findById(lessonTO.getLecturerId())
-                .orElseThrow(()->new NotFoundException(UserDO.class, lessonTO.getLecturerId()));
+                .orElseThrow(() -> new NotFoundException(UserDO.class, lessonTO.getLecturerId()));
         RoomDO roomDO = roomRepository.findById(lessonTO.getRoomId())
-                .orElseThrow(()->new NotFoundException(RoomDO.class, lessonTO.getRoomId()));
+                .orElseThrow(() -> new NotFoundException(RoomDO.class, lessonTO.getRoomId()));
         TimeslotDO timeslotDO = timeslotRepository.findById(lessonTO.getTimeslotId())
-                .orElseThrow(()->new NotFoundException(TimeslotDO.class, lessonTO.getTimeslotId()));
+                .orElseThrow(() -> new NotFoundException(TimeslotDO.class, lessonTO.getTimeslotId()));
         TimeTableVersionDO versionDO = versionRepository.findById(lessonTO.getVersionId())
                 .orElseThrow(()->new NotFoundException(TimeTableVersionDO.class, lessonTO.getVersionId()));
         lessonDO.setLectureDO(lectureDO);

@@ -1,6 +1,6 @@
 package de.hofuniversity.minf.stundenplaner.common.simpleauth;
 
-import de.hofuniversity.minf.stundenplaner.common.SimpleAuthException;
+import de.hofuniversity.minf.stundenplaner.common.exception.SimpleAuthException;
 import de.hofuniversity.minf.stundenplaner.persistence.user.data.UserDO;
 
 public interface SimpleAuthService {

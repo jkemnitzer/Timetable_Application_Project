@@ -1,6 +1,6 @@
 package de.hofuniversity.minf.stundenplaner.service;
 
-import de.hofuniversity.minf.stundenplaner.common.NotFoundException;
+import de.hofuniversity.minf.stundenplaner.common.exception.NotFoundException;
 import de.hofuniversity.minf.stundenplaner.persistence.faculty.FacultyRepository;
 import de.hofuniversity.minf.stundenplaner.persistence.faculty.data.FacultyDO;
 import de.hofuniversity.minf.stundenplaner.service.to.FacultyTO;
