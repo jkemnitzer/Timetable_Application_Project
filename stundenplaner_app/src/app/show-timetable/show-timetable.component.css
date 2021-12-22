@@ -1,0 +1,15 @@
+.container1 .mat-form-field{
+  margin-left: 8px;
+}
+.container1 .program-filter{
+  float:right;
+  margin-right: 8px;
+  width: 300px;
+}
+.container1 .filter_button{
+  margin: 8px;
+  position: absolute;
+  height: 45px;
+}
+
+

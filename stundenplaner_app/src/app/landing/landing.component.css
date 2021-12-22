@@ -1,189 +1,115 @@
-body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+.menu-spacer {
+  flex: 1 1 auto;
 }
 
-nav {
-  position: fixed;
+.landing-container {
+  position: absolute;
   top: 0;
+  bottom: 0;
+  right: 0;
   left: 0;
-  z-index: 9999;
-  width: 100%;
-  height: 10vh;
-  background-color: transparent;
+  overflow: hidden;
+}
+
+.desktop-menu {
+  padding-right: 100px;
+}
+
+.landing-main {
+  height: 100%;
+  overflow: hidden;
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: space-around;
-  margin-top:1rem;
 }
 
-nav .logo {
-  font-size: 1.5rem;
-  width:30%;
-}
-
-.nav-links {
-  list-style-type: none;
+.content {
   display: flex;
-}
-
-.nav-links li{
-  margin-left:1rem;
-}
-
-.hero {
-  min-height: 100vh;
-  background-image: linear-gradient(
-    90deg,
-    #b4f5ec 0%,
-    #ffffff 55%,
-    #ffffff 55%,
-    #ffffff 100%
-  );
-}
-
-
-.row {
-    display: flex;
-    flex-wrap: wrap;
-    width:80%;
-   padding-top:6rem;
-  margin: 0 auto;
-      
+  flex-wrap: wrap;
+  width: 80%;
+  margin-bottom: 12vh;
 }
 
 .content-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    max-width: 50%;
-}
-
-
-
-
-.btn {
-  width: 150px;
-  height: 50px;
-  border: 1px solid #333;
-  font-family: 'Cinzel', serif;
-  font-size: 20px;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+img {
+  margin: 0 auto;
+  width: auto;
+  height: 360px;
+}
+
+#description {
   position: relative;
-  z-index: 0;
-  transition: 1s;
-  }
-  
-  .btn::before, .btn::after {
-  position: absolute;
-  background: #fff;
-  z-index: -1;
-  transition: 1s;
-  content: '';
-  }
-  
-  .btn::before {
+  float: left;
+  font-size: 22px;
+  margin-bottom: 40px;
+  color: #673ab7;
+}
+
+.toggle {
+  margin-left: 20px;
+  display: flex;
+}
+
+mat-toolbar {
+  box-shadow: 0 3px 5px -1px #c5ebf433, 0 6px 10px #36434524, 0 1px 18px #84a5a81f;
+}
+
+.mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary {
+  font-size: 18px;
+}
+
+.mat-raised-button.mat-primary {
+  width: 180px;
+  font-size: 16px;
   height: 50px;
-  width: 130px;
-  }
-  
-  .btn::after {
-  width: 150px;
-  height: 30px;
-  }
-  
-  .noselect {
-  -webkit-touch-callout: none;
-    -webkit-user-select: none;
-     -khtml-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-        user-select: none;
-  }
-  
-  .btn:hover::before {
-  width: 0px;
-  background: #fff;
-  }
-  
-  .btn:hover::after {
-  height: 0px;
-  background: #fff;
-  }
-  
-  .btn:hover {
-  background: #fff;
-  }
-
-
-
-
-a {
-    color: #007bff;
-    text-decoration: none;
-    background-color: transparent;
 }
 
- img{
-  
-  width:80%;
-  margin:0 auto;
-  
-   width: 416px;
-   height: 360px;
-  
+:host ::ng-deep.mat-form-field {
+  display: inline-block;
+  position: relative;
+  text-align: left;
+  width: 85px;
+}
+
+:host ::ng-deep.mat-drawer-inner-container {
+  width: 40vw !important;
+  max-width: 200px;
+  min-width: 110px;
+}
+
+:host ::ng-deep.mat-list-base {
+  width: 100%;
+  text-align: center;
+}
+
+:host ::ng-deep.mat-list-item-content {
+  justify-content: center;
+  color: #673ab7;
+}
+
+@media screen and (max-width: 768px) {
+  .hidden.lw.md {
+    display: block;
   }
 
-@media screen and (max-width:768px){
-  nav{
-     flex-direction:column;
-    margin-top:1rem;
-  }
-  
-  nav .logo {
-    text-align: center;
-    width:100%;
-}
-  nav ul {
-        padding-inline-start: 0;
-    margin:0.2rem;
-  }
-  
-  .hero {
-  background-image: linear-gradient(
-    180deg,
-    #ffffff 0%,
-    #ffffff 55%,
-    #ffffff 55%,
-    #ffffff 100%
-  );
-}
-  h1{
-    margin-bottom:0;
-    
-  }
-  
-  .content-wrapper{
+  .content-wrapper {
     max-width: 100% !important;
     margin-top: auto;
-   
   }
-  img{
-    width:60%;
-    margin:0 auto;
-    padding: 2rem 0 2rem 0;
+
+  img {
+    height: 173px;
+    width: auto;
+  }
+
+  #description {
+    font-size: 3vw;
   }
 }
-
-@media screen and (min-width:100px){
-  .hero{
-  padding-top:6rem
-  }
-}
-

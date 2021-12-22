@@ -1,25 +1,35 @@
-<nav>
-    <div class="logo"> Stundenplanung </div>
-    <ul class="nav-links">
-        <li>About
-        </li>
-        <li>Services
-        </li>
-        <li>Contact
-        </li>
-    </ul>
-
-</nav>
-<main class="hero">
-    <div class="row">
-        <div class="content-wrapper ">
-            <h1>Beginnen Sie mit der Registrierung Ihre Stundenplanung</h1>
-            <p> </p>
-            <a [routerLink]="['/programs']" class="btn"> Jetz Planen</a>
+<div class="landing-container">
+  <mat-toolbar color="gradient-primary">
+    <mat-toolbar-row>
+      <button mat-icon-button fxShow="true" fxHide.gt-sm (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <app-login fxLayoutAlign="flex-end center"> </app-login>
+      <span class="menu-spacer"></span>
+      <span *ngIf="userService.loggedIn" fxFlex fxLayoutAlign="flex-end right" style="margin: 1em">
+        {{ "NAVIGATION.Greet" | translate }} {{ userService.username }}!
+      </span>
+      <app-change-language fxHide.lt-md></app-change-language>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-sidenav-container fxFlexFill>
+    <mat-sidenav #sidenav>
+      <mat-nav-list>
+        <app-change-language></app-change-language>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content fxFlexFill>
+      <main class="landing-main">
+        <div class="content">
+          <div>
+            <img src="/assets/125.png" />
+          </div>
+          <div class="content-wrapper">
+            <div id="description">{{"LANDING.Description" | translate}}<span></span></div>
+            <button mat-raised-button color="primary" (click)="navigate()">{{"LANDING.Submit" | translate}}</button>
+          </div>
         </div>
-        <img src="..\assets\Untitled-1.jpg" />
-
-    </div>
-
-
-</main>
+      </main>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
