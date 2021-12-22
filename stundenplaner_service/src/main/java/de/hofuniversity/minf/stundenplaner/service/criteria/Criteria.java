@@ -1,6 +1,6 @@
 package de.hofuniversity.minf.stundenplaner.service.criteria;
 
-import de.hofuniversity.minf.stundenplaner.common.NotFoundException;
+import de.hofuniversity.minf.stundenplaner.common.exception.NotFoundException;
 import de.hofuniversity.minf.stundenplaner.persistence.timetable.data.LessonDO;
 
 import java.util.*;
