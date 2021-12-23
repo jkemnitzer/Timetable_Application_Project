@@ -106,9 +106,12 @@ export class TimetableDayComponent implements OnInit, OnChanges{
     dialogRef.afterClosed().subscribe(updatedLesson => {
       if(typeof updatedLesson == 'string')return;
       const tempArray = this.dataSource.data.filter(value => value.id != lesson.id);
-      if(this.weekday == updatedLesson.weekdayNr) tempArray.push(updatedLesson);
+      if(this.weekday.id == updatedLesson.weekdayNr) tempArray.push(updatedLesson);
       else this.siblings.forEach(value => value.addLesson(updatedLesson));
       this.dataSource.data = tempArray;
+      if(this.dataSource.sort != null)
+        this.sortData(this.dataSource.sort);
+
     });
   }
 
