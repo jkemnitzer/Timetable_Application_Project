@@ -68,6 +68,13 @@ public class TimeTableServiceImpl implements TimeTableService {
     }
 
     @Override
+    public List<LessonTO> findAllLessons() {
+        return StreamSupport.stream(timeTableRepository.findAll().spliterator(), false)
+                .map(LessonTO::fromDO)
+                .toList();
+    }
+
+    @Override
     public List<LessonTO> findAllLessons(Long programId, Long semesterId, Integer weekdayNr, Long versionId,
                                          Long lecturerId, LocalTime start, LocalTime end) {
         boolean filtersSet = (programId != null) || (semesterId != null) || (weekdayNr != null) || (lecturerId != null)
@@ -94,6 +101,21 @@ public class TimeTableServiceImpl implements TimeTableService {
                     .toList();
         } else {
             return Collections.emptyList();
+        }
+    }
+
+    @Override
+    public TimeTableTO findAllLessonsByVersion(Long versionId) {
+        Optional<TimeTableVersionDO> optional = versionRepository.findById(versionId);
+        if (optional.isPresent()) {
+            return new TimeTableTO(
+                    TimeTableVersionTO.fromDO(optional.get()),
+                    timeTableRepository.findAllByTimeTableVersionDO(optional.get()).stream()
+                            .map(LessonTO::fromDO)
+                            .toList()
+            );
+        } else {
+            throw new NotFoundException(TimeTableVersionDO.class, versionId);
         }
     }
 
