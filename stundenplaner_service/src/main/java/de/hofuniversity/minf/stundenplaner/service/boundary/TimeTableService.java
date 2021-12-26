@@ -3,13 +3,15 @@ package de.hofuniversity.minf.stundenplaner.service.boundary;
 import de.hofuniversity.minf.stundenplaner.service.to.LessonTO;
 import de.hofuniversity.minf.stundenplaner.service.to.TimeTableTO;
 
+import java.time.LocalTime;
 import java.util.List;
 
 public interface TimeTableService {
 
-    List<LessonTO> findAllLessons();
+    List<LessonTO> findAllLessons(
+            Long programId, Long semesterId, Integer weekdayNr, Long versionId, Long lecturerId, LocalTime start, LocalTime end);
 
-    TimeTableTO findAllLessonsByVersion(Long versionId);
+    TimeTableTO findAllLessonsByVersion(Long programId, Long semesterId, Integer weekdayNr, Long id, Long versionId, LocalTime start, LocalTime end);
 
     TimeTableTO createTimeTable(TimeTableTO timeTableTO);
 

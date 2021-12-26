@@ -3,6 +3,10 @@ package de.hofuniversity.minf.stundenplaner.service;
 import de.hofuniversity.minf.stundenplaner.common.NotFoundException;
 import de.hofuniversity.minf.stundenplaner.persistence.lecture.LectureRepository;
 import de.hofuniversity.minf.stundenplaner.persistence.lecture.data.LectureDO;
+import de.hofuniversity.minf.stundenplaner.persistence.program.ProgramRepository;
+import de.hofuniversity.minf.stundenplaner.persistence.program.SemesterRepository;
+import de.hofuniversity.minf.stundenplaner.persistence.program.data.ProgramDO;
+import de.hofuniversity.minf.stundenplaner.persistence.program.data.SemesterDO;
 import de.hofuniversity.minf.stundenplaner.persistence.room.RoomRepository;
 import de.hofuniversity.minf.stundenplaner.persistence.room.data.RoomDO;
 import de.hofuniversity.minf.stundenplaner.persistence.timetable.TimeTableRepository;
@@ -20,6 +24,8 @@ import de.hofuniversity.minf.stundenplaner.service.to.TimeTableVersionTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalTime;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.StreamSupport;
@@ -33,6 +39,9 @@ public class TimeTableServiceImpl implements TimeTableService {
     private final RoomRepository roomRepository;
     private final LectureRepository lectureRepository;
     private final TimeslotRepository timeslotRepository;
+    private final TimeTableFilter filter;
+    private final ProgramRepository programRepository;
+    private final SemesterRepository semesterRepository;
 
     @Autowired
     public TimeTableServiceImpl(
@@ -41,32 +50,60 @@ public class TimeTableServiceImpl implements TimeTableService {
             UserRepository userRepository,
             RoomRepository roomRepository,
             LectureRepository lectureRepository,
-            TimeslotRepository timeslotRepository) {
+            TimeslotRepository timeslotRepository,
+            ProgramRepository programRepository,
+            SemesterRepository semesterRepository,
+            TimeTableFilter filter) {
         this.timeTableRepository = timeTableRepository;
         this.versionRepository = versionRepository;
         this.userRepository = userRepository;
         this.roomRepository = roomRepository;
         this.lectureRepository = lectureRepository;
         this.timeslotRepository = timeslotRepository;
+        this.programRepository = programRepository;
+        this.semesterRepository = semesterRepository;
+        this.filter = filter;
     }
 
     @Override
-    public List<LessonTO> findAllLessons() {
-        return StreamSupport.stream(timeTableRepository.findAll().spliterator(), false)
-                .map(LessonTO::fromDO)
-                .toList();
+    public List<LessonTO> findAllLessons(Long programId, Long semesterId, Integer weekdayNr, Long versionId,
+                                         Long lecturerId, LocalTime start, LocalTime end) {
+        boolean filtersSet = (programId != null) || (semesterId != null) || (weekdayNr != null) || (lecturerId != null)
+                || (start != null) || (end != null);
+        TimeTableVersionDO version = (versionId != null) ? versionRepository.findById(versionId).orElse(null) : null;
+        if (version != null && !filtersSet) {
+            return timeTableRepository.findAllByTimeTableVersionDO(version).stream()
+                    .map(LessonTO::fromDO)
+                    .toList();
+        }
+        List<LessonDO> unfiltered = StreamSupport.stream(timeTableRepository.findAll().spliterator(), false).toList();
+        if (!filtersSet) {
+            return unfiltered.stream().map(LessonTO::fromDO).toList();
+        }
+        ProgramDO programDO = (programId != null) ? programRepository.findById(programId).orElse(null) : null;
+        SemesterDO semesterDO = (semesterId != null) ? semesterRepository.findById(semesterId).orElse(null) : null;
+        UserDO lecturer = (lecturerId != null) ? userRepository.findById(lecturerId).orElse(null) : null;
+        boolean filtersInvalid = (programId != null && programDO == null) || (semesterId != null && semesterDO == null) ||
+                (versionId != null && version == null) || (lecturerId != null && lecturer == null);
+        if (!filtersInvalid) {
+            return filter.filter(unfiltered, programDO, semesterDO, weekdayNr, version, lecturer, start, end)
+                    .stream()
+                    .map(LessonTO::fromDO)
+                    .toList();
+        } else {
+            return Collections.emptyList();
+        }
     }
 
     @Override
-    public TimeTableTO findAllLessonsByVersion(Long versionId) {
+    public TimeTableTO findAllLessonsByVersion(Long programId, Long semesterId, Integer weekdayNr, Long versionId,
+                                               Long lecturerId, LocalTime start, LocalTime end) {
         Optional<TimeTableVersionDO> optional = versionRepository.findById(versionId);
         if (optional.isPresent()) {
             TimeTableVersionDO versionDO = optional.get();
             return new TimeTableTO(
                     TimeTableVersionTO.fromDO(versionDO),
-                    timeTableRepository.findAllByTimeTableVersionDO(versionDO).stream()
-                            .map(LessonTO::fromDO)
-                            .toList()
+                    this.findAllLessons(programId, semesterId, weekdayNr, versionId, lecturerId, start, end)
             );
         } else {
             throw new NotFoundException(TimeTableVersionDO.class, versionId);
