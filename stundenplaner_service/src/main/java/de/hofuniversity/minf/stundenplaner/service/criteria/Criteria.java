@@ -41,45 +41,8 @@ public class Criteria implements Criterion{
         }
     }
 
-    private List<Double> normalizeWeights(List<Double> weights) {
-        Double sum = 0.0;
-        List<Double> normalized = new ArrayList<>();
-
-        for (Double weight : weights) {
-            sum += weight;
-        }
-
-        Double factor = 1.0/sum;
-
-        for (Double weight : weights) {
-            normalized.add(weight * factor);
-        }
-
-        return normalized;
-    }
-
-    private Double logisticFunction(Double value) {
-        // 1 / (1 + ℯ^(-0.025 (x + 100)))
-        return (1.0 / (1 + Math.pow(Math.E, -0.03 * (value + 100))));
-    }
-
-    private List<Double> deLinearizeWeights(List<Double> weights, List<Double> values, Double sum) {
-        List<Double> deLinearizedWeights = new ArrayList<>();
-
-        int i = 0;
-        for(Double value: values) {
-            Double newWeight = (value - sum) * weights.get(i++);
-            newWeight = logisticFunction(newWeight);
-            deLinearizedWeights.add(newWeight);
-        }
-
-        return normalizeWeights(deLinearizedWeights);
-    }
-
     @Override
     public Double evaluate(List<LessonDO> lessonDOList) {
-        double sum = 0.0;
-
         List<Double> values = new ArrayList<>();
 
         for (Criterion nextKey : criteriaWeights.keySet()) {
@@ -89,15 +52,14 @@ public class Criteria implements Criterion{
                 return Double.NEGATIVE_INFINITY;
             }
 
-            sum += currentValue;
             values.add(currentValue);
         }
 
         // due to the normalization of the weights, sum is between 0 and 100 (-inf for invalid combinations)
 
-        List<Double> newWeights = deLinearizeWeights(weights, values, sum);
+        List<Double> newWeights = deLinearizeWeights(weights, values);
 
-        sum = 0.0;
+        double sum = 0.0;
 
         for(int i = 0; i < values.size(); i++) {
             sum += values.get(i) * newWeights.get(i);
@@ -109,7 +71,6 @@ public class Criteria implements Criterion{
     @Override
     public List<CriterionExplaination> explain(List<LessonDO> lessonDOList) {
         List<CriterionExplaination> results = new ArrayList<>();
-        double sum = 0.0;
         List<Double> values = new ArrayList<>();
 
         Iterator<Criterion> iterator = criteriaWeights.keySet().iterator();
@@ -117,13 +78,12 @@ public class Criteria implements Criterion{
             Criterion nextKey = iterator.next();
             double currentValue = nextKey.evaluate(lessonDOList) * criteriaWeights.get(nextKey);
 
-            sum += currentValue;
             values.add(currentValue);
         }
 
         // due to the normalization of the weights, sum is between 0 and 100 (-inf for invalid combinations)
 
-        List<Double> newWeights = deLinearizeWeights(weights, values, sum);
+        List<Double> newWeights = deLinearizeWeights(weights, values);
 
 
         int i = 0;
@@ -145,5 +105,45 @@ public class Criteria implements Criterion{
             myInstance = new Criteria();
         }
         return myInstance;
+    }
+
+    public static List<Double> normalizeWeights(List<Double> weights) {
+        Double sum = 0.0;
+        List<Double> normalized = new ArrayList<>();
+
+        for (Double weight : weights) {
+            sum += weight;
+        }
+
+        Double factor = 1.0/sum;
+
+        for (Double weight : weights) {
+            normalized.add(weight * factor);
+        }
+
+        return normalized;
+    }
+
+    public static Double logisticFunction(Double value) {
+        // 1 / (1 + ℯ^(-0.025 (x + 100)))
+        return (1.0 / (1 + Math.pow(Math.E, -0.025 * (value + 100))));
+    }
+
+    public static List<Double> deLinearizeWeights(List<Double> weights, List<Double> values) {
+        List<Double> deLinearizedWeights = new ArrayList<>();
+        Double sum = 0.0;
+
+        for(Double value: values) {
+            sum += value;
+        }
+
+        int i = 0;
+        for(Double value: values) {
+            Double newWeight = (value - sum) * weights.get(i++);
+            newWeight = logisticFunction(newWeight);
+            deLinearizedWeights.add(newWeight);
+        }
+
+        return normalizeWeights(deLinearizedWeights);
     }
 }
