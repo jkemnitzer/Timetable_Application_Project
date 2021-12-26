@@ -11,7 +11,7 @@ import {DialogType, EditUsersDialogComponent} from "./edit-users-dialog/edit-use
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css'],
+  styleUrls: ['../global.css', './users.component.css'],
 })
 export class UsersComponent implements OnInit {
   displayedColumns: string[] = ['actions', 'id', 'username', 'title', 'firstName', 'lastName','email','status'];

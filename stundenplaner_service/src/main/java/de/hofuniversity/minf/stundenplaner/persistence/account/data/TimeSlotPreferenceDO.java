@@ -31,6 +31,9 @@ public class TimeSlotPreferenceDO {
     @Column(name = "priority")
     private Integer priority;
 
+    @Column(name = "forced")
+    private Boolean forced;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "fk_timeslot_id", nullable = false)
     private TimeslotDO timeSlot;
@@ -43,6 +46,7 @@ public class TimeSlotPreferenceDO {
         return new TimeSlotPreferenceDO(
                 timeSlotPreferenceTO.getId(),
                 timeSlotPreferenceTO.getPriority(),
+                timeSlotPreferenceTO.getForced(),
                 TimeslotDO.fromTO(timeSlotPreferenceTO.getTimeSlot()),
                 null
         );

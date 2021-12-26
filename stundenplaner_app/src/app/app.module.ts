@@ -37,9 +37,14 @@ import { EditUsersDialogComponent } from './users/edit-users-dialog/edit-users-d
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LandingComponent } from './landing/landing.component';
+import {ShowTimetableComponent} from './show-timetable/show-timetable.component';
+import {TimetableDayComponent} from './show-timetable/timetable-day/timetable-day.component';
+import {MatExpansionModule} from "@angular/material/expansion";
 import {UserRoleOverviewComponent} from "./user-roles/user-role-overview/user-role-overview.component";
 import {ShowPermissionsDialogComponent} from "./user-roles/show-permissions-dialog/show-permissions-dialog.component";
-
+import {MatSelectModule} from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ChangeLanguageComponent } from './landing/change-language/change-language.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +53,8 @@ import {ShowPermissionsDialogComponent} from "./user-roles/show-permissions-dial
     NavigationComponent,
     NavigationComponent,
     EditProgramDialogComponent,
+    ShowTimetableComponent,
+    TimetableDayComponent,
     EditRoomDialogComponent,
     NavigationComponent,
     LoginComponent,
@@ -58,7 +65,8 @@ import {ShowPermissionsDialogComponent} from "./user-roles/show-permissions-dial
     EditUsersDialogComponent,
     LandingComponent,
     UserRoleOverviewComponent,
-    ShowPermissionsDialogComponent
+    ShowPermissionsDialogComponent,
+    ChangeLanguageComponent
   ],
   imports: [
     BrowserModule,
@@ -86,7 +94,12 @@ import {ShowPermissionsDialogComponent} from "./user-roles/show-permissions-dial
     HttpClientModule,
     MatDialogModule,
     FormsModule,
+    FormsModule,
+    MatExpansionModule,
     MatPaginatorModule,
+    MatSelectModule,
+    BrowserAnimationsModule,
+    MatSlideToggleModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

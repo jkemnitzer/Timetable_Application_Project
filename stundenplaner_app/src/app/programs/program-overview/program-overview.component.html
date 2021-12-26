@@ -1,4 +1,4 @@
-<div class="outer" fxLayout="column">
+<div class="lr-pad-12" fxLayout="column">
   <mat-form-field appearance="standard" class="program-filter">
     <mat-label>{{'PROGRAM.Filter' | translate}}</mat-label>
     <input
@@ -8,9 +8,11 @@
       placeholder="{{'PROGRAM.PLACEHOLDER.id' | translate}}"/>
   </mat-form-field>
 
-  <table mat-table matSort [dataSource]="dataSource">
+  <div class="spacer-12"></div>
+
+  <table mat-table class="width-100" matSort [dataSource]="dataSource">
     <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef>
+      <th mat-header-cell *matHeaderCellDef class="table-r-border">
         <button
           (click)="toggleEditing()"
           class="action"
@@ -28,7 +30,7 @@
           <mat-icon>add</mat-icon>
         </button>
       </th>
-      <td mat-cell *matCellDef="let program">
+      <td mat-cell *matCellDef="let program" class="table-r-border">
         <button
           (click)="editRow(program)"
           [disabled]="editEnabled?null:true"
@@ -46,8 +48,8 @@
       </td>
     </ng-container>
     <ng-container matColumnDef="id">
-      <th *matHeaderCellDef mat-header-cell mat-sort-header>Id</th>
-      <td *matCellDef="let program" mat-cell>{{ program.id }}</td>
+      <th class="table-leading-entry" *matHeaderCellDef mat-header-cell mat-sort-header>Id</th>
+      <td class="table-leading-entry" *matCellDef="let program" mat-cell>{{ program.id }}</td>
     </ng-container>
     <ng-container matColumnDef="name">
       <th *matHeaderCellDef mat-header-cell mat-sort-header>Name</th>

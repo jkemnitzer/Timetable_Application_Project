@@ -1,4 +1,4 @@
-<mat-sidenav-container class="sidenav-container">
+<mat-sidenav-container class="height-100">
   <mat-sidenav
     class="sidenav"
     fixedInViewport
@@ -32,8 +32,9 @@
         <mat-icon>face</mat-icon>
         <span>Benutzer</span>
       </a>
-      <a mat-list-item href="#"
-        ><mat-icon>event</mat-icon>
+      <a mat-list-item [routerLink]="['/show-timetable']"
+         routerLinkActive="router-link-active">
+        <mat-icon>event</mat-icon>
         {{ "NAVIGATION.Stundenplan" | translate }}</a
       >
 
@@ -46,7 +47,6 @@
         <span>{{ "NAVIGATION.Vorlesungen" | translate }}</span>
       </a>
       <a
-        *ngIf="userService.loggedIn"
         mat-list-item
         [routerLink]="['/profile']"
         routerLinkActive="router-link-active"
@@ -55,7 +55,6 @@
         <span>{{ "NAVIGATION.Profil" | translate }}</span>
       </a>
       <a
-        *ngIf="userService.loggedIn"
         mat-list-item
         [routerLink]="['/user-role']"
         routerLinkActive="router-link-active">

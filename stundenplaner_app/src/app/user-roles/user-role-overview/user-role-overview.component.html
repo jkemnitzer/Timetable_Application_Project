@@ -1,36 +1,24 @@
-<div class="role-root width-0 mat-typography">
-
-  <div class="spacer-12"></div>
-
-  <!-- filter-element -->
-  <div class="center mat-elevation-z4 width-1 pad-4 flex-lr">
-    <div class="spacer-24"></div>
-
-    <mat-form-field appearance="standard" class="role-filter width-0 pad-4">
-      <mat-label>{{ "USER_ROLES.OVERVIEW.TEXT.filter" | translate }}</mat-label>
-      <input #input (keyup)="filter($event)" matInput placeholder="{{'USER_ROLES.OVERVIEW.TEXT.search_txt' | translate: {
-        value: strElementsToFilter(['USER_ROLES.OVERVIEW.COLUMNS.id' | translate, 'USER_ROLES.OVERVIEW.COLUMNS.benutzerrolle' | translate, 'USER_ROLES.OVERVIEW.COLUMNS.berechtigung' | translate],
+<div class="lr-pad-12" fxLayout="column">
+  <mat-form-field appearance="standard">
+    <mat-label>{{ "USER_ROLES.OVERVIEW.TEXT.filter" | translate }}</mat-label>
+    <input #input
+           (keyup)="filter($event)"
+           matInput placeholder="{{'USER_ROLES.OVERVIEW.TEXT.search_txt' | translate: {
+           value: strElementsToFilter(['USER_ROLES.OVERVIEW.COLUMNS.id' | translate, 'USER_ROLES.OVERVIEW.COLUMNS.benutzerrolle' | translate, 'USER_ROLES.OVERVIEW.COLUMNS.berechtigung' | translate],
         'USER_ROLES.OVERVIEW.TEXT.filter_oder' | translate)} }}"
-      />
-    </mat-form-field>
-
-    <div class="spacer-24"></div>
-  </div>
+    />
+  </mat-form-field>
 
   <div class="spacer-12"></div>
 
-  <!-- content div -->
-  <div class="center mat-elevation-z4 width-1 pad-4">
-
-    <!-- table -->
-    <table mat-table class="width-0"
-           [dataSource]="dataSource"
-           matSort (matSortChange)="announceSortChange($event)">
+  <table mat-table class="width-100"
+         [dataSource]="dataSource"
+         matSort (matSortChange)="announceSortChange($event)">
 
       <!-- definition of the column templates -->
       <ng-container matColumnDef="id" >
-        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Nach Id sortieren"> {{ "USER_ROLES.OVERVIEW.COLUMNS.id" | translate }} </th>
-        <td mat-cell *matCellDef="let userRole"> {{ userRole.id }} </td>
+        <th class="table-leading-entry" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Nach Id sortieren"> {{ "USER_ROLES.OVERVIEW.COLUMNS.id" | translate }} </th>
+        <td class="table-leading-entry" mat-cell *matCellDef="let userRole"> {{ userRole.id }} </td>
       </ng-container>
       <ng-container matColumnDef="type" >
         <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Nach Benutzerrolle sortieren"> {{ "USER_ROLES.OVERVIEW.COLUMNS.benutzerrolle" | translate }} </th>
@@ -41,9 +29,9 @@
         <td mat-cell *matCellDef="let userRole"> {{ strListedIDPermissions(userRole) }} </td>
       </ng-container>
 
-      <ng-container matColumnDef="actions" class="mar-4">
-        <th mat-header-cell *matHeaderCellDef> </th>
-        <td mat-cell *matCellDef="let userRole">
+      <ng-container matColumnDef="actions">
+        <th class="table-r-border" mat-header-cell *matHeaderCellDef> </th>
+        <td class="table-r-border" mat-cell *matCellDef="let userRole">
           <button mat-icon-button class="action"
                   (click)="showPermissions(userRole)"
                   disabled="{{hasNoPermissions(userRole)}}">
@@ -52,18 +40,15 @@
         </td>
       </ng-container>
 
-      <!-- display columns -->
-      <tr mat-header-row *matHeaderRowDef="columnsToDisplay "></tr>
-      <tr mat-row *matRowDef="let row; columns: columnsToDisplay"></tr>
+    <!-- display columns -->
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay "></tr>
+    <tr mat-row *matRowDef="let row; columns: columnsToDisplay"></tr>
 
-      <!-- empty view -->
-      <tr *matNoDataRow class="mat-row">
-        <td class="mat-cell" colspan="3">
-          <span class="no-filter-message">{{ "USER_ROLES.OVERVIEW.TEXT.empty_table" | translate }}</span>
-        </td>
-      </tr>
-
-    </table>
-
-  </div>
+    <!-- empty view -->
+    <tr *matNoDataRow class="mat-row">
+      <td class="mat-cell" colspan="3">
+        <span class="no-filter-message">{{ "USER_ROLES.OVERVIEW.TEXT.empty_table" | translate }}</span>
+      </td>
+    </tr>
+  </table>
 </div>

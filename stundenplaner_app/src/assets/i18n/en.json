@@ -124,5 +124,32 @@
         "search_txt": "Search for {{value}}..."
       }
     }
+  },
+  "SHOW_TIMETABLE": {
+    "faculty": "Faculty",
+    "major": "major",
+    "semester": "Semester",
+    "search": "Search",
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday",
+    "saturday": "Saturday",
+    "searchTerms": "Search for rooms lecturers and Lessons",
+    "room": "Room",
+    "lecturer": "Lecturer",
+    "start": "Start",
+    "end": "End",
+    "name": "Name",
+    "edit": "Edit",
+    "delete": "Delete",
+    "details": "Details"
+
+  },
+  "LANDING": {
+    "Description": "Timetable Planning Tool for the University",
+    "Submit": "Start Planning",
+    "SwitchLanguage":"Language"
   }
 }
