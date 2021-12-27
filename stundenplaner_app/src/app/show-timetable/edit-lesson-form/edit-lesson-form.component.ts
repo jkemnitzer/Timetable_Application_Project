@@ -292,5 +292,6 @@ export class EditLessonFormComponent implements OnInit {
       if(!timeslot) return;
       return timeslot.weekdayNr == day.id;
     })
+    this.timeSlotsFormControl.reset();
   }
 }
