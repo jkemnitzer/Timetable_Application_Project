@@ -6,9 +6,7 @@ import de.hofuniversity.minf.stundenplaner.service.to.TimeTableTO;
 import java.util.List;
 
 public interface Criterion {
-
-    double evaluate(List<LessonDO> lessonDOList);
-
+    Double evaluate(List<LessonDO> lessonDOList);
     List<CriterionExplaination> explain(List<LessonDO> lessonDOList);
 
 }
