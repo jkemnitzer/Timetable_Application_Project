@@ -1,0 +1,18 @@
+<!-- UNKNOWN -->
+<div class="h-centered-div pad-36 width-60" [style.display]="isGuardReasonType(GuardReason.UNKNOWN)?'visible':'none'">
+  <mat-icon class="ic-size-60" color="primary">lock</mat-icon>
+  <h1>{{ "GUARD_VIEW.UNKNOWN.title" | translate }}</h1>
+  <p>{{ "GUARD_VIEW.UNKNOWN.text" | translate }}</p>
+</div>
+<!-- MUST BE LOGGED IN -->
+<div class="h-centered-div pad-36 width-60" [style.display]="isGuardReasonType(GuardReason.MUST_BE_LOGGED_IN)?'visible':'none'">
+  <mat-icon class="ic-size-60" color="primary">lock</mat-icon>
+  <h1>{{ "GUARD_VIEW.MUST_BE_LOGGED_IN.title" | translate }}</h1>
+  <p>{{ "GUARD_VIEW.MUST_BE_LOGGED_IN.text" | translate }}</p>
+</div>
+<!-- MUST HAVE PERMISSION -->
+<div class="h-centered-div pad-36 width-60" [style.display]="isGuardReasonType(GuardReason.MUST_HAVE_PERMISSION)?'visible':'none'">
+  <mat-icon class="ic-size-60" color="primary">lock</mat-icon>
+  <h1>{{ "GUARD_VIEW.MUST_HAVE_PERMISSION.title" | translate }}</h1>
+  <p>{{ "GUARD_VIEW.MUST_HAVE_PERMISSION.text" | translate }}</p>
+</div>

@@ -151,5 +151,18 @@
     "Description": "Timetable Planning Tool for the University",
     "Submit": "Start Planning",
     "SwitchLanguage":"Language"
+  "GUARD_VIEW": {
+    "UNKNOWN": {
+      "title": "Access Restricted.",
+      "text" : "The requested view via this link is restricted or may not be available. If you think the requested view should be available to you or if you have questions about this service please contact the owner."
+    },
+    "MUST_BE_LOGGED_IN": {
+      "title": "Access Restricted.",
+      "text" : "You must be logged-in to view this link, or the link may not be available. Please login with your account or create a new account. If you have questions about this service feel free to contact the owner."
+    },
+    "MUST_HAVE_PERMISSION": {
+      "title": "Access Restricted.",
+      "text" : "You don't have permission to view this link, or the link may not be available. Please contact the owner and ask to invite you to this link, or switch accounts."
+    }
   }
 }
