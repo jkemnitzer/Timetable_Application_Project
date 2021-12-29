@@ -16,6 +16,9 @@ public class CriterionRegistry {
 
         // Add criteria and their string representation using the following Syntax:
         //criteriaList.put(RoomCriteria.CriterionName, new RoomCriteria());
+
+
+        criteriaList.put(CriteriaRoom.CriterionName, new CriteriaRoom());
         criteriaList.put(CriterionTimePreferenceLecturer.CriterionName, new CriterionTimePreferenceLecturer());
         criteriaList.put(CriterionModulesOfLecturer.CriterionName, new CriterionModulesOfLecturer());
 

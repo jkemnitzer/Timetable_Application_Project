@@ -5,8 +5,15 @@ import de.hofuniversity.minf.stundenplaner.service.to.TimeTableTO;
 
 import java.util.List;
 
+/**
+ * @author KMP
+ *
+ */
+
 public interface Criterion {
-    Double evaluate(List<LessonDO> lessonDOList);
+
+    double evaluate(List<LessonDO> lessonDOList);
+
     List<CriterionExplaination> explain(List<LessonDO> lessonDOList);
 
 }

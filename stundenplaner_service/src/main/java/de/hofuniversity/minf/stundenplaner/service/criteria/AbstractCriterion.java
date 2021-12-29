@@ -3,13 +3,12 @@ package de.hofuniversity.minf.stundenplaner.service.criteria;
 import de.hofuniversity.minf.stundenplaner.persistence.timetable.data.LessonDO;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public abstract class AbstractCriterion implements Criterion{
     public static final String CriterionName = "CriterionFreeDaysForStudents";
     @Override
-    public Double evaluate(List<LessonDO> lessonDOList) {
+    public double evaluate(List<LessonDO> lessonDOList) {
         List<Double> weights = new ArrayList<>();
         List<Double> values = new ArrayList<>();
 
@@ -47,7 +46,7 @@ public abstract class AbstractCriterion implements Criterion{
         double sum = 0.0;
 
         for(int i = 0; i < values.size(); i++) {
-            Double value = values.get(i) * weights.get(i);
+            double value = values.get(i) * weights.get(i);
             if (value < 100.0) {
                 CriterionExplaination criterionExplaination = createExplanation(lessonDOList.get(i), value);
                 results.add(criterionExplaination);
@@ -57,6 +56,6 @@ public abstract class AbstractCriterion implements Criterion{
         return results;
     }
 
-    public abstract Double evaluate(LessonDO lesson);
+    public abstract double evaluate(LessonDO lesson);
     public abstract CriterionExplaination createExplanation(LessonDO lesson, Double value);
 }
