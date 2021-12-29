@@ -39,13 +39,17 @@ public class ModulePreferenceDO {
     @JoinColumn(name = "fk_lecture_id", nullable = false)
     private LectureDO lecture;
 
+    @Column(name = "room_feature_requirement")
+    private String roomFeatureRequirement;
+
 
     public static ModulePreferenceDO fromTO(ModulePreferenceTO modulePreferenceTO) {
         return new ModulePreferenceDO(
                 modulePreferenceTO.getId(),
                 modulePreferenceTO.getPriority(),
                 null,
-                null
+                null,
+                modulePreferenceTO.getRoomFeatureRequirment()
         );
     }
 }

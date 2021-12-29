@@ -3,14 +3,12 @@ package de.hofuniversity.minf.stundenplaner.service.criteria;
 import de.hofuniversity.minf.stundenplaner.persistence.account.data.ModulePreferenceDO;
 import de.hofuniversity.minf.stundenplaner.persistence.timetable.data.LessonDO;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class CriterionModulesOfLecturer extends AbstractCriterion {
     public static final String CriterionName = "CriterionModulesOfLecturer";
 
-    public Double evaluate(LessonDO lesson) {
+    public double evaluate(LessonDO lesson) {
         if(lesson.getLectureDO() == null) {
             // If no lecturer is assigned to the lesson, this should not have a negative impact on the
             // score of the lesson

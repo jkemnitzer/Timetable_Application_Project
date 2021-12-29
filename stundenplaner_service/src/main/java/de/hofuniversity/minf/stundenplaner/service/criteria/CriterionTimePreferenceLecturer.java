@@ -1,6 +1,5 @@
 package de.hofuniversity.minf.stundenplaner.service.criteria;
 
-import de.hofuniversity.minf.stundenplaner.persistence.account.data.ModulePreferenceDO;
 import de.hofuniversity.minf.stundenplaner.persistence.account.data.TimeSlotPreferenceDO;
 import de.hofuniversity.minf.stundenplaner.persistence.timetable.data.LessonDO;
 
@@ -9,7 +8,7 @@ import java.util.HashMap;
 public class CriterionTimePreferenceLecturer extends AbstractCriterion {
     public static final String CriterionName = "CriterionTimePreferenceLecturer";
 
-    public Double evaluate(LessonDO lesson) {
+    public double evaluate(LessonDO lesson) {
         if (lesson.getTimeslotDO() == null) {
             // If no timeslot is assigned to the lesson, this should not have a negative impact on the
             // score of the lesson
