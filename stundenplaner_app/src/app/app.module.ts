@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { UserService } from "./user-service/user.service";
+import { LoggedInUserGuard } from "./guards/logged-in-user/logged-in-user-guard";
+import { GuardViewComponent } from './guards/guard-view/guard-view.component';
 import { AppComponent } from './app.component';
 import { RoomsComponent } from './rooms/rooms.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -37,14 +40,16 @@ import { EditUsersDialogComponent } from './users/edit-users-dialog/edit-users-d
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LandingComponent } from './landing/landing.component';
-import {ShowTimetableComponent} from './show-timetable/show-timetable.component';
-import {TimetableDayComponent} from './show-timetable/timetable-day/timetable-day.component';
+import {ShowTimetableComponent} from "./show-timetable/show-timetable.component";
+import {TimetableDayComponent} from "./show-timetable/timetable-day/timetable-day.component";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {UserRoleOverviewComponent} from "./user-roles/user-role-overview/user-role-overview.component";
-import {ShowPermissionsDialogComponent} from "./user-roles/show-permissions-dialog/show-permissions-dialog.component";
 import {MatSelectModule} from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ChangeLanguageComponent } from './landing/change-language/change-language.component';
+import { ShowPermissionsDialogComponent } from "./user-roles/show-permissions-dialog/show-permissions-dialog.component";
+import {PermissionGuard} from "./guards/permission/permission-guard";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +71,8 @@ import { ChangeLanguageComponent } from './landing/change-language/change-langua
     LandingComponent,
     UserRoleOverviewComponent,
     ShowPermissionsDialogComponent,
-    ChangeLanguageComponent
+    ChangeLanguageComponent,
+    GuardViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -108,7 +114,11 @@ import { ChangeLanguageComponent } from './landing/change-language/change-langua
       },
     }),
   ],
-  providers: [],
+  providers: [
+    LoggedInUserGuard,
+    PermissionGuard,
+    UserService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

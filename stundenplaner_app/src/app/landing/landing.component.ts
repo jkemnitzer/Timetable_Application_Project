@@ -1,8 +1,9 @@
 
 import { TranslateService } from '@ngx-translate/core';
-import { UserService } from '../users/user.service';
+import { UserService } from "../user-service/user.service";
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
