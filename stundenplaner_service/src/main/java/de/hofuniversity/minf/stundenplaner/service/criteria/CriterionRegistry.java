@@ -22,6 +22,8 @@ public class CriterionRegistry {
         criteriaList.put(CriterionTimePreferenceLecturer.CriterionName, new CriterionTimePreferenceLecturer());
         criteriaList.put(CriterionModulesOfLecturer.CriterionName, new CriterionModulesOfLecturer());
 
+        criteriaList.put(CriterionRoomSize.CriterionName, new CriterionRoomSize());
+
         allCriteria = new ArrayList<>();
         for(Criterion criterion: criteriaList.values()) {
             allCriteria.add(criterion);
