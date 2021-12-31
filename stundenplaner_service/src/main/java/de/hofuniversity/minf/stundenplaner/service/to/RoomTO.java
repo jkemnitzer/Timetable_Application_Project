@@ -25,18 +25,22 @@ public class RoomTO {
     private Long id;
     private String number;
     private String building;
-    private Integer seats;
     private List<FeatureTO> featureList;
+    private Integer seats;
+    private String location;
+
 
     public static RoomTO fromDO(RoomDO roomDO){
         return new RoomTO(
                 roomDO.getId(),
                 roomDO.getRoomNumber(),
                 roomDO.getBuilding(),
-                roomDO.getSeats(),
                 roomDO.getFeatureList().stream()
                         .map(FeatureTO::fromDO)
-                        .collect(Collectors.toList())
+                        .collect(Collectors.toList()),
+                roomDO.getSeats(),
+                roomDO.getLocation()
+
         );
 
     }

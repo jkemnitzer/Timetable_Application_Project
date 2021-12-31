@@ -29,8 +29,8 @@ public class RoomServiceTest {
     @InjectMocks
     private RoomServiceImpl roomService;
 
-    private final RoomDO ROOM_DO_1 = new RoomDO(1L, "123", "TestBuildung1",  new ArrayList<FeatureDO>(),100);
-    private final RoomDO ROOM_DO_2 = new RoomDO(2L, "456", "TestBuildung2",  new ArrayList<FeatureDO>(),100);
+    private final RoomDO ROOM_DO_1 = new RoomDO(1L, "123", "TestBuildung1",  new ArrayList<FeatureDO>(),100, "Hof");
+    private final RoomDO ROOM_DO_2 = new RoomDO(2L, "456", "TestBuildung2",  new ArrayList<FeatureDO>(),100, "Hof");
 
 
     @Test
@@ -69,7 +69,7 @@ public class RoomServiceTest {
 
     @Test
     void testUpdate(){
-        RoomDO testReturn = new RoomDO(ROOM_DO_1.getId(), ROOM_DO_1.getRoomNumber(), "TestBuildung1",  new ArrayList<FeatureDO>(),100);
+        RoomDO testReturn = new RoomDO(ROOM_DO_1.getId(), ROOM_DO_1.getRoomNumber(), "TestBuildung1",  new ArrayList<FeatureDO>(),100, "Hof");
         when(roomRepository.findById(1L)).thenReturn(Optional.of(testReturn));
         when(roomRepository.findById(3L)).thenReturn(Optional.empty());
         when(roomRepository.save(any(RoomDO.class))).thenReturn(testReturn);

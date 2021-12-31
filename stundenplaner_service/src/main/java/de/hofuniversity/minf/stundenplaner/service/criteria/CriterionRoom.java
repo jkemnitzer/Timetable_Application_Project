@@ -14,9 +14,9 @@ import java.util.List;
  *
  */
 
-public class CriteriaRoom extends AbstractCriterion{
+public class CriterionRoom extends AbstractCriterion{
 
-    public static final String CriterionName="CriteriaRoom";
+    public static final String CriterionName="CriterionRoom";
 
 
 

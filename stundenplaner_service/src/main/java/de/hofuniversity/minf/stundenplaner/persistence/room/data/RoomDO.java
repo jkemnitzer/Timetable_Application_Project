@@ -52,6 +52,11 @@ public class RoomDO {
     @Column(name = "seats")
     private Integer seats;
 
+
+    @Column(name = "location")
+    private String location;
+
+
     public void updateFromTO(RoomTO roomTO) {
         this.setRoomNumber(roomTO.getNumber());
         this.setBuilding(roomTO.getBuilding());
@@ -63,7 +68,8 @@ public class RoomDO {
                 roomTo.getNumber(),
                 roomTo.getBuilding(),
                 Collections.emptyList(),
-                roomTo.getSeats()
+                roomTo.getSeats(),
+                roomTo.getLocation()
         );
     }
 
