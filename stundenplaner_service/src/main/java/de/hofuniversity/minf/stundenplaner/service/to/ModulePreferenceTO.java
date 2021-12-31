@@ -16,13 +16,15 @@ public class ModulePreferenceTO {
     private Integer priority;
     private Long lecturerProfile;
     private Long lecture;
+    private String roomFeatureRequirment;
 
     public static ModulePreferenceTO fromDO(ModulePreferenceDO modulePreferenceDO) {
         return new ModulePreferenceTO(
                 modulePreferenceDO.getId(),
                 modulePreferenceDO.getPriority(),
                 modulePreferenceDO.getLecturerProfile().getId(),
-                modulePreferenceDO.getLecture().getId()
+                modulePreferenceDO.getLecture().getId(),
+                modulePreferenceDO.getRoomFeatureRequirement()
         );
     }
 

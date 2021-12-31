@@ -42,7 +42,7 @@ public class Criteria implements Criterion{
     }
 
     @Override
-    public Double evaluate(List<LessonDO> lessonDOList) {
+    public double evaluate(List<LessonDO> lessonDOList) {
         List<Double> values = new ArrayList<>();
 
         for (Criterion nextKey : criteriaWeights.keySet()) {

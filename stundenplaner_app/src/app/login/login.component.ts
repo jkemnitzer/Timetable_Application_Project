@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {MatMenuTrigger} from "@angular/material/menu";
-import {UserService} from "../users/user.service";
+import {UserService} from "../user-service/user.service";
 
 @Component({
   selector: 'app-login',

@@ -36,7 +36,7 @@ public abstract class AbstractCriterionProgram implements Criterion{
 
 
     @Override
-    public Double evaluate(List<LessonDO> lessonDOList) {
+    public double evaluate(List<LessonDO> lessonDOList) {
         List<Double> weights = new ArrayList<>();
         List<Double> values = new ArrayList<>();
         Map<String, List<LessonDO>> lessonsPerCourse = getLessonsByCourse(lessonDOList);
