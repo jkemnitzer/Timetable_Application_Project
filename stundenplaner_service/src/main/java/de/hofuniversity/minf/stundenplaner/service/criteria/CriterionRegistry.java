@@ -16,12 +16,11 @@ public class CriterionRegistry {
 
         // Add criteria and their string representation using the following Syntax:
         //criteriaList.put(RoomCriteria.CriterionName, new RoomCriteria());
-
-
-        criteriaList.put(CriteriaRoom.CriterionName, new CriteriaRoom());
+        criteriaList.put(CriterionRoom.CriterionName, new CriterionRoom());
         criteriaList.put(CriterionTimePreferenceLecturer.CriterionName, new CriterionTimePreferenceLecturer());
         criteriaList.put(CriterionModulesOfLecturer.CriterionName, new CriterionModulesOfLecturer());
-
+        criteriaList.put(CriterionFreeDaysForStudents.CriterionName, new CriterionFreeDaysForStudents());
+        criteriaList.put(CriterionLocationChange.CriterionName, new CriterionLocationChange());
         criteriaList.put(CriterionRoomSize.CriterionName, new CriterionRoomSize());
 
         allCriteria = new ArrayList<>();

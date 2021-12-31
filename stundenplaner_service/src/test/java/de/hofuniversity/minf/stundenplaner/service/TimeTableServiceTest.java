@@ -62,7 +62,7 @@ public class TimeTableServiceTest {
     private static final LocalDateTime D = LocalDateTime.now();
     private static final LocalTime T = LocalTime.now();
     private static final Integer I = 1;
-    private static final RoomDO ROOM = new RoomDO(L, S, S, new ArrayList<FeatureDO>(),I);
+    private static final RoomDO ROOM = new RoomDO(L, S, S, new ArrayList<FeatureDO>(),I, S);
     private static final UserDO USER = new UserDO(L, S, S, S, S, S, S, S, D, D, null, Collections.emptySet(), null);
     private static final LectureDO LECTURE = new LectureDO(L, S, Collections.emptyList(), Collections.emptyList());
     private static final TimeslotDO TIMESLOT = new TimeslotDO(L, T, T, I);
