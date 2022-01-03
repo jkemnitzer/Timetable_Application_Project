@@ -57,6 +57,7 @@ public class RoomDO {
     private String location;
 
 
+
     public void updateFromTO(RoomTO roomTO) {
         this.setRoomNumber(roomTO.getNumber());
         this.setBuilding(roomTO.getBuilding());

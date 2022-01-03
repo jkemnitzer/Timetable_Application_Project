@@ -22,6 +22,7 @@ public class CriterionRegistry {
         criteriaList.put(CriterionFreeDaysForStudents.CriterionName, new CriterionFreeDaysForStudents());
         criteriaList.put(CriterionLocationChange.CriterionName, new CriterionLocationChange());
         criteriaList.put(CriterionRoomSize.CriterionName, new CriterionRoomSize());
+        criteriaList.put(CriterionAccessibility.CriterionName, new CriterionAccessibility());
 
         allCriteria = new ArrayList<>();
         allCriteria.addAll(criteriaList.values());

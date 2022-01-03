@@ -56,6 +56,9 @@ public class SemesterDO {
     )
     private List<LectureDO> lectures;
 
+    @Column(name = "accessibility_needed")
+    private boolean accessibility_needed;
+
     public void updateFromTO(SemesterTO semesterTO) {
         this.setNumber(semesterTO.getNumber());
         this.setExpectedParticipants(semesterTO.getExpectedParticipants());
@@ -69,7 +72,8 @@ public class SemesterDO {
                 semesterTO.getExpectedParticipants(),
                 semesterTO.getActualParticipants(),
                 null,
-                Collections.emptyList()
+                Collections.emptyList(),
+                false
         );
     }
 }

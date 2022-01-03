@@ -17,6 +17,7 @@ public class SemesterTO {
     private int expectedParticipants;
     private int actualParticipants;
     private Long programId;
+    private boolean accessibilityNeeded;
 
     public static SemesterTO fromDO(SemesterDO semesterDO) {
         return new SemesterTO(
@@ -24,7 +25,8 @@ public class SemesterTO {
                 semesterDO.getNumber(),
                 semesterDO.getExpectedParticipants(),
                 semesterDO.getActualParticipants(),
-                semesterDO.getProgram().getId()
+                semesterDO.getProgram().getId(),
+                semesterDO.isAccessibility_needed()
         );
     }
 
