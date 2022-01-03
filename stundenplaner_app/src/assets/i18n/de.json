@@ -34,7 +34,8 @@
     "Title": "Profil",
     "Username": "Benutzername",
     "Email": "E-Mail Adresse",
-    "Status": "Status"
+    "Status": "Status",
+    "Phone" : "Telefon"
   },
   "LOGIN": {
     "Title": "Anmeldung",
