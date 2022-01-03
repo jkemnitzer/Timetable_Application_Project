@@ -34,5 +34,5 @@ public interface TimeTableService {
 
     Workbook exportVersion(Long versionId);
 
-
+    TimeTableTO importTimeTable(Workbook workbook, String fileName);
 }
