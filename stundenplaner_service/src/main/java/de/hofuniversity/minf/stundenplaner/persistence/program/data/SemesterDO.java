@@ -40,10 +40,10 @@ public class SemesterDO {
     private String number;
 
     @Column(name = "exp_participants")
-    private int expectedParticipants;
+    private Integer expectedParticipants;
 
     @Column(name = "act_participants")
-    private int actualParticipants;
+    private Integer actualParticipants;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "program_id", nullable = false)
@@ -57,7 +57,7 @@ public class SemesterDO {
     private List<LectureDO> lectures;
 
     @Column(name = "accessibility_needed")
-    private boolean accessibility_needed;
+    private Boolean accessibilityNeeded;
 
     public void updateFromTO(SemesterTO semesterTO) {
         this.setNumber(semesterTO.getNumber());
