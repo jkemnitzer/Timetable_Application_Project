@@ -1,6 +1,7 @@
 package de.hofuniversity.minf.stundenplaner.service;
 
 import de.hofuniversity.minf.stundenplaner.common.excel.TimeTableWorkBookBuilder;
+import de.hofuniversity.minf.stundenplaner.common.excel.TimeTableWorkBookReader;
 import de.hofuniversity.minf.stundenplaner.common.exception.NotFoundException;
 import de.hofuniversity.minf.stundenplaner.persistence.lecture.LectureRepository;
 import de.hofuniversity.minf.stundenplaner.persistence.lecture.data.LectureDO;
@@ -26,6 +27,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Collections;
 import java.util.List;
@@ -236,6 +238,16 @@ public class TimeTableServiceImpl implements TimeTableService {
                 .build();
     }
 
+    @Override
+    public TimeTableTO importTimeTable(Workbook workbook, String fileName) {
+        return this.createTimeTable(
+                new TimeTableWorkBookReader(workbook)
+                        .extractWorkbookSheet("Stundenplan")
+                        .extractVersionSheet("Informationen")
+                        .extract()
+        );
+    }
+
     private void setDependencies(LessonDO lessonDO, LessonTO lessonTO) {
         LectureDO lectureDO = lectureRepository.findById(lessonTO.getLectureId())
                 .orElseThrow(() -> new NotFoundException(LectureDO.class, lessonTO.getLectureId()));
@@ -252,5 +264,11 @@ public class TimeTableServiceImpl implements TimeTableService {
         lessonDO.setRoomDO(roomDO);
         lessonDO.setTimeslotDO(timeslotDO);
         lessonDO.setTimeTableVersionDO(versionDO);
+    }
+
+    private String generateVersionComment(String filename){
+        LocalDateTime dateTime = LocalDateTime.now();
+        return "Version was created " + dateTime + " through file " + filename;
+
     }
 }

@@ -15,4 +15,5 @@ public class TimeTableTO {
 
     private TimeTableVersionTO version;
     private List<LessonTO> lessons;
+
 }
