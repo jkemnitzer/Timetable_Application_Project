@@ -26,7 +26,7 @@ public class SemesterTO {
                 semesterDO.getExpectedParticipants(),
                 semesterDO.getActualParticipants(),
                 semesterDO.getProgram().getId(),
-                semesterDO.isAccessibility_needed()
+                semesterDO.getAccessibilityNeeded()
         );
     }
 

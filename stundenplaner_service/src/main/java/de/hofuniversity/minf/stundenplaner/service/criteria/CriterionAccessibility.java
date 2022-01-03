@@ -34,8 +34,8 @@ public class CriterionAccessibility extends AbstractCriterion {
         hasAccessibility = checkAccessibilityRoomFeature("Accessibility", lesson);
 
         for (SemesterDO semesterDO : semesterDOList) {
-            if (semesterDO.isAccessibility_needed() && !hasAccessibility){
-                    return Double.NEGATIVE_INFINITY;
+            if (semesterDO.getAccessibilityNeeded() && !hasAccessibility) {
+                return Double.NEGATIVE_INFINITY;
             }
             calculationList.add(100.0);
         }
@@ -56,12 +56,12 @@ public class CriterionAccessibility extends AbstractCriterion {
         List<SemesterDO> semesterDOList = lesson.getLectureDO().getSemesters();
 
         for (SemesterDO semesterDO : semesterDOList) {
-            if (semesterDO.isAccessibility_needed()){
+            if (semesterDO.getAccessibilityNeeded()) {
                 // need Accessibility (general!)
-                if (hasAccessibility){
-                    writeToStringline(semesterDO.getProgram().getName()+":has");
-                }else {
-                    writeToStringline(semesterDO.getProgram().getName()+":need");
+                if (hasAccessibility) {
+                    writeToStringline(semesterDO.getProgram().getName() + ":has");
+                } else {
+                    writeToStringline(semesterDO.getProgram().getName() + ":need");
                 }
                 continue;
             }
