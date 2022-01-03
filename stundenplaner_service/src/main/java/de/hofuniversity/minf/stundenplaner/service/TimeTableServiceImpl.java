@@ -27,7 +27,6 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Collections;
 import java.util.List;
@@ -129,7 +128,9 @@ public class TimeTableServiceImpl implements TimeTableService {
             TimeTableVersionDO versionDO = optional.get();
             return new TimeTableTO(
                     TimeTableVersionTO.fromDO(versionDO),
-                    this.findAllLessons(programId, semesterId, weekdayNr, versionId, lecturerId, start, end)
+                    timeTableRepository.findAllByTimeTableVersionDO(versionDO).stream()
+                            .map(LessonTO::fromDO)
+                            .toList()
             );
         } else {
             throw new NotFoundException(TimeTableVersionDO.class, versionId);
@@ -264,11 +265,5 @@ public class TimeTableServiceImpl implements TimeTableService {
         lessonDO.setRoomDO(roomDO);
         lessonDO.setTimeslotDO(timeslotDO);
         lessonDO.setTimeTableVersionDO(versionDO);
-    }
-
-    private String generateVersionComment(String filename){
-        LocalDateTime dateTime = LocalDateTime.now();
-        return "Version was created " + dateTime + " through file " + filename;
-
     }
 }
