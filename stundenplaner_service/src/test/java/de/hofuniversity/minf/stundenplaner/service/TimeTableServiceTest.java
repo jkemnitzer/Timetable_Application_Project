@@ -4,7 +4,6 @@ import de.hofuniversity.minf.stundenplaner.common.exception.NotFoundException;
 import de.hofuniversity.minf.stundenplaner.persistence.lecture.LectureRepository;
 import de.hofuniversity.minf.stundenplaner.persistence.lecture.data.LectureDO;
 import de.hofuniversity.minf.stundenplaner.persistence.room.RoomRepository;
-import de.hofuniversity.minf.stundenplaner.persistence.room.data.FeatureDO;
 import de.hofuniversity.minf.stundenplaner.persistence.room.data.RoomDO;
 import de.hofuniversity.minf.stundenplaner.persistence.timetable.TimeTableRepository;
 import de.hofuniversity.minf.stundenplaner.persistence.timetable.data.LessonDO;
@@ -18,6 +17,9 @@ import de.hofuniversity.minf.stundenplaner.persistence.user.data.UserDO;
 import de.hofuniversity.minf.stundenplaner.service.to.LessonTO;
 import de.hofuniversity.minf.stundenplaner.service.to.TimeTableTO;
 import de.hofuniversity.minf.stundenplaner.service.to.TimeTableVersionTO;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -31,6 +33,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -62,13 +65,19 @@ public class TimeTableServiceTest {
     private static final LocalDateTime D = LocalDateTime.now();
     private static final LocalTime T = LocalTime.now();
     private static final Integer I = 1;
-    private static final RoomDO ROOM = new RoomDO(L, S, S, new ArrayList<FeatureDO>(),I, S);
+    private static final RoomDO ROOM = new RoomDO(L, S, S, new ArrayList<>(),I, S);
     private static final UserDO USER = new UserDO(L, S, S, S, S, S, S, S, D, D, null, Collections.emptySet(), null);
     private static final LectureDO LECTURE = new LectureDO(L, S, Collections.emptyList(), Collections.emptyList());
     private static final TimeslotDO TIMESLOT = new TimeslotDO(L, T, T, I);
     private static final TimeTableVersionDO VERSION = new TimeTableVersionDO(L, S, S, S);
-    private static final LessonDO LESSON_1 = new LessonDO(1L, LessonType.LECTURE, S, ROOM, USER, LECTURE, TIMESLOT, VERSION);
-    private static final LessonDO LESSON_2 = new LessonDO(2L, LessonType.LECTURE, S, ROOM, USER, LECTURE, TIMESLOT, VERSION);
+    private static LessonDO LESSON_1;
+    private static LessonDO LESSON_2;
+
+    @BeforeEach
+    public void resetLesson() {
+        LESSON_1 = new LessonDO(1L, LessonType.LECTURE, S, ROOM, USER, LECTURE, TIMESLOT, VERSION);
+        LESSON_2 = new LessonDO(2L, LessonType.LECTURE, S, ROOM, USER, LECTURE, TIMESLOT, VERSION);
+    }
 
     @Test
     public void findAllLessons() {
@@ -138,6 +147,44 @@ public class TimeTableServiceTest {
         LessonTO test = LessonTO.fromDO(LESSON_1);
         test.setNote(TEST);
         assertEquals(TEST, timeTableService.updateLesson(1L, test).getNote());
+    }
+
+    @Test
+    public void exportAll() {
+        when(timeTableRepository.findAll()).thenReturn(List.of(LESSON_1, LESSON_2));
+        // test if no throw
+        assertDoesNotThrow(() -> timeTableService.exportAll());
+        // check values
+        Workbook workbook = timeTableService.exportAll();
+        Sheet sheet = workbook.getSheet("Stundenplan");
+        assertNotNull(sheet);
+        // row-0
+        assertEquals("Wochentag", sheet.getRow(0).getCell(0).getStringCellValue());
+        assertEquals("Start", sheet.getRow(0).getCell(1).getStringCellValue());
+        assertEquals("Ende", sheet.getRow(0).getCell(2).getStringCellValue());
+        assertEquals("Raum", sheet.getRow(0).getCell(3).getStringCellValue());
+        assertEquals("Titel", sheet.getRow(0).getCell(4).getStringCellValue());
+        assertEquals("Dozent", sheet.getRow(0).getCell(5).getStringCellValue());
+        assertEquals("Typ", sheet.getRow(0).getCell(6).getStringCellValue());
+        assertEquals("Notiz", sheet.getRow(0).getCell(7).getStringCellValue());
+        // row-1
+        assertEquals("MONDAY", sheet.getRow(1).getCell(0).getStringCellValue());
+        assertEquals(String.valueOf(LESSON_1.getTimeslotDO().getStart()), sheet.getRow(1).getCell(1).getStringCellValue());
+        assertEquals(String.valueOf(LESSON_1.getTimeslotDO().getEnd()), sheet.getRow(1).getCell(2).getStringCellValue());
+        assertEquals(LESSON_1.getRoomDO().getRoomNumber(), sheet.getRow(1).getCell(3).getStringCellValue());
+        assertEquals(String.valueOf(LESSON_1.getLectureDO().getName()), sheet.getRow(1).getCell(4).getStringCellValue());
+        assertEquals(LESSON_1.getLecturerDO().getTitle() + " " +LESSON_1.getLecturerDO().getFirstName() + " " + LESSON_1.getLecturerDO().getLastName(), sheet.getRow(1).getCell(5).getStringCellValue());
+        assertEquals(String.valueOf(LESSON_1.getLessonType()), sheet.getRow(1).getCell(6).getStringCellValue());
+        assertEquals(LESSON_1.getNote(), sheet.getRow(1).getCell(7).getStringCellValue());
+        // row-2
+        assertEquals("MONDAY", sheet.getRow(1).getCell(0).getStringCellValue());
+        assertEquals(String.valueOf(LESSON_2.getTimeslotDO().getStart()), sheet.getRow(1).getCell(1).getStringCellValue());
+        assertEquals(String.valueOf(LESSON_2.getTimeslotDO().getEnd()), sheet.getRow(1).getCell(2).getStringCellValue());
+        assertEquals(LESSON_2.getRoomDO().getRoomNumber(), sheet.getRow(1).getCell(3).getStringCellValue());
+        assertEquals(LESSON_2.getLectureDO().getName(), sheet.getRow(1).getCell(4).getStringCellValue());
+        assertEquals(LESSON_2.getLecturerDO().getTitle() + " " +LESSON_2.getLecturerDO().getFirstName() + " " + LESSON_2.getLecturerDO().getLastName(), sheet.getRow(1).getCell(5).getStringCellValue());
+        assertEquals(String.valueOf(LESSON_2.getLessonType()), sheet.getRow(1).getCell(6).getStringCellValue());
+        assertEquals(LESSON_2.getNote(), sheet.getRow(1).getCell(7).getStringCellValue());
     }
 
     private void mockDependencies() {
