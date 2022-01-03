@@ -14,6 +14,7 @@ INSERT INTO t_roomfeature (feature) VALUES ('Beamer');
 INSERT INTO t_roomfeature (feature) VALUES ('Window PC');
 INSERT INTO t_roomfeature (feature) VALUES ('MAC PC');
 INSERT INTO t_roomfeature (feature) VALUES ('3D VIDEO');
+INSERT INTO t_roomfeature (feature) VALUES ('Accessibility');
 
 
 
@@ -33,3 +34,4 @@ CREATE TABLE t_roomfeature_map
 INSERT INTO t_roomfeature_map(fk_room_id, fk_feature_id) VALUES ( 1,1 );
 INSERT INTO t_roomfeature_map(fk_room_id, fk_feature_id) VALUES ( 1,2 );
 INSERT INTO t_roomfeature_map(fk_room_id, fk_feature_id) VALUES ( 1,3 );
+INSERT INTO t_roomfeature_map(fk_room_id, fk_feature_id) VALUES ( 1,7 );
