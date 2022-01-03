@@ -177,3 +177,29 @@ INSERT INTO t_timetable (fk_room, fk_lecture, fk_lecturer_user, fk_timeslot, fk_
 VALUES (6, 6, 6, 19, 1);
 INSERT INTO t_timetable (fk_room, fk_lecture, fk_lecturer_user, fk_timeslot, fk_version)
 VALUES (5, 5, 5, 20, 1);
+
+DROP TABLE IF EXISTS t_semester_lecture_map;
+
+CREATE SEQUENCE t_semester_lecture_map_seq;
+
+CREATE TABLE t_semester_lecture_map
+(
+    id          BIGINT DEFAULT t_semester_lecture_map_seq.nextval PRIMARY KEY,
+    fk_semester BIGINT NOT NULL,
+    fk_lecture  BIGINT NOT NULL,
+    FOREIGN KEY (fk_semester) REFERENCES t_semester (id),
+    FOREIGN KEY (fk_lecture) REFERENCES t_lecture (id)
+);
+
+INSERT INTO t_semester_lecture_map (fk_semester, fk_lecture)
+VALUES (1, 1);
+INSERT INTO t_semester_lecture_map (fk_semester, fk_lecture)
+VALUES (1, 2);
+INSERT INTO t_semester_lecture_map (fk_semester, fk_lecture)
+VALUES (1, 3);
+INSERT INTO t_semester_lecture_map (fk_semester, fk_lecture)
+VALUES (1, 4);
+INSERT INTO t_semester_lecture_map (fk_semester, fk_lecture)
+VALUES (1, 5);
+INSERT INTO t_semester_lecture_map (fk_semester, fk_lecture)
+VALUES (1, 6);

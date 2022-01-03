@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from "../http/http.service";
 import { Profile } from "./data/profile";
 import { Roles } from "./data/roles";
-import { UserService } from "../users/user.service";
+import { UserService } from "../user-service/user.service";
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['../global.css','./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
 

@@ -13,7 +13,7 @@ import { Util } from '../../common/util';
 @Component({
   selector: 'app-program-overview',
   templateUrl: './program-overview.component.html',
-  styleUrls: ['./program-overview.component.css'],
+  styleUrls: ['../../global.css','./program-overview.component.css'],
 })
 export class ProgramOverviewComponent implements OnInit {
   displayedColumns: string[] = ['actions', 'id', 'name'];

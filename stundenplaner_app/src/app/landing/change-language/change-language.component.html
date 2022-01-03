@@ -1,0 +1,6 @@
+<mat-form-field appearance="legacy">
+  <mat-label>{{"LANDING.SwitchLanguage" | translate}}</mat-label>
+  <mat-select #selectedLang (selectionChange)="switchLang(selectedLang.value)" [(value)]="language">
+    <mat-option *ngFor="let language of translate.getLangs()" [value]="language">{{language}}</mat-option>
+  </mat-select>
+</mat-form-field>

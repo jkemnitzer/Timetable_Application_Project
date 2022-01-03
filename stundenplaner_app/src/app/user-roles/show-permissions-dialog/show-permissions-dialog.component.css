@@ -1,29 +1,10 @@
-.spacer-24 {
-  height: 24px;
-  width: 24px;
-}
-
-
-/* dialog styling*/
-
-.mat-dialog-actions {
-  justify-content: flex-end;
-}
-
 .permissions-table {
   display: grid;
 }
 
 /* table styling */
-.mat-header-cell {
-  border-bottom: 2px solid currentColor !important;
-  font-size: 1.25rem !important;
-  font-weight: bold !important;
-}
 
 .mat-column-id {
-  border-right: 1px solid currentColor;
-  padding-right: 24px;
   width: 8%;
   text-align: center;
 }

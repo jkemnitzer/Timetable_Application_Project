@@ -4,6 +4,7 @@ import de.hofuniversity.minf.stundenplaner.common.exception.NotFoundException;
 import de.hofuniversity.minf.stundenplaner.persistence.lecture.LectureRepository;
 import de.hofuniversity.minf.stundenplaner.persistence.lecture.data.LectureDO;
 import de.hofuniversity.minf.stundenplaner.persistence.room.RoomRepository;
+import de.hofuniversity.minf.stundenplaner.persistence.room.data.FeatureDO;
 import de.hofuniversity.minf.stundenplaner.persistence.room.data.RoomDO;
 import de.hofuniversity.minf.stundenplaner.persistence.timetable.TimeTableRepository;
 import de.hofuniversity.minf.stundenplaner.persistence.timetable.data.LessonDO;
@@ -25,6 +26,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -60,9 +62,9 @@ public class TimeTableServiceTest {
     private static final LocalDateTime D = LocalDateTime.now();
     private static final LocalTime T = LocalTime.now();
     private static final Integer I = 1;
-    private static final RoomDO ROOM = new RoomDO(L, S, S);
+    private static final RoomDO ROOM = new RoomDO(L, S, S, new ArrayList<FeatureDO>(),I, S);
     private static final UserDO USER = new UserDO(L, S, S, S, S, S, S, S, D, D, null, Collections.emptySet(), null);
-    private static final LectureDO LECTURE = new LectureDO(L, S, Collections.emptyList());
+    private static final LectureDO LECTURE = new LectureDO(L, S, Collections.emptyList(), Collections.emptyList());
     private static final TimeslotDO TIMESLOT = new TimeslotDO(L, T, T, I);
     private static final TimeTableVersionDO VERSION = new TimeTableVersionDO(L, S, S, S);
     private static final LessonDO LESSON_1 = new LessonDO(1L, LessonType.LECTURE, S, ROOM, USER, LECTURE, TIMESLOT, VERSION);
@@ -71,15 +73,14 @@ public class TimeTableServiceTest {
     @Test
     public void findAllLessons() {
         when(timeTableRepository.findAll()).thenReturn(List.of(LESSON_1, LESSON_2));
-        assertEquals(2, timeTableService.findAllLessons().size());
+        assertEquals(2, timeTableService.findAllLessons(1L, 1L, 1, 1L, 1L, LocalTime.now(), LocalTime.now()).size());
     }
 
     @Test
     public void findAllLessonsByVersion() {
-        when(timeTableRepository.findAllByTimeTableVersionDO(any(TimeTableVersionDO.class)))
-                .thenReturn(List.of(LESSON_1, LESSON_2));
+        when(timeTableRepository.findAll()).thenReturn(List.of(LESSON_1, LESSON_2));
         when(versionRepository.findById(anyLong())).thenReturn(Optional.of(new TimeTableVersionDO()));
-        TimeTableTO timeTableTO = timeTableService.findAllLessonsByVersion(1L);
+        TimeTableTO timeTableTO = timeTableService.findAllLessonsByVersion(1L, 1L, 1, 1L, 1L, LocalTime.now(), LocalTime.now());
         assertEquals(2, timeTableTO.getLessons().size());
         assertNotNull(timeTableTO.getVersion());
     }

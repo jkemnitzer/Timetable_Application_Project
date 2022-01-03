@@ -2,7 +2,9 @@ package de.hofuniversity.minf.stundenplaner.service;
 
 import de.hofuniversity.minf.stundenplaner.common.exception.NotFoundException;
 import de.hofuniversity.minf.stundenplaner.persistence.room.RoomRepository;
+import de.hofuniversity.minf.stundenplaner.persistence.room.data.FeatureDO;
 import de.hofuniversity.minf.stundenplaner.persistence.room.data.RoomDO;
+import de.hofuniversity.minf.stundenplaner.service.to.FeatureTO;
 import de.hofuniversity.minf.stundenplaner.service.to.RoomTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -11,6 +13,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,8 +29,8 @@ public class RoomServiceTest {
     @InjectMocks
     private RoomServiceImpl roomService;
 
-    private final RoomDO ROOM_DO_1 = new RoomDO(1L, "123", "TestBuildung1");
-    private final RoomDO ROOM_DO_2 = new RoomDO(2L, "456", "TestBuildung2");
+    private final RoomDO ROOM_DO_1 = new RoomDO(1L, "123", "TestBuildung1",  new ArrayList<FeatureDO>(),100, "Hof");
+    private final RoomDO ROOM_DO_2 = new RoomDO(2L, "456", "TestBuildung2",  new ArrayList<FeatureDO>(),100, "Hof");
 
 
     @Test
@@ -66,7 +69,7 @@ public class RoomServiceTest {
 
     @Test
     void testUpdate(){
-        RoomDO testReturn = new RoomDO(ROOM_DO_1.getId(), ROOM_DO_1.getRoomNumber(), "TestBuildung1");
+        RoomDO testReturn = new RoomDO(ROOM_DO_1.getId(), ROOM_DO_1.getRoomNumber(), "TestBuildung1",  new ArrayList<FeatureDO>(),100, "Hof");
         when(roomRepository.findById(1L)).thenReturn(Optional.of(testReturn));
         when(roomRepository.findById(3L)).thenReturn(Optional.empty());
         when(roomRepository.save(any(RoomDO.class))).thenReturn(testReturn);
