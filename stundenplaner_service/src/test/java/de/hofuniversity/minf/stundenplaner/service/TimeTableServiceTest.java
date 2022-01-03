@@ -17,6 +17,8 @@ import de.hofuniversity.minf.stundenplaner.persistence.user.data.UserDO;
 import de.hofuniversity.minf.stundenplaner.service.to.LessonTO;
 import de.hofuniversity.minf.stundenplaner.service.to.TimeTableTO;
 import de.hofuniversity.minf.stundenplaner.service.to.TimeTableVersionTO;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDateTime;
@@ -197,6 +200,75 @@ public class TimeTableServiceTest {
         assertEquals(LESSON_2.getRoomDO().getRoomNumber(), sheet.getRow(2).getCell(9).getStringCellValue());
         assertEquals(String.valueOf(LESSON_2.getTimeTableVersionDO().getId()), sheet.getRow(2).getCell(10).getStringCellValue());
         assertEquals(String.valueOf(LESSON_2.getLectureDO().getId()), sheet.getRow(2).getCell(11).getStringCellValue());
+    }
+
+    @Test
+    public void importTimeTable() {
+        when(versionRepository.save(any(TimeTableVersionDO.class))).thenReturn(VERSION);
+        when(timeTableRepository.saveAll(Mockito.any())).thenReturn(List.of(LESSON_1));
+        mockDependencies();
+        // create an valid sample workbook
+        final String filename = "timetable_all.xls";
+        final Workbook workbook = new HSSFWorkbook();
+        // no sheet
+        assertThrows(NullPointerException.class, () -> timeTableService.importTimeTable(workbook, filename));
+        final Sheet sheet0 = workbook.createSheet("Stundenplan");
+        final String[] rowsStr = new String[] {
+                "Id", "Timeslot Id", "Room Id", "Lecturer Id",
+                "Lecture Id", "WeekDay", "Start", "End", "Title",
+                "Room", "Lecturer", "Lesson Type"
+        };
+        final String[] cellValues = new String[] {
+                String.valueOf(L), String.valueOf(TIMESLOT.getId()), String.valueOf(ROOM.getId()), String.valueOf(USER.getId()),
+                String.valueOf(LECTURE.getId()), String.valueOf(TIMESLOT.getWeekdayNr()), TIMESLOT.getStart().toString(), TIMESLOT.getEnd().toString(), LECTURE.getName(),
+                ROOM.getRoomNumber(), USER.getUsername(), "LECTURE"
+        };
+        Row row0 = sheet0.createRow(0);
+        var i = 0;
+        while (i < rowsStr.length) {
+            row0.createCell(i).setCellValue(rowsStr[i]);
+            i += 1;
+        }
+        i = 0;
+        Row row1 = sheet0.createRow(1);
+        while (i < cellValues.length) {
+            row1.createCell(i).setCellValue(cellValues[i]);
+            i += 1;
+        }
+        // with cell-values
+        assertDoesNotThrow(() -> timeTableService.importTimeTable(workbook, filename));
+        final Sheet sheet1 = workbook.createSheet("Informationen");
+        final String[][] infoValues = new String[][] {
+                {"Version ID:", String.valueOf(VERSION.getId())},
+                {"Version:", VERSION.getVersion()},
+                {"Kommentar:", VERSION.getComment()},
+                {"Semester:", VERSION.getSemesterYear()},
+        };
+        i = 0;
+        while (i < infoValues.length) {
+            var rowInfo = sheet1.createRow(i);
+            rowInfo.createCell(0).setCellValue(infoValues[i][0]);
+            rowInfo.createCell(1).setCellValue(infoValues[i][1]);
+            i +=1;
+        }
+        // with infos
+        assertDoesNotThrow(() -> timeTableService.importTimeTable(workbook, filename));
+        // check values
+        TimeTableTO timeTable = timeTableService.importTimeTable(workbook, filename);
+        assertEquals(1, timeTable.getLessons().size());
+        LessonTO lessonTO = timeTable.getLessons().get(0);
+        assertEquals(L, lessonTO.getId());
+        assertEquals(TIMESLOT.getId(), lessonTO.getTimeslotId());
+        assertEquals(ROOM.getId(), lessonTO.getRoomId());
+        assertEquals(USER.getId(), lessonTO.getLecturerId());
+        assertEquals(LECTURE.getId(), lessonTO.getLectureId());
+        assertEquals(TIMESLOT.getWeekdayNr(), lessonTO.getWeekdayNr());
+        assertEquals(TIMESLOT.getStart(), lessonTO.getStartTime());
+        assertEquals(TIMESLOT.getEnd(), lessonTO.getEndTime());
+        assertEquals(LECTURE.getName(), lessonTO.getLectureTitle());
+        assertEquals(ROOM.getRoomNumber(), lessonTO.getRoom());
+        assertEquals(USER.getTitle() + " " + USER.getFirstName() + " " + USER.getLastName(), lessonTO.getLecturer());
+        assertEquals("LECTURE", lessonTO.getLessonType());
     }
 
     private void mockDependencies() {
