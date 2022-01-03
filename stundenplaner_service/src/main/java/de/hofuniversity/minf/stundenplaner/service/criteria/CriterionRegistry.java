@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 public class CriterionRegistry {
-    private Map<String, Criterion> criteriaList;
-    private List<Criterion> allCriteria;
+    private final Map<String, Criterion> criteriaList;
+    private final List<Criterion> allCriteria;
 
     public CriterionRegistry() {
         criteriaList = new HashMap<>();
@@ -24,9 +24,7 @@ public class CriterionRegistry {
         criteriaList.put(CriterionRoomSize.CriterionName, new CriterionRoomSize());
 
         allCriteria = new ArrayList<>();
-        for(Criterion criterion: criteriaList.values()) {
-            allCriteria.add(criterion);
-        }
+        allCriteria.addAll(criteriaList.values());
     }
 
     public Criterion getCriterion(String type) throws NotFoundException {

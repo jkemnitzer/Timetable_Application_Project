@@ -2,9 +2,17 @@ package de.hofuniversity.minf.stundenplaner.service.criteria;
 
 import de.hofuniversity.minf.stundenplaner.common.exception.NotFoundException;
 import de.hofuniversity.minf.stundenplaner.persistence.timetable.data.LessonDO;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
+@Getter
+@Setter
 public class Criteria implements Criterion{
     private static Criteria myInstance = null;
 
