@@ -6,12 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * @author KMP
@@ -39,6 +36,28 @@ public class RoomDO {
     @Column(name = "building")
     private String building;
 
+    //@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "t_roomfeature_map",
+            joinColumns = {@JoinColumn(name = "fk_room_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "fk_feature_id", referencedColumnName = "id")}
+    )
+    //@JoinTable(
+    //        name="t_roomfeature_map",
+    //        joinColumns = @JoinColumn(name="fk_room_id", referencedColumnName = "id"),
+    //        inverseJoinColumns = @JoinColumn(name="fk_feature_id", referencedColumnName = "id")
+    //)
+    private List<FeatureDO> featureList;
+
+    @Column(name = "seats")
+    private Integer seats;
+
+
+    @Column(name = "location")
+    private String location;
+
+
+
     public void updateFromTO(RoomTO roomTO) {
         this.setRoomNumber(roomTO.getNumber());
         this.setBuilding(roomTO.getBuilding());
@@ -48,7 +67,10 @@ public class RoomDO {
         return new RoomDO(
                 roomTo.getId(),
                 roomTo.getNumber(),
-                roomTo.getBuilding()
+                roomTo.getBuilding(),
+                Collections.emptyList(),
+                roomTo.getSeats(),
+                roomTo.getLocation()
         );
     }
 

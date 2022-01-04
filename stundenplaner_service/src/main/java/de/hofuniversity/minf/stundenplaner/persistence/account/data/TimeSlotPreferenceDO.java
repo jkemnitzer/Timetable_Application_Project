@@ -7,7 +7,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 
 /**
@@ -31,6 +39,9 @@ public class TimeSlotPreferenceDO {
     @Column(name = "priority")
     private Integer priority;
 
+    @Column(name = "forced")
+    private Boolean forced;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "fk_timeslot_id", nullable = false)
     private TimeslotDO timeSlot;
@@ -43,6 +54,7 @@ public class TimeSlotPreferenceDO {
         return new TimeSlotPreferenceDO(
                 timeSlotPreferenceTO.getId(),
                 timeSlotPreferenceTO.getPriority(),
+                timeSlotPreferenceTO.getForced(),
                 TimeslotDO.fromTO(timeSlotPreferenceTO.getTimeSlot()),
                 null
         );

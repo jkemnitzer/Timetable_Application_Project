@@ -1,4 +1,4 @@
-package de.hofuniversity.minf.stundenplaner.common;
+package de.hofuniversity.minf.stundenplaner.common.exception;
 
 import lombok.Getter;
 

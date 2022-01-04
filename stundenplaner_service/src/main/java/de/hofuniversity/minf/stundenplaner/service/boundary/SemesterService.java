@@ -1,6 +1,6 @@
 package de.hofuniversity.minf.stundenplaner.service.boundary;
 
-import de.hofuniversity.minf.stundenplaner.common.NotFoundException;
+import de.hofuniversity.minf.stundenplaner.common.exception.NotFoundException;
 import de.hofuniversity.minf.stundenplaner.service.to.SemesterTO;
 
 import java.util.List;
