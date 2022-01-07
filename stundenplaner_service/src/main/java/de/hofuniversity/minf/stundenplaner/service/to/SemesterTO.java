@@ -14,10 +14,10 @@ public class SemesterTO {
 
     private Long id;
     private String number;
-    private int expectedParticipants;
-    private int actualParticipants;
+    private Integer expectedParticipants;
+    private Integer actualParticipants;
     private Long programId;
-    private boolean accessibilityNeeded;
+    private Boolean accessibilityNeeded;
 
     public static SemesterTO fromDO(SemesterDO semesterDO) {
         return new SemesterTO(
