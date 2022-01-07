@@ -118,7 +118,8 @@
     "name": "Name",
     "edit": "Editieren",
     "delete": "Löschen",
-    "details": "Details"
+    "details": "Details",
+    "createRandom": "Zufälliger Stundenplan"
   },
   "TIMETABLE_CRUD": {
     "add_label": "Neue Stunde anlegen",

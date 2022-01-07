@@ -314,6 +314,37 @@ export class ShowTimetableComponent implements OnInit {
     this.isCreateLessonVisible = true;
   }
 
+  generateTimetable(){
+  //TODO: Wait for Backend
+    /*this.httpService.getRequest('/generate').subscribe(
+          (response) => {
+            const mondayTemp: Lesson[] = [];
+            const tuesdayTemp: Lesson[] = [];
+            const wednesdayTemp: Lesson[] = [];
+            const thursdayTemp: Lesson[] = [];
+            const fridayTemp: Lesson[] = [];
+            const saturdayTemp: Lesson[] = [];
+            response.forEach((lesson: Lesson) => {
+              if (lesson.weekdayNr == 1) mondayTemp.push(lesson);
+              else if (lesson.weekdayNr == 2) tuesdayTemp.push(lesson);
+              else if (lesson.weekdayNr == 3) wednesdayTemp.push(lesson);
+              else if (lesson.weekdayNr == 4) thursdayTemp.push(lesson);
+              else if (lesson.weekdayNr == 5) fridayTemp.push(lesson);
+              else if (lesson.weekdayNr == 6) saturdayTemp.push(lesson);
+            })
+            this.mondayData = mondayTemp;
+            this.tuesdayData = tuesdayTemp;
+            this.wednesdayData = wednesdayTemp;
+            this.thursdayData = thursdayTemp;
+            this.fridayData = fridayTemp;
+            this.saturdayData = saturdayTemp;
+          },
+          (error) => {
+            console.error(error);
+          }
+        );*/
+  }
+
   private loadLecturers() {
     this.httpService.getRequest(this.BASE_LECTURERS_URL).subscribe(
       (response) => {
