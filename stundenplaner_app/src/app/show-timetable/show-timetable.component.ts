@@ -252,8 +252,6 @@ export class ShowTimetableComponent implements OnInit {
         response.forEach((lesson: Lesson) => {
           lesson.startTime = new Date('December 17, 1995 ' + lesson.startTime.toString());
           lesson.endTime = new Date('December 17, 1995 ' + lesson.endTime.toString());
-          //lesson.error = 'warning';
-          //lesson.error = 'Oh Nooooooooooooooooooooooooooooooooo';
 
           if (lesson.weekdayNr == 1) mondayTemp.push(lesson);
           else if (lesson.weekdayNr == 2) tuesdayTemp.push(lesson);

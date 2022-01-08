@@ -144,7 +144,8 @@
     "name": "Name",
     "edit": "Edit",
     "delete": "Delete",
-    "details": "Details"
+    "details": "Details",
+    "add": "Add lesson"
 
   },
   "TIMETABLE_CRUD": {
@@ -159,7 +160,9 @@
     "add": "Add",
     "delete": "Delete all fields",
     "added": "Lesson was successfully added",
-    "edited": "Lesson was successfully edited"
+    "edited": "Lesson was successfully edited",
+    "fail": "An error has occurred, please check your entries"
+
   },
   "LANDING": {
     "Description": "Timetable Planning Tool for the University",

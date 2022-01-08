@@ -118,7 +118,8 @@
     "name": "Name",
     "edit": "Editieren",
     "delete": "Löschen",
-    "details": "Details"
+    "details": "Details",
+    "add": "Vorlesungsstunde hinzufügen"
   },
   "TIMETABLE_CRUD": {
     "add_label": "Neue Stunde anlegen",
@@ -132,7 +133,8 @@
     "add": "Hinzufügen",
     "delete": "Eingaben Löschen",
     "added": "Vorlesung wurde erfolgreich hinzugefügt",
-    "edited": "Vorlesung wurde erfolgreich geändert"
+    "edited": "Vorlesung wurde erfolgreich geändert",
+    "fail": "Ein Fehler ist aufgetreten, überprüfen sie bitte ihre Eingaben"
   },
   "USER_ROLES": {
     "DIALOG": {
