@@ -12,14 +12,14 @@ import {Permission} from "../data/permission";
 @Component({
   selector: 'app-user-overview',
   templateUrl: './user-role-overview.component.html',
-  styleUrls: ['./user-role-overview.component.css']
+  styleUrls: ['../../global.css', './user-role-overview.component.css']
 })
 export class UserRoleOverviewComponent implements OnInit {
 
   // the datasource-obj for the mat-table
   dataSource: MatTableDataSource<Array<UserRole>> = new MatTableDataSource<Array<UserRole>>();
   // strings of given columns to show in the mat-table
-  columnsToDisplay: string[] = ['id', 'type', 'permissions', 'actions'];
+  columnsToDisplay: string[] = ['actions', 'id', 'type', 'permissions'];
   // the relative path to fetch data from
   base_rel_roles_path: string = '/roles';
 

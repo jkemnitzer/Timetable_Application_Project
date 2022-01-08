@@ -21,7 +21,7 @@ type CloseLectureDialogCallback = (lecture: Lecture) => void;
 @Component({
   selector: 'app-lectures',
   templateUrl: './lectures-overview.component.html',
-  styleUrls: ['./lectures-overview.component.css']
+  styleUrls: ['../../global.css','./lectures-overview.component.css']
 })
 export class LecturesOverviewComponent implements OnInit, AfterViewInit {
 
@@ -30,7 +30,7 @@ export class LecturesOverviewComponent implements OnInit, AfterViewInit {
   // the datasource-obj for the mat-table
   dataSource: MatTableDataSource<Lecture> = new MatTableDataSource<Lecture>();
   // strings of given columns to show in the mat-table
-  columnsToDisplay: string[] = ['id', 'name', 'lessons', 'actions'];
+  columnsToDisplay: string[] = ['actions', 'id', 'name', 'lessons'];
   // the relative path to fetch data from
   base_rel_lectures_path: string = '/lectures';
   // displayed filterable column-names

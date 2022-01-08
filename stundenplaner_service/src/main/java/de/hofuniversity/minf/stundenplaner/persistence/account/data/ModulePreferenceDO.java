@@ -7,7 +7,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 
 /**
@@ -39,13 +47,17 @@ public class ModulePreferenceDO {
     @JoinColumn(name = "fk_lecture_id", nullable = false)
     private LectureDO lecture;
 
+    @Column(name = "room_feature_requirement")
+    private String roomFeatureRequirement;
+
 
     public static ModulePreferenceDO fromTO(ModulePreferenceTO modulePreferenceTO) {
         return new ModulePreferenceDO(
                 modulePreferenceTO.getId(),
                 modulePreferenceTO.getPriority(),
                 null,
-                null
+                null,
+                modulePreferenceTO.getRoomFeatureRequirment()
         );
     }
 }

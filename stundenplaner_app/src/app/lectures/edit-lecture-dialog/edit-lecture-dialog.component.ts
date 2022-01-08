@@ -30,7 +30,7 @@ export interface DialogLectureData {
 @Component({
   selector: 'app-edit-program-dialog',
   templateUrl: './edit-lecture-dialog.component.html',
-  styleUrls: ['./edit-lecture-dialog.component.css'],
+  styleUrls: ['../../global.css','./edit-lecture-dialog.component.css'],
 })
 export class EditLectureDialogComponent implements OnInit {
 

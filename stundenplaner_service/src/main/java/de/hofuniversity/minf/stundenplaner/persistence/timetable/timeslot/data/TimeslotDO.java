@@ -18,7 +18,7 @@ import java.time.LocalTime;
 @NoArgsConstructor
 @Entity
 @Table(name = "t_timeslot")
-public class TimeslotDO {
+public class TimeslotDO implements Comparable<TimeslotDO>{
 
     @Id
     @Column(name = "id", nullable = false)
@@ -46,5 +46,16 @@ public class TimeslotDO {
         this.setStart(timeslotTO.getStart());
         this.setEnd(timeslotTO.getEnd());
         this.setWeekdayNr(timeslotTO.getWeekdayNr());
+    }
+
+    @Override
+    public int compareTo(TimeslotDO o) {
+        if (o.getWeekdayNr() < getWeekdayNr()){
+            return 1;
+        }
+        if (o.getWeekdayNr() > getWeekdayNr()){
+            return -1;
+        }
+        return o.getStart().compareTo(getStart());
     }
 }

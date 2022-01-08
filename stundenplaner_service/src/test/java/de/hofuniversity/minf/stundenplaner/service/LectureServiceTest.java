@@ -1,6 +1,6 @@
 package de.hofuniversity.minf.stundenplaner.service;
 
-import de.hofuniversity.minf.stundenplaner.common.NotFoundException;
+import de.hofuniversity.minf.stundenplaner.common.exception.NotFoundException;
 import de.hofuniversity.minf.stundenplaner.persistence.lecture.LectureRepository;
 import de.hofuniversity.minf.stundenplaner.persistence.lecture.data.LectureDO;
 import de.hofuniversity.minf.stundenplaner.persistence.timetable.TimeTableRepository;
@@ -30,11 +30,11 @@ class LectureServiceTest {
     private LectureServiceImpl lectureService;
 
     public static final long LECTURE_ID = 1L;
-    private static final LectureDO LECTURE_DO_1 = new LectureDO(LECTURE_ID, "Betriebssysteme 1", Collections.emptyList());
-    private static final LectureDO LECTURE_DO_2 = new LectureDO(2L, "Statistik", Collections.emptyList());
+    private static final LectureDO LECTURE_DO_1 = new LectureDO(LECTURE_ID, "Betriebssysteme 1", Collections.emptyList(), Collections.emptyList());
+    private static final LectureDO LECTURE_DO_2 = new LectureDO(2L, "Statistik", Collections.emptyList(), Collections.emptyList());
 
     @Test
-    void testGetAll(){
+    void testGetAll() {
         when(lectureRepository.findAll()).thenReturn(List.of(LECTURE_DO_1, LECTURE_DO_2));
         List<LectureDO> expected = List.of(LECTURE_DO_1, LECTURE_DO_2);
         List<LectureTO> lectureTOs = lectureService.getAllLectures();
@@ -69,7 +69,7 @@ class LectureServiceTest {
     @Test
     void testUpdate(){
         when(lectureRepository.findById(LECTURE_ID)).thenReturn(Optional.of(
-                new LectureDO(LECTURE_DO_1.getId(), LECTURE_DO_1.getName(), Collections.emptyList())
+                new LectureDO(LECTURE_DO_1.getId(), LECTURE_DO_1.getName(), Collections.emptyList(), Collections.emptyList())
         ));
         when(lectureRepository.findById(3L)).thenReturn(Optional.empty());
         LectureTO test = LectureTO.fromDO(LECTURE_DO_2);

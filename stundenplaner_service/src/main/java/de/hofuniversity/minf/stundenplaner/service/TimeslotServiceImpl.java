@@ -1,6 +1,6 @@
 package de.hofuniversity.minf.stundenplaner.service;
 
-import de.hofuniversity.minf.stundenplaner.common.NotFoundException;
+import de.hofuniversity.minf.stundenplaner.common.exception.NotFoundException;
 import de.hofuniversity.minf.stundenplaner.persistence.timetable.timeslot.TimeslotRepository;
 import de.hofuniversity.minf.stundenplaner.persistence.timetable.timeslot.data.TimeslotDO;
 import de.hofuniversity.minf.stundenplaner.service.boundary.TimeslotService;
