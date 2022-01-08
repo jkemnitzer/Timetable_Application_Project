@@ -145,8 +145,8 @@
     "edit": "Edit",
     "delete": "Delete",
     "details": "Details",
-    "add": "Add lesson"
-
+    "add": "Add lesson",
+    "createRandom": "Random Timetable"
   },
   "TIMETABLE_CRUD": {
     "add_label": "Add new Lesson",

@@ -118,8 +118,9 @@
     "name": "Name",
     "edit": "Editieren",
     "delete": "Löschen",
+    "add": "Vorlesungsstunde hinzufügen",
     "details": "Details",
-    "add": "Vorlesungsstunde hinzufügen"
+    "createRandom": "Zufälliger Stundenplan"
   },
   "TIMETABLE_CRUD": {
     "add_label": "Neue Stunde anlegen",
