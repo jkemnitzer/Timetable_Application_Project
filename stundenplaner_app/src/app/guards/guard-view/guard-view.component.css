@@ -1,0 +1,18 @@
+.h-centered-div {
+  margin: auto;
+  text-align: center;
+}
+
+.width-60 {
+  width: 60%;
+}
+
+.pad-36 {
+  padding: 36px;
+}
+
+.ic-size-60 {
+  font-size: 60px;
+  height: 60px;
+  width: 60px;
+}

@@ -8,7 +8,8 @@
     "Greet": "Hallo",
     "Stundenplan": "Stundenplan",
     "Title": "Stundenplan-App",
-    "Benutzerrollen": "Benutzerrollen"
+    "Benutzerrollen": "Benutzerrollen",
+    "Benutzer": "Benutzer"
   },
   "PROGRAM": {
     "Filter": "Filter",
@@ -171,6 +172,19 @@
     "Description": "Stundenplanungs Tool für die Universität",
     "Submit": "Jetzt Planen",
     "SwitchLanguage":"Sprache"
-
+  },
+  "GUARD_VIEW": {
+    "UNKNOWN": {
+      "title": "Zugang eingeschränkt.",
+      "text": "Die über diesen Link angeforderte Ansicht ist eingeschränkt oder möglicherweise nicht verfügbar. Wenn Sie der Meinung sind, dass die angeforderte Seite für Sie verfügbar sein sollte oder wenn Sie Fragen zu diesem Service haben, wenden Sie sich bitte an den Eigentümer."
+    },
+    "MUST_BE_LOGGED_IN": {
+      "title": "Zugang eingeschränkt.",
+      "text": "Sie müssen eingeloggt sein um diesen Link anzuzeigen oder der Link ist möglicherweise nicht verfügbar. Bitte melden Sie sich mit Ihrem Nutzerkonto an oder erstellen Sie ein neues Nutzerkonto. Wenn Sie Fragen zu diesem Service haben, wenden Sie sich bitte an die Eigentümer."
+    },
+    "MUST_HAVE_PERMISSION": {
+      "title": "Zugang eingeschränkt.",
+      "text": "Sie sind nicht berechtigt diesen Link anzuzeigen oder der Link ist möglicherweise nicht verfügbar. Bitte wenden Sie sich an den Eigentümer und bitten Sie ihn darum Sie zu diesem Link einzuladen oder wechseln Sie das Nutzerkonto."
+    }
   }
 }

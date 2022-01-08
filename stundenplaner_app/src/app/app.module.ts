@@ -2,6 +2,9 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
+import { UserService } from "./user-service/user.service";
+import { LoggedInUserGuard } from "./guards/logged-in-user/logged-in-user-guard";
+import { GuardViewComponent } from './guards/guard-view/guard-view.component';
 import {AppComponent} from './app.component';
 import {RoomsComponent} from './rooms/rooms.component';
 import {ProfileComponent} from './profile/profile.component';
@@ -37,16 +40,18 @@ import {EditUsersDialogComponent} from './users/edit-users-dialog/edit-users-dia
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {LandingComponent} from './landing/landing.component';
-import {ShowTimetableComponent} from './show-timetable/show-timetable.component';
-import {TimetableDayComponent} from './show-timetable/timetable-day/timetable-day.component';
+import {ShowTimetableComponent} from "./show-timetable/show-timetable.component";
+import {TimetableDayComponent} from "./show-timetable/timetable-day/timetable-day.component";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatSelectModule} from "@angular/material/select";
 import {UserRoleOverviewComponent} from "./user-roles/user-role-overview/user-role-overview.component";
-import {ShowPermissionsDialogComponent} from "./user-roles/show-permissions-dialog/show-permissions-dialog.component";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {EditLessonFormComponent} from './show-timetable/edit-lesson-form/edit-lesson-form.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {ChangeLanguageComponent} from './landing/change-language/change-language.component';
+import { ShowPermissionsDialogComponent } from "./user-roles/show-permissions-dialog/show-permissions-dialog.component";
+import {PermissionGuard} from "./guards/permission/permission-guard";
+
 import {ErrorSnackbarComponent} from './show-timetable/error-snackbar/error-snackbar.component';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {SuccessSnackbarComponent} from './show-timetable/success-snackbar/success-snackbar.component';
@@ -74,9 +79,10 @@ import {SuccessSnackbarComponent} from './show-timetable/success-snackbar/succes
     ShowPermissionsDialogComponent,
     EditLessonFormComponent,
     ShowPermissionsDialogComponent,
-    ChangeLanguageComponent,
     ErrorSnackbarComponent,
     SuccessSnackbarComponent,
+    ChangeLanguageComponent,
+    GuardViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -120,7 +126,11 @@ import {SuccessSnackbarComponent} from './show-timetable/success-snackbar/succes
         MatAutocompleteModule,
 
   ],
-  providers: [],
+  providers: [
+    LoggedInUserGuard,
+    PermissionGuard,
+    UserService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
