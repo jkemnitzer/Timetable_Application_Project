@@ -1,9 +1,11 @@
 package de.hofuniversity.minf.stundenplaner.service.boundary;
 
-import de.hofuniversity.minf.stundenplaner.common.exception.NotFoundException;
+import de.hofuniversity.minf.stundenplaner.persistence.permission.data.PermissionTypeEnum;
+import de.hofuniversity.minf.stundenplaner.persistence.user.data.UserDO;
 import de.hofuniversity.minf.stundenplaner.service.to.UserTO;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Interface for managing users
@@ -22,7 +24,6 @@ public interface UserService {
      *
      * @param id to check users for
      * @return user with id
-     * @throws NotFoundException if id is not found
      */
     UserTO findById(Long id);
 
@@ -41,7 +42,6 @@ public interface UserService {
      * @param userTO     template to get changes from
      * @param checkRoles update roles as well or only basic attributes
      * @return updated user as saved in database layer
-     * @throws NotFoundException if id is not found
      */
     UserTO updateUser(Long id, UserTO userTO, boolean checkRoles);
 
@@ -50,8 +50,16 @@ public interface UserService {
      *
      * @param id of user to be removed
      * @return instance of user that was removed
-     * @throws NotFoundException if id is not found
      */
     UserTO removeUser(Long id);
+
+    /**
+     * returns the list of permissions within a UserDO
+     *
+     * @param userDO of the User to get the permissions from
+     * @return Set of permissions within the User
+     */
+
+    Set<PermissionTypeEnum> getPermissionsFromUserDO(UserDO userDO);
 
 }

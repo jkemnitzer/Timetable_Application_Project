@@ -1,5 +1,7 @@
 package de.hofuniversity.minf.stundenplaner.rest;
 
+import de.hofuniversity.minf.stundenplaner.common.security.RequiredPermission;
+import de.hofuniversity.minf.stundenplaner.persistence.permission.data.PermissionTypeEnum;
 import de.hofuniversity.minf.stundenplaner.service.DelegatedLecturerService;
 import de.hofuniversity.minf.stundenplaner.service.to.DelegatedLecturerTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,7 @@ import java.util.List;
 
 /**
  * @author mheckel
- *
+ * <p>
  * Rest class representing the api endpoints for the room info
  */
 @RestController
@@ -28,12 +30,14 @@ public class DelegatedLecturerController {
     }
 
     @GetMapping
-    public ResponseEntity<List<DelegatedLecturerTO>> getAllDelegatedLecturersForLecturer(@PathVariable("lecturerId") Long lecturerId){
+    @RequiredPermission(PermissionTypeEnum.CAN_READ_DELEGATED_LECTURERS)
+    public ResponseEntity<List<DelegatedLecturerTO>> getAllDelegatedLecturersForLecturer(@PathVariable("lecturerId") Long lecturerId) {
         return ResponseEntity.ok(delegatedLecturerService.getAllDelegatedLecturersForLecturer(lecturerId));
     }
 
     @GetMapping("/{delegatedLecturerId}")
-    public ResponseEntity<DelegatedLecturerTO> findDelegatedLecturerById(@PathVariable("delegatedLecturerId") Long delegatedLecturerId){
+    @RequiredPermission(PermissionTypeEnum.CAN_READ_DELEGATED_LECTURERS)
+    public ResponseEntity<DelegatedLecturerTO> findDelegatedLecturerById(@PathVariable("delegatedLecturerId") Long delegatedLecturerId) {
         return ResponseEntity.ok(delegatedLecturerService.findById(delegatedLecturerId));
     }
 

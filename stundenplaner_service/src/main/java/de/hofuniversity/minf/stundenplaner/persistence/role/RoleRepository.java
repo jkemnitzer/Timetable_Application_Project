@@ -5,9 +5,12 @@ import de.hofuniversity.minf.stundenplaner.persistence.role.data.RoleTypeEnum;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Collection;
+import java.util.Optional;
 import java.util.Set;
 
 public interface RoleRepository extends CrudRepository<RoleDO, Long> {
 
     Set<RoleDO> findAllByIdInOrTypeIn(Collection<Long> id, Collection<RoleTypeEnum> type);
+
+    Optional<RoleDO> findByType(RoleTypeEnum type);
 }

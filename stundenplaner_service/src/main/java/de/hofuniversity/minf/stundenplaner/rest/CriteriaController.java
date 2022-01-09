@@ -1,5 +1,7 @@
 package de.hofuniversity.minf.stundenplaner.rest;
 
+import de.hofuniversity.minf.stundenplaner.common.security.RequiredPermission;
+import de.hofuniversity.minf.stundenplaner.persistence.permission.data.PermissionTypeEnum;
 import de.hofuniversity.minf.stundenplaner.service.CriteriaService;
 import de.hofuniversity.minf.stundenplaner.service.boundary.TimeTableService;
 import de.hofuniversity.minf.stundenplaner.service.criteria.CriterionExplaination;
@@ -22,6 +24,7 @@ public class CriteriaController {
     }
 
     @GetMapping("/evaluate/{timeTableId}")
+    @RequiredPermission(PermissionTypeEnum.CAN_READ_TIME_TABLES)
     public ResponseEntity<Double> evaluateTimeTable(
             @PathVariable("timeTableId") Long timeTableId
     ) {
@@ -29,6 +32,7 @@ public class CriteriaController {
     }
 
     @GetMapping("/explain/{timeTableId}")
+    @RequiredPermission(PermissionTypeEnum.CAN_READ_TIME_TABLES)
     public ResponseEntity<List<CriterionExplaination>> explainTimeTable(
             @PathVariable("timeTableId") Long timeTableId
     ) {

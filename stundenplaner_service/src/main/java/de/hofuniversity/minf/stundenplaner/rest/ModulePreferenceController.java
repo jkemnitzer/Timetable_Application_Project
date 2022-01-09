@@ -1,5 +1,7 @@
 package de.hofuniversity.minf.stundenplaner.rest;
 
+import de.hofuniversity.minf.stundenplaner.common.security.RequiredPermission;
+import de.hofuniversity.minf.stundenplaner.persistence.permission.data.PermissionTypeEnum;
 import de.hofuniversity.minf.stundenplaner.service.ModulePreferenceService;
 import de.hofuniversity.minf.stundenplaner.service.to.ModulePreferenceTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,7 @@ import java.util.List;
 
 /**
  * @author mheckel
- *
+ * <p>
  * Rest class representing the api endpoints for the room info
  */
 @RestController
@@ -28,12 +30,14 @@ public class ModulePreferenceController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ModulePreferenceTO>> get(@PathVariable("lecturerId") Long lecturerId){
+    @RequiredPermission(PermissionTypeEnum.CAN_READ_MODULE_PREFERENCES)
+    public ResponseEntity<List<ModulePreferenceTO>> get(@PathVariable("lecturerId") Long lecturerId) {
         return ResponseEntity.ok(modulePreferenceService.getAllModulePreferencesForLecturer(lecturerId));
     }
 
     @GetMapping("/{modulePreferenceId}")
-    public ResponseEntity<ModulePreferenceTO> findDelegatedLecturerById(@PathVariable("modulePreferenceId") Long modulePreferenceId){
+    @RequiredPermission(PermissionTypeEnum.CAN_READ_MODULE_PREFERENCES)
+    public ResponseEntity<ModulePreferenceTO> findDelegatedLecturerById(@PathVariable("modulePreferenceId") Long modulePreferenceId) {
         return ResponseEntity.ok(modulePreferenceService.findById(modulePreferenceId));
     }
 
