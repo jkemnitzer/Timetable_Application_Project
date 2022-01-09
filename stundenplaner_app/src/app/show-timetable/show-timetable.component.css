@@ -8,11 +8,8 @@
   width: 300px;
 }
 .container1 .button-add{
-
   margin-left: 8px;
   height: 35px;
-
-
 }
 .container1 .button{
   margin-left: 8px;
@@ -21,6 +18,10 @@
   margin: 8px;
   position: absolute;
   height: 45px;
+}
+.fab {
+  margin: 8px;
+  float:right;
 }
 .add_lecture_card{
   margin: 10px;

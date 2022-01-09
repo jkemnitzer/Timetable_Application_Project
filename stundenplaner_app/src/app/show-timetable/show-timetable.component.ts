@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpService} from "../http/http.service";
+import {DialogType, TimetableFileDialogComponent} from "./timetable-file-dialog/timetable-file-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
 import {FormControl, Validators} from "@angular/forms";
 import {Observable} from "rxjs";
 import {map, startWith} from "rxjs/operators";
@@ -66,7 +68,6 @@ export class Day {
   templateUrl: './show-timetable.component.html',
   styleUrls: ['../global.css', './show-timetable.component.css']
 })
-
 export class ShowTimetableComponent implements OnInit {
 
   mondayData: Lesson[] = [];
@@ -139,8 +140,11 @@ export class ShowTimetableComponent implements OnInit {
   timeSlots: TimeSlot[] = [];
   filteredTimeSlots: TimeSlot[] = [];
 
-  constructor(private httpService: HttpService,private _snackBar: MatSnackBar) {
+  constructor(public dialog: MatDialog,
+              private httpService: HttpService,
+              private _snackBar: MatSnackBar) {
     this.getTimetable();
+
   }
 
   ngOnInit(): void {
@@ -211,6 +215,18 @@ export class ShowTimetableComponent implements OnInit {
   }
 
 
+  // a reference to the DialogType-enum to access in the html-file
+  DialogType = DialogType;
+  // the relative path to fetch the timetable from
+  base_rel_lectures_path: string = '/timetable/export';
+  // the request options when attempting to download
+  export_timetable_request_options: object = { responseType: 'blob' as 'json', observe: 'response'}
+  // the mimetype of the downloaded timetable
+  export_timetable_blob_mimetype: string = 'application/octet-stream'
+  // the filename-identifier in the responses-header content-disposition
+  export_timetable_filename_header: string = 'fileName='
+  // the fallback-filename for the exported timetable
+  export_timetable_filename_fallback: string = 'timetable_unknown.xls'
   applyFilter(event: KeyboardEvent) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.filter = filterValue.trim().toLowerCase();
@@ -441,5 +457,49 @@ export class ShowTimetableComponent implements OnInit {
       duration:5000,
       data: message
     },);
+  }
+
+
+  /**
+   * Opens the File-Dialog to offer the User the option to i.e. upload a timetable
+   *
+   * @param dialogType the type of the dialog to present
+   */
+  openFileDialog(dialogType: DialogType): void {
+    this.dialog.open(
+      TimetableFileDialogComponent, {
+        data: {dialogType: dialogType}
+      }
+    )
+  }
+
+  /**
+   * Causes to download of the exported timetable via the api
+   */
+  downloadTimetable(): void {
+    this.httpService.getRequest(this.base_rel_lectures_path, this.export_timetable_request_options).subscribe(
+      (response) => {
+        const contentDisposition = response.headers.get('content-disposition');
+        let fileName = this.export_timetable_filename_fallback
+        if (contentDisposition != null) {
+          if (contentDisposition.includes(this.export_timetable_filename_header)) {
+            fileName = contentDisposition.split(';')[1].split(this.export_timetable_filename_header)[1];
+          }
+        }
+        const newBlob = new Blob([response.body], { type: this.export_timetable_blob_mimetype })
+        // create and trigger hyperlink
+        let downloadLink = document.createElement('a');
+        let url = URL.createObjectURL(newBlob);
+        //if Safari open in new window.
+        if (navigator.userAgent.indexOf('Safari') != -1) {
+          downloadLink.setAttribute('target', '_blank');
+        }
+        downloadLink.setAttribute('href', url);
+        downloadLink.setAttribute('download', fileName);
+        downloadLink.style.visibility = 'hidden';
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+      });
   }
 }

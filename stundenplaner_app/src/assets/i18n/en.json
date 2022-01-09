@@ -161,13 +161,27 @@
     "delete": "Delete all fields",
     "added": "Lesson was successfully added",
     "edited": "Lesson was successfully edited",
-    "fail": "An error has occurred, please check your entries"
+    "fail": "An error has occurred, please check your entries",
 
+    "details": "Details",
+    "IMPORT": {
+      "titelImport": "Import timetable",
+      "beschreibungImport": "You can either upload a complete or partial timetable.",
+      "titelImportiere": "Import",
+      "beschreibungImportiere": "The chosen timetable is importing...",
+      "titelImportiert": "Success",
+      "beschreibungImportiert": "The chosen timetable has been successfully imported.",
+      "titelImportFehler": "Error",
+      "beschreibungImportFehler": "The selected timetable could not be imported, please try again later. If the error persists, make sure that the table is formatted correctly.",
+      "btnImport": "Import",
+      "btnCancel": "Cancel",
+      "btnClose": "Ok"
+    }
   },
   "LANDING": {
     "Description": "Timetable Planning Tool for the University",
     "Submit": "Start Planning",
-    "SwitchLanguage":"Language"
+    "SwitchLanguage":"Language",
   "GUARD_VIEW": {
     "UNKNOWN": {
       "title": "Access Restricted.",

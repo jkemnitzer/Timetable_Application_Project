@@ -136,7 +136,21 @@
     "delete": "Eingaben Löschen",
     "added": "Vorlesung wurde erfolgreich hinzugefügt",
     "edited": "Vorlesung wurde erfolgreich geändert",
-    "fail": "Ein Fehler ist aufgetreten, überprüfen sie bitte ihre Eingaben"
+    "fail": "Ein Fehler ist aufgetreten, überprüfen sie bitte ihre Eingaben",
+    "details": "Details",
+    "IMPORT": {
+      "titelImport": "Stundenplan importieren",
+      "beschreibungImport": "Sie können hier einen Stundenplan oder einen Teilstundenplan importieren lassen.",
+      "titelImportiere": "Import",
+      "beschreibungImportiere": "Der ausgewählte Stundenplan wird importiert ...",
+      "titelImportiert": "Erfolg",
+      "beschreibungImportiert": "Der ausgewählte Stundenplan wurde erfolgreich importiert.",
+      "titelImportFehler": "Fehler",
+      "beschreibungImportFehler": "Der ausgewählte Stundenplan konnte nicht importiert werden, bitte versuchen Sie es später erneut. Sollte der Fehler weiterhin bestehen vergewissern Sie sich, dass die Formatierung der Tabelle korrekt ist.",
+      "btnImport": "Importieren",
+      "btnCancel": "Abbrechen",
+      "btnClose": "Ok"
+    }
   },
   "USER_ROLES": {
     "DIALOG": {

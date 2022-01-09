@@ -44,14 +44,16 @@ import {ShowTimetableComponent} from "./show-timetable/show-timetable.component"
 import {TimetableDayComponent} from "./show-timetable/timetable-day/timetable-day.component";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatSelectModule} from "@angular/material/select";
-import {UserRoleOverviewComponent} from "./user-roles/user-role-overview/user-role-overview.component";
+import { UserRoleOverviewComponent } from "./user-roles/user-role-overview/user-role-overview.component";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {ChangeLanguageComponent} from './landing/change-language/change-language.component';
 import { ShowPermissionsDialogComponent } from "./user-roles/show-permissions-dialog/show-permissions-dialog.component";
-import {PermissionGuard} from "./guards/permission/permission-guard";
+import { PermissionGuard } from "./guards/permission/permission-guard";
 
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {TimetableFileDialogComponent} from "./show-timetable/timetable-file-dialog/timetable-file-dialog.component";
 import {ErrorSnackbarComponent} from './show-timetable/error-snackbar/error-snackbar.component';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {SuccessSnackbarComponent} from './show-timetable/success-snackbar/success-snackbar.component';
@@ -81,6 +83,7 @@ import {SuccessSnackbarComponent} from './show-timetable/success-snackbar/succes
     GuardViewComponent,
     ErrorSnackbarComponent,
     SuccessSnackbarComponent,
+    TimetableFileDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -101,18 +104,16 @@ import {SuccessSnackbarComponent} from './show-timetable/success-snackbar/succes
     ReactiveFormsModule,
     MatInputModule,
     MatSortModule,
-    MatListModule,
     MatGridListModule,
     MatCardModule,
     MatMenuModule,
-    HttpClientModule,
     MatDialogModule,
     FormsModule,
     MatExpansionModule,
     MatPaginatorModule,
     MatSelectModule,
-    BrowserAnimationsModule,
     MatSlideToggleModule,
+    MatProgressSpinnerModule,
     MatSnackBarModule,
     TranslateModule.forRoot({
       loader: {
