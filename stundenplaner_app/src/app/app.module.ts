@@ -40,15 +40,15 @@ import { EditUsersDialogComponent } from './users/edit-users-dialog/edit-users-d
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LandingComponent } from './landing/landing.component';
-import {ShowTimetableComponent} from "./show-timetable/show-timetable.component";
-import {TimetableDayComponent} from "./show-timetable/timetable-day/timetable-day.component";
-import {MatExpansionModule} from "@angular/material/expansion";
-import {UserRoleOverviewComponent} from "./user-roles/user-role-overview/user-role-overview.component";
-import {MatSelectModule} from '@angular/material/select';
+import { ShowTimetableComponent } from "./show-timetable/show-timetable.component";
+import { TimetableDayComponent } from "./show-timetable/timetable-day/timetable-day.component";
+import { MatExpansionModule } from "@angular/material/expansion";
+import { UserRoleOverviewComponent } from "./user-roles/user-role-overview/user-role-overview.component";
+import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ChangeLanguageComponent } from './landing/change-language/change-language.component';
 import { ShowPermissionsDialogComponent } from "./user-roles/show-permissions-dialog/show-permissions-dialog.component";
-import {PermissionGuard} from "./guards/permission/permission-guard";
+import { PermissionGuard } from "./guards/permission/permission-guard";
 
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {TimetableFileDialogComponent} from "./show-timetable/timetable-file-dialog/timetable-file-dialog.component";
@@ -96,18 +96,14 @@ import {TimetableFileDialogComponent} from "./show-timetable/timetable-file-dial
     ReactiveFormsModule,
     MatInputModule,
     MatSortModule,
-    MatListModule,
     MatGridListModule,
     MatCardModule,
     MatMenuModule,
-    HttpClientModule,
     MatDialogModule,
-    FormsModule,
     FormsModule,
     MatExpansionModule,
     MatPaginatorModule,
     MatSelectModule,
-    BrowserAnimationsModule,
     MatSlideToggleModule,
     MatProgressSpinnerModule,
     TranslateModule.forRoot({
