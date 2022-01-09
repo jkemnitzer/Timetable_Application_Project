@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpService} from "../http/http.service";
+import {DialogType, TimetableFileDialogComponent} from "./timetable-file-dialog/timetable-file-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
 
 
 export interface Lesson {
@@ -62,8 +64,13 @@ export class ShowTimetableComponent implements OnInit {
   ];
   selectedSemester = this.semesters[1];
 
+  // a reference to the DialogType-enum to access in the html-file
+  DialogType = DialogType;
 
-  constructor(private httpService: HttpService,) {
+  constructor(
+    private httpService: HttpService,
+    public dialog: MatDialog
+  ) {
     // fetch the table-datasource
     this.httpService.getRequest(this.BASE_TIMETABLE_URL).subscribe(
       (response) => {
@@ -106,5 +113,19 @@ export class ShowTimetableComponent implements OnInit {
   applyFilter(event: KeyboardEvent) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.filter = filterValue.trim().toLowerCase();
+  }
+
+
+  /**
+   * Opens the File-Dialog to offer the User the option to i.e. upload a timetable
+   *
+   * @param dialogType the type of the dialog to present
+   */
+  openFileDialog(dialogType: DialogType): void {
+    this.dialog.open(
+      TimetableFileDialogComponent, {
+        data: { dialogType: dialogType }
+      }
+    )
   }
 }

@@ -50,6 +50,8 @@ import { ChangeLanguageComponent } from './landing/change-language/change-langua
 import { ShowPermissionsDialogComponent } from "./user-roles/show-permissions-dialog/show-permissions-dialog.component";
 import {PermissionGuard} from "./guards/permission/permission-guard";
 
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {TimetableFileDialogComponent} from "./show-timetable/timetable-file-dialog/timetable-file-dialog.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,6 +75,7 @@ import {PermissionGuard} from "./guards/permission/permission-guard";
     ShowPermissionsDialogComponent,
     ChangeLanguageComponent,
     GuardViewComponent,
+    TimetableFileDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -106,6 +109,7 @@ import {PermissionGuard} from "./guards/permission/permission-guard";
     MatSelectModule,
     BrowserAnimationsModule,
     MatSlideToggleModule,
+    MatProgressSpinnerModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

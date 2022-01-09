@@ -119,7 +119,20 @@
     "name": "Name",
     "edit": "Editieren",
     "delete": "Löschen",
-    "details": "Details"
+    "details": "Details",
+    "IMPORT": {
+      "titelImport": "Stundenplan importieren",
+      "beschreibungImport": "Sie können hier einen Stundenplan oder einen Teilstundenplan importieren lassen.",
+      "titelImportiere": "Import",
+      "beschreibungImportiere": "Der ausgewählte Stundenplan wird importiert ...",
+      "titelImportiert": "Erfolg",
+      "beschreibungImportiert": "Der ausgewählte Stundenplan wurde erfolgreich importiert.",
+      "titelImportFehler": "Fehler",
+      "beschreibungImportFehler": "Der ausgewählte Stundenplan konnte nicht importiert werden, bitte versuchen Sie es später erneut. Sollte der Fehler weiterhin bestehen vergewissern Sie sich, dass die Formatierung der Tabelle korrekt ist.",
+      "btnImport": "Importieren",
+      "btnCancel": "Abbrechen",
+      "btnClose": "Ok"
+    }
   },
   "USER_ROLES": {
     "DIALOG": {
