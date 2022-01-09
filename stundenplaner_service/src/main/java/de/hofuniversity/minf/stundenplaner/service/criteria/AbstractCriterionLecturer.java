@@ -26,7 +26,7 @@ public abstract class AbstractCriterionLecturer extends AbstractCriterionMapped<
             UserDO lecturer = lesson.getLecturerDO();
             // init arraylist once
             if (!mappedLessons.containsKey(lecturer)) {
-                mappedLessons.put(lecturer, new ArrayList<LessonDO>());
+                mappedLessons.put(lecturer, new ArrayList<>());
             }
             // append the lesson
             mappedLessons.get(lecturer).add(lesson);
