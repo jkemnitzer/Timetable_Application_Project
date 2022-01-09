@@ -145,6 +145,25 @@
     "edit": "Edit",
     "delete": "Delete",
     "details": "Details",
+    "add": "Add lesson",
+    "createRandom": "Random Timetable"
+  },
+  "TIMETABLE_CRUD": {
+    "add_label": "Add new Lesson",
+    "lecture": "Lecture",
+    "day": "Weekday",
+    "time_slot": "Time slot",
+    "room": "Room",
+    "lecturer": "Lecturer",
+    "type": "Type",
+    "note": "Note",
+    "add": "Add",
+    "delete": "Delete all fields",
+    "added": "Lesson was successfully added",
+    "edited": "Lesson was successfully edited",
+    "fail": "An error has occurred, please check your entries",
+
+    "details": "Details",
     "IMPORT": {
       "titelImport": "Import timetable",
       "beschreibungImport": "You can either upload a complete or partial timetable.",
@@ -162,7 +181,7 @@
   "LANDING": {
     "Description": "Timetable Planning Tool for the University",
     "Submit": "Start Planning",
-    "SwitchLanguage":"Language"
+    "SwitchLanguage":"Language",
   "GUARD_VIEW": {
     "UNKNOWN": {
       "title": "Access Restricted.",
