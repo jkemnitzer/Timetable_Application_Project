@@ -45,9 +45,10 @@ import {TimetableDayComponent} from "./show-timetable/timetable-day/timetable-da
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatSelectModule} from "@angular/material/select";
 import { UserRoleOverviewComponent } from "./user-roles/user-role-overview/user-role-overview.component";
-import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {EditLessonFormComponent} from './show-timetable/edit-lesson-form/edit-lesson-form.component';
 
+
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {ChangeLanguageComponent} from './landing/change-language/change-language.component';
