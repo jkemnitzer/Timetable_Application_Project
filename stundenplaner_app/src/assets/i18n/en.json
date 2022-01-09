@@ -185,7 +185,8 @@
   "LANDING": {
     "Description": "Timetable Planning Tool for the University",
     "Submit": "Start Planning",
-    "SwitchLanguage": "Language",
+    "SwitchLanguage": "Language"
+  },
     "GUARD_VIEW": {
       "UNKNOWN": {
         "title": "Access Restricted.",
@@ -200,5 +201,4 @@
         "text": "You don't have permission to view this link, or the link may not be available. Please contact the owner and ask to invite you to this link, or switch accounts."
       }
     }
-  }
 }
