@@ -22,15 +22,15 @@ public class CriterionFreeDaysForStudents extends AbstractCriterionProgram {
                     // Timeslot is already used, so the combination is invalid
                     return Double.NEGATIVE_INFINITY;
                 }
-                usedTimeSlots.add(lesson.getTimeslotDO());
-                int idx = lesson.getTimeslotDO().getWeekdayNr();
-                if(idx < 0 || idx >= 6) {
-                    // Weekday has to be 0 at least. Because there are no lectures sundays, it should be smaller
-                    // than 6
-                    return Double.NEGATIVE_INFINITY;
-                }
-                lessonsPerDay[idx] += 1;
             }
+            usedTimeSlots.add(lesson.getTimeslotDO());
+            int idx = lesson.getTimeslotDO().getWeekdayNr();
+            if(idx < 0 || idx >= 6) {
+                // Weekday has to be 0 at least. Because there are no lectures sundays, it should be smaller
+                // than 6
+                return Double.NEGATIVE_INFINITY;
+            }
+            lessonsPerDay[idx] += 1;
         }
 
         int freeDays = 0;
