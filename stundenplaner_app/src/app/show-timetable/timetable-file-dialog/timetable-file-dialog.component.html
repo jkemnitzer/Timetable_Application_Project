@@ -1,0 +1,60 @@
+<div class="dialog-width"></div>
+
+<!-- Dialog Headers -->
+<h1 mat-dialog-title [style.display]="isDialogType(data, DialogType.FILE_UPLOAD)?'visible':'none'">
+  {{'SHOW_TIMETABLE.IMPORT.titelImport' | translate}}
+</h1>
+<h1 mat-dialog-title [style.display]="isDialogType(data, DialogType.FILE_UPLOADING)?'visible':'none'">
+  {{'SHOW_TIMETABLE.IMPORT.titelImportiere' | translate}}
+</h1>
+<h1 mat-dialog-title [style.display]="isDialogType(data, DialogType.FILE_UPLOADED)?'visible':'none'">
+  {{'SHOW_TIMETABLE.IMPORT.titelImportiert' | translate}}
+</h1>
+<h1 mat-dialog-title [style.display]="isDialogType(data, DialogType.FILE_UPLOAD_FAILED)?'visible':'none'">
+  {{'SHOW_TIMETABLE.IMPORT.titelImportFehler' | translate}}
+</h1>
+
+<!-- Dialog Text -->
+<div class="h-center-ic pad-bot-20" [style.display]="isDialogType(data, DialogType.FILE_UPLOADED)?'visible':'none'">
+  <mat-icon class="ic-size-60" color="primary">
+    check_circle_outline
+  </mat-icon>
+</div>
+<div mat-dialog-content>
+  <p class="mat-body" [style.display]="isDialogType(data, DialogType.FILE_UPLOAD)?'visible':'none'">
+    {{'SHOW_TIMETABLE.IMPORT.beschreibungImport' | translate}}
+  </p>
+  <p class="mat-body" [style.display]="isDialogType(data, DialogType.FILE_UPLOADING)?'visible':'none'">
+    {{'SHOW_TIMETABLE.IMPORT.beschreibungImportiere' | translate}}
+  </p>
+  <p class="mat-body" [style.display]="isDialogType(data, DialogType.FILE_UPLOADED)?'visible':'none'">
+    {{'SHOW_TIMETABLE.IMPORT.beschreibungImportiert' | translate}}
+  </p>
+  <p class="mat-body" [style.display]="isDialogType(data, DialogType.FILE_UPLOAD_FAILED)?'visible':'none'">
+    {{'SHOW_TIMETABLE.IMPORT.beschreibungImportFehler' | translate}}
+  </p>
+</div>
+
+<!-- Dialog Body -->
+<div class="form-group" [style.display]="isDialogType(data, DialogType.FILE_UPLOAD)?'visible':'none'">
+  <input type="file" class="file-input" accept="{{acceptedFileUploadType}}" (change)="handleFileInput($event)" #fileUpload>
+</div>
+<mat-spinner class="mar-auto" [style.display]="isDialogType(data, DialogType.FILE_UPLOADING)?'visible':'none'"></mat-spinner>
+
+<!-- Actions -->
+<div mat-dialog-actions>
+  <button mat-button
+    [style.display]="isDialogType(data, DialogType.FILE_UPLOAD)?'visible':'none'"
+    (click)="uploadTimetable()">
+    {{'SHOW_TIMETABLE.IMPORT.btnImport' | translate}}
+  </button>
+  <button mat-button [style.display]="isDialogType(data, DialogType.FILE_UPLOAD)?'visible':'none'" (click)="cancelDialog()">
+    {{'SHOW_TIMETABLE.IMPORT.btnCancel' | translate}}
+  </button>
+  <button mat-button [style.display]="isDialogType(data, DialogType.FILE_UPLOADED)?'visible':'none'" (click)="cancelDialog()">
+    {{'SHOW_TIMETABLE.IMPORT.btnClose' | translate}}
+  </button>
+  <button mat-button [style.display]="isDialogType(data, DialogType.FILE_UPLOAD_FAILED)?'visible':'none'" (click)="cancelDialog()">
+    {{'SHOW_TIMETABLE.IMPORT.btnClose' | translate}}
+  </button>
+</div>

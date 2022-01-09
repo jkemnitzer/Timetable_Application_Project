@@ -1,0 +1,25 @@
+.dialog-width {
+  min-width: 600px;
+  width: 30%;
+}
+
+.mar-auto {
+  margin: auto;
+}
+
+.h-center-ic {
+  display: flex;
+  width: 100%;
+  align-items:center;
+  justify-content: center;
+}
+
+.ic-size-60 {
+  font-size: 60px;
+  height: 60px;
+  width: 60px;
+}
+
+.pad-bot-20 {
+  padding-bottom: 20px;
+}

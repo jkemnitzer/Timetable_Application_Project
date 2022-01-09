@@ -26,6 +26,14 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
+
+  <button mat-mini-fab class="fab_import"
+          (click)="openFileDialog(DialogType.FILE_UPLOAD)"
+          color="primary"
+  >
+    <mat-icon>cloud_upload</mat-icon>
+  </button>
+
   <mat-form-field appearance="outline" class="program-filter">
     <mat-label>{{'SHOW_TIMETABLE.search' | translate}}</mat-label>
     <input

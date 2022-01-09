@@ -12,4 +12,7 @@
   height: 45px;
 }
 
-
+.fab_import {
+  margin: 8px;
+  float:right;
+}
