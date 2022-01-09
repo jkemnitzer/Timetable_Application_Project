@@ -1,6 +1,5 @@
 package de.hofuniversity.minf.stundenplaner.service.boundary;
 
-
 import de.hofuniversity.minf.stundenplaner.service.to.LectureTO;
 
 import java.util.List;
