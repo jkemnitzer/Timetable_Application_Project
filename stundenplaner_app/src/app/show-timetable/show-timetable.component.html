@@ -1,5 +1,6 @@
 <form class="container1">
 
+
   <mat-form-field appearance="outline">
     <mat-label>{{'SHOW_TIMETABLE.faculty' | translate}}</mat-label>
     <mat-select [(value)]="selectedFaculty">
@@ -29,6 +30,20 @@
   <button color="primary" mat-raised-button (click)="openCreateLesson()" [disabled]="isCreateLessonVisible" class="button-add">{{'SHOW_TIMETABLE.add' | translate}}</button>
   <button color="primary" mat-raised-button (click)="generateTimetable()" class="button-add">
     {{'SHOW_TIMETABLE.createRandom' | translate}}</button>
+
+  <button mat-mini-fab class="fab"
+          (click)="downloadTimetable()"
+          color="primary"
+  >
+    <mat-icon>cloud_download</mat-icon>
+  </button>
+  <button mat-mini-fab class="fab"
+          (click)="openFileDialog(DialogType.FILE_UPLOAD)"
+          color="primary"
+  >
+    <mat-icon>cloud_upload</mat-icon>
+  </button>
+
   <mat-form-field appearance="outline" class="program-filter">
     <mat-label>{{'SHOW_TIMETABLE.search' | translate}}</mat-label>
     <input
