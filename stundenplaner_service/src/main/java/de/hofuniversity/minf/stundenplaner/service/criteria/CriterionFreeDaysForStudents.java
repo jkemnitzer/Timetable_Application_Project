@@ -10,7 +10,7 @@ public class CriterionFreeDaysForStudents extends AbstractCriterionProgram {
 
 
     @Override
-    public Double evaluateLessonsPerCourse(List<LessonDO> lessonDOList) {
+    public Double evaluateLessonsPerIdentifier(List<LessonDO> lessonDOList) {
         double value;
 
         Set<TimeslotDO> usedTimeSlots = new HashSet<>();
@@ -65,7 +65,7 @@ public class CriterionFreeDaysForStudents extends AbstractCriterionProgram {
     }
 
     @Override
-    public void cleanup() {
+    public void cleanupBeforeEvaluation() {
 
     }
 

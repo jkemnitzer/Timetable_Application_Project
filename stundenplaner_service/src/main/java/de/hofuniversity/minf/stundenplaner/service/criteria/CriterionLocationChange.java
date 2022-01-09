@@ -21,16 +21,16 @@ public class CriterionLocationChange extends AbstractCriterionProgram{
     private List<List<LessonDO>> collisions;
 
     public CriterionLocationChange(){
-        cleanup();
+        cleanupBeforeEvaluation();
     }
 
     @Override
-    public void cleanup(){
+    public void cleanupBeforeEvaluation(){
         collisions = new ArrayList<>();
     }
 
     @Override
-    public Double evaluateLessonsPerCourse(List<LessonDO> lessonDOList) {
+    public Double evaluateLessonsPerIdentifier(List<LessonDO> lessonDOList) {
 
         Map<TimeslotDO, LessonDO> lessonMap = new HashMap<>();
         List<TimeslotDO> timeslotDOList = new ArrayList<>();
