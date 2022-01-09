@@ -1,9 +1,11 @@
 package de.hofuniversity.minf.stundenplaner.service.boundary;
 
-import de.hofuniversity.minf.stundenplaner.common.exception.NotFoundException;
+import de.hofuniversity.minf.stundenplaner.persistence.permission.data.PermissionTypeEnum;
+import de.hofuniversity.minf.stundenplaner.persistence.role.data.RoleTypeEnum;
 import de.hofuniversity.minf.stundenplaner.service.to.RoleTO;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Interface for managing roles
@@ -22,8 +24,23 @@ public interface RoleService {
      *
      * @param id to check roles for
      * @return role with id
-     * @throws NotFoundException if id is not found
      */
     RoleTO findById(Long id);
+
+    /**
+     * finds a role by its type
+     *
+     * @param type to check roles for
+     * @return role with type
+     */
+    RoleTO findByType(RoleTypeEnum type);
+
+    /**
+     * returns the list of permissions within a roleTO
+     *
+     * @param roleTO of the role to get the permissions from
+     * @return Set of permissions within the role
+     */
+    Set<PermissionTypeEnum> getPermissionsFromRoleTO(RoleTO roleTO);
 
 }

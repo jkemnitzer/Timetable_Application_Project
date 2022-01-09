@@ -1,6 +1,8 @@
 package de.hofuniversity.minf.stundenplaner.service;
 
 import de.hofuniversity.minf.stundenplaner.common.exception.NotFoundException;
+import de.hofuniversity.minf.stundenplaner.persistence.permission.data.PermissionDO;
+import de.hofuniversity.minf.stundenplaner.persistence.permission.data.PermissionTypeEnum;
 import de.hofuniversity.minf.stundenplaner.persistence.role.RoleRepository;
 import de.hofuniversity.minf.stundenplaner.persistence.role.data.RoleDO;
 import de.hofuniversity.minf.stundenplaner.persistence.role.data.RoleTypeEnum;
@@ -151,5 +153,19 @@ public class UserServiceImpl implements UserService {
      */
     private Set<RoleDO> findRoleDOsByIds(Set<Long> roleIds) {
         return StreamSupport.stream(roleRepository.findAllById(roleIds).spliterator(), false).collect(Collectors.toSet());
+    }
+
+    public Set<PermissionTypeEnum> getPermissionsFromUserDO(UserDO userDO) {
+
+        Set<PermissionTypeEnum> permissions = new HashSet<>();
+        Set<RoleDO> roleDOS = userDO.getRoleDOs();
+
+        for (RoleDO roleDO : roleDOS) {
+            for (PermissionDO permissionDO : roleDO.getPermissionDOs()) {
+                permissions.add(permissionDO.getType());
+            }
+        }
+
+        return permissions;
     }
 }

@@ -1,5 +1,7 @@
 package de.hofuniversity.minf.stundenplaner.rest;
 
+import de.hofuniversity.minf.stundenplaner.common.security.RequiredPermission;
+import de.hofuniversity.minf.stundenplaner.persistence.permission.data.PermissionTypeEnum;
 import de.hofuniversity.minf.stundenplaner.service.boundary.RoleService;
 import de.hofuniversity.minf.stundenplaner.service.to.RoleTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +25,13 @@ public class RoleController {
     }
 
     @GetMapping
+    @RequiredPermission(PermissionTypeEnum.CAN_READ_ROLES)
     public ResponseEntity<List<RoleTO>> getAllRoles() {
         return ResponseEntity.ok(roleService.findAll());
     }
 
     @GetMapping("/{id}")
+    @RequiredPermission(PermissionTypeEnum.CAN_READ_ROLES)
     public ResponseEntity<RoleTO> getById(@PathVariable("id") Long id) {
         return ResponseEntity.ok(roleService.findById(id));
     }

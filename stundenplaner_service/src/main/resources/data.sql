@@ -155,13 +155,38 @@ INSERT INTO t_role (type)
 VALUES ('GUEST');
 
 INSERT INTO t_permission (type)
-VALUES ('CAN_CREATE_USERS');
+VALUES ('CAN_READ_DELEGATED_LECTURERS');
+
 INSERT INTO t_permission (type)
-VALUES ('CAN_READ_USERS');
+VALUES ('CAN_READ_FACULTIES');
+
 INSERT INTO t_permission (type)
-VALUES ('CAN_UPDATE_USERS');
+VALUES ('CAN_CREATE_LECTURES');
 INSERT INTO t_permission (type)
-VALUES ('CAN_DELETE_USERS');
+VALUES ('CAN_READ_LECTURES');
+INSERT INTO t_permission (type)
+VALUES ('CAN_UPDATE_LECTURES');
+INSERT INTO t_permission (type)
+VALUES ('CAN_DELETE_LECTURES');
+
+INSERT INTO t_permission (type)
+VALUES ('CAN_READ_LECTURER_PROFILES');
+
+INSERT INTO t_permission (type)
+VALUES ('CAN_READ_MODULE_PREFERENCES');
+
+INSERT INTO t_permission (type)
+VALUES ('CAN_CREATE_PROGRAMS');
+INSERT INTO t_permission (type)
+VALUES ('CAN_READ_PROGRAMS');
+INSERT INTO t_permission (type)
+VALUES ('CAN_UPDATE_PROGRAMS');
+INSERT INTO t_permission (type)
+VALUES ('CAN_DELETE_PROGRAMS');
+
+INSERT INTO t_permission (type)
+VALUES ('CAN_READ_ROLES');
+
 INSERT INTO t_permission (type)
 VALUES ('CAN_CREATE_ROOMS');
 INSERT INTO t_permission (type)
@@ -170,6 +195,47 @@ INSERT INTO t_permission (type)
 VALUES ('CAN_UPDATE_ROOMS');
 INSERT INTO t_permission (type)
 VALUES ('CAN_DELETE_ROOMS');
+
+INSERT INTO t_permission (type)
+VALUES ('CAN_CREATE_SEMESTERS');
+INSERT INTO t_permission (type)
+VALUES ('CAN_READ_SEMESTERS');
+INSERT INTO t_permission (type)
+VALUES ('CAN_UPDATE_SEMESTERS');
+INSERT INTO t_permission (type)
+VALUES ('CAN_DELETE_SEMESTERS');
+
+INSERT INTO t_permission (type)
+VALUES ('CAN_READ_TIME_SLOTS');
+
+INSERT INTO t_permission (type)
+VALUES ('CAN_READ_TIME_SLOT_PREFERENCES');
+
+INSERT INTO t_permission (type)
+VALUES ('CAN_CREATE_TIME_TABLES');
+INSERT INTO t_permission (type)
+VALUES ('CAN_READ_TIME_TABLES');
+INSERT INTO t_permission (type)
+VALUES ('CAN_DELETE_TIME_TABLES');
+
+INSERT INTO t_permission (type)
+VALUES ('CAN_CREATE_LESSONS');
+INSERT INTO t_permission (type)
+VALUES ('CAN_READ_LESSONS');
+INSERT INTO t_permission (type)
+VALUES ('CAN_UPDATE_LESSONS');
+INSERT INTO t_permission (type)
+VALUES ('CAN_DELETE_LESSONS');
+
+INSERT INTO t_permission (type)
+VALUES ('CAN_CREATE_USERS');
+INSERT INTO t_permission (type)
+VALUES ('CAN_READ_USERS');
+INSERT INTO t_permission (type)
+VALUES ('CAN_UPDATE_USERS');
+INSERT INTO t_permission (type)
+VALUES ('CAN_DELETE_USERS');
+
 
 INSERT INTO t_user (username, password, password_salt, email, created, last_updated, status)
 VALUES ('BMars', '', '', 'better.mars@hof-university.de', NOW(), NOW(), 'ACTIVE');
@@ -216,6 +282,67 @@ INSERT INTO t_role_permission_map (role_id, permission_id)
 VALUES (1, 7);
 INSERT INTO t_role_permission_map (role_id, permission_id)
 VALUES (1, 8);
+INSERT INTO t_role_permission_map (role_id, permission_id)
+VALUES (1, 9);
+INSERT INTO t_role_permission_map (role_id, permission_id)
+VALUES (1, 10);
+INSERT INTO t_role_permission_map (role_id, permission_id)
+VALUES (1, 11);
+INSERT INTO t_role_permission_map (role_id, permission_id)
+VALUES (1, 12);
+INSERT INTO t_role_permission_map (role_id, permission_id)
+VALUES (1, 13);
+INSERT INTO t_role_permission_map (role_id, permission_id)
+VALUES (1, 14);
+INSERT INTO t_role_permission_map (role_id, permission_id)
+VALUES (1, 15);
+INSERT INTO t_role_permission_map (role_id, permission_id)
+VALUES (1, 16);
+INSERT INTO t_role_permission_map (role_id, permission_id)
+VALUES (1, 17);
+INSERT INTO t_role_permission_map (role_id, permission_id)
+VALUES (1, 18);
+INSERT INTO t_role_permission_map (role_id, permission_id)
+VALUES (1, 19);
+INSERT INTO t_role_permission_map (role_id, permission_id)
+VALUES (1, 20);
+INSERT INTO t_role_permission_map (role_id, permission_id)
+VALUES (1, 21);
+INSERT INTO t_role_permission_map (role_id, permission_id)
+VALUES (1, 22);
+INSERT INTO t_role_permission_map (role_id, permission_id)
+VALUES (1, 23);
+INSERT INTO t_role_permission_map (role_id, permission_id)
+VALUES (1, 24);
+INSERT INTO t_role_permission_map (role_id, permission_id)
+VALUES (1, 25);
+INSERT INTO t_role_permission_map (role_id, permission_id)
+VALUES (1, 26);
+INSERT INTO t_role_permission_map (role_id, permission_id)
+VALUES (1, 27);
+INSERT INTO t_role_permission_map (role_id, permission_id)
+VALUES (1, 28);
+INSERT INTO t_role_permission_map (role_id, permission_id)
+VALUES (1, 29);
+INSERT INTO t_role_permission_map (role_id, permission_id)
+VALUES (1, 30);
+INSERT INTO t_role_permission_map (role_id, permission_id)
+VALUES (1, 31);
+INSERT INTO t_role_permission_map (role_id, permission_id)
+VALUES (1, 32);
+INSERT INTO t_role_permission_map (role_id, permission_id)
+VALUES (1, 33);
+INSERT INTO t_role_permission_map (role_id, permission_id)
+VALUES (1, 34);
+
+INSERT INTO t_role_permission_map (role_id, permission_id)
+VALUES (5, 31);
+INSERT INTO t_role_permission_map (role_id, permission_id)
+VALUES (5, 32);
+INSERT INTO t_role_permission_map (role_id, permission_id)
+VALUES (5, 33);
+INSERT INTO t_role_permission_map (role_id, permission_id)
+VALUES (5, 34);
 
 --- faculty
 DROP TABLE IF EXISTS t_faculty;

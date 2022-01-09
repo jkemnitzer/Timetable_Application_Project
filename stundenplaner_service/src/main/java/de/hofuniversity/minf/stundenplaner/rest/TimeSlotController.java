@@ -1,5 +1,7 @@
 package de.hofuniversity.minf.stundenplaner.rest;
 
+import de.hofuniversity.minf.stundenplaner.common.security.RequiredPermission;
+import de.hofuniversity.minf.stundenplaner.persistence.permission.data.PermissionTypeEnum;
 import de.hofuniversity.minf.stundenplaner.service.boundary.TimeslotService;
 import de.hofuniversity.minf.stundenplaner.service.to.TimeslotTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,7 @@ import java.util.List;
 
 /**
  * @author mheckel
- *
+ * <p>
  * Rest class representing the api endpoints for the room info
  */
 @RestController
@@ -28,12 +30,14 @@ public class TimeSlotController {
     }
 
     @GetMapping
-    public ResponseEntity<List<TimeslotTO>> get(){
+    @RequiredPermission(PermissionTypeEnum.CAN_READ_TIME_SLOTS)
+    public ResponseEntity<List<TimeslotTO>> get() {
         return ResponseEntity.ok(timeSlotService.getAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TimeslotTO> findDelegatedLecturerById(@PathVariable Long id){
+    @RequiredPermission(PermissionTypeEnum.CAN_READ_TIME_SLOTS)
+    public ResponseEntity<TimeslotTO> findDelegatedLecturerById(@PathVariable Long id) {
         return ResponseEntity.ok(timeSlotService.findById(id));
     }
 
