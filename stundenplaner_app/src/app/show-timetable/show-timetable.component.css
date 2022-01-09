@@ -1,10 +1,18 @@
 .container1 .mat-form-field{
   margin-left: 8px;
+  margin-top: 5px;
 }
 .container1 .program-filter{
   float:right;
   margin-right: 8px;
   width: 300px;
+}
+.container1 .button-add{
+  margin-left: 8px;
+  height: 35px;
+}
+.container1 .button{
+  margin-left: 8px;
 }
 .container1 .filter_button{
   margin: 8px;
@@ -15,4 +23,28 @@
   margin: 8px;
   float:right;
 }
+.add_lecture_card{
+  margin: 10px;
+  background: aliceblue;
+  width: fit-content;
+}
+.attribute_grid{
+  display: grid;
+}
+.attribute{
+  width: fit-content;
+  margin-right: 5px;
+}
+.attributeName{
+  width:500px;
+  margin-right: 5px;
+}
+.delete_button{
+  margin-right: 400px;
+}
+.add_lecture_card.open_add_menu_button{
+  margin-left: 200px;
+
+}
+
 
