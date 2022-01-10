@@ -9,7 +9,10 @@
 export enum GuardReason {
   UNKNOWN,
   MUST_BE_LOGGED_IN,
-  MUST_HAVE_PERMISSION
+  MUST_HAVE_PERMISSION,
+  // Following HTTP-Statuscode:
+  UNAUTHORIZED_ACCESS,
+  FORBIDDEN_ACCESS
 }
 
 /**

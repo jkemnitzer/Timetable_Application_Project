@@ -16,3 +16,15 @@
   <h1>{{ "GUARD_VIEW.MUST_HAVE_PERMISSION.title" | translate }}</h1>
   <p>{{ "GUARD_VIEW.MUST_HAVE_PERMISSION.text" | translate }}</p>
 </div>
+<!-- UNAUTHORIZED_ACCESS -->
+<div class="h-centered-div pad-36 width-60" [style.display]="isGuardReasonType(GuardReason.UNAUTHORIZED_ACCESS)?'visible':'none'">
+  <mat-icon class="ic-size-60" color="primary">lock</mat-icon>
+  <h1>{{ "GUARD_VIEW.UNAUTHORIZED_ACCESS.title" | translate }}</h1>
+  <p>{{ "GUARD_VIEW.UNAUTHORIZED_ACCESS.text" | translate }}</p>
+</div>
+<!-- FORBIDDEN ACCESS -->
+<div class="h-centered-div pad-36 width-60" [style.display]="isGuardReasonType(GuardReason.FORBIDDEN_ACCESS)?'visible':'none'">
+  <mat-icon class="ic-size-60" color="primary">lock</mat-icon>
+  <h1>{{ "GUARD_VIEW.FORBIDDEN_ACCESS.title" | translate }}</h1>
+  <p>{{ "GUARD_VIEW.FORBIDDEN_ACCESS.text" | translate }}</p>
+</div>

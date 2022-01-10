@@ -189,7 +189,9 @@
   "LANDING": {
     "Description": "Timetable Planning Tool for the University",
     "Submit": "Start Planning",
-    "SwitchLanguage":"Language",
+    "SwitchLanguage":"Language"
+  },
+
   "GUARD_VIEW": {
     "UNKNOWN": {
       "title": "Access Restricted.",
@@ -202,6 +204,15 @@
     "MUST_HAVE_PERMISSION": {
       "title": "Access Restricted.",
       "text" : "You don't have permission to view this link, or the link may not be available. Please contact the owner and ask to invite you to this link, or switch accounts."
+    },
+    "UNAUTHORIZED_ACCESS": {
+      "title": "Unauthorized Access.",
+      "text": "Resources you have requested could not be loaded because you have not logged on. Please log in and try again."
+    },
+    "FORBIDDEN_ACCESS": {
+      "title": "Forbidden Access.",
+      "text": "Resources you requested could not be loaded because they were not made available to you. Please contact the owner and ask him to invite you to this resources or change your user account."
     }
   }
+
 }
