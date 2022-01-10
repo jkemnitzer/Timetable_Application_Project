@@ -203,6 +203,14 @@
     "MUST_HAVE_PERMISSION": {
       "title": "Zugang eingeschränkt.",
       "text": "Sie sind nicht berechtigt diesen Link anzuzeigen oder der Link ist möglicherweise nicht verfügbar. Bitte wenden Sie sich an den Eigentümer und bitten Sie ihn darum Sie zu diesem Link einzuladen oder wechseln Sie das Nutzerkonto."
+    },
+    "UNAUTHORIZED_ACCESS": {
+      "title": "Unautorisierter Zugriff.",
+      "text": "Ressourcen die Sie angefordert haben konnte nicht geladen werden, da Sie sich nicht angemeldet haben. Bitte melden Sie sich an und versuchen Sie es erneut."
+    },
+    "FORBIDDEN_ACCESS": {
+      "title": "Unerlaubter Zugriff.",
+      "text": "Ressourcen die Sie angeforderten haben konnte nicht geladen werden, da Sie ihnen nicht zur Verfügung gestellt worden sind. Bitte wenden Sie sich an den Eigentümer und bitten Sie ihn darum Sie zu diesen Ressourcen einzuladen oder wechseln Sie das Nutzerkonto."
     }
   }
 }

@@ -58,6 +58,8 @@ import {ErrorSnackbarComponent} from './show-timetable/error-snackbar/error-snac
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {SuccessSnackbarComponent} from './show-timetable/success-snackbar/success-snackbar.component';
 
+import {RegistrationComponent} from "./registration/registration.component";
+
 @NgModule({
   declarations: [
     AppComponent,
