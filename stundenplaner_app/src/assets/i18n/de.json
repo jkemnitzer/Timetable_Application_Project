@@ -177,6 +177,14 @@
         "search_txt": "Suchen sie nach {{value}}..."
       }
     }
+  }, 
+  "REGISTER" : {
+    "register" : "Registrieren",
+    "close" : "Schließen",
+    "username" : "Benutzername",
+    "password" :"Passwort",
+    "mailFormat" : "Falsches Mail-Format",
+    "mailMissing" : "Email Feld darf nicht leer sein"
   },
   "LANDING": {
     "Description": "Stundenplanungs Tool für die Universität",

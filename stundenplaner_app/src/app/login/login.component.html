@@ -1,8 +1,10 @@
 <div *ngIf="!userService.loggedIn">
   <button
-    mat-button [matMenuTriggerFor]="menu"
-    matTooltip="{{'LOGIN.TOOLTIP.Anmelden' | translate}}"
-    #trigger="matMenuTrigger">
+    mat-button
+    [matMenuTriggerFor]="menu"
+    matTooltip="{{ 'LOGIN.TOOLTIP.Anmelden' | translate }}"
+    #trigger="matMenuTrigger"
+  >
     <mat-icon>login</mat-icon>
   </button>
   <mat-menu #menu="matMenu" class="login-menu">
@@ -12,27 +14,27 @@
       fxLayout="column"
       class="width-100 pad-24">
       <form class="menu-form">
-        <h3>{{'LOGIN.Title' | translate}}</h3>
+        <h3>{{ "LOGIN.Title" | translate }}</h3>
         <mat-form-field fxLayoutAlign="center">
-          <mat-label>{{'LOGIN.Username' | translate}}</mat-label>
-          <input matInput
-                 #usernameInput
-                 type="text"
-                 (keyup.enter)="loginUser()"
-                 required/>
+          <mat-label>Username</mat-label>
+          <input
+            matInput
+            #usernameInput
+            type="text"
+            (keyup.enter)="loginUser()"
+            required
+          />
         </mat-form-field>
         <mat-form-field fxLayoutAlign="center">
-          <mat-label>{{'LOGIN.Passwort' | translate}}</mat-label>
-          <input matInput
-                 type="password"
-                 (submit)="loginUser()"/>
+          <mat-label>Password</mat-label>
+          <input matInput type="password" (submit)="loginUser()" />
         </mat-form-field>
         <div fxLayout="row">
           <button mat-raised-button type="button" (click)="loginUser()">
             <mat-icon>login</mat-icon>
           </button>
-          <button mat-button type="button" (click)="trigger.closeMenu()">
-            {{'LOGIN.Registrieren' | translate}}
+          <button mat-button type="button" (click)="openRegistrationDialog()">
+            {{ "REGISTER.register" | translate }}
           </button>
         </div>
       </form>
@@ -43,7 +45,8 @@
   <button
     mat-button
     (click)="logoutUser()"
-    matTooltip="{{'LOGIN.TOOLTIP.Abmelden' | translate}}">
+    matTooltip="{{ 'LOGIN.TOOLTIP.Abmelden' | translate }}"
+  >
     <mat-icon>logout</mat-icon>
   </button>
 </div>

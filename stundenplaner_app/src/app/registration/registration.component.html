@@ -1,0 +1,63 @@
+<h1 mat-dialog-title>{{ "REGISTER.register" | translate }}</h1>
+<div mat-dialog-content></div>
+<form class="registration-form" [formGroup]="registrationForm">
+  <mat-form-field
+    fxLayoutAlign="center"
+    class="example-full-width"
+    appearance="fill"
+  >
+    <mat-label>Email</mat-label>
+    <input
+      type="email"
+      matInput
+      [formControl]="emailFormControl"
+      placeholder="Ex. pat@example.com"
+      formControlName="email"
+    />
+    <mat-error
+      *ngIf="
+        emailFormControl.hasError('email') &&
+        !emailFormControl.hasError('required')
+      "
+    >
+      {{ "REGISTER.mailFormat" | translate }}
+    </mat-error>
+    <mat-error *ngIf="emailFormControl.hasError('required')">
+      {{ "REGISTER.mailMissing" | translate }}
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field
+    fxLayoutAlign="center"
+    class="example-full-width"
+    appearance="fill"
+  >
+    <mat-label>{{ "REGISTER.username" | translate }}</mat-label>
+    <input
+      type="text"
+      matInput
+      placeholder="pmustermann"
+      formControlName="username"
+    />
+  </mat-form-field>
+  <mat-form-field
+    fxLayoutAlign="center"
+    class="example-full-width"
+    appearance="fill"
+  >
+    <mat-label>{{ "REGISTER.password" | translate }}</mat-label>
+    <input
+      type="password"
+      matInput
+      placeholder="1234"
+      formControlName="password"
+    />
+  </mat-form-field>
+</form>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>
+    {{ "REGISTER.close" | translate }}
+  </button>
+  <button mat-button mat-dialog-close (click)="registerUser()">
+    {{ "REGISTER.register" | translate }}
+  </button>
+</div>

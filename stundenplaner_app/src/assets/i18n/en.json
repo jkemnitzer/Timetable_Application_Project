@@ -178,6 +178,14 @@
       "btnClose": "Ok"
     }
   },
+  "REGISTER": {
+    "register" : "Register",
+    "close" : "Close",
+    "username" : "Username",
+    "password" : "Password",
+    "mailFormat" : "Wrong mail format",
+    "mailMissing" : "Email field can not be empty"
+  },
   "LANDING": {
     "Description": "Timetable Planning Tool for the University",
     "Submit": "Start Planning",

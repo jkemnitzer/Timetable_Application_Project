@@ -79,6 +79,7 @@ import {SuccessSnackbarComponent} from './show-timetable/success-snackbar/succes
     LandingComponent,
     UserRoleOverviewComponent,
     ShowPermissionsDialogComponent,
+    RegistrationComponent,
     ChangeLanguageComponent,
     GuardViewComponent,
     ErrorSnackbarComponent,
@@ -125,11 +126,7 @@ import {SuccessSnackbarComponent} from './show-timetable/success-snackbar/succes
         MatAutocompleteModule,
 
   ],
-  providers: [
-    LoggedInUserGuard,
-    PermissionGuard,
-    UserService,
-  ],
+  providers: [LoggedInUserGuard, PermissionGuard, UserService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
