@@ -25,6 +25,7 @@ public class CriterionRegistry {
         criteriaList.put(CriterionRoomSize.CriterionName, new CriterionRoomSize());
         criteriaList.put(CriterionAccessibility.CriterionName, new CriterionAccessibility());
         criteriaList.put(CriterionOnlineLecture.CriterionName, new CriterionOnlineLecture());
+        criteriaList.put(CriterionGapForLecturers.CriterionName, new CriterionGapForLecturers());
 
 
 
