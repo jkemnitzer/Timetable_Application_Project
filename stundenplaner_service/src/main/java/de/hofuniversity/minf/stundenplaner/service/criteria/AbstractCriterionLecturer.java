@@ -8,13 +8,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public abstract class AbstractCriterionLecturer extends AbstractCriterionMapped<UserDO>{
+public abstract class AbstractCriterionLecturer extends AbstractCriterionMapped<UserDO> {
 
     /**
      * Maps given list of lessons to it's lecturer
      *
      * @param lessonsToEvaluate the list of lesson to be evaluated
-     *
      * @return map containing the list of lesson (value) held by a lecturer (key)
      */
     public Map<UserDO, List<LessonDO>> getLessonMap(List<LessonDO> lessonsToEvaluate) {

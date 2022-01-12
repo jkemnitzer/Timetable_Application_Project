@@ -4,7 +4,11 @@ import de.hofuniversity.minf.stundenplaner.persistence.timetable.data.LessonDO;
 import de.hofuniversity.minf.stundenplaner.persistence.timetable.timeslot.data.TimeslotDO;
 
 import java.time.Duration;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -25,7 +29,7 @@ public class CriterionLocationChange extends AbstractCriterionProgram{
     }
 
     @Override
-    public void cleanupBeforeEvaluation(){
+    public void cleanupBeforeEvaluation() {
         collisions = new ArrayList<>();
     }
 
@@ -35,7 +39,7 @@ public class CriterionLocationChange extends AbstractCriterionProgram{
         Map<TimeslotDO, LessonDO> lessonMap = new HashMap<>();
         List<TimeslotDO> timeslotDOList = new ArrayList<>();
 
-        for (LessonDO lessonDO:lessonDOList){
+        for (LessonDO lessonDO : lessonDOList) {
             lessonMap.put(lessonDO.getTimeslotDO(), lessonDO);
             timeslotDOList.add(lessonDO.getTimeslotDO());
         }

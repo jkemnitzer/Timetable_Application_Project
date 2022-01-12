@@ -1,5 +1,6 @@
 package de.hofuniversity.minf.stundenplaner.common.simpleauth;
 
+import de.hofuniversity.minf.stundenplaner.common.simpleauth.basic.TokenTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +29,7 @@ public class SimpleAuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> loginUser(@RequestBody LoginTO login) {
+    public ResponseEntity<TokenTO> loginUser(@RequestBody LoginTO login) {
         return ResponseEntity.ok(authService.login(login.username, login.password));
     }
 

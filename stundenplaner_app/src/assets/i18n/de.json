@@ -101,8 +101,8 @@
     }
   },
   "SHOW_TIMETABLE": {
-    "faculty": "Fakultät",
-    "major": "Studiengang",
+    "version": "Version",
+    "program": "Studiengang",
     "semester": "Semester",
     "search": "Suche",
     "searchTerms": "Dozent, Fach und Raumsuche",
@@ -124,7 +124,7 @@
     "createRandom": "Zufälliger Stundenplan"
   },
   "TIMETABLE_CRUD": {
-    "add_label": "Neue Stunde anlegen",
+    "add_label": "Nicht Implementiert",
     "lecture": "Vorlesung",
     "day": "Wochentag",
     "time_slot": "Zeitslot",
@@ -152,6 +152,10 @@
       "btnClose": "Ok"
     }
   },
+  "TIMETABLE_FILTER": {
+    "clear_selection_tooltip": "Alle Auswahlen zurücksetzen",
+    "clear_filter_tooltip": "Alle Filter zurücksetzen"
+  },
   "USER_ROLES": {
     "DIALOG": {
       "COLUMNS": {
@@ -177,19 +181,19 @@
         "search_txt": "Suchen sie nach {{value}}..."
       }
     }
-  }, 
-  "REGISTER" : {
-    "register" : "Registrieren",
-    "close" : "Schließen",
-    "username" : "Benutzername",
-    "password" :"Passwort",
-    "mailFormat" : "Falsches Mail-Format",
-    "mailMissing" : "Email Feld darf nicht leer sein"
+  },
+  "REGISTER": {
+    "register": "Registrieren",
+    "close": "Schließen",
+    "username": "Benutzername",
+    "password": "Passwort",
+    "mailFormat": "Falsches Mail-Format",
+    "mailMissing": "Email Feld darf nicht leer sein"
   },
   "LANDING": {
     "Description": "Stundenplanungs Tool für die Universität",
     "Submit": "Jetzt Planen",
-    "SwitchLanguage":"Sprache"
+    "SwitchLanguage": "Sprache"
   },
   "GUARD_VIEW": {
     "UNKNOWN": {

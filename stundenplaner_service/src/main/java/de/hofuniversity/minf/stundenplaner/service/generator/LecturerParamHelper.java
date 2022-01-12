@@ -6,7 +6,7 @@ import de.hofuniversity.minf.stundenplaner.persistence.user.data.UserDO;
 /**
  * @author mheckel
  */
-public class LecturerParamHelper implements ParamHelper<UserDO>{
+public class LecturerParamHelper implements ParamHelper<UserDO> {
     @Override
     public void setParam(LessonDO lesson, UserDO value) {
         lesson.setLecturerDO(value);

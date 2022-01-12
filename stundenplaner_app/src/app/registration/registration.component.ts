@@ -1,12 +1,7 @@
-import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
-import { HttpService } from '../http/http.service';
+import {Component} from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import {FormBuilder, FormControl, FormGroup, Validators,} from '@angular/forms';
+import {HttpService} from '../http/http.service';
 
 @Component({
   selector: 'app-registration',
@@ -20,11 +15,13 @@ export class RegistrationComponent {
   ]);
 
   public registrationForm!: FormGroup;
+
   constructor(
     public dialog: MatDialog,
     private requestMaker: HttpService,
     private formBuilder: FormBuilder
-  ) {}
+  ) {
+  }
 
   openRegistrationDialog() {
     this.dialog.open(RegistrationComponent);

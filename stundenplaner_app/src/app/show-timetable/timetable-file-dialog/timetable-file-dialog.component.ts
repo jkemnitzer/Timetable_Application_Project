@@ -53,11 +53,13 @@ export class TimetableFileDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<TimetableFileDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogTimetableFileData,
     public dialog: MatDialog
-  ) { }
+  ) {
+  }
 
   /** ALC **/
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   /** Functions **/
 
@@ -83,7 +85,7 @@ export class TimetableFileDialogComponent implements OnInit {
    *
    * @param event the File-Input-Button-Event caused by the user
    */
-  handleFileInput(event: Event): void  {
+  handleFileInput(event: Event): void {
     try {
       // @ts-ignore, if failure will be handled by catch
       this.fileUploadTimetable = event.target.files.item(0);
@@ -102,7 +104,7 @@ export class TimetableFileDialogComponent implements OnInit {
       this.dialogRef.close();
       this.dialogRef = this.dialog.open(
         TimetableFileDialogComponent, {
-          data: { dialogType: DialogType.FILE_UPLOADING }
+          data: {dialogType: DialogType.FILE_UPLOADING}
         }
       );
       this.dialogRef.afterOpened().subscribe(_ => {
@@ -116,7 +118,7 @@ export class TimetableFileDialogComponent implements OnInit {
             this.dialogRef.close();
             this.dialogRef = this.dialog.open(
               TimetableFileDialogComponent, {
-                data: { dialogType: DialogType.FILE_UPLOADED }
+                data: {dialogType: DialogType.FILE_UPLOADED}
               }
             );
           }, (_) => {
@@ -124,7 +126,7 @@ export class TimetableFileDialogComponent implements OnInit {
             this.dialogRef.close();
             this.dialogRef = this.dialog.open(
               TimetableFileDialogComponent, {
-                data: { dialogType: DialogType.FILE_UPLOAD_FAILED }
+                data: {dialogType: DialogType.FILE_UPLOAD_FAILED}
               }
             );
           }

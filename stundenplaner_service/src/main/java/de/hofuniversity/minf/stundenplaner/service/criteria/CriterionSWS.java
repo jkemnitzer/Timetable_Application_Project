@@ -11,11 +11,11 @@ import java.util.List;
 
 /**
  * The SWSCriterion defines the criterion for evaluating a lecturer regarding the work hours of a lecture.
- *
+ * <p>
  * It consists out of two-borders and therefore three fields:
- *  - work hours below the lower-border are wanted; A = {100.0}
- *  - work hours above the lower-border and below the upper-border are unwanted; A = {100.0, ..., 0.0}
- *  - work hours above the upper-border are  unwanted; A = {-INF}
+ * - work hours below the lower-border are wanted; A = {100.0}
+ * - work hours above the lower-border and below the upper-border are unwanted; A = {100.0, ..., 0.0}
+ * - work hours above the upper-border are  unwanted; A = {-INF}
  *
  * @author Jan Gaida
  * @task #6255
@@ -35,7 +35,9 @@ public class CriterionSWS extends AbstractCriterionLecturer {
     @Override
     public Double evaluateLessonsPerIdentifier(List<LessonDO> lessonsToEvaluate) {
         // skip if no lessons
-        if (lessonsToEvaluate.size() == 0) { return 100.0; }
+        if (lessonsToEvaluate.size() == 0) {
+            return 100.0;
+        }
 
         // calculate current applied-sws
         int appliedSws = 0;
@@ -56,7 +58,7 @@ public class CriterionSWS extends AbstractCriterionLecturer {
         // evaluate
         if (overtimeSws <= LOWER_BORDER_OVERTIME) {
             return 100.0; // all fine
-        } else if (overtimeSws >= UPPER_BORDER_OVERTIME){
+        } else if (overtimeSws >= UPPER_BORDER_OVERTIME) {
             return Double.NEGATIVE_INFINITY; // too much sws to given lecturer
         } else {
             // i.e. lower-border = 2 && upper-border = 6
@@ -70,21 +72,20 @@ public class CriterionSWS extends AbstractCriterionLecturer {
     /**
      * (Rounded) Formula to calculate the SWS-amount for a lecture.
      * => 1 SWS per 45min lecture-time
-     *
+     * <p>
      * i.e.:
-     *  45min lesson = 1 SWS
-     *  90min lesson = 2 SWS
+     * 45min lesson = 1 SWS
+     * 90min lesson = 2 SWS
      * 110min lesson = 2 SWS
      * 115min lesson = 3 SWS
      * 135min lesson = 3 SWS
      *
      * @param timeslot the timeslot for given lesson
-     *
      * @return the sws-amount for given lesson
      */
     private long calculateSwsLecturerBased(TimeslotDO timeslot) {
         long timeslotMinutes = ChronoUnit.MINUTES.between(timeslot.getStart(), timeslot.getEnd());
-        return Math.round(timeslotMinutes/45.0);
+        return Math.round(timeslotMinutes / 45.0);
     }
 
     @Override

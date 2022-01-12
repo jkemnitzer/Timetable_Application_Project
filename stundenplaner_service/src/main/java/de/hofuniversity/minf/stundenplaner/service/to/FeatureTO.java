@@ -1,7 +1,6 @@
 package de.hofuniversity.minf.stundenplaner.service.to;
 
 
-import de.hofuniversity.minf.stundenplaner.persistence.permission.data.PermissionDO;
 import de.hofuniversity.minf.stundenplaner.persistence.room.data.FeatureDO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

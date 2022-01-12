@@ -7,5 +7,6 @@ import de.hofuniversity.minf.stundenplaner.persistence.timetable.data.LessonDO;
  */
 interface ParamHelper<T> {
     void setParam(LessonDO lesson, T value);
+
     T getParam(LessonDO lesson);
 }

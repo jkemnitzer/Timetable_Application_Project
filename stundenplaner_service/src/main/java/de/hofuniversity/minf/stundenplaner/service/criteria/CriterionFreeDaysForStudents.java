@@ -3,7 +3,10 @@ package de.hofuniversity.minf.stundenplaner.service.criteria;
 import de.hofuniversity.minf.stundenplaner.persistence.timetable.data.LessonDO;
 import de.hofuniversity.minf.stundenplaner.persistence.timetable.timeslot.data.TimeslotDO;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class CriterionFreeDaysForStudents extends AbstractCriterionProgram {
     public static final String CriterionName = "CriterionFreeDaysForStudents";
@@ -16,16 +19,16 @@ public class CriterionFreeDaysForStudents extends AbstractCriterionProgram {
         Set<TimeslotDO> usedTimeSlots = new HashSet<>();
         int[] lessonsPerDay = {0, 0, 0, 0, 0, 0};
 
-        for(LessonDO lesson: lessonDOList) {
-            for(TimeslotDO timeSlot: usedTimeSlots) {
-                if(lesson.getTimeslotDO().equals(timeSlot)) {
+        for (LessonDO lesson : lessonDOList) {
+            for (TimeslotDO timeSlot : usedTimeSlots) {
+                if (lesson.getTimeslotDO().equals(timeSlot)) {
                     // Timeslot is already used, so the combination is invalid
                     return Double.NEGATIVE_INFINITY;
                 }
             }
             usedTimeSlots.add(lesson.getTimeslotDO());
             int idx = lesson.getTimeslotDO().getWeekdayNr();
-            if(idx < 0 || idx >= 6) {
+            if (idx < 0 || idx >= 6) {
                 // Weekday has to be 0 at least. Because there are no lectures sundays, it should be smaller
                 // than 6
                 return Double.NEGATIVE_INFINITY;

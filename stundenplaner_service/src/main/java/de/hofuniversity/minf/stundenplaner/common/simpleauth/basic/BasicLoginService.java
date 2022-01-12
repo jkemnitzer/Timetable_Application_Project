@@ -3,19 +3,15 @@ package de.hofuniversity.minf.stundenplaner.common.simpleauth.basic;
 import de.hofuniversity.minf.stundenplaner.common.exception.SimpleAuthException;
 import de.hofuniversity.minf.stundenplaner.common.simpleauth.SimpleAuthService;
 import de.hofuniversity.minf.stundenplaner.persistence.user.UserRepository;
-import de.hofuniversity.minf.stundenplaner.persistence.user.data.StatusEnum;
 import de.hofuniversity.minf.stundenplaner.persistence.user.data.UserDO;
-
 import de.hofuniversity.minf.stundenplaner.service.boundary.UserService;
 import de.hofuniversity.minf.stundenplaner.service.to.RoleTO;
 import de.hofuniversity.minf.stundenplaner.service.to.UserTO;
-
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.xml.bind.annotation.adapters.HexBinaryAdapter;
-
 import java.nio.ByteBuffer;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -33,14 +29,14 @@ public class BasicLoginService implements SimpleAuthService {
 
     @Autowired
     public BasicLoginService(UserRepository userRepository, BasicLoginRepository tokenRepository,
-            UserService userService) {
+                             UserService userService) {
         this.userRepository = userRepository;
         this.tokenRepository = tokenRepository;
         this.userService = userService;
     }
 
     @Override
-    public String login(String username, String password) throws SimpleAuthException {
+    public TokenTO login(String username, String password) throws SimpleAuthException {
         Optional<UserDO> optional = userRepository.findByUsernameOrEmail(username, username);
         if (optional.isPresent()) {
             UserDO userDO = optional.get();
@@ -48,7 +44,7 @@ public class BasicLoginService implements SimpleAuthService {
             TokenDO tokenDO = new TokenDO(
                     null, generateToken(userDO.getUsername()), LocalDateTime.now().plusMinutes(5), userDO);
             tokenRepository.save(tokenDO);
-            return tokenDO.getToken();
+            return TokenTO.fromDO(tokenDO);
         } else {
             throw new SimpleAuthException(SimpleAuthException.AuthErrorType.LOGIN_FAIL);
         }

@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { TimetableFileDialogComponent } from './timetable-file-dialog.component';
+import {TimetableFileDialogComponent} from './timetable-file-dialog.component';
 
 describe('TimetableFileDialogComponent', () => {
   let component: TimetableFileDialogComponent;
@@ -8,9 +8,9 @@ describe('TimetableFileDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TimetableFileDialogComponent ]
+      declarations: [TimetableFileDialogComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

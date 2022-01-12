@@ -1,19 +1,18 @@
 package de.hofuniversity.minf.stundenplaner.service.criteria;
 
+import de.hofuniversity.minf.stundenplaner.persistence.timetable.data.LessonDO;
+import de.hofuniversity.minf.stundenplaner.persistence.timetable.timeslot.data.TimeslotDO;
+import de.hofuniversity.minf.stundenplaner.persistence.user.data.UserDO;
+
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import de.hofuniversity.minf.stundenplaner.persistence.timetable.data.LessonDO;
-import de.hofuniversity.minf.stundenplaner.persistence.timetable.timeslot.data.TimeslotDO;
-import de.hofuniversity.minf.stundenplaner.persistence.user.data.UserDO;
-
 /**
  * Criterion which ensures gaps for lecturers so they don't have days which are
  * completely full with lectures
- * 
  */
 public class CriterionGapForLecturers extends AbstractCriterionLecturer {
 
@@ -29,7 +28,7 @@ public class CriterionGapForLecturers extends AbstractCriterionLecturer {
     }
 
     private void AddLessonsToMap(List<LessonDO> lessons, int value) {
-        for(LessonDO lesson: lessons) {
+        for (LessonDO lesson : lessons) {
             consecutiveLessons.put(lesson, value);
         }
     }
@@ -55,20 +54,20 @@ public class CriterionGapForLecturers extends AbstractCriterionLecturer {
         double value = 100.0;
 
         for (int i = 1; i < lessonDOList.size(); i++) {
-            if (isConsecutive(lessonDOList.get(i-1), lessonDOList.get(i))) {
+            if (isConsecutive(lessonDOList.get(i - 1), lessonDOList.get(i))) {
                 // Add the lesson to the list of consecutive lessons. If the
                 // list is empty (this is the first pair), add the first lesson
                 // as well. Otherwise, add only the next lesson (because the first
                 // lesson of now was already added before).
-                if(consecutives.size() == 0) {
-                    consecutives.add(lessonDOList.get(i-1));
+                if (consecutives.size() == 0) {
+                    consecutives.add(lessonDOList.get(i - 1));
                 }
                 consecutives.add(lessonDOList.get(i));
             } else {
                 // Two lessons are not consecutive, so the list of consecutive
                 // lessons can be evaluated
 
-                if(consecutiveLessons.size() > CONSECUTIVE_LESSONS_LIMIT) {
+                if (consecutiveLessons.size() > CONSECUTIVE_LESSONS_LIMIT) {
                     value = Double.NEGATIVE_INFINITY;
                 }
 
@@ -81,7 +80,7 @@ public class CriterionGapForLecturers extends AbstractCriterionLecturer {
                 // consecutive lessons of the week:
                 double newValue = 100D - (consecutiveLessonsMaximum * (100D / (CONSECUTIVE_LESSONS_LIMIT + 1)));
 
-                if(newValue < value) {
+                if (newValue < value) {
                     // Assume the worst value
                     value = newValue;
                 }
@@ -106,7 +105,7 @@ public class CriterionGapForLecturers extends AbstractCriterionLecturer {
         criterionExplaination.placeholders = new HashMap<>();
         // Text: "Lesson $lesson in in a block of $blocksize lessons for lecturer $lecturer"
         criterionExplaination.placeholders.put("lesson", lesson.getLectureDO().getName());
-        if(consecutiveLessons.containsKey(lesson)) {
+        if (consecutiveLessons.containsKey(lesson)) {
             criterionExplaination.placeholders.put("blocksize", Integer.toString(consecutiveLessons.get(lesson)));
         }
         criterionExplaination.placeholders.put("lecturer", identifier.getFirstName() + " " + identifier.getLastName());
@@ -123,11 +122,11 @@ public class CriterionGapForLecturers extends AbstractCriterionLecturer {
      * right after the first ends (excluding break time). This only handles "normal"
      * lessons, might need to implement a fallback method for "unusual" lessons such
      * as saturday lectures.
-     * 
+     *
      * @param first  The first LessonDO to compare
      * @param second The second LessonDO to compare
      * @return true if two lessons are consecutive. The lessons before and after mid
-     *         day pause are treated as consecutive.
+     * day pause are treated as consecutive.
      */
     private boolean isConsecutive(LessonDO first, LessonDO second) {
         // if not on the same day we can always return false

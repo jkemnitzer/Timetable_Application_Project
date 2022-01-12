@@ -1,7 +1,7 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {MatSort, Sort} from "@angular/material/sort";
 import {MatTableDataSource} from "@angular/material/table";
-import {Lesson} from "../show-timetable.component";
+import {Lesson} from "../data/lesson";
 
 
 @Component({
@@ -16,7 +16,7 @@ export class TimetableDayComponent implements OnInit, OnChanges{
   @Input() data: Lesson[] = [];
   dataSource:MatTableDataSource<Lesson> = new MatTableDataSource<Lesson>();
 
-  displayedColumns: string[] = [ 'start', 'end',
+  displayedColumns: string[] = ['start', 'end',
     'lecturer', 'room', 'name', 'edit', 'delete', 'info'];
 
 
@@ -39,6 +39,7 @@ export class TimetableDayComponent implements OnInit, OnChanges{
     this.dataSource.filter = this.filter;
     this.dataSource.sort = this.sort;
   }
+
   sortData(sort: Sort) {
     const data = this.dataSource.data.slice();
     if (!sort.active || sort.direction === '') {
@@ -58,16 +59,17 @@ export class TimetableDayComponent implements OnInit, OnChanges{
   }
 
   getErrorClass(row: Lesson) {
-    if(row.error == 'warning'){
+    if (row.error == 'warning') {
       return 'warning';
     }
-    if(row.error!!){
+    if (row.error!!) {
       return 'error'
     }
 
-     return '';
+    return '';
   }
 }
+
 function compare(a: number | string, b: number | string, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }

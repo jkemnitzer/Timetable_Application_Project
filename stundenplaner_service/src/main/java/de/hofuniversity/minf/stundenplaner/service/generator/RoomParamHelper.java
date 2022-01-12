@@ -6,7 +6,7 @@ import de.hofuniversity.minf.stundenplaner.persistence.timetable.data.LessonDO;
 /**
  * @author mheckel
  */
-public class RoomParamHelper implements ParamHelper<RoomDO>{
+public class RoomParamHelper implements ParamHelper<RoomDO> {
     @Override
     public void setParam(LessonDO lesson, RoomDO room) {
         lesson.setRoomDO(room);

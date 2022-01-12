@@ -2,9 +2,9 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
-import { UserService } from "./user-service/user.service";
-import { LoggedInUserGuard } from "./guards/logged-in-user/logged-in-user-guard";
-import { GuardViewComponent } from './guards/guard-view/guard-view.component';
+import {UserService} from "./user-service/user.service";
+import {LoggedInUserGuard} from "./guards/logged-in-user/logged-in-user-guard";
+import {GuardViewComponent} from './guards/guard-view/guard-view.component';
 import {AppComponent} from './app.component';
 import {RoomsComponent} from './rooms/rooms.component';
 import {ProfileComponent} from './profile/profile.component';
@@ -44,13 +44,14 @@ import {ShowTimetableComponent} from "./show-timetable/show-timetable.component"
 import {TimetableDayComponent} from "./show-timetable/timetable-day/timetable-day.component";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatSelectModule} from "@angular/material/select";
-import { UserRoleOverviewComponent } from "./user-roles/user-role-overview/user-role-overview.component";
+import {UserRoleOverviewComponent} from "./user-roles/user-role-overview/user-role-overview.component";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {ChangeLanguageComponent} from './landing/change-language/change-language.component';
-import { ShowPermissionsDialogComponent } from "./user-roles/show-permissions-dialog/show-permissions-dialog.component";
-import { PermissionGuard } from "./guards/permission/permission-guard";
+import {ShowPermissionsDialogComponent} from "./user-roles/show-permissions-dialog/show-permissions-dialog.component";
+import {PermissionGuard} from "./guards/permission/permission-guard";
+import {CookieService} from 'ngx-cookie-service';
 
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {TimetableFileDialogComponent} from "./show-timetable/timetable-file-dialog/timetable-file-dialog.component";
@@ -125,10 +126,15 @@ import {RegistrationComponent} from "./registration/registration.component";
         deps: [HttpClient],
       },
     }),
-        MatAutocompleteModule,
+    MatAutocompleteModule,
 
   ],
-  providers: [LoggedInUserGuard, PermissionGuard, UserService],
+  providers: [
+    LoggedInUserGuard,
+    PermissionGuard,
+    UserService,
+    CookieService
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -4,6 +4,7 @@ import de.hofuniversity.minf.stundenplaner.common.exception.NotFoundException;
 import de.hofuniversity.minf.stundenplaner.persistence.timetable.data.LessonDO;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,6 +14,7 @@ import java.util.Map;
 
 @Getter
 @Setter
+@Slf4j
 public class Criteria implements Criterion{
     private static Criteria myInstance = null;
 
@@ -43,8 +45,7 @@ public class Criteria implements Criterion{
             try {
                 criteriaWeights.put(registry.getCriterion(key), weights.get(i++));
             } catch(NotFoundException e) {
-                //todo: write to log file
-                System.out.printf("Unable to load criterion class for key '%s'\n", key);
+                log.warn(String.format("Unable to load criterion class for key '%s'\n", key));
             }
         }
     }

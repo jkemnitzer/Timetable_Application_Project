@@ -1,6 +1,5 @@
 package de.hofuniversity.minf.stundenplaner.service.to;
 
-import de.hofuniversity.minf.stundenplaner.persistence.user.data.StatusEnum;
 import de.hofuniversity.minf.stundenplaner.persistence.user.data.UserDO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

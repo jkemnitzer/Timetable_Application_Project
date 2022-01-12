@@ -4,7 +4,6 @@ import de.hofuniversity.minf.stundenplaner.persistence.account.data.ModulePrefer
 import de.hofuniversity.minf.stundenplaner.persistence.room.data.FeatureDO;
 import de.hofuniversity.minf.stundenplaner.persistence.timetable.data.LessonDO;
 
-
 import java.util.HashMap;
 import java.util.List;
 

@@ -30,8 +30,8 @@ public class Backtracker<T> {
         // randomize the order of lecturers
         Collections.shuffle(itemsToAdd);
 
-        for(LessonDO lesson: lessonsToAdd) {
-            if(lesson != null) {
+        for (LessonDO lesson : lessonsToAdd) {
+            if (lesson != null) {
                 toAddLectures++;
             }
         }
@@ -39,22 +39,22 @@ public class Backtracker<T> {
         LessonDO bestLesson = null;
         int bestLessonIndex = 0;
 
-        for(int i = 0; i < lessonsToAdd.size(); i++) {
+        for (int i = 0; i < lessonsToAdd.size(); i++) {
             LessonDO lesson = lessonsToAdd.get(i);
 
-            if(lesson == null) {
+            if (lesson == null) {
                 // The lesson is null and, therefore, was already added before (should be ignored)
                 continue;
             }
 
-            if(paramHelper.getParam(lesson) != null) {
+            if (paramHelper.getParam(lesson) != null) {
                 // The parameter is already specified and is not required to be guessed
                 generatedLessons.add(lesson);
                 lessonsToAdd.set(i, null);
                 continue;
             }
 
-            for(T item: itemsToAdd) {
+            for (T item : itemsToAdd) {
                 // Assign the current item to the lecture and remove it from the list
                 paramHelper.setParam(lesson, item);
                 lessonsToAdd.set(i, null);
@@ -62,7 +62,7 @@ public class Backtracker<T> {
 
                 // Check if the list is still valid when the item is mapped to the lecture (verify "hard" criteria)
                 double value = criteria.evaluate(timetable);
-                if(value == Double.NEGATIVE_INFINITY) {
+                if (value == Double.NEGATIVE_INFINITY) {
                     // Stop recursion when a combination is invalid
                     paramHelper.setParam(lesson, null);
                     timetable.remove(lesson);
@@ -72,7 +72,7 @@ public class Backtracker<T> {
 
                 // Continue the recursion
                 List<LessonDO> addedLessons = backtrack(lessonsToAdd, itemsToAdd, timetable, paramHelper);
-                if(addedLessons.size() != toAddLectures - 1) {
+                if (addedLessons.size() != toAddLectures - 1) {
                     // None of the following recursions was able to add lecturers for all lessons, so this combination is invalid
                     paramHelper.setParam(lesson, null);
                     timetable.remove(lesson);
@@ -85,11 +85,11 @@ public class Backtracker<T> {
 
                 // Search the maximum value (verify "soft" criteria)
                 value = criteria.evaluate(timetable);
-                if(value > maxValue) {
+                if (value > maxValue) {
                     maxValue = value;
 
                     // Undo last modifications (remove the lecturer for the combination that was rated best before)
-                    if(bestLesson != null) {
+                    if (bestLesson != null) {
                         paramHelper.setParam(bestLesson, null);
                         timetable.remove(bestLesson);
                         lessonsToAdd.set(bestLessonIndex, bestLesson);
@@ -107,7 +107,7 @@ public class Backtracker<T> {
                 }
                 timetable.remove(lesson);
 
-                if(validCombinations++ >= maxValidCombinations) {
+                if (validCombinations++ >= maxValidCombinations) {
                     return generatedLessons;
                 }
             }

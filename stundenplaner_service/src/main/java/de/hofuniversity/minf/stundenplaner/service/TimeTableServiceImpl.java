@@ -225,6 +225,13 @@ public class TimeTableServiceImpl implements TimeTableService {
     }
 
     @Override
+    public List<TimeTableVersionTO> findAllVersions() {
+        return StreamSupport.stream(versionRepository.findAll().spliterator(), false)
+                .map(TimeTableVersionTO::fromDO)
+                .toList();
+    }
+
+    @Override
     public Workbook exportAll() {
         return new TimeTableWorkBookBuilder()
                 .addItemsToSheet(this.findAllLessons())

@@ -1,12 +1,16 @@
 package de.hofuniversity.minf.stundenplaner.persistence.room.data;
 
-import de.hofuniversity.minf.stundenplaner.persistence.permission.data.PermissionTypeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 /**
  * @author KMP

@@ -9,7 +9,7 @@ public class CriterionModulesOfLecturer extends AbstractCriterion {
     public static final String CriterionName = "CriterionModulesOfLecturer";
 
     public double evaluate(LessonDO lesson) {
-        if(lesson.getLectureDO() == null) {
+        if (lesson.getLectureDO() == null) {
             // If no lecturer is assigned to the lesson, this should not have a negative impact on the
             // score of the lesson
             return 100.0;
@@ -19,7 +19,7 @@ public class CriterionModulesOfLecturer extends AbstractCriterion {
             return Double.NEGATIVE_INFINITY;
         }
 
-        for(ModulePreferenceDO preference: lesson.getLecturerDO().getLecturerProfile().getModulePreferences()) {
+        for (ModulePreferenceDO preference : lesson.getLecturerDO().getLecturerProfile().getModulePreferences()) {
             // Match based on the name because there might be lectures with different IDs but same name for
             // different semesters/years
             if (preference.getLecture().getName().equals(lesson.getLectureDO().getName())) {

@@ -31,7 +31,7 @@ class ProgramServiceTest {
     private final ProgramDO PROGRAM_DO_2 = new ProgramDO(2L, "Informatik", Collections.emptyList(), new FacultyDO());
 
     @Test
-    void testGetAll(){
+    void testGetAll() {
         when(programRepository.findAll()).thenReturn(List.of(PROGRAM_DO_1, PROGRAM_DO_2));
         List<ProgramDO> expected = List.of(PROGRAM_DO_1, PROGRAM_DO_2);
         List<ProgramTO> programTOs = programService.findAll();

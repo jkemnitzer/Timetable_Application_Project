@@ -1,6 +1,5 @@
 package de.hofuniversity.minf.stundenplaner.service;
 
-import de.hofuniversity.minf.stundenplaner.persistence.lecture.LectureRepository;
 import de.hofuniversity.minf.stundenplaner.persistence.lecture.data.LectureDO;
 import de.hofuniversity.minf.stundenplaner.persistence.program.ProgramRepository;
 import de.hofuniversity.minf.stundenplaner.persistence.program.data.ProgramDO;
@@ -43,13 +42,12 @@ public class GenerationServiceImpl implements GenerationService {
 
         // TODO: Add a list of all lectures that should take place in the semester
         List<LessonDO> lessonsToAdd = new ArrayList<>();
-        for(ProgramDO program: programRepository.findAll()) {
-            for(SemesterDO semester: program.getSemesterDOs()) {
+        for (ProgramDO program : programRepository.findAll()) {
+            for (SemesterDO semester : program.getSemesterDOs()) {
                 char[] lastChar = {'0'};
                 semester.getNumber().getChars(semester.getNumber().length() - 1, semester.getNumber().length(), lastChar, 0);
-                if(lastChar[0] % 2 == 1) {
+                if (lastChar[0] % 2 == 1) {
                     for (LectureDO lecture : semester.getLectures()) {
-                        System.out.println(lecture.getName());
                         LessonDO lesson = new LessonDO();
                         lesson.setLectureDO(lecture);
                         lesson.setLessonType(LessonType.LECTURE);

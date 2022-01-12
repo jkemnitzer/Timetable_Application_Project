@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {UserRoleType} from "../user-roles/data/user-role-type";
+import {CookieService} from "ngx-cookie-service";
 
 @Injectable({
   providedIn: 'root'
@@ -7,10 +8,13 @@ import {UserRoleType} from "../user-roles/data/user-role-type";
 export class UserService {
 
   public ANONYMOUS: string = "anonymous";
-  private _loggedIn: boolean = false;
   private _username: string = this.ANONYMOUS;
 
-  constructor() { }
+  constructor(private cookieService: CookieService) {
+    if (this.cookieService.check('username')) {
+      this.username = this.cookieService.get('username')
+    }
+  }
 
   get username(): string {
     return this._username;
@@ -18,11 +22,10 @@ export class UserService {
 
   set username(value: string) {
     this._username = value;
-    this._loggedIn = (this.username != this.ANONYMOUS)
   }
 
   get loggedIn(): boolean {
-    return this._loggedIn;
+    return this.cookieService.check("token") && this.cookieService.check("username");
   }
 
   /** Functions **/
