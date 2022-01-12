@@ -1,5 +1,6 @@
 package de.hofuniversity.minf.stundenplaner.persistence.lecture.data;
 
+import de.hofuniversity.minf.stundenplaner.persistence.faculty.data.FacultyDO;
 import de.hofuniversity.minf.stundenplaner.persistence.program.data.SemesterDO;
 import de.hofuniversity.minf.stundenplaner.persistence.timetable.data.LessonDO;
 import de.hofuniversity.minf.stundenplaner.service.to.LectureTO;
@@ -8,17 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Collections;
 import java.util.List;
 
@@ -49,12 +40,17 @@ public class LectureDO {
     )
     private List<SemesterDO> semesters;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_faculty_id", nullable = false)
+    private FacultyDO primaryFaculty;
+
     public static LectureDO fromTO(LectureTO lectureTO) {
         return new LectureDO(
                 lectureTO.getId(),
                 lectureTO.getLectureName(),
                 Collections.emptyList(),
-                Collections.emptyList()
+                Collections.emptyList(),
+                null
         );
     }
 

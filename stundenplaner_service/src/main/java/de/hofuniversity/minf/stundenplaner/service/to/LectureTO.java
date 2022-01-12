@@ -17,6 +17,7 @@ public class LectureTO {
     private Long id;
     private String lectureName;
     private List<LessonTO> lessons;
+    private FacultyTO primaryFaculty;
 
     public static LectureTO fromDO(LectureDO lectureDO) {
         return new LectureTO(
@@ -24,7 +25,8 @@ public class LectureTO {
                 lectureDO.getName(),
                 lectureDO.getLessons().stream()
                         .map(LessonTO::fromDO)
-                        .toList()
+                        .toList(),
+                FacultyTO.fromDO(lectureDO.getPrimaryFaculty())
         );
     }
 
