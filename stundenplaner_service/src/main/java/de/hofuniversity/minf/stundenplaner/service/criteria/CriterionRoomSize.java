@@ -4,7 +4,6 @@ package de.hofuniversity.minf.stundenplaner.service.criteria;
 import de.hofuniversity.minf.stundenplaner.persistence.program.data.SemesterDO;
 import de.hofuniversity.minf.stundenplaner.persistence.timetable.data.LessonDO;
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

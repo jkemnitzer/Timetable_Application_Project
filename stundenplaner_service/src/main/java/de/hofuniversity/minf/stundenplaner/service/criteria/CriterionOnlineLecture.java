@@ -10,11 +10,11 @@ import java.util.List;
 
 /**
  * CriterionOnlineLecture defines the criterion for evaluating the online-lecture-type.
- *
+ * <p>
  * It consists out of two-borders and therefore three fields:
- *  - percentage of online-lectures below the lower-border are wanted; A = {100.0}
- *  - percentage of online-lectures above the lower-border and below the upper-border are unwanted; A = {100.0, ..., 0.0}
- *  - percentage of online-lectures above the upper-border are extremely unwanted; A = {0.0}
+ * - percentage of online-lectures below the lower-border are wanted; A = {100.0}
+ * - percentage of online-lectures above the lower-border and below the upper-border are unwanted; A = {100.0, ..., 0.0}
+ * - percentage of online-lectures above the upper-border are extremely unwanted; A = {0.0}
  *
  * @author Jan Gaida
  * @task #6254

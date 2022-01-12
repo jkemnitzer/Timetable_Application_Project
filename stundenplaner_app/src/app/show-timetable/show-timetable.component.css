@@ -1,50 +1,66 @@
-.container1 .mat-form-field{
+.container1 {
+  margin-top: 15px;
+}
+
+.container1 .mat-form-field {
   margin-left: 8px;
   margin-top: 5px;
 }
-.container1 .program-filter{
-  float:right;
-  margin-right: 8px;
+
+.container1 .program-filter {
   width: 300px;
 }
-.container1 .button-add{
+
+.container1 .button-add {
   margin-left: 8px;
   height: 35px;
 }
-.container1 .button{
+
+.container1 .button {
   margin-left: 8px;
 }
-.container1 .filter_button{
+
+.container1 .filter_button {
   margin: 8px;
   position: absolute;
   height: 45px;
 }
+
 .fab {
   margin: 8px;
-  float:right;
+  float: right;
 }
-.add_lecture_card{
+
+.add_lecture_card {
   margin: 10px;
   background: aliceblue;
   width: fit-content;
 }
-.attribute_grid{
+
+.attribute_grid {
   display: grid;
 }
-.attribute{
+
+.attribute {
   width: fit-content;
   margin-right: 5px;
 }
-.attributeName{
-  width:500px;
+
+.attributeName {
+  width: 500px;
   margin-right: 5px;
 }
-.delete_button{
+
+.delete_button {
   margin-right: 400px;
 }
-.add_lecture_card.open_add_menu_button{
+
+.add_lecture_card.open_add_menu_button {
   margin-left: 200px;
 
 }
 
-
+.clearSelectionButton {
+  color: gray;
+  margin: 8px;
+}

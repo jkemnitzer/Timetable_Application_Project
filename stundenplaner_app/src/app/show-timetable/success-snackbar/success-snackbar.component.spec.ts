@@ -8,9 +8,9 @@ describe('SuccessSnackbarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SuccessSnackbarComponent ]
+      declarations: [SuccessSnackbarComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

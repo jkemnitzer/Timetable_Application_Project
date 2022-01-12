@@ -6,7 +6,7 @@ import de.hofuniversity.minf.stundenplaner.persistence.timetable.timeslot.data.T
 /**
  * @author mheckel
  */
-public class TimeslotParamHelper implements ParamHelper<TimeslotDO>{
+public class TimeslotParamHelper implements ParamHelper<TimeslotDO> {
     @Override
     public void setParam(LessonDO lesson, TimeslotDO timeslot) {
         lesson.setTimeslotDO(timeslot);

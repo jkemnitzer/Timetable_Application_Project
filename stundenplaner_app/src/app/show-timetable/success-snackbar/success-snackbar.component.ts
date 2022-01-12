@@ -7,7 +7,8 @@ import {MAT_SNACK_BAR_DATA} from "@angular/material/snack-bar";
   styleUrls: ['./success-snackbar.component.scss']
 })
 export class SuccessSnackbarComponent implements OnInit {
-  constructor(@Inject(MAT_SNACK_BAR_DATA) public data: string) { }
+  constructor(@Inject(MAT_SNACK_BAR_DATA) public data: string) {
+  }
 
   ngOnInit(): void {
   }

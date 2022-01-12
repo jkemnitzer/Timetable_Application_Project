@@ -7,9 +7,9 @@ CREATE SEQUENCE t_lecture_seq;
 
 CREATE TABLE t_lecture
 (
-    id       BIGINT     DEFAULT t_lecture_seq.nextval PRIMARY KEY,
-    language VARCHAR(2) DEFAULT 'DE',
-    name     VARCHAR(200),
+    id            BIGINT     DEFAULT t_lecture_seq.nextval PRIMARY KEY,
+    language      VARCHAR(2) DEFAULT 'DE',
+    name          VARCHAR(200),
     fk_faculty_id BIGINT NOT NULL,
     FOREIGN KEY (fk_faculty_id) REFERENCES t_faculty (id)
 );

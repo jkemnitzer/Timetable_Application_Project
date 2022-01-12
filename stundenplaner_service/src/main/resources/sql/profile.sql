@@ -1,10 +1,10 @@
 CREATE SEQUENCE t_profile_seq;
 CREATE TABLE t_profile
 (
-    id BIGINT DEFAULT t_profile_seq.nextval PRIMARY KEY NOT NULL,
-    sws INTEGER,
-    fk_user_id BIGINT NOT NULL,
-    fk_faculty_id BIGINT NOT NULL,
+    id            bigint DEFAULT t_profile_seq.nextval PRIMARY KEY NOT NULL,
+    sws           INTEGER,
+    fk_user_id    bigint                                           NOT NULL,
+    fk_faculty_id bigint                                           NOT NULL,
     FOREIGN KEY (fk_user_id) REFERENCES t_user (id),
     FOREIGN KEY (fk_faculty_id) REFERENCES t_faculty (id)
 );
@@ -42,37 +42,56 @@ CREATE TABLE t_profile_delegated_lecturer_map
 CREATE SEQUENCE t_timeslot_preference_seq;
 CREATE TABLE t_timeslot_preference
 (
-    id BIGINT DEFAULT t_timeslot_preference_seq.nextval PRIMARY KEY NOT NULL,
-    priority INTEGER,
-    forced BOOL,
-    fk_timeslot_id BIGINT NOT NULL,
-    fk_profile_id BIGINT NOT NULL,
+    id             BIGINT DEFAULT t_timeslot_preference_seq.nextval PRIMARY KEY NOT NULL,
+    priority       INTEGER,
+    forced         BOOL,
+    fk_timeslot_id BIGINT                                                       NOT NULL,
+    fk_profile_id  bigint                                                       NOT NULL,
     FOREIGN KEY (fk_timeslot_id) REFERENCES t_timeslot (id),
     FOREIGN KEY (fk_profile_id) REFERENCES t_profile (id)
 );
 
-INSERT INTO t_delegated_lecturer (id, sws, fk_user_id) VALUES (1, 2, 7);
-INSERT INTO t_delegated_lecturer (id, sws, fk_user_id) VALUES (2, 4, 7);
-INSERT INTO t_delegated_lecturer (id, sws, fk_user_id) VALUES (3, 2, 7);
-INSERT INTO t_delegated_lecturer (id, sws, fk_user_id) VALUES (4, 6, 7);
+INSERT INTO t_delegated_lecturer (id, sws, fk_user_id)
+VALUES (1, 2, 7);
+INSERT INTO t_delegated_lecturer (id, sws, fk_user_id)
+VALUES (2, 4, 7);
+INSERT INTO t_delegated_lecturer (id, sws, fk_user_id)
+VALUES (3, 2, 7);
+INSERT INTO t_delegated_lecturer (id, sws, fk_user_id)
+VALUES (4, 6, 7);
 
-INSERT INTO t_profile(id, sws, fk_user_id, fk_faculty_id) VALUES (1, 18, 1, 1);
-INSERT INTO t_profile(id, sws, fk_user_id, fk_faculty_id) VALUES (2, 18, 2, 2);
-INSERT INTO t_profile(id, sws, fk_user_id, fk_faculty_id) VALUES (3, 18, 3, 2);
-INSERT INTO t_profile(id, sws, fk_user_id, fk_faculty_id) VALUES (4, 18, 4, 1);
-INSERT INTO t_profile(id, sws, fk_user_id, fk_faculty_id) VALUES (5, 18, 5, 3);
-INSERT INTO t_profile(id, sws, fk_user_id, fk_faculty_id) VALUES (6, 18, 6, 2);
-INSERT INTO t_profile(id, sws, fk_user_id, fk_faculty_id) VALUES (7, 18, 7, 3);
+INSERT INTO t_profile(id, sws, fk_user_id, fk_faculty_id)
+VALUES (1, 18, 1, 1);
+INSERT INTO t_profile(id, sws, fk_user_id, fk_faculty_id)
+VALUES (2, 18, 2, 2);
+INSERT INTO t_profile(id, sws, fk_user_id, fk_faculty_id)
+VALUES (3, 18, 3, 2);
+INSERT INTO t_profile(id, sws, fk_user_id, fk_faculty_id)
+VALUES (4, 18, 4, 1);
+INSERT INTO t_profile(id, sws, fk_user_id, fk_faculty_id)
+VALUES (5, 18, 5, 3);
+INSERT INTO t_profile(id, sws, fk_user_id, fk_faculty_id)
+VALUES (6, 18, 6, 2);
+INSERT INTO t_profile(id, sws, fk_user_id, fk_faculty_id)
+VALUES (7, 18, 7, 3);
 
-INSERT INTO t_module_preference (id, priority, fk_profile_id, fk_lecture_id) VALUES (1, 100, 1, 1);
-INSERT INTO t_module_preference (id, priority, fk_profile_id, fk_lecture_id) VALUES (2, 80, 2, 2);
-INSERT INTO t_module_preference (id, priority, fk_profile_id, fk_lecture_id) VALUES (3, 95, 3, 3);
-INSERT INTO t_module_preference (id, priority, fk_profile_id, fk_lecture_id) VALUES (4, 42, 4, 4);
-INSERT INTO t_module_preference (id, priority, fk_profile_id, fk_lecture_id) VALUES (5, 50, 5, 5);
-INSERT INTO t_module_preference (id, priority, fk_profile_id, fk_lecture_id) VALUES (6, 60, 6, 6);
+INSERT INTO t_module_preference (id, priority, fk_profile_id, fk_lecture_id)
+VALUES (1, 100, 1, 1);
+INSERT INTO t_module_preference (id, priority, fk_profile_id, fk_lecture_id)
+VALUES (2, 80, 2, 2);
+INSERT INTO t_module_preference (id, priority, fk_profile_id, fk_lecture_id)
+VALUES (3, 95, 3, 3);
+INSERT INTO t_module_preference (id, priority, fk_profile_id, fk_lecture_id)
+VALUES (4, 42, 4, 4);
+INSERT INTO t_module_preference (id, priority, fk_profile_id, fk_lecture_id)
+VALUES (5, 50, 5, 5);
+INSERT INTO t_module_preference (id, priority, fk_profile_id, fk_lecture_id)
+VALUES (6, 60, 6, 6);
 
-INSERT INTO t_profile_delegated_lecturer_map (id, fk_profile_id, fk_delegated_lecturer_id) VALUES (1, 1, 4);
-INSERT INTO t_profile_delegated_lecturer_map (id, fk_profile_id, fk_delegated_lecturer_id) VALUES (2, 2, 3);
+INSERT INTO t_profile_delegated_lecturer_map (id, fk_profile_id, fk_delegated_lecturer_id)
+VALUES (1, 1, 4);
+INSERT INTO t_profile_delegated_lecturer_map (id, fk_profile_id, fk_delegated_lecturer_id)
+VALUES (2, 2, 3);
 INSERT INTO t_profile_delegated_lecturer_map (id, fk_profile_id, fk_delegated_lecturer_id) VALUES (3, 5, 2);
 INSERT INTO t_profile_delegated_lecturer_map (id, fk_profile_id, fk_delegated_lecturer_id) VALUES (4, 6, 1);
 

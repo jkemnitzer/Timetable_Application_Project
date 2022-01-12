@@ -2,6 +2,7 @@ package de.hofuniversity.minf.stundenplaner.service.boundary;
 
 import de.hofuniversity.minf.stundenplaner.service.to.LessonTO;
 import de.hofuniversity.minf.stundenplaner.service.to.TimeTableTO;
+import de.hofuniversity.minf.stundenplaner.service.to.TimeTableVersionTO;
 import org.apache.poi.ss.usermodel.Workbook;
 
 import java.time.LocalTime;
@@ -29,6 +30,8 @@ public interface TimeTableService {
     LessonTO deleteLesson(Long id);
 
     LessonTO updateLesson(Long id, LessonTO lessonTO);
+
+    List<TimeTableVersionTO> findAllVersions();
 
     Workbook exportAll();
 

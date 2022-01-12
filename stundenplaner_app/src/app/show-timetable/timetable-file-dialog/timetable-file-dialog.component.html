@@ -37,24 +37,29 @@
 
 <!-- Dialog Body -->
 <div class="form-group" [style.display]="isDialogType(data, DialogType.FILE_UPLOAD)?'visible':'none'">
-  <input type="file" class="file-input" accept="{{acceptedFileUploadType}}" (change)="handleFileInput($event)" #fileUpload>
+  <input type="file" class="file-input" accept="{{acceptedFileUploadType}}" (change)="handleFileInput($event)"
+         #fileUpload>
 </div>
-<mat-spinner class="mar-auto" [style.display]="isDialogType(data, DialogType.FILE_UPLOADING)?'visible':'none'"></mat-spinner>
+<mat-spinner class="mar-auto"
+             [style.display]="isDialogType(data, DialogType.FILE_UPLOADING)?'visible':'none'"></mat-spinner>
 
 <!-- Actions -->
 <div mat-dialog-actions>
   <button mat-button
-    [style.display]="isDialogType(data, DialogType.FILE_UPLOAD)?'visible':'none'"
-    (click)="uploadTimetable()">
+          [style.display]="isDialogType(data, DialogType.FILE_UPLOAD)?'visible':'none'"
+          (click)="uploadTimetable()">
     {{'SHOW_TIMETABLE.IMPORT.btnImport' | translate}}
   </button>
-  <button mat-button [style.display]="isDialogType(data, DialogType.FILE_UPLOAD)?'visible':'none'" (click)="cancelDialog()">
+  <button mat-button [style.display]="isDialogType(data, DialogType.FILE_UPLOAD)?'visible':'none'"
+          (click)="cancelDialog()">
     {{'SHOW_TIMETABLE.IMPORT.btnCancel' | translate}}
   </button>
-  <button mat-button [style.display]="isDialogType(data, DialogType.FILE_UPLOADED)?'visible':'none'" (click)="cancelDialog()">
+  <button mat-button [style.display]="isDialogType(data, DialogType.FILE_UPLOADED)?'visible':'none'"
+          (click)="cancelDialog()">
     {{'SHOW_TIMETABLE.IMPORT.btnClose' | translate}}
   </button>
-  <button mat-button [style.display]="isDialogType(data, DialogType.FILE_UPLOAD_FAILED)?'visible':'none'" (click)="cancelDialog()">
+  <button mat-button [style.display]="isDialogType(data, DialogType.FILE_UPLOAD_FAILED)?'visible':'none'"
+          (click)="cancelDialog()">
     {{'SHOW_TIMETABLE.IMPORT.btnClose' | translate}}
   </button>
 </div>

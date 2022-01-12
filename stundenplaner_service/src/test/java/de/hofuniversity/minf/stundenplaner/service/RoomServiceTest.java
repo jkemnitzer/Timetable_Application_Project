@@ -4,7 +4,6 @@ import de.hofuniversity.minf.stundenplaner.common.exception.NotFoundException;
 import de.hofuniversity.minf.stundenplaner.persistence.room.RoomRepository;
 import de.hofuniversity.minf.stundenplaner.persistence.room.data.FeatureDO;
 import de.hofuniversity.minf.stundenplaner.persistence.room.data.RoomDO;
-import de.hofuniversity.minf.stundenplaner.service.to.FeatureTO;
 import de.hofuniversity.minf.stundenplaner.service.to.RoomTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

@@ -10,7 +10,6 @@ import de.hofuniversity.minf.stundenplaner.service.boundary.UserService;
 import de.hofuniversity.minf.stundenplaner.service.to.RoleTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.util.CollectionUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -68,14 +67,10 @@ public class SecurityInterceptor implements HandlerInterceptor {
 
     private boolean hasPermission(Object handler, Set<PermissionTypeEnum> permissions) {
         if (handler instanceof HandlerMethod handlerMethod) {
-
             RequiredPermission requiredPermission = handlerMethod.getMethod().getAnnotation(RequiredPermission.class);
-
-            if (CollectionUtils.isEmpty(permissions)) {
-                return false;
+            if (requiredPermission != null && requiredPermission.value() != null) {
+                return permissions.contains(requiredPermission.value());
             }
-
-            return permissions.contains(requiredPermission.value());
         }
         return true;
     }

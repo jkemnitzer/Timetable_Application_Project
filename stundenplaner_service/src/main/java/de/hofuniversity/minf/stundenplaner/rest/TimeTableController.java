@@ -5,11 +5,20 @@ import de.hofuniversity.minf.stundenplaner.persistence.permission.data.Permissio
 import de.hofuniversity.minf.stundenplaner.service.boundary.TimeTableService;
 import de.hofuniversity.minf.stundenplaner.service.to.LessonTO;
 import de.hofuniversity.minf.stundenplaner.service.to.TimeTableTO;
+import de.hofuniversity.minf.stundenplaner.service.to.TimeTableVersionTO;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletOutputStream;
@@ -113,6 +122,11 @@ public class TimeTableController {
     public ResponseEntity<TimeTableTO> importExcelFile(@RequestParam("file") MultipartFile file) throws IOException {
         Workbook workbook = new HSSFWorkbook(file.getInputStream());
         return ResponseEntity.ok(service.importTimeTable(workbook, file.getOriginalFilename()));
+    }
+
+    @GetMapping("/versions")
+    public ResponseEntity<List<TimeTableVersionTO>> getAllVersions() {
+        return ResponseEntity.ok(service.findAllVersions());
     }
 
     private void executeExcelExport(HttpServletResponse response) throws IOException {

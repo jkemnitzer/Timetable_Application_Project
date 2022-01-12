@@ -28,7 +28,6 @@ public class CriterionRegistry {
         criteriaList.put(CriterionGapForLecturers.CriterionName, new CriterionGapForLecturers());
 
 
-
         allCriteria = new ArrayList<>();
         allCriteria.addAll(criteriaList.values());
     }

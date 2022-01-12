@@ -53,8 +53,8 @@ CREATE SEQUENCE IF NOT EXISTS t_program_seq;
 
 CREATE TABLE t_program
 (
-    id   BIGINT DEFAULT t_program_seq.nextval PRIMARY KEY,
-    name VARCHAR(200),
+    id            BIGINT DEFAULT t_program_seq.nextval PRIMARY KEY,
+    name          VARCHAR(200),
     fk_faculty_id BIGINT,
     FOREIGN KEY (fk_faculty_id) REFERENCES t_faculty (id)
 );
@@ -77,7 +77,7 @@ INSERT INTO t_semester (program_id, number, exp_participants, act_participants)
 VALUES (1, '3', 5, 5);
 
 INSERT INTO t_program (name, fk_faculty_id)
-VALUES ('Informatik',1);
+VALUES ('Informatik', 1);
 INSERT INTO t_semester (program_id, number, exp_participants, act_participants)
 VALUES (2, '1', 40, 38);
 INSERT INTO t_semester (program_id, number, exp_participants, act_participants)
@@ -276,6 +276,8 @@ INSERT INTO t_user (username, title, first_name, last_name, email, status)
 VALUES ('jscheidt', 'Prof. Dr.', 'Jörg', 'Scheidt', 'joerg.scheidt@hof-university.de', 'GENERATED');
 INSERT INTO t_user (username, title, first_name, last_name, email, status)
 VALUES ('cgroth', 'Prof. Dr.', 'Christian', 'Groth', 'christian.groth@hof-university.de', 'GENERATED');
+INSERT INTO t_user (username, title, first_name, last_name, email, status)
+VALUES ('admin', '', 'Admin', '', 'admin.stundenplaner_app@hof-university.de', 'GENERATED');
 
 
 INSERT INTO t_user_role_map (user_id, role_id)
@@ -286,6 +288,8 @@ INSERT INTO t_user_role_map (user_id, role_id)
 VALUES (3, 1);
 INSERT INTO t_user_role_map (user_id, role_id)
 VALUES (3, 2);
+INSERT INTO t_user_role_map (user_id, role_id)
+VALUES ((SELECT id FROM t_user WHERE username = 'admin'), (SELECT id FROM t_role WHERE type = 'ADMIN'));
 
 INSERT INTO t_role_permission_map (role_id, permission_id)
 VALUES (1, 1);

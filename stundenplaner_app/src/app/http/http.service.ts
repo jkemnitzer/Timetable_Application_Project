@@ -4,7 +4,6 @@ import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {environment} from '../../environments/environment';
 import {Router} from "@angular/router";
-import {GuardViewComponent} from "../guards/guard-view/guard-view.component";
 import {GuardReason} from "../guards/data/guard-reason";
 
 @Injectable({
@@ -12,32 +11,32 @@ import {GuardReason} from "../guards/data/guard-reason";
 })
 export class HttpService {
   url = environment.api;
-  headers = new HttpHeaders().set('Content-Type', 'application/json');
+  public headers = new HttpHeaders().set('Content-Type', 'application/json');
 
   constructor(private http: HttpClient, private router: Router) {
   }
 
-  getRequest(path: string, options?: any): Observable<any> {
+  getRequest(path: string): Observable<any> {
     return this.http
-      .get(`${this.url}${path}`, options)
+      .get(`${this.url}${path}`, {headers: this.headers})
       .pipe(catchError(this.handleError));
   }
 
-  postRequest(path: string, data: any, options?: any): Observable<any> {
+  postRequest(path: string, data: any): Observable<any> {
     return this.http
-      .post(`${this.url}${path}`, data, options)
+      .post(`${this.url}${path}`, data, {headers: this.headers})
       .pipe(catchError(this.handleError));
   }
 
-  updateRequest(path: string, data: any, options?: any): Observable<any> {
+  updateRequest(path: string, data: any): Observable<any> {
     return this.http
-      .put(`${this.url}${path}`, data, options)
+      .put(`${this.url}${path}`, data, {headers: this.headers})
       .pipe(catchError(this.handleError));
   }
 
-  deleteRequest(path: string, options?: any): Observable<any> {
+  deleteRequest(path: string): Observable<any> {
     return this.http
-      .delete(`${this.url}${path}`, options)
+      .delete(`${this.url}${path}`, {headers: this.headers})
       .pipe(catchError(this.handleError));
   }
 
@@ -46,9 +45,9 @@ export class HttpService {
       // A client-side or network error occurred. Handle it accordingly.
       console.error('An error occurred:', error.error);
     } else if (error.status === 401) { // Unauthorized
-      let _ = this.router.navigate(['guard', {reason: GuardReason.UNAUTHORIZED_ACCESS}] )
+      let _ = this.router.navigate(['guard', {reason: GuardReason.UNAUTHORIZED_ACCESS}])
     } else if (error.status === 403) { // Forbidden
-      let _ = this.router.navigate(['guard', {reason: GuardReason.FORBIDDEN_ACCESS}] )
+      let _ = this.router.navigate(['guard', {reason: GuardReason.FORBIDDEN_ACCESS}])
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong.
