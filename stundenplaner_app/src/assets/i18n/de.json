@@ -156,6 +156,10 @@
     "clear_selection_tooltip": "Alle Auswahlen zurücksetzen",
     "clear_filter_tooltip": "Alle Filter zurücksetzen"
   },
+  "TIMETABLE_FILTER": {
+    "clear_selection_tooltip": "Alle Auswahlen zurücksetzen",
+    "clear_filter_tooltip": "Alle Filter zurücksetzen"
+  },
   "USER_ROLES": {
     "DIALOG": {
       "COLUMNS": {
