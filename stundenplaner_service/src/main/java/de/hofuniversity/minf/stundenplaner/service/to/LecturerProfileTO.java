@@ -24,6 +24,7 @@ public class LecturerProfileTO {
     private List<Long> timeSlotPreferences;
     private UserTO lecturer;
     private Integer sws;
+    private FacultyTO faculty;
 
     public static LecturerProfileTO fromDO(ProfileDO lecturerProfileDO) {
         return new LecturerProfileTO(
@@ -38,7 +39,8 @@ public class LecturerProfileTO {
                         .map(TimeSlotPreferenceDO::getId)
                         .collect(Collectors.toList()),
                 UserTO.fromDO(lecturerProfileDO.getLecturer()),
-                lecturerProfileDO.getSws()
+                lecturerProfileDO.getSws(),
+                FacultyTO.fromDO(lecturerProfileDO.getFaculty())
         );
     }
 

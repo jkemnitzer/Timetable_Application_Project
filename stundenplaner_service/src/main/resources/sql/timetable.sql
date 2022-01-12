@@ -9,21 +9,23 @@ CREATE TABLE t_lecture
 (
     id       BIGINT     DEFAULT t_lecture_seq.nextval PRIMARY KEY,
     language VARCHAR(2) DEFAULT 'DE',
-    name     VARCHAR(200)
+    name     VARCHAR(200),
+    fk_faculty_id BIGINT NOT NULL,
+    FOREIGN KEY (fk_faculty_id) REFERENCES t_faculty (id)
 );
 
-INSERT INTO t_lecture (name)
-VALUES ('Aktuelle Themen zur IT-Sicherheit');
-INSERT INTO t_lecture (name)
-VALUES ('Einführung in Management, Organisation und Leadership');
-INSERT INTO t_lecture (name)
-VALUES ('IT- und Datenschutzrecht');
-INSERT INTO t_lecture (name, language)
-VALUES ('Development and Design of Business Models', 'EN');
-INSERT INTO t_lecture (name, language)
-VALUES ('Data Mining and Machine Learning', 'EN');
-INSERT INTO t_lecture (name)
-VALUES ('Praktikum');
+INSERT INTO t_lecture (name, fk_faculty_id)
+VALUES ('Aktuelle Themen zur IT-Sicherheit', 1);
+INSERT INTO t_lecture (name, fk_faculty_id)
+VALUES ('Einführung in Management, Organisation und Leadership', 2);
+INSERT INTO t_lecture (name, fk_faculty_id)
+VALUES ('IT- und Datenschutzrecht', 2);
+INSERT INTO t_lecture (name, language, fk_faculty_id)
+VALUES ('Development and Design of Business Models', 'EN', 2);
+INSERT INTO t_lecture (name, language, fk_faculty_id)
+VALUES ('Data Mining and Machine Learning', 'EN', 1);
+INSERT INTO t_lecture (name, fk_faculty_id)
+VALUES ('Praktikum', 1);
 
 -- Feature Timetable
 -- Timetable version

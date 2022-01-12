@@ -1,6 +1,7 @@
 package de.hofuniversity.minf.stundenplaner.service;
 
 import de.hofuniversity.minf.stundenplaner.common.exception.NotFoundException;
+import de.hofuniversity.minf.stundenplaner.persistence.faculty.data.FacultyDO;
 import de.hofuniversity.minf.stundenplaner.persistence.lecture.LectureRepository;
 import de.hofuniversity.minf.stundenplaner.persistence.lecture.data.LectureDO;
 import de.hofuniversity.minf.stundenplaner.persistence.room.RoomRepository;
@@ -70,7 +71,7 @@ public class TimeTableServiceTest {
     private static final Integer I = 1;
     private static final RoomDO ROOM = new RoomDO(L, S, S, Collections.emptyList(), I, S);
     private static final UserDO USER = new UserDO(L, S, S, S, S, S, S, S, D, D, null, Collections.emptySet(), null);
-    private static final LectureDO LECTURE = new LectureDO(L, S, Collections.emptyList(), Collections.emptyList());
+    private static final LectureDO LECTURE = new LectureDO(L, S, Collections.emptyList(), Collections.emptyList(), new FacultyDO(1L, "Informatik"));
     private static final TimeslotDO TIMESLOT = new TimeslotDO(L, T, T, I);
     private static final TimeTableVersionDO VERSION = new TimeTableVersionDO(L, S, S, S);
     private static LessonDO LESSON_1;

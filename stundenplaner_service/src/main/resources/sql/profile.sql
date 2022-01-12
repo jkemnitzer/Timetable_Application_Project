@@ -4,7 +4,9 @@ CREATE TABLE t_profile
     id BIGINT DEFAULT t_profile_seq.nextval PRIMARY KEY NOT NULL,
     sws INTEGER,
     fk_user_id BIGINT NOT NULL,
-    FOREIGN KEY (fk_user_id) REFERENCES t_user (id)
+    fk_faculty_id BIGINT NOT NULL,
+    FOREIGN KEY (fk_user_id) REFERENCES t_user (id),
+    FOREIGN KEY (fk_faculty_id) REFERENCES t_faculty (id)
 );
 
 CREATE SEQUENCE t_delegated_lecturer_seq;
@@ -54,13 +56,13 @@ INSERT INTO t_delegated_lecturer (id, sws, fk_user_id) VALUES (2, 4, 7);
 INSERT INTO t_delegated_lecturer (id, sws, fk_user_id) VALUES (3, 2, 7);
 INSERT INTO t_delegated_lecturer (id, sws, fk_user_id) VALUES (4, 6, 7);
 
-INSERT INTO t_profile(id, sws, fk_user_id) VALUES (1, 18, 1);
-INSERT INTO t_profile(id, sws, fk_user_id) VALUES (2, 18, 2);
-INSERT INTO t_profile(id, sws, fk_user_id) VALUES (3, 18, 3);
-INSERT INTO t_profile(id, sws, fk_user_id) VALUES (4, 18, 4);
-INSERT INTO t_profile(id, sws, fk_user_id) VALUES (5, 18, 5);
-INSERT INTO t_profile(id, sws, fk_user_id) VALUES (6, 18, 6);
-INSERT INTO t_profile(id, sws, fk_user_id) VALUES (7, 18, 7);
+INSERT INTO t_profile(id, sws, fk_user_id, fk_faculty_id) VALUES (1, 18, 1, 1);
+INSERT INTO t_profile(id, sws, fk_user_id, fk_faculty_id) VALUES (2, 18, 2, 2);
+INSERT INTO t_profile(id, sws, fk_user_id, fk_faculty_id) VALUES (3, 18, 3, 2);
+INSERT INTO t_profile(id, sws, fk_user_id, fk_faculty_id) VALUES (4, 18, 4, 1);
+INSERT INTO t_profile(id, sws, fk_user_id, fk_faculty_id) VALUES (5, 18, 5, 3);
+INSERT INTO t_profile(id, sws, fk_user_id, fk_faculty_id) VALUES (6, 18, 6, 2);
+INSERT INTO t_profile(id, sws, fk_user_id, fk_faculty_id) VALUES (7, 18, 7, 3);
 
 INSERT INTO t_module_preference (id, priority, fk_profile_id, fk_lecture_id) VALUES (1, 100, 1, 1);
 INSERT INTO t_module_preference (id, priority, fk_profile_id, fk_lecture_id) VALUES (2, 80, 2, 2);

@@ -15,7 +15,9 @@ public class CriterionModulesOfLecturer extends AbstractCriterion {
             return 100.0;
         }
 
-        // TODO: Add condition if the faculty of the lecture and lecturer match. If not, return -infinity.
+        if (!lesson.getLecturerDO().getLecturerProfile().getFaculty().equals(lesson.getLectureDO().getPrimaryFaculty())) {
+            return Double.NEGATIVE_INFINITY;
+        }
 
         for(ModulePreferenceDO preference: lesson.getLecturerDO().getLecturerProfile().getModulePreferences()) {
             // Match based on the name because there might be lectures with different IDs but same name for

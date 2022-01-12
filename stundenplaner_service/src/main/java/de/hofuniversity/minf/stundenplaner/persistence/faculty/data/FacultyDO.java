@@ -1,5 +1,9 @@
 package de.hofuniversity.minf.stundenplaner.persistence.faculty.data;
 
+import de.hofuniversity.minf.stundenplaner.persistence.account.data.ProfileDO;
+import de.hofuniversity.minf.stundenplaner.persistence.user.data.UserDO;
+import de.hofuniversity.minf.stundenplaner.service.to.FacultyTO;
+import de.hofuniversity.minf.stundenplaner.service.to.LecturerProfileTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import java.util.Collections;
 
 /**
  * @author: Jonas Kemnitzer Basic POJO class for faculty
@@ -32,5 +37,12 @@ public class FacultyDO {
 
     @Column(name = "name")
     private String name;
+
+    public static FacultyDO fromTO(FacultyTO facultyTO) {
+        return new FacultyDO(
+                facultyTO.getId(),
+                facultyTO.getName()
+        );
+    }
 
 }
