@@ -203,3 +203,15 @@ INSERT INTO t_semester_lecture_map (fk_semester, fk_lecture)
 VALUES (1, 5);
 INSERT INTO t_semester_lecture_map (fk_semester, fk_lecture)
 VALUES (1, 6);
+INSERT INTO t_semester_lecture_map (fk_semester, fk_lecture)
+VALUES (3, 1);
+INSERT INTO t_semester_lecture_map (fk_semester, fk_lecture)
+VALUES (3, 2);
+INSERT INTO t_semester_lecture_map (fk_semester, fk_lecture)
+VALUES (3, 3);
+INSERT INTO t_semester_lecture_map (fk_semester, fk_lecture)
+VALUES (3, 4);
+INSERT INTO t_semester_lecture_map (fk_semester, fk_lecture)
+VALUES (3, 5);
+INSERT INTO t_semester_lecture_map (fk_semester, fk_lecture)
+VALUES (3, 6);

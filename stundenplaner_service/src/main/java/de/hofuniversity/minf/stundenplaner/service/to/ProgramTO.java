@@ -17,6 +17,7 @@ public class ProgramTO {
     private Long id;
     private String name;
     private List<SemesterTO> semesters;
+    private FacultyTO faculty;
 
     public static ProgramTO fromDO(ProgramDO programDO) {
         return new ProgramTO(
@@ -24,7 +25,8 @@ public class ProgramTO {
                 programDO.getName(),
                 programDO.getSemesterDOs().stream()
                         .map(SemesterTO::fromDO)
-                        .toList()
+                        .toList(),
+                FacultyTO.fromDO(programDO.getFaculty())
         );
     }
 

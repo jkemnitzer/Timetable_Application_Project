@@ -1,6 +1,7 @@
 package de.hofuniversity.minf.stundenplaner.service;
 
 import de.hofuniversity.minf.stundenplaner.common.exception.NotFoundException;
+import de.hofuniversity.minf.stundenplaner.persistence.faculty.data.FacultyDO;
 import de.hofuniversity.minf.stundenplaner.persistence.program.ProgramRepository;
 import de.hofuniversity.minf.stundenplaner.persistence.program.data.ProgramDO;
 import de.hofuniversity.minf.stundenplaner.service.to.ProgramTO;
@@ -26,8 +27,8 @@ class ProgramServiceTest {
     @InjectMocks
     private ProgramServiceImpl programService;
 
-    private final ProgramDO PROGRAM_DO_1 = new ProgramDO(1L, "Master Informatik", Collections.emptyList());
-    private final ProgramDO PROGRAM_DO_2 = new ProgramDO(2L, "Informatik", Collections.emptyList());
+    private final ProgramDO PROGRAM_DO_1 = new ProgramDO(1L, "Master Informatik", Collections.emptyList(), new FacultyDO());
+    private final ProgramDO PROGRAM_DO_2 = new ProgramDO(2L, "Informatik", Collections.emptyList(), new FacultyDO());
 
     @Test
     void testGetAll(){
@@ -64,7 +65,7 @@ class ProgramServiceTest {
 
     @Test
     void testUpdate(){
-        ProgramDO testReturn = new ProgramDO(PROGRAM_DO_1.getId(), PROGRAM_DO_1.getName(), Collections.emptyList());
+        ProgramDO testReturn = new ProgramDO(PROGRAM_DO_1.getId(), PROGRAM_DO_1.getName(), Collections.emptyList(), new FacultyDO());
         when(programRepository.findById(1L)).thenReturn(Optional.of(testReturn));
         when(programRepository.findById(3L)).thenReturn(Optional.empty());
         when(programRepository.save(any(ProgramDO.class))).thenReturn(testReturn);

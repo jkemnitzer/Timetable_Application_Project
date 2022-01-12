@@ -1,20 +1,13 @@
 package de.hofuniversity.minf.stundenplaner.persistence.program.data;
 
+import de.hofuniversity.minf.stundenplaner.persistence.faculty.data.FacultyDO;
 import de.hofuniversity.minf.stundenplaner.service.to.ProgramTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 @Getter
@@ -37,6 +30,11 @@ public class ProgramDO {
     @OneToMany(mappedBy = "program", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<SemesterDO> semesterDOs;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_faculty_id", nullable = false)
+    private FacultyDO faculty;
+
+
     public void updateFromTO(ProgramTO programTO) {
         this.setName(programTO.getName());
     }
@@ -47,7 +45,8 @@ public class ProgramDO {
                 programTo.getName(),
                 programTo.getSemesters().stream()
                         .map(SemesterDO::fromTO)
-                        .toList()
+                        .toList(),
+                null
         );
     }
 }

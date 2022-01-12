@@ -1,3 +1,22 @@
+DROP TABLE IF EXISTS t_faculty;
+
+CREATE SEQUENCE IF NOT EXISTS t_faculty_seq;
+
+CREATE TABLE t_faculty
+(
+    id   BIGINT DEFAULT t_faculty_seq.nextval PRIMARY KEY,
+    name VARCHAR(200)
+);
+
+INSERT INTO t_faculty (name)
+VALUES ('Informatik');
+INSERT INTO t_faculty (name)
+VALUES ('Wirtschaft');
+INSERT INTO t_faculty (name)
+VALUES ('Ingenieur');
+
+
+
 DROP TABLE IF EXISTS t_room;
 
 CREATE SEQUENCE IF NOT EXISTS t_room_seq;
@@ -35,7 +54,9 @@ CREATE SEQUENCE IF NOT EXISTS t_program_seq;
 CREATE TABLE t_program
 (
     id   BIGINT DEFAULT t_program_seq.nextval PRIMARY KEY,
-    name VARCHAR(200)
+    name VARCHAR(200),
+    fk_faculty_id BIGINT,
+    FOREIGN KEY (fk_faculty_id) REFERENCES t_faculty (id)
 );
 
 CREATE TABLE t_semester
@@ -48,15 +69,15 @@ CREATE TABLE t_semester
     FOREIGN KEY (program_id) REFERENCES t_program (id)
 );
 
-INSERT INTO t_program (name)
-VALUES ('Master Informatik');
+INSERT INTO t_program (name, fk_faculty_id)
+VALUES ('Master Informatik', 1);
 INSERT INTO t_semester (program_id, number, exp_participants, act_participants)
 VALUES (1, '1u2', 10, 11);
 INSERT INTO t_semester (program_id, number, exp_participants, act_participants)
 VALUES (1, '3', 5, 5);
 
-INSERT INTO t_program (name)
-VALUES ('Informatik');
+INSERT INTO t_program (name, fk_faculty_id)
+VALUES ('Informatik',1);
 INSERT INTO t_semester (program_id, number, exp_participants, act_participants)
 VALUES (2, '1', 40, 38);
 INSERT INTO t_semester (program_id, number, exp_participants, act_participants)
@@ -72,8 +93,8 @@ VALUES (2, '6', 30, 26);
 INSERT INTO t_semester (program_id, number, exp_participants, act_participants)
 VALUES (2, '7', 30, 22);
 
-INSERT INTO t_program (name)
-VALUES ('Medien Informatik');
+INSERT INTO t_program (name, fk_faculty_id)
+VALUES ('Medien Informatik', 1);
 INSERT INTO t_semester (program_id, number, exp_participants, act_participants)
 VALUES (3, '1', 40, 38);
 INSERT INTO t_semester (program_id, number, exp_participants, act_participants)
@@ -343,22 +364,3 @@ INSERT INTO t_role_permission_map (role_id, permission_id)
 VALUES (5, 33);
 INSERT INTO t_role_permission_map (role_id, permission_id)
 VALUES (5, 34);
-
---- faculty
-DROP TABLE IF EXISTS t_faculty;
-
-CREATE SEQUENCE IF NOT EXISTS t_faculty_seq;
-
-CREATE TABLE t_faculty
-(
-    id   BIGINT DEFAULT t_room_seq.nextval PRIMARY KEY,
-    name VARCHAR(200)
-);
-
-INSERT INTO t_faculty (name)
-VALUES ('Informatik');
-INSERT INTO t_faculty (name)
-VALUES ('Wirtschaft');
-INSERT INTO t_faculty (name)
-VALUES ('Ingenieur');
-

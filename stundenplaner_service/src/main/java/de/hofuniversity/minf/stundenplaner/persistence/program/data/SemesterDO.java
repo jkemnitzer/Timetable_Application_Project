@@ -49,7 +49,7 @@ public class SemesterDO {
     @JoinColumn(name = "program_id", nullable = false)
     private ProgramDO program;
 
-    @ManyToMany(cascade = CascadeType.REMOVE)
+    @ManyToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     @JoinTable(
             name = "t_semester_lecture_map", joinColumns = @JoinColumn(name = "fk_semester", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "fk_lecture", referencedColumnName = "id")
