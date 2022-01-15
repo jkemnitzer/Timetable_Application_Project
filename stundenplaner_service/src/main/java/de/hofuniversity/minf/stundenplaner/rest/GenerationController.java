@@ -1,5 +1,7 @@
 package de.hofuniversity.minf.stundenplaner.rest;
 
+import de.hofuniversity.minf.stundenplaner.common.security.RequiredPermission;
+import de.hofuniversity.minf.stundenplaner.persistence.permission.data.PermissionTypeEnum;
 import de.hofuniversity.minf.stundenplaner.persistence.timetable.data.LessonDO;
 import de.hofuniversity.minf.stundenplaner.service.GenerationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,7 @@ public class GenerationController {
     }
 
     @GetMapping
+    @RequiredPermission(PermissionTypeEnum.CAN_CREATE_TIME_TABLES)
     public ResponseEntity<List<LessonDO>> generate() {
         return ResponseEntity.ok(generationService.generate());
     }

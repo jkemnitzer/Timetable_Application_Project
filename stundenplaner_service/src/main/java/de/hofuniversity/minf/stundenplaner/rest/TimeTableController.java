@@ -125,6 +125,7 @@ public class TimeTableController {
     }
 
     @GetMapping("/versions")
+    @RequiredPermission(PermissionTypeEnum.CAN_READ_TIME_TABLES)
     public ResponseEntity<List<TimeTableVersionTO>> getAllVersions() {
         return ResponseEntity.ok(service.findAllVersions());
     }
