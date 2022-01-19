@@ -126,17 +126,20 @@
     }
   },
   "SHOW_TIMETABLE": {
+    "faculty": "Faculty",
+    "major": "major",
+    "newVersion": "New empty timetable",
     "version": "Version",
     "program": "Program",
     "semester": "Semester",
     "search": "Search",
-    "monday": "Monday",
-    "tuesday": "Tuesday",
-    "wednesday": "Wednesday",
-    "thursday": "Thursday",
-    "friday": "Friday",
-    "saturday": "Saturday",
-    "searchTerms": "Search for rooms lecturers and Lessons",
+    "weekday_1": "Monday",
+    "weekday_2": "Tuesday",
+    "weekday_3": "Wednesday",
+    "weekday_4": "Thursday",
+    "weekday_5": "Friday",
+    "weekday_6": "Saturday",
+    "searchTerms": "Search",
     "room": "Room",
     "lecturer": "Lecturer",
     "start": "Start",
@@ -153,7 +156,7 @@
     "clear_filter_tooltip": "Clear all filters"
   },
   "TIMETABLE_CRUD": {
-    "add_label": "Not implemented",
+    "add_label": "Add Lesson",
     "lecture": "Lecture",
     "day": "Weekday",
     "time_slot": "Time slot",
@@ -163,8 +166,12 @@
     "note": "Note",
     "add": "Add",
     "delete": "Delete all fields",
+    "edit_label": "Edit lesson",
+    "edit": "Edit",
     "added": "Lesson was successfully added",
     "edited": "Lesson was successfully edited",
+    "type_LECTURE": "Lecture",
+    "type_EXERCISE": "Exercise",
     "fail": "An error has occurred, please check your entries",
     "details": "Details",
     "IMPORT": {
@@ -194,18 +201,18 @@
     "Submit": "Start Planning",
     "SwitchLanguage": "Language"
   },
-  "GUARD_VIEW": {
-    "UNKNOWN": {
-      "title": "Access Restricted.",
-      "text": "The requested view via this link is restricted or may not be available. If you think the requested view should be available to you or if you have questions about this service please contact the owner."
-    },
-    "MUST_BE_LOGGED_IN": {
-      "title": "Access Restricted.",
-      "text": "You must be logged-in to view this link, or the link may not be available. Please login with your account or create a new account. If you have questions about this service feel free to contact the owner."
-    },
-    "MUST_HAVE_PERMISSION": {
-      "title": "Access Restricted.",
-      "text": "You don't have permission to view this link, or the link may not be available. Please contact the owner and ask to invite you to this link, or switch accounts."
+    "GUARD_VIEW": {
+      "UNKNOWN": {
+        "title": "Access Restricted.",
+        "text": "The requested view via this link is restricted or may not be available. If you think the requested view should be available to you or if you have questions about this service please contact the owner."
+      },
+      "MUST_BE_LOGGED_IN": {
+        "title": "Access Restricted.",
+        "text": "You must be logged-in to view this link, or the link may not be available. Please login with your account or create a new account. If you have questions about this service feel free to contact the owner."
+      },
+      "MUST_HAVE_PERMISSION": {
+        "title": "Access Restricted.",
+        "text": "You don't have permission to view this link, or the link may not be available. Please contact the owner and ask to invite you to this link, or switch accounts."
     },
     "UNAUTHNeue Stunde anlegenORIZED_ACCESS": {
       "title": "Unauthorized Access.",
@@ -214,6 +221,6 @@
     "FORBIDDEN_ACCESS": {
       "title": "Forbidden Access.",
       "text": "Resources you requested could not be loaded because they were not made available to you. Please contact the owner and ask him to invite you to this resources or change your user account."
+      }
     }
-  }
 }
