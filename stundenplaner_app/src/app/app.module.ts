@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import { NgModule } from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
@@ -45,6 +45,9 @@ import {TimetableDayComponent} from "./show-timetable/timetable-day/timetable-da
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatSelectModule} from "@angular/material/select";
 import {UserRoleOverviewComponent} from "./user-roles/user-role-overview/user-role-overview.component";
+import {EditLessonFormComponent} from './show-timetable/edit-lesson-form/edit-lesson-form.component';
+
+
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
@@ -82,12 +85,16 @@ import {RegistrationComponent} from "./registration/registration.component";
     LandingComponent,
     UserRoleOverviewComponent,
     ShowPermissionsDialogComponent,
+    EditLessonFormComponent,
+    ShowPermissionsDialogComponent,
     RegistrationComponent,
     ChangeLanguageComponent,
     GuardViewComponent,
     ErrorSnackbarComponent,
     SuccessSnackbarComponent,
     TimetableFileDialogComponent,
+    ChangeLanguageComponent,
+    GuardViewComponent,
   ],
   imports: [
     BrowserModule,

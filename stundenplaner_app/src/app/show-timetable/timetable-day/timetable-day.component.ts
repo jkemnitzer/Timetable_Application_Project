@@ -2,6 +2,11 @@ import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@an
 import {MatSort, Sort} from "@angular/material/sort";
 import {MatTableDataSource} from "@angular/material/table";
 import {Lesson} from "../data/lesson";
+import {HttpService} from "../../http/http.service";
+import {MatDialog} from "@angular/material/dialog";
+import {EditLessonFormComponent} from "../edit-lesson-form/edit-lesson-form.component";
+import {Version} from "../data/version";
+import {Day} from "../show-timetable.component";
 
 
 @Component({
@@ -11,16 +16,27 @@ import {Lesson} from "../data/lesson";
 })
 export class TimetableDayComponent implements OnInit, OnChanges{
 
-  @Input() weekday = '';
+  BASE_DELETE_LESSON_URL = '/timetable/lesson/';
+
+  @Input() weekday: Day = new Day();
   @Input() filter = '';
+  @Input() version:Version = {
+    id: 0,
+    semesterYear: '',
+    version: '',
+    comment: ''};
   @Input() data: Lesson[] = [];
+  @Input() siblings: TimetableDayComponent[] = [];
   dataSource:MatTableDataSource<Lesson> = new MatTableDataSource<Lesson>();
 
   displayedColumns: string[] = ['start', 'end',
-    'lecturer', 'room', 'name', 'edit', 'delete', 'info'];
+    'lecturer', 'room', 'lectureTitle', 'edit', 'delete', 'info'];
 
 
   @ViewChild(MatSort) sort: MatSort = new MatSort();
+
+  constructor(private httpService: HttpService, public dialog: MatDialog) {
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if(!!changes.data){
@@ -68,8 +84,55 @@ export class TimetableDayComponent implements OnInit, OnChanges{
 
     return '';
   }
+
+  deleteLesson(lesson: Lesson) {
+    let returnedLesson = null;
+    this.httpService.deleteRequest(this.BASE_DELETE_LESSON_URL + lesson.id).subscribe(
+      (response) => {
+        if(response == null){
+          return;
+        }
+
+        returnedLesson = response;
+        const tempArray = this.dataSource.data.filter(value => value.id != lesson.id);
+        this.dataSource.data = tempArray;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
+  editLesson(lesson: Lesson) {
+    const dialogRef = this.dialog.open(EditLessonFormComponent, {
+      data: {lesson: lesson, version: this.version},
+    });
+
+
+    dialogRef.afterClosed().subscribe(updatedLesson => {
+      if(typeof updatedLesson == 'string')return;
+      const tempArray = this.dataSource.data.filter(value => value.id != lesson.id);
+      if(this.weekday.id == updatedLesson.weekdayNr) tempArray.push(updatedLesson);
+      else this.siblings.forEach(value => value.addLesson(updatedLesson));
+      this.dataSource.data = tempArray;
+      if(this.dataSource.sort != null)
+        this.sortData(this.dataSource.sort);
+
+    });
+  }
+
+  addLesson(lesson: Lesson){
+    if(this.weekday.id == lesson.weekdayNr){
+      const tempArray = this.dataSource.data.slice();
+      tempArray.push(lesson);
+      this.dataSource.data = tempArray;
+    }
+    if(this.dataSource.sort != null)
+      this.sortData(this.dataSource.sort);
+  }
 }
 
 function compare(a: number | string, b: number | string, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
+
